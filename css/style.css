@@ -17,15 +17,14 @@ header div.util{width: 200px; display: flex;justify-content: space-between;margi
 header div.util.mypage{width: 240px;}
 header div.util a>img{width: 40px;}
 /* gnb */
-header div.gnbbar{width: 100%;height: 40px;background-color: #feef88;position: fixed;top:183px;left: 0;z-index: 5;display: none;}
+header nav.gnb div.gnbbar{width: 100%;height: 40px;background-color: #feef88;position: absolute;bottom: -42px;left: 0;z-index: 5;display: none;}
 header nav.gnb{min-width: 1200px; border-top: 1px solid #713f12;
-border-bottom: 1px solid #713f12;margin-top: 15px;font-weight: 700;}
+border-bottom: 1px solid #713f12;margin-top: 15px;font-weight: 700;position: relative;}
 header nav.gnb>ul{width:800px;display: grid;grid-template-columns: repeat(4,120px);text-align: center;height: 60px;justify-content: space-between;}
 header nav.gnb>ul>li{line-height: 60px;font-size: 22px;position: relative;height: 60px;}
 header nav.gnb>ul>li>a{display:block;width: 100%;height: inherit;}
 header nav.gnb>ul>li>ul{width:700px; font-size: 16px;display: flex;justify-content: space-between;z-index: 6;position: absolute;bottom: -40px;left: -120%;visibility: hidden;}
 header nav.gnb>ul>li:hover ul{visibility: visible;}
-header nav.gnb>ul>li:hover div.gnbbar{display: block;}
 header nav.gnb>ul>li:hover::after{content: "";position: absolute;width: 20px;height: 20px;transform: rotate(45deg);background-color: #feef88;bottom: -10px;}
 header nav.gnb>ul>li:nth-child(1):hover::after{display: none;}
 header nav.gnb>ul>li:nth-child(3)>ul{width:600px;left: -200%;}
