@@ -49,11 +49,11 @@
         </div>
       </div>
       <nav class="gnb">
+        <div class="gnbbar"></div>
         <ul class="center">
           <li><a href="">전통주 이야기</a></li>
           <li>
             <a href="">지역별 전통주</a>
-            <div class="gnbbar"></div>
             <ul>
               <li><a href="">전체 상품</a></li>
               <li><a href="">서울, 경기, 인천권</a></li>
@@ -64,7 +64,7 @@
           </li>
           <li>
             <a href="">주종별 전통주</a>
-            <div class="gnbbar"></div>
+            <!-- <div class="gnbbar"></div> -->
             <ul>
               <li><a href="">증류주</a></li>
               <li><a href="">과실주</a></li>
@@ -75,7 +75,7 @@
           </li>
           <li>
             <a href="">가격별 전통주</a>
-            <div class="gnbbar"></div>
+            <!-- <div class="gnbbar"></div> -->
             <ul>
               <li><a href="">10,000원 이하 제품</a></li>
               <li><a href="">20,000원 이하 제품</a></li>
@@ -89,6 +89,10 @@
       </nav>
     </header>
 <!-- header : END -->
+<!-- mainbanner : START -->
+<!-- mainbanner : END -->
+<!-- container : START -->
+<!-- container : END -->
 <!-- footer : START -->
 <footer>
   <div class="center">
@@ -140,5 +144,20 @@
   </div>
 </footer>
 <!-- footer : END -->
+<script>
+  const gnbbar = document.querySelector(".gnbbar")
+  const gnbmenu = document.querySelectorAll("nav.gnb>ul>li")
+  gnbmenu.forEach((v, index) => {
+    if (index !== 0) {
+      v.addEventListener("mouseover", (e) => {
+        gnbbar.style.display = "block";
+      });
+
+      v.addEventListener("mouseout", (e) => {
+        gnbbar.style.display = "none";
+      });
+    }
+  });
+</script>
 </body>
 </html>
