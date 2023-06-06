@@ -9,6 +9,7 @@
     <link rel="icon" href="img/favicon-32x32.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/admin.css">
   </head>
   <body>
     <!-- header : START -->
@@ -92,6 +93,77 @@
 <!-- mainbanner : START -->
 <!-- mainbanner : END -->
 <!-- container : START -->
+<section class="center">
+  <div>
+    <div class="admin-table-name justify-content-center">
+      <div class="row"></div>
+      <div class="row">
+        <h2 class="col align-self-center text-center">고객 문의 관리</h2>
+      </div>
+      <div class="row">
+        <div class="col position-relative"><a class="position-absolute top-50 start-50 translate-middle-x selected" href="">배송 문의 내역</a></div>
+        <div class="col position-relative"><a class="position-absolute top-50 start-50 translate-middle-x"href="">상품 문의 내역</a></div>
+      </div>
+    </div>
+    <table class="table text-center admin-table">
+      <thead>
+        <tr>
+          <th>배송문의번호</th>
+          <th>문의자</th>
+          <th>문의일</th>
+          <th>제목</th>
+          <th>내용</th>
+          <th>문의 상태</th>
+          <th>답변 내용</th>
+          <th>답변 등록</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>D1</td>
+          <td>홍길동</td>
+          <td>2023-06-01</td>
+          <td>배송 날짜 지정...</td>
+          <td>안녕하세요 ...</td>
+          <td>답변 완료</td>
+          <td>안녕하십니까...</td>
+          <td><button class="btn admin-btn"> 완료 </button></td>
+        </tr>
+        <tr>
+          <td>D2</td>
+          <td>이하루</td>
+          <td>2023-06-02</td>
+          <th>아직 배송이 ...</th>
+          <td>주문한지 일주일...</td>
+          <td>미답변</td>
+          <td></td>
+          <td><button class="btn admin-btn-ylw"> 답변등록 </button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-center py-5">
+    <nav aria-label="">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span >&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link active" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li>
+        <li class="page-item"><a class="page-link" href="#">5</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>
 <!-- container : END -->
 <!-- footer : START -->
 <footer>

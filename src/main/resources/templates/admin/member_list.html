@@ -9,6 +9,7 @@
     <link rel="icon" href="img/favicon-32x32.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/admin.css">
   </head>
   <body>
     <!-- header : START -->
@@ -92,6 +93,85 @@
 <!-- mainbanner : START -->
 <!-- mainbanner : END -->
 <!-- container : START -->
+<section class="center">
+  <div>
+    <div class="admin-table-name justify-content-center">
+      <div class="row"></div>
+      <div class="row">
+        <h2 class="col align-self-center text-center">회원 관리</h2>
+      </div>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+      </div>
+    </div>
+    <table class="table text-center admin-table">
+      <thead>
+        <tr>
+          <th>회원 번호</th>
+          <th>회원 ID</th>
+          <th>이름</th>
+          <th>전화 번호</th>
+          <th>이메일</th>
+          <th>회원 상태</th>
+          <th>회원 권한 관리</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>ID1</td>
+          <td>홍길동</td>
+          <td>010-1111-1111</td>
+          <td>hong@example.com</td>
+          <td>일반 회원</td>
+          <td><button class="btn admin-btn-ylw"> 차단 </button></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>ID2</td>
+          <td>박보검</td>
+          <th>010-2222-2222</th>
+          <td>park@example.com</td>
+          <td>일반 회원</td>
+          <td><button class="btn admin-btn-ylw"> 차단 </button></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>ID3</td>
+          <td>이미자</td>
+          <td>010-3333-3333</td>
+          <td>lee@example.com</td>
+          <td>차단 회원</td>
+          <td><button class="btn admin-btn"> 해제 </button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-center py-5">
+    <nav aria-label="">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span >&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link active" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li>
+        <li class="page-item"><a class="page-link" href="#">5</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>
 <!-- container : END -->
 <!-- footer : START -->
 <footer>

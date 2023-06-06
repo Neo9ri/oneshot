@@ -9,6 +9,7 @@
     <link rel="icon" href="img/favicon-32x32.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/admin.css">
   </head>
   <body>
     <!-- header : START -->
@@ -92,6 +93,63 @@
 <!-- mainbanner : START -->
 <!-- mainbanner : END -->
 <!-- container : START -->
+<section id="productEditor" class="center">
+  <div><h2 class="text-center">상품등록</h2></div>
+  <hr>
+  <form class="row align-items-end gy-3">
+    <div class="col"></div>
+    <div id="productEditorLeft" class="col-4 text-center">
+      <img id="thumbnailPreview" alt="상품 이미지 미리보기">
+      <div>
+        <!-- <label for="thumbnail"> 상품 이미지 첨부하기</label> -->
+        <input type="file" id="thumbnail" onchange="showThumbnail(this);">
+        <div class="btn thumbnail-btn" onclick="onClickThumbnailUpload();">상품 이미지 첨부하기</div>
+      </div>
+    </div>
+    <div id="productEditorRight" class="col-4">
+      <div class="row">
+        <div class="col col-name align-self-center">지역 카테고리</div>
+        <select class="col form-select">
+          <option selected>지역 카테고리 선택</option>
+          <option value="">서울</option>
+          <option value="">강원</option>
+          <option value="">경상</option>
+        </select>
+      </div>
+      <div class="row">
+        <div class="col col-name align-self-center">주종 카테고리</div>
+        <select class="col form-select">
+          <option selected>주종 카테고리 선택</option>
+          <option value="">증류주</option>
+          <option value="">과실주</option>
+          <option value="">기타</option>
+        </select>
+      </div>
+      <div class="row">
+        <div class="col col-name align-self-center">제조사</div>
+        <input class="col form-control" type="text" placeholder="제조사를 입력하세요">
+      </div>
+      <div class="row">
+        <div class="col col-name align-self-center">상품명</div>
+        <input class="col form-control" type="text" placeholder="상품명을 입력하세요">
+      </div>
+      <div class="row">
+        <div class="col-6 col-name align-self-center">가격</div>
+        <input class="col form-control" type="text" placeholder="0">
+        <div class="col-1 align-self-center">원</div>
+      </div>
+      <div id="productEditorRightWhiteSpace"></div>
+    </div>
+    <div class="col"></div>
+    <hr>
+    <div id="productEditorBottom" class="row">
+      <div class="col-2"></div>
+      <div class="col-8">하이</div>
+      <div class="col-2"></div>
+    </div>
+  </form>
+
+</section>
 <!-- container : END -->
 <!-- footer : START -->
 <footer>
@@ -158,6 +216,23 @@
       });
     }
   });
+
+  function onClickThumbnailUpload(){ // 썸네일 파일 첨부하기 함수
+    let thumbnailImageButton = document.getElementById("thumbnail");
+    thumbnailImageButton.click()
+  }
+
+  function showThumbnail(input) { // 썸네일 미리보기 함수
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('thumbnailPreview').src = e.target.result;
+    };
+    reader.readAsDataURL(input.files[0]);
+  } else {
+    document.getElementById('thumbnailPreview').src = "";
+  }
+}
 </script>
 </body>
 </html>

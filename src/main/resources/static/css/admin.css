@@ -1,0 +1,133 @@
+@import url(reset.css);
+
+.center{width: 1200px;margin: 0 auto;}
+
+/* admin table-START */
+.admin-table-name .row {
+  height: 100px;
+}
+
+.admin-table-name h2 {
+  font-size: 45px;
+  font-weight: bold;
+}
+
+.admin-table-name-btn {
+  background-color: #fedf12;
+  font-weight: bold;
+  color: #333;
+  width: 120px;
+  height: 50px;
+  bottom: 45%;
+  right: 12%;
+}
+
+.admin-table-name-btn:hover {
+  background-color: #fedf12;
+}
+
+.admin-table-name a {
+  font-size: 25px;
+  font-weight: bold;
+  display: block;
+  margin-top: -40px;
+}
+
+.admin-table-name a.selected {
+  text-decoration-line: underline;
+}
+
+table.admin-table th {
+  border: #aaa solid 1px;
+}
+
+table.admin-table td {
+  border: #aaa solid 1px;
+}
+
+table.admin-table thead tr th {
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #eeeeee;
+}
+
+table.admin-table button {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.admin-btn {
+  background-color: #eeeeee;
+}
+
+.admin-btn:hover {
+  background-color: #eeeeee;
+}
+
+.admin-btn-ylw {
+  background-color: #fedf12;
+}
+
+.admin-btn-ylw:hover {
+  background-color: #fedf12;
+}
+/* admin table-END */
+
+/* pagination-START */
+.pagination li a{
+  margin: 10px;
+  border-radius: 100%;
+  color: #333;
+  background-color: #eeeeee;
+}
+
+.pagination li a.active {
+  background-color: #fedf12;
+  color: #333;
+  border-color: #eeeeee;
+}
+
+.page-item:first-child .page-link {
+  border-radius: 100%;
+}
+
+.page-item:last-child .page-link {
+  border-radius: 100%;
+}
+/* paginaton-END */
+
+/* product-edit-START */
+#productEditor h2 {
+  font-size: 35px;
+  font-weight: bold;
+  color: #333;
+  padding: 80px 0;
+}
+
+img#thumbnailPreview {
+  width: 384px;
+  height: 384px;
+  padding-bottom: 20px;
+}
+
+.btn.thumbnail-btn {
+  background-color: #fedf12;
+}
+
+input[type=file] {
+  display: none;
+}
+
+#productEditorRight .col-name {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#productEditorRight .row {
+  padding-top: 30px;
+}
+
+#productEditorRightWhiteSpace {
+  height: 50px;
+}
+/* product_edit-END */
