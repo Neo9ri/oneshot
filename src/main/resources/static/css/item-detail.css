@@ -269,27 +269,70 @@
   padding-bottom: 20px;
   padding-left: 10px;
 }
+/* pagination-START */
 .review_pagination{
   padding-top: 30px;
   position: relative;
-  left: 37%;
+  left: 34%;
 }
-.page-link{
-  background-color: #00000017;
-    width: 50px;
-    height: 50px;
-    padding: 15px;
-    margin: 5px;
-    border-radius: 100%;
+.pagination li a {
+  margin: 10px;
+  border-radius: 100%;
+  color: #333;
+  background-color: #eeeeee;
 }
-
-
-
-
-
-
-
-
+.pagination li a:hover {
+  background-color: #fedf12;
+  color: #333;
+}
+.page-item:first-child .page-link {
+  border-radius: 100%;
+}
+.page-item:last-child .page-link {
+  border-radius: 100%;
+}
+/* paginaton-END */
+/*상품 문의*/
+.item_inquiry{
+  border-top: 2px solid #0000001b;
+  padding: 30px;
+}
+.item_inquiry h3{
+  font-size: 20px;
+  font-weight: 700;
+  padding-bottom: 40px;
+}
+#inquiry-form{
+  width: 900px;
+  position: relative;
+  left: 10%;
+}
+#satisfaction{
+  width: 900px;
+  margin-bottom: 20px;
+}
+.item_inquiry .form-control{
+  border: 0;
+  border-top: 1px solid  #0000004f;
+  border-left: 1px solid  #0000004f;
+  border-right: 1px solid  #0000004f;
+}
+.item_inquiry_button{
+  border: 1px solid  #0000004f;
+  padding: 10px;
+}
+#inquiry-button{
+  position: relative;
+  left: 87%;
+  border: 0;
+  background-color: #fedf12;
+  size: 20px;
+  font-weight: 500;
+  width: 90px;
+  height: 50px;
+  border: 0px;
+  border-radius: 5px;
+}
 
 
 
