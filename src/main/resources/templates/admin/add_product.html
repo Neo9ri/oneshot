@@ -30,7 +30,7 @@
           </div>
         </form>
         <div class="util">
-          <div>관리자님</div>|
+          <div>관리자님</div>
           <a href="#">로그아웃</a>
           <a href="mypage.html"><img src="img/user.png" alt="마이페이지" /></a>
         </div>
@@ -38,9 +38,9 @@
     </div>
     <nav class="gnb">
       <ul class="center">
-        <li><a href="">회원관리</a></li>
-        <li><a href="">상품관리</a></li>
-        <li><a href="">고객 문의관리</a></li>
+        <li><a href="member_list.html">회원관리</a></li>
+        <li><a href="item_list.html">상품관리</a></li>
+        <li><a href="inquiry_delivery.html">고객 문의관리</a></li>
       </ul>
     </nav>
   </header>
@@ -60,12 +60,12 @@
         <div>
           <!-- <label for="thumbnail"> 상품 이미지 첨부하기</label> -->
           <input type="file" id="thumbnail" onchange="showThumbnail(this);">
-          <div class="btn btn-ylw thumbnail-btn" onclick="onClickThumbnailUpload();">상품 이미지 첨부하기</div>
+          <div class="btn btn_ylw thumbnail_btn" onclick="onClickThumbnailUpload();">상품 이미지 첨부하기</div>
         </div>
       </div>
       <div id="productEditorRight" class="col-4">
         <div class="row">
-          <div class="col col-name align-self-center">지역 카테고리</div>
+          <div class="col col_name align-self-center">지역 카테고리</div>
           <select class="col form-select">
             <option selected>지역 카테고리 선택</option>
             <option value="">서울/경기/인천</option>
@@ -75,7 +75,7 @@
           </select>
         </div>
         <div class="row">
-          <div class="col col-name align-self-center">주종 카테고리</div>
+          <div class="col col_name align-self-center">주종 카테고리</div>
           <select class="col form-select">
             <option selected>주종 카테고리 선택</option>
             <option value="">증류주</option>
@@ -86,15 +86,15 @@
           </select>
         </div>
         <div class="row">
-          <div class="col col-name align-self-center">제조사</div>
+          <div class="col col_name align-self-center">제조사</div>
           <input class="col form-control" type="text" placeholder="제조사를 입력하세요">
         </div>
         <div class="row">
-          <div class="col col-name align-self-center">상품명</div>
+          <div class="col col_name align-self-center">상품명</div>
           <input class="col form-control" type="text" placeholder="상품명을 입력하세요">
         </div>
         <div class="row">
-          <div class="col-6 col-name align-self-center">가격</div>
+          <div class="col-6 col_name align-self-center">가격</div>
           <input class="col form-control" type="text" placeholder="0">
           <div class="col-1 align-self-center">원</div>
         </div>
@@ -106,15 +106,15 @@
         <hr>
         <div class="col-2"></div>
         <div class="col-8">
-          <div class="exp-title">상품 설명</div>
+          <div class="exp_title">상품 설명</div>
           <input type="file" id="exp" onchange="showExp(this);">
-          <div class="btn btn-ylw" onclick="onClickExpUpload();">상품 설명 이미지 첨부하기</div>
+          <div class="btn btn_ylw" onclick="onClickExpUpload();">상품 설명 이미지 첨부하기</div>
           <div>
             <img id="expPreview" alt="상품 설명 미리보기">
           </div>
           <div class="row justify-content-end">
-            <button class="col-2 btn btn-ylw">등록</button>
-            <button class="col-2 btn btn-default">취소</button>
+            <button class="col-2 btn btn_ylw">등록</button>
+            <button class="col-2 btn btn_default">취소</button>
           </div>
         </div>
         <div class="col-2"></div>

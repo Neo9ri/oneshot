@@ -155,33 +155,37 @@ header nav.gnb>ul>li>ul>li {
   margin: 0 auto;
 }
 
-.btn-ylw {
+/* common button-START */
+
+.btn_ylw {
   background-color: #fedf12;
 }
 
-.btn-ylw:hover {
+.btn_ylw:hover {
   background-color: #fedf12;
 }
 
-.btn-default {
+.btn_default {
   background-color: #eeeeee;
 }
 
-.btn-default:hover {
+.btn_default:hover {
   background-color: #eeeeee;
 }
+
+/* common button-END */
 
 /* admin table-START */
-.admin-table-name .row {
+.admin_table_name .row {
   height: 100px;
 }
 
-.admin-table-name h2 {
+.admin_table_name h2 {
   font-size: 45px;
   font-weight: bold;
 }
 
-.admin-table-name-btn {
+.admin_table_name_btn {
   font-weight: bold;
   color: #333;
   width: 120px;
@@ -190,32 +194,32 @@ header nav.gnb>ul>li>ul>li {
   right: 12%;
 }
 
-.admin-table-name a {
+.admin_table_name a {
   font-size: 25px;
   font-weight: bold;
   display: block;
   margin-top: -40px;
 }
 
-.admin-table-name a.selected {
+.admin_table_name a.selected {
   text-decoration-line: underline;
 }
 
-table.admin-table th {
+table.admin_table th {
   border: #aaa solid 1px;
 }
 
-table.admin-table td {
+table.admin_table td {
   border: #aaa solid 1px;
 }
 
-table.admin-table thead tr th {
+table.admin_table thead tr th {
   font-size: 18px;
   font-weight: bold;
   background-color: #eeeeee;
 }
 
-table.admin-table button {
+table.admin_table button {
   margin-left: 5px;
   margin-right: 5px;
 }
@@ -260,7 +264,7 @@ input[type=file] {
   margin-bottom: 100px;
 }
 
-.exp-title {
+.exp_title {
   font-size: 25px;
   font-weight: bold;
 }
