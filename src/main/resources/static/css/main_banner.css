@@ -12,13 +12,13 @@
   background-position: center top;
 }
 .swiper div.swiper-slide:nth-of-type(1) a {
-  background-image: url(/img/banner/19eb80fca6e17b4780a9f0577d2b6af6_77717.jpg);
+  background-image: url(/img/banner/main_banner_tokkisoju.jpg);
 }
 .swiper div.swiper-slide:nth-of-type(2) a {
-  background-image: url(/img/banner/19eb80fca6e17b4780a9f0577d2b6af6_99025.jpg);
+  background-image: url(/img/banner/main_banner_baekjesoju.jpg);
 }
 .swiper div.swiper-slide:nth-of-type(3) a {
-  background-image: url(/img/banner/6a1f56f2771caa8071f54939e77fc21b_74466.jpg);
+  background-image: url(/img/banner/main_banner_makgeolli.jpg);
 }
 .swiper-pagination-bullet-active {
   background-color: #fedf12;
@@ -30,18 +30,18 @@
 /* main_banner-END */
 
 /* btm_banner-START */
-div.main_container div.btm_banner_wrap {
+section.main_container div.btm_banner_wrap {
   margin: 250px 0;
   background-color: #2b1807;
   min-width: 1200px;
 }
-div.main_container div.btm_banner {
+section.main_container div.btm_banner {
   position: relative;
   width: inherit;
 }
-div.main_container div.btm_banner::before {
+section.main_container div.btm_banner::before {
   content: "";
-  background: url(/img/banner/koreans-6235301_1920.jpg) no-repeat center;
+  background: url(/img/banner/btm_banner.jpg) no-repeat center;
   background-size: cover;
   background-attachment: fixed;
   opacity: 0.7;
@@ -49,7 +49,7 @@ div.main_container div.btm_banner::before {
   width: 100%;
   height: 100%;
 }
-div.main_container div.btm_banner p {
+section.main_container div.btm_banner p {
   font-weight: 700;
   font-size: 50px;
   text-align: center;
@@ -62,21 +62,21 @@ div.main_container div.btm_banner p {
 }
 /* btm_banner-END */
 /* notice-START */
-div.main_container table.notice {
+section.main_container table.notice {
   width: 1000px;
   margin: 0 auto 200px;
   text-align: center;
 }
-div.main_container table.notice thead {
+section.main_container table.notice thead {
   background-color: #feef88;
 }
-div.main_container table.notice tbody tr {
+section.main_container table.notice tbody tr {
   border-bottom: 1px solid #b39981;
 }
-div.main_container table.notice button {
+section.main_container table.notice button {
   background-color: #feef88;
 }
-div.main_container table.notice button:hover {
+section.main_container table.notice button:hover {
   background-color: #feef88;
 }
 .modal-body {

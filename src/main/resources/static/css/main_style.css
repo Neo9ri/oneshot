@@ -151,39 +151,39 @@ header nav.gnb > ul > li > ul > li {
 /* header- END */
 
 /* product-START */
-div[class$="container"] .title {
+section[class$="container"] .title {
   font-weight: 700;
   font-size: 40px;
   text-align: center;
   margin-top: 100px;
   margin-bottom: 100px;
 }
-div[class$="container"] > ul.product_list {
+section[class$="container"] > ul.product_list {
   display: grid;
   grid-template-columns: auto auto auto auto;
   gap: 20px;
 }
-div[class$="container"] > ul.product_list > li {
+section[class$="container"] > ul.product_list > li {
   transition: 0.3s;
 }
-div[class$="container"] > ul.product_list > li:hover {
+section[class$="container"] > ul.product_list > li:hover {
   transform: translateY(-4%);
 }
-div[class$="container"] .item_cont {
+section[class$="container"] .item_cont {
   box-shadow: 10px 0 10px 5px #3333330c;
   width: 285px;
   height: 400px;
   padding: 40px 15px;
   transition: 0.3s;
 }
-div[class$="container"] .item_cont .item_photo_box {
+section[class$="container"] .item_cont .item_photo_box {
   text-align: center;
 }
-div[class$="container"] .item_info_cont {
+section[class$="container"] .item_info_cont {
   font-weight: 700;
   margin: 10px 0;
 }
-div[class$="container"] .item_price_box {
+section[class$="container"] .item_price_box {
   font-weight: 900;
   font-size: 18px;
   margin: 10px 0;
