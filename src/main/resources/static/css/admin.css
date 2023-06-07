@@ -242,7 +242,7 @@ img#thumbnailPreview {
   padding-bottom: 20px;
 }
 
-input[type=file] {
+#productEditor input[type=file] {
   display: none;
 }
 
@@ -264,7 +264,7 @@ input[type=file] {
   margin-bottom: 100px;
 }
 
-.exp_title {
+#productEditor .exp_title {
   font-size: 25px;
   font-weight: bold;
 }
