@@ -1,4 +1,4 @@
-# MySQL ??
+# MySQL 설정
 server:
   address: localhost
   port: 8080
@@ -6,7 +6,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: > # '>' : ??? ??, line 10 : DB ??, line 11 : DB ??? ?? DB ?? 
+    url: > # '>' : 줄바꿈 허용, line 10 : 연결할 DB, line 11 : 스키마 없을 시 자동생성
       jdbc:mysql://localhost:3306/oneshot?
       createDatabaseIfNotExist=true
       &userUnicode=true
@@ -14,5 +14,5 @@ spring:
       &characterSetResults=UTF-8
       &useSSL=false
       &serverTimezone=Asia/Seoul
-    username: root # DB ????
-    password: 1111 # DB ???? ????
+    username: root # DB 유저 네임
+    password: 1111 # DB 비밀번호
