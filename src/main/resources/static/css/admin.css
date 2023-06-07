@@ -1,6 +1,175 @@
 @import url(reset.css);
 
-.center{width: 1200px;margin: 0 auto;}
+@font-face {
+  font-family: 'SUITE-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+.center {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+/* header- START */
+header div.center>div {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin-top: 20px;
+  padding: 0 50px;
+}
+
+header h1 {
+  width: 60px;
+  text-align: center;
+}
+
+header h1 a {
+  width: 100%;
+  height: 100%;
+  font-size: 8px;
+}
+
+header h1 a:hover {
+  color: inherit
+}
+
+header h1 a img {
+  width: 100%;
+}
+
+header form.main_search {
+  width: 500px;
+  margin: 25px 0 0 150px;
+}
+
+header form.main_search img {
+  width: 35px;
+}
+
+form.main_search input {
+  height: 52px;
+  border-color: #b39981
+}
+
+header .main_search button {
+  width: 80px;
+  height: 50px;
+  background-color: #feef88;
+  padding: 0;
+  margin: 1px;
+  border-radius: 10%;
+  border: none;
+  margin-left: -81px
+}
+
+header div.util {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 45px;
+  line-height: 40px;
+}
+
+header div.util.mypage {
+  width: 240px;
+}
+
+header div.util a>img {
+  width: 40px;
+}
+
+/* gnb */
+header nav.gnb {
+  min-width: 1200px;
+  border-top: 1px solid #713f12;
+  border-bottom: 1px solid #713f12;
+  margin-top: 15px;
+  font-weight: 700;
+  position: relative;
+}
+
+header nav.gnb>ul {
+  width: 600px;
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+  text-align: center;
+  height: 60px;
+  justify-content: space-between;
+}
+
+header nav.gnb>ul>li {
+  line-height: 60px;
+  font-size: 22px;
+  position: relative;
+  height: 60px;
+}
+
+header nav.gnb>ul>li>a {
+  display: block;
+  width: 100%;
+  height: inherit;
+}
+
+header nav.gnb>ul>li>ul {
+  width: 700px;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 6;
+  position: absolute;
+  bottom: -40px;
+  left: -120%;
+  visibility: hidden;
+}
+
+header nav.gnb>ul>li:hover ul {
+  visibility: visible;
+}
+
+header nav.gnb>ul>li:nth-child(1):hover::after {
+  display: none;
+}
+
+header nav.gnb>ul>li:nth-child(3)>ul {
+  width: 600px;
+  left: -200%;
+}
+
+header nav.gnb>ul>li:nth-child(4)>ul {
+  width: 1000px;
+  position: absolute;
+  bottom: -40px;
+  left: -640%;
+}
+
+header nav.gnb>ul>li>ul>li {
+  line-height: 40px;
+}
+
+/* header- END */
+
+.center {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.btn-ylw {
+  background-color: #fedf12;
+}
+
+.btn-ylw:hover {
+  background-color: #fedf12;
+}
+
+.btn-default {
+  background-color: #eeeeee;
+}
+
+.btn-default:hover {
+  background-color: #eeeeee;
+}
 
 /* admin table-START */
 .admin-table-name .row {
@@ -13,17 +182,12 @@
 }
 
 .admin-table-name-btn {
-  background-color: #fedf12;
   font-weight: bold;
   color: #333;
   width: 120px;
   height: 50px;
   bottom: 45%;
   right: 12%;
-}
-
-.admin-table-name-btn:hover {
-  background-color: #fedf12;
 }
 
 .admin-table-name a {
@@ -56,25 +220,67 @@ table.admin-table button {
   margin-right: 5px;
 }
 
-.admin-btn {
-  background-color: #eeeeee;
-}
 
-.admin-btn:hover {
-  background-color: #eeeeee;
-}
 
-.admin-btn-ylw {
-  background-color: #fedf12;
-}
-
-.admin-btn-ylw:hover {
-  background-color: #fedf12;
-}
 /* admin table-END */
 
+/* product-edit-START */
+#productEditor h2 {
+  font-size: 35px;
+  font-weight: bold;
+  color: #333;
+  padding: 80px 0;
+}
+
+img#thumbnailPreview {
+  width: 384px;
+  height: 384px;
+  padding-bottom: 20px;
+}
+
+input[type=file] {
+  display: none;
+}
+
+#productEditorRight .col-name {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#productEditorRight .row {
+  padding-top: 30px;
+}
+
+#productEditorRightWhiteSpace {
+  height: 50px;
+}
+
+#productEditorBottom {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.exp-title {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#productEditorBottom .col-8 div {
+  margin-top: 30px;
+}
+
+#expPreview {
+  width: 776px;
+}
+
+#productEditorBottom button {
+  margin-left: 20px;
+}
+
+/* product_edit-END */
+
 /* pagination-START */
-.pagination li a{
+.pagination li a {
   margin: 10px;
   border-radius: 100%;
   color: #333;
@@ -94,40 +300,96 @@ table.admin-table button {
 .page-item:last-child .page-link {
   border-radius: 100%;
 }
+
 /* paginaton-END */
 
-/* product-edit-START */
-#productEditor h2 {
-  font-size: 35px;
-  font-weight: bold;
-  color: #333;
-  padding: 80px 0;
+/* footer-START */
+footer {
+  min-width: 1200px;
+  background-color: #333;
+  color: #aaa;
+  margin-top: 100px;
+  font-size: 14px;
 }
 
-img#thumbnailPreview {
-  width: 384px;
-  height: 384px;
-  padding-bottom: 20px;
+footer div.center {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 80px 50px;
+  justify-content: space-between;
 }
 
-.btn.thumbnail-btn {
-  background-color: #fedf12;
+footer .left_wrap {
+  display: grid;
+  grid-template-columns: auto auto;
 }
 
-input[type=file] {
-  display: none;
+footer .left_wrap>p.btm_logo img {
+  width: 77px;
 }
 
-#productEditorRight .col-name {
-  font-size: 15px;
-  font-weight: bold;
+footer .left_wrap .text_wrap {
+  display: grid;
+  row-gap: 10px;
+  margin-left: 25px;
 }
 
-#productEditorRight .row {
-  padding-top: 30px;
+footer .left_wrap .text_wrap>p {
+  font-size: 20px;
+  font-weight: 700;
 }
 
-#productEditorRightWhiteSpace {
-  height: 50px;
+footer .left_wrap .text_wrap nav ul {
+  display: flex;
+  width: 390px;
+  justify-content: space-between;
 }
-/* product_edit-END */
+
+footer .left_wrap .text_wrap .info {
+  display: flex;
+  justify-content: space-between;
+  width: 440px;
+}
+
+footer .left_wrap .text_wrap .contact_info {
+  display: flex;
+  justify-content: space-between;
+  width: 370px;
+  margin-bottom: 60px;
+}
+
+footer div.cs dl {
+  display: grid;
+  row-gap: 10px;
+}
+
+footer div.cs dt,
+footer div.social h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+footer div.cs dd:nth-of-type(1) {
+  color: #fedf12;
+  font-weight: 900;
+  font-size: 24px;
+}
+
+footer div.cs dd:last-child {
+  line-height: 25px;
+}
+
+footer div.social p {
+  margin: 20px 0;
+}
+
+footer div.social ul {
+  display: grid;
+  grid-template-columns: repeat(3, 40px);
+  width: 160px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* footer-END */
