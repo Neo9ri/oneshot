@@ -1,0 +1,299 @@
+@charset "UTF-8";
+@import url(reset.css);
+
+/* container */
+.mypage-container{
+    width: 1200px;
+    margin: 0 auto;
+}
+.mypage-user {
+    display: inline-block;
+    position: relative;
+    left: 5%;
+    transform:translateX(-5%);
+    padding-top: 30px;
+}
+.mypage-container h1{
+    text-align: center;
+    font-size: 45px;
+    font-weight: 700;
+    padding-top: 100px;
+}
+/* user icon */
+.mypage-user-icon {
+    background-image: url(../icon/user.png);
+    background-repeat: no-repeat;
+    background-size: 300px 280px;
+    height: 280px;
+    width: 300px;
+    font-size: 0;
+}
+/* user text */
+.mypage-user-text {
+    text-align: center;
+}
+.mypage-user-text h3{
+    font-size: 25px;
+    font-weight: 700;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+.mypage-user-text div>p{
+    font-weight: 500;
+    font-size: 17px;
+    padding-bottom: 10px;
+}
+.mypage-user-text a{
+    font-size: 25px;
+    font-weight: 700;
+}
+/* user interface */
+.mypage-user-interface{
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    left: 20%;
+    transform:translateX(-5%);
+}
+.mypage-user-interface table{
+    background-color: #feef88;
+    border-radius: 10px;
+    width: 600px;
+    height: 300px;
+}
+.mypage-user-interface table tr>:nth-child(1){
+    text-align: left;
+    position: relative;
+    border-right: 1px solid #773300;
+    border-bottom: 1px solid #773300;
+    margin-right: 10px;
+}
+/* user table icon img */
+.user-icon-img{
+    background-image: url(../icon/user.png);
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    font-size: 0;
+    left: 20px;
+    top: 20px;
+    width: 50px; 
+    height: 50px; 
+}
+.phone-icon-img{
+    background-image: url(../icon/telephone.png);
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    font-size: 0;
+    left: 20px;
+    top: 20px;
+    width: 50px; 
+    height: 50px; 
+}
+.email-icon-img{
+    background-image: url(../icon/mail-inbox.png);
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    font-size: 0;
+    left: 20px;
+    top: 20px;
+    width: 50px; 
+    height: 50px; 
+}
+.home-icon-img{
+    background-image: url(../icon/home.png);
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    font-size: 0;
+    left: 20px;
+    top: 20px;
+    width: 50px; 
+    height: 50px; 
+    border-bottom: 0px !important;
+}
+/* user table text */
+.user-content{
+    width: 270px;
+    padding-left: 10px;
+    font-size: 25px;
+    line-height: 75px;
+    text-align: left;
+    border-bottom: 1px solid #773300;
+}
+.user-content-last{
+    width: 270px;
+    padding-left: 10px;
+    font-size: 25px;
+    line-height: 75px;
+    text-align: left;
+}
+.mypage-user-interface table tr:nth-child(1){
+    font-weight: 700;
+}
+/* button */
+.mypage-button{
+    display: inline-block;
+    text-align: right;
+    position: relative;
+    left: 25%;
+    padding-top: 15px;
+}
+.mypage-button button{ 
+    height: 50px;
+    width: 130px;
+    border-radius: 5px;
+}
+.mypage-button button:hover{ 
+    height: 50px;
+    width: 130px;
+    border-radius: 5px;
+    transform: scale(1.1);
+}
+.mypage-add-button{
+    background-color: #fedf12;
+    size: 20px;
+    font-weight: 500;
+    border: 0px;
+}
+.mypage-button-hidden{
+    padding-top: 10px;
+}
+.mypage-cancle-button{
+    size: 20px;
+    font-weight: 500;
+    border: 0px;
+    background-color: #00000023;
+}
+.mypage-check-button{
+    background-color: #fedf12;
+    size: 20px;
+    font-weight: 500;
+    border: 0px;
+    margin-left: 20px;
+}
+/* 주문/배송 */
+.mypage-order-search{
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.mypage-order-search h2{
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    padding: 30px 0px;
+}
+.mypage-order-search table{
+    border-top: 1px solid #773300;
+    border-bottom: 1px solid #773300;
+    width: 1000px;
+    font-size: 20px;
+    text-align: center;
+}
+.mypage-order-search thead{
+    background-color: #feef88;
+}
+.mypage-order-search tr{
+    border-top: 1px solid #773300;
+    line-height: 100px;
+}
+.mypage-order-search th{
+    padding:0px 30px;
+}
+/* 페이징 버튼 */
+.mypage-order-pageMove ul{
+    display: flex;
+    position: relative;
+    left: 50%;
+    transform: translateX(-20%);
+    padding: 20px;
+}
+.mypage-order-pageMove ul li a{
+    display: inline-block;
+    background-color: #00000017;
+    width: 50px;
+    height: 50px;
+    padding: 15px;
+    margin: 5px;
+    border-radius: 100%;
+    text-align: center;
+}
+.mypage-order-pageMove ul li a:hover{
+    display: inline-block;
+    background-color: #fedf12;
+    width: 50px;
+    height: 50px;
+    padding: 15px;
+    margin: 5px;
+    border-radius: 100%;
+    text-align: center;
+}
+/* 문의 */
+.mypage-inquiry-search{
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.mypage-inquiry-search h2{
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    padding: 30px 0px;
+}
+.mypage-inquiry-search table{
+    border-top: 1px solid #773300;
+    border-bottom: 1px solid #773300;
+    width: 1000px;
+    font-size: 20px;
+    text-align: center;
+}
+.mypage-inquiry-search thead{
+    background-color: #feef88;
+}
+.mypage-inquiry-search tr{
+    border-top: 1px solid #773300;
+    line-height: 100px;
+}
+.mypage-inquiry-search th{
+    padding:0px 30px;
+}
+.mypage-inquiry-search .btn-primary{
+    background-color: #fedf12;
+    color:#2b1807;
+    border: 0px;
+}
+.mypage-inquiry-search .btn-primary:hover{
+    background-color: #fedf12;
+    color:#2b1807;
+    border: 0px;
+    transform: scale(1.3);
+}
+/* 페이징 버튼 */
+.mypage-inquiry-pageMove ul{
+    display: flex;
+    position: relative;
+    left: 50%;
+    transform: translateX(-20%);
+    padding: 20px;
+}
+.mypage-inquiry-pageMove ul li a{
+    display: inline-block;
+    background-color: #00000017;
+    width: 50px;
+    height: 50px;
+    padding: 15px;
+    margin: 5px;
+    border-radius: 100%;
+    text-align: center;
+}
+.mypage-inquiry-pageMove ul li a:hover{
+    display: inline-block;
+    background-color: #fedf12;
+    width: 50px;
+    height: 50px;
+    padding: 15px;
+    margin: 5px;
+    border-radius: 100%;
+    text-align: center;
+}
