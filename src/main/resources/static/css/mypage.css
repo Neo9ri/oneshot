@@ -2,25 +2,25 @@
 @import url(reset.css);
 
 /* container */
-.mypage-container{
+.mypage_container{
     width: 1200px;
     margin: 0 auto;
 }
-.mypage-user {
+.mypage_user {
     display: inline-block;
     position: relative;
     left: 5%;
     transform:translateX(-5%);
     padding-top: 30px;
 }
-.mypage-container h1{
+.mypage_container h1{
     text-align: center;
     font-size: 45px;
     font-weight: 700;
     padding-top: 100px;
 }
 /* user icon */
-.mypage-user-icon {
+.mypage_user_icon {
     background-image: url(../icon/user.png);
     background-repeat: no-repeat;
     background-size: 300px 280px;
@@ -29,39 +29,39 @@
     font-size: 0;
 }
 /* user text */
-.mypage-user-text {
+.mypage_user_text {
     text-align: center;
 }
-.mypage-user-text h3{
+.mypage_user-text h3{
     font-size: 25px;
     font-weight: 700;
     padding-top: 15px;
     padding-bottom: 10px;
 }
-.mypage-user-text div>p{
+.mypage_user_text div>p{
     font-weight: 500;
     font-size: 17px;
     padding-bottom: 10px;
 }
-.mypage-user-text a{
+.mypage_user-text a{
     font-size: 25px;
     font-weight: 700;
 }
 /* user interface */
-.mypage-user-interface{
+.mypage_user_interface{
     display: inline-block;
     position: relative;
     text-align: center;
     left: 20%;
     transform:translateX(-5%);
 }
-.mypage-user-interface table{
+.mypage_user_interface table{
     background-color: #feef88;
     border-radius: 10px;
     width: 600px;
     height: 300px;
 }
-.mypage-user-interface table tr>:nth-child(1){
+.mypage_user_interface table tr>:nth-child(1){
     text-align: left;
     position: relative;
     border-right: 1px solid #773300;
@@ -69,7 +69,7 @@
     margin-right: 10px;
 }
 /* user table icon img */
-.user-icon-img{
+.user_icon_img{
     background-image: url(../icon/user.png);
     background-size: 50px 50px;
     background-repeat: no-repeat;
@@ -79,7 +79,7 @@
     width: 50px; 
     height: 50px; 
 }
-.phone-icon-img{
+.phone_icon_img{
     background-image: url(../icon/telephone.png);
     background-size: 50px 50px;
     background-repeat: no-repeat;
@@ -89,7 +89,7 @@
     width: 50px; 
     height: 50px; 
 }
-.email-icon-img{
+.email_icon_img{
     background-image: url(../icon/mail-inbox.png);
     background-size: 50px 50px;
     background-repeat: no-repeat;
@@ -99,7 +99,7 @@
     width: 50px; 
     height: 50px; 
 }
-.home-icon-img{
+.home_icon_img{
     background-image: url(../icon/home.png);
     background-size: 50px 50px;
     background-repeat: no-repeat;
@@ -111,7 +111,7 @@
     border-bottom: 0px !important;
 }
 /* user table text */
-.user-content{
+.user_content{
     width: 270px;
     padding-left: 10px;
     font-size: 25px;
@@ -119,51 +119,51 @@
     text-align: left;
     border-bottom: 1px solid #773300;
 }
-.user-content-last{
+.user_content_last{
     width: 270px;
     padding-left: 10px;
     font-size: 25px;
     line-height: 75px;
     text-align: left;
 }
-.mypage-user-interface table tr:nth-child(1){
+.mypage_user_interface table tr:nth-child(1){
     font-weight: 700;
 }
 /* button */
-.mypage-button{
+.mypage_button{
     display: inline-block;
     text-align: right;
     position: relative;
     left: 25%;
     padding-top: 15px;
 }
-.mypage-button button{ 
+.mypage_button button{ 
     height: 50px;
     width: 130px;
     border-radius: 5px;
 }
-.mypage-button button:hover{ 
+.mypage_button button:hover{ 
     height: 50px;
     width: 130px;
     border-radius: 5px;
     transform: scale(1.1);
 }
-.mypage-add-button{
+.mypage_add_button{
     background-color: #fedf12;
     size: 20px;
     font-weight: 500;
     border: 0px;
 }
-.mypage-button-hidden{
+.mypage_button_hidden{
     padding-top: 10px;
 }
-.mypage-cancle-button{
+.mypage_cancle_button{
     size: 20px;
     font-weight: 500;
     border: 0px;
     background-color: #00000023;
 }
-.mypage-check-button{
+.mypage_check_button{
     background-color: #fedf12;
     size: 20px;
     font-weight: 500;
@@ -171,44 +171,42 @@
     margin-left: 20px;
 }
 /* 주문/배송 */
-.mypage-order-search{
+.mypage_order_search{
     position: relative;
     display: inline-block;
     left: 50%;
     transform: translateX(-50%);
 }
-.mypage-order-search h2{
+.mypage_order_search h2{
     text-align: center;
     font-size: 30px;
     font-weight: 700;
     padding: 30px 0px;
 }
-.mypage-order-search table{
+.mypage_order_search table{
     border-top: 1px solid #773300;
     border-bottom: 1px solid #773300;
     width: 1000px;
     font-size: 20px;
     text-align: center;
 }
-.mypage-order-search thead{
+.mypage_order_search thead{
     background-color: #feef88;
 }
-.mypage-order-search tr{
+.mypage_order_search tr{
     border-top: 1px solid #773300;
     line-height: 100px;
 }
-.mypage-order-search th{
+.mypage_order_search th{
     padding:0px 30px;
 }
 /* 페이징 버튼 */
-.mypage-order-pageMove ul{
+.mypage_order_pageMove ul{
     display: flex;
-    position: relative;
-    left: 50%;
-    transform: translateX(-20%);
+    margin-left: 370px;
     padding: 20px;
 }
-.mypage-order-pageMove ul li a{
+.mypage_order_pageMove ul li a{
     display: inline-block;
     background-color: #00000017;
     width: 50px;
@@ -218,7 +216,7 @@
     border-radius: 100%;
     text-align: center;
 }
-.mypage-order-pageMove ul li a:hover{
+.mypage_order_pageMove ul li a:hover{
     display: inline-block;
     background-color: #fedf12;
     width: 50px;
@@ -229,55 +227,54 @@
     text-align: center;
 }
 /* 문의 */
-.mypage-inquiry-search{
+.mypage_inquiry_search{
     position: relative;
     display: inline-block;
     left: 50%;
     transform: translateX(-50%);
 }
-.mypage-inquiry-search h2{
+.mypage_inquiry_search h2{
     text-align: center;
     font-size: 30px;
     font-weight: 700;
     padding: 30px 0px;
 }
-.mypage-inquiry-search table{
+.mypage_inquiry_search table{
     border-top: 1px solid #773300;
     border-bottom: 1px solid #773300;
     width: 1000px;
     font-size: 20px;
     text-align: center;
 }
-.mypage-inquiry-search thead{
+.mypage_inquiry_search thead{
     background-color: #feef88;
 }
-.mypage-inquiry-search tr{
+.mypage_inquiry_search tr{
     border-top: 1px solid #773300;
     line-height: 100px;
 }
-.mypage-inquiry-search th{
+.mypage_inquiry_search th{
     padding:0px 30px;
 }
-.mypage-inquiry-search .btn-primary{
+.mypage_inquiry_search .btn-primary{
     background-color: #fedf12;
     color:#2b1807;
     border: 0px;
 }
-.mypage-inquiry-search .btn-primary:hover{
+.mypage_inquiry_search .btn-primary:hover{
     background-color: #fedf12;
     color:#2b1807;
     border: 0px;
     transform: scale(1.3);
 }
 /* 페이징 버튼 */
-.mypage-inquiry-pageMove ul{
+.mypage_inquiry_pageMove ul{
     display: flex;
     position: relative;
-    left: 50%;
-    transform: translateX(-20%);
+    margin-left: 270px;
     padding: 20px;
 }
-.mypage-inquiry-pageMove ul li a{
+.mypage_inquiry_pageMove ul li a{
     display: inline-block;
     background-color: #00000017;
     width: 50px;
@@ -287,7 +284,7 @@
     border-radius: 100%;
     text-align: center;
 }
-.mypage-inquiry-pageMove ul li a:hover{
+.mypage_inquiry_pageMove ul li a:hover{
     display: inline-block;
     background-color: #fedf12;
     width: 50px;
