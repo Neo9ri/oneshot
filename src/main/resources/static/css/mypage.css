@@ -21,7 +21,7 @@
 }
 /* user icon */
 .mypage_user_icon {
-    background-image: url(../icon/user.png);
+    background-image: url(../img/user.png);
     background-repeat: no-repeat;
     background-size: 300px 280px;
     height: 280px;
@@ -32,7 +32,7 @@
 .mypage_user_text {
     text-align: center;
 }
-.mypage_user-text h3{
+.mypage_user_text h3{
     font-size: 25px;
     font-weight: 700;
     padding-top: 15px;
@@ -43,7 +43,7 @@
     font-size: 17px;
     padding-bottom: 10px;
 }
-.mypage_user-text a{
+.mypage_user_text a{
     font-size: 25px;
     font-weight: 700;
 }
@@ -70,7 +70,7 @@
 }
 /* user table icon img */
 .user_icon_img{
-    background-image: url(../icon/user.png);
+    background-image: url(../img/user.png);
     background-size: 50px 50px;
     background-repeat: no-repeat;
     font-size: 0;
@@ -80,7 +80,7 @@
     height: 50px; 
 }
 .phone_icon_img{
-    background-image: url(../icon/telephone.png);
+    background-image: url(../img/telephone.png);
     background-size: 50px 50px;
     background-repeat: no-repeat;
     font-size: 0;
@@ -90,7 +90,7 @@
     height: 50px; 
 }
 .email_icon_img{
-    background-image: url(../icon/mail-inbox.png);
+    background-image: url(../img/mail-inbox.png);
     background-size: 50px 50px;
     background-repeat: no-repeat;
     font-size: 0;
@@ -100,7 +100,7 @@
     height: 50px; 
 }
 .home_icon_img{
-    background-image: url(../icon/home.png);
+    background-image: url(../img/home.png);
     background-size: 50px 50px;
     background-repeat: no-repeat;
     font-size: 0;
