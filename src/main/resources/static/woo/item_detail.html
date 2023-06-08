@@ -12,7 +12,7 @@
     <link rel="icon" href="../img/favicon-32x32.png" type="image/x-icon" />
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/main_style.css" />
-    <link rel="stylesheet" href="../css/item-detail.css">
+    <link rel="stylesheet" href="../css/item_detail.css">
 </head>
 
 <body>
@@ -88,12 +88,12 @@
     </header>
     <!-- header 종료 -->
     <!-- item-detail 시작 -->
-    <div class="item-detail-container">
+    <div class="item_detail_container">
         <h1>상품 상세</h1>
-        <div class="item-img">
+        <div class="item_img">
             <img src="../img/item-detail-img/1000000319_detail_025.jpg" alt="">
         </div>
-        <div class="item-info">
+        <div class="item_info">
             <h2>아리랑주조 겨울소주 45도 375ml 증류식소주</h2>
             <p>겨울에 잘어울리는 소주, 100일 저온숙성으로 부드럽습니다</p>
             <table>
@@ -118,13 +118,13 @@
                     <td>국내산</td>
                 </tr>
             </table>
-            <button type="submit" class="btn btn-primary">장바구니</button>
+            <button type="submit" class="btn btn_primary">장바구니</button>
         </div>
-        <div class="item-detail-benner">
+        <div class="item_detail_benner">
             <img src="../img/item-detail-img/11376a38a70dccafb16df553bc07afd3_68678.jpg" alt="" />
             <img src="../img/item-detail-img/a9cd158c8073fc64f1dcfcb31360db4a_53228.jpg" alt="" />
         </div>
-        <div class="item-detail-nav">
+        <div class="item_detail_nav">
             <ul class="nav">
                 <li class="nav-item">
                     <a class="nav-link" href="#">상품상세정보</a>
@@ -143,12 +143,12 @@
                 </li>
             </ul>
         </div>
-        <div class="item-detail-img">
+        <div class="item_detail_img">
             <img src="../img/item-detail-img/pro_01.jpg" />
             <img src="../img/item-detail-img/pro_02.jpg" />
             <img src="../img/item-detail-img/notice.jpg" />
         </div>
-        <div class="delivery-info">
+        <div class="delivery_info">
             <h3>배송안내</h3>
             <ul>
                 <li>- 배송비 : 기본배송료는 3,000원 입니다. (도서,산간,오지 일부지역은 배송비가 추가될 수 있습니다.) 30,000원 이상 구매시 무료배송입니다.</li>
@@ -158,7 +158,7 @@
                 <li>- 단, 연휴 및 공휴일은 기간 계산시 제외하면 현금 주문일 경우 입금일 기준입니다.</li>
             </ul>
         </div>
-        <div class="exchange-info">
+        <div class="exchange_info">
             <h3>교환 및 반품안내</h3>
             <ul>
                 <li>
@@ -176,7 +176,7 @@
                     <h5>교환 / 반품 / 환불이 제한되는 경우</h5>
                     <p>- 배송완료 후 7일이 지나 자동으로 수령확인 처리가 되거나,</p>
                     <p>상품을 확인하고 직접 수령확인하신 이후</p>
-                    <h5 class="exchange-info-importance">&#8251; 식품 특성상, 아래와 같은 경우 교환/반품/환불이 제한될 수 있습니다.</h5>
+                    <h5 class="exchange_info_importance">&#8251; 식품 특성상, 아래와 같은 경우 교환/반품/환불이 제한될 수 있습니다.</h5>
                     <ul>
                         <li>- 제품이 개봉되었거나 포장이 훼손된 경우</li>
                         <p>(단, 상품의 내용을 확인하기 위하여 포장 등을 훼손한 경우는 제외)</p>
@@ -189,9 +189,9 @@
             </ul>
         </div>
         <div>
-            <div class="item-review">
+            <div class="item_review">
                 <h3>상품후기</h3>
-                <form id="review-form">
+                <form id="review_form">
                     <label for="satisfaction">만족도:</label>
                     <select id="satisfaction">
                         <option value="very-satisfied">아주 만족</option>
@@ -200,23 +200,23 @@
                         <option value="dissatisfied">불만족</option>
                         <option value="very-dissatisfied">매우 불만족</option>
                     </select>
-                    <label for="review-content">리뷰 내용:</label><br>
-                    <textarea id="review-content" rows="5" placeholder="상품리뷰 내용을 적어주세요!!"></textarea>
+                    <label for="review_content">리뷰 내용:</label><br>
+                    <textarea id="review_content" rows="5" placeholder="상품리뷰 내용을 적어주세요!!"></textarea>
 
                     <div class="item_review_submit">
-                        <label for="file-upload">
+                        <label for="file_upload">
                             <img src="../icon/camera.png" alt="카메라 아이콘" width="60" height="60">
                         </label>
-                        <input id="file-upload" type="file" accept="image/*" multiple onchange="previewImages(event)">
+                        <input id="file_upload" type="file" accept="image/*" multiple onchange="previewImages(event)">
                         <div class="item_review_preview_img">
                             <img src="../img/item-detail-img/1000000319_detail_025.jpg" width="60px" height="60px"/>
                             <img src="../img/item-detail-img/1000000319_detail_025.jpg" width="60px" height="60px"/>
                             <img src="../img/item-detail-img/1000000319_detail_025.jpg" width="60px" height="60px"/>
                         </div>
-                        <button id="submit-button" type="button" onclick="submitReview()">리뷰 등록</button>
+                        <button id="submit_button" type="button" onclick="submitReview()">리뷰 등록</button>
                     </div>
                 </form>
-                <div id="review-summary">
+                <div id="review_summary">
                     <div class="review_summary_first">
                         <img src="../img/item-detail-img/1000000319_detail_025.jpg" alt="사용자 등록 이미지" width="160" height="180">
                         <h4>홍길동</h4>
@@ -256,7 +256,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="review_pagination">
+                <div class="review-pagination">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                           <li class="page-item">
@@ -335,7 +335,7 @@
                 }
             </script> -->
         </div>
-        <div class="item_inquiry">
+        <div class="item-inquiry">
             <h3>Q&A</h3>
             <div>
                 <form id="inquiry-form">
@@ -346,7 +346,7 @@
                     <div class="form-floating">
                         <textarea class="form-control" placeholder="문의내용 작성" id="floatingTextarea2" style="height: 100px"></textarea>
                     </div>
-                    <div class="item_inquiry_button">
+                    <div class="item-inquiry-button">
                         <button id="inquiry-button" type="button">문의 등록</button>
                     </div>
                 </form>

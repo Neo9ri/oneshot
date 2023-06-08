@@ -2,19 +2,19 @@
 @import url(reset.css);
 
 /* container */
-.item-detail-container{
+.item_detail_container{
   width: 1200px;
   margin: 0 auto;
 }
 /* h1 */
-.item-detail-container h1{
+.item_detail_container h1{
   text-align: center;
   font-size: 45px;
   font-weight: 700;
   padding-top: 100px;
 }
 /* 상품 이미지 */
-.item-img{
+.item_img{
   display: inline-block;
   position: relative;
   left: 5%;
@@ -22,7 +22,7 @@
   padding-top: 50px;
 }
 /* 상품 판매 정보 */
-.item-info{
+.item_info{
   display: inline-block;
   position: relative;
   text-align: left;
@@ -31,30 +31,30 @@
   left: 10%;
   transform:translateX(-5%);
 }
-.item-info h2{
+.item_info h2{
   font-size: 25px;
   font-weight: 700;
   border-bottom: 1px solid #0000001b;
 }
-.item-info>p{
+.item_info>p{
   border-bottom: 1px solid #0000001b;
   margin-bottom: 20px;
 }
-.item-info table tr td:nth-child(1){
+.item_info table tr td:nth-child(1){
   font-size: 18px;
   font-weight: 700;
   padding-right: 40px;
 }
-.item-info table tr td p{
+.item_info table tr td p{
   line-height: 0px;
   margin-bottom: 20px;
 }
-.item-info table{
+.item_info table{
   border-bottom: 1px solid #0000001b;
   width: 500px;
 }
 /* 장바구니 버튼 */
-.item-info button{
+.item_info button{
   background-color: #fedf12;
   size: 20px;
   font-weight: 500;
@@ -62,7 +62,7 @@
   color: #2b1807;
   width: 500px;
 }
-.item-info button:hover{
+.item_info button:hover{
   background-color: #fedf12;
   size: 20px;
   font-weight: 500;
@@ -72,11 +72,11 @@
   transform: scale(1.1);
 }
 /*상품 밑 베너 */
-.item-detail-benner{
+.item_detail_benner{
   margin-top: 30px;
 }
 /* nav */
-.item-detail-nav{
+.item_detail_nav{
   border-top: 2px solid #0000001b;
   border-bottom: 2px solid #0000001b;
   margin:30px 0;
@@ -98,78 +98,78 @@
   border-bottom: 1px solid #000;
 }
 /* 상품 정보 이미지 */
-.item-detail-img{
+.item_detail_img{
   text-align: center;
   border-bottom: 2px solid #0000001b;
   margin-bottom: 30px;
   padding-bottom: 30px;
 }
 /* 배송 안내 */
-.delivery-info{
+.delivery_info{
   border-bottom: 2px solid #0000001b;
   padding-bottom: 30px;
   padding-left: 30px;
 }
-.delivery-info h3{
+.delivery_info h3{
   font-size: 20px;
   font-weight: 700;
   padding-bottom: 20px;
 }
-.delivery-info ul{
+.delivery_info ul{
   margin: 0 10px;
 }
 /*교환 및 반품안내 */
-.exchange-info{
+.exchange_info{
   border-bottom: 2px solid #0000001b;
   padding: 30px 0 20px 30px;
 }
-.exchange-info h3{
+.exchange_info h3{
   font-size: 20px;
   font-weight: 700;
   padding-bottom: 20px;
 }
-.exchange-info ul{
+.exchange_info ul{
   margin: 0 10px;
 }
-.exchange-info>ul>li{
+.exchange_info>ul>li{
   padding-bottom: 15px;
 }
-.exchange-info ul>li>h4{
+.exchange_info ul>li>h4{
   font-size: 19px;
   font-weight: 700;
 }
-.exchange-info ul>li>h5{
+.exchange_info ul>li>h5{
   font-size: 17px;
   font-weight: 500;
   padding-bottom: 5px;
   padding-top: 3px;
 }
-.exchange-info>ul>li>ul{
+.exchange_info>ul>li>ul{
   margin-left: 10px;
 }
-.exchange-info-importance{
+.exchange_info-importance{
   color: #be1d2d;
 }
 /* 상품 후기 고객 입력 */
-.item-review{
+.item_review{
   padding: 30px;
 }
-.item-review h3{
+.item_review h3{
   font-size: 20px;
   font-weight: 700;
   padding-bottom: 40px;
 }
-.item-review #satisfaction{
+.item_review #satisfaction{
   display: block;
   position: relative;
   left: 10%;
   width: 900px;
   border: 1px solid #0000004f;
 }
-.item-review #review-form label{
+.item_review #review_form label{
   font-size: 0;
 }
-.item-review #review-content{
+.item_review #review_content{
   display: block;
   position: relative;
   width: 900px;
@@ -195,7 +195,7 @@
   display: inline-block;
   
 }
-.item_review_submit #submit-button{
+.item_review_submit #submit_button{
   position: relative;
   left: 60%;
   background-color: #fedf12;
@@ -205,7 +205,7 @@
   border: 0px;
   border-radius: 5px;
 }
-.item_review_submit #submit-button:hover{
+.item_review_submit #submit_button:hover{
   position: relative;
   left: 60%;
   background-color: #fedf12;
@@ -217,43 +217,43 @@
   transform: scale(1.1);
 }
 /* 파일 찾기 */
-#file-upload {
+#file_upload {
   display: none; /* 파일 선택 버튼을 숨김 */
 }
 /* 상품 리뷰 */
-#review-summary{
+#review_summary{
   position: relative;
   left: 10%;
   width: 900px;
   padding-top: 50px;
   border-bottom: 2px solid #0000004f;
 }
-#review-summary .review_summary_first{
+#review_summary .review_summary_first{
   background-color: #00000007;
   border-top: 2px solid #0000004f;
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 10px;
 }
-#review-summary h4{
+#review_summary h4{
   font-weight: 700;
   display: inline-block;
   position: relative;
   left: 5%;
   top: -120px;
 }
-#review-summary .review_summary_star{
+#review_summary .review_summary_star{
   display: inline-block;
   position: relative;
   top: -80px;
 }
-#review-summary .review_summary_date{
+#review_summary .review_summary_date{
   display: inline-block;
   position: relative;
   left: -16%;
   top: -50px;
 }
-#review-summary .review_summary_content{
+#review_summary .review_summary_content{
   background-color: #fff;
   padding: 10px;
   display: inline-block;
@@ -262,7 +262,7 @@
   left: -40px;
   top: -30px;
 }
-#review-summary .review_summary_second{
+#review_summary .review_summary_second{
   background-color: #00000007;
   border-top: 2px solid #0000004f;
   padding-top: 20px;
@@ -270,10 +270,10 @@
   padding-left: 10px;
 }
 /* pagination-START */
-.review_pagination{
+.review-pagination{
   padding-top: 30px;
   position: relative;
-  left: 34%;
+  margin-left: 400px;
 }
 .pagination li a {
   margin: 10px;
@@ -293,11 +293,11 @@
 }
 /* paginaton-END */
 /*상품 문의*/
-.item_inquiry{
+.item-inquiry{
   border-top: 2px solid #0000001b;
   padding: 30px;
 }
-.item_inquiry h3{
+.item-inquiry h3{
   font-size: 20px;
   font-weight: 700;
   padding-bottom: 40px;
@@ -311,13 +311,13 @@
   width: 900px;
   margin-bottom: 20px;
 }
-.item_inquiry .form-control{
+.item-inquiry .form-control{
   border: 0;
   border-top: 1px solid  #0000004f;
   border-left: 1px solid  #0000004f;
   border-right: 1px solid  #0000004f;
 }
-.item_inquiry_button{
+.item-inquiry-button{
   border: 1px solid  #0000004f;
   padding: 10px;
 }
@@ -362,7 +362,7 @@
 #submit-button {
   margin-top: 10px;
 }
-#review-summary {
+#review_summary {
   margin-top: 20px;
 }
 #review-image {
