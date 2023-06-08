@@ -1,15 +1,20 @@
 package himedia.oneshot.entity;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
 
-@Getter
-@Setter
+/**
+ * 회원 정보에 대한 데이터입니다.
+ * @author 백채우, 김승기
+ */
+
+@Data
 // 회원 목록
 public class Member {
-    private int id;                 //회원 고유 번호
+    private Long id;                 //회원 고유 번호
     private String login_id;        //로그인 아이디
     private String pw;              //비밀번호
     private String email;           //이메일
