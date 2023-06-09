@@ -65,6 +65,6 @@ public class JdbcMemberRepository implements MemberRepository {
 
     @Override
     public List<Member> findAll() {
-        return jdbcTemplate.query("SELECT * FROM member WHERE authority NOT LIKE 'M' ORDER BY id DESC;", memberRowMapper());
+        return jdbcTemplate.query("SELECT * FROM member;", memberRowMapper());
     }
 }
