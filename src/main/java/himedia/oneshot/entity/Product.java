@@ -19,7 +19,7 @@ public class Product {
     private String img_exp1;     //상품 상세 내용 이미지 파일 경로1
     private String img_exp2;     //상품 상세 내용 이미지 파일 경로2
     private String img_exp3;     //상품 상세 내용 이미지 파일 경로3
-    public Product(String name, int price, String img_thumb) {
+    public Product(String name, int quantity, int price, String img_thumb) {
         this.name = name;
         this.price = price;
         this.img_thumb = img_thumb;
