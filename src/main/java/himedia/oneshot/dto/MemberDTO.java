@@ -5,9 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 /**
- * member 데이터 접근 객체로 controller에서 필요한 데이터만 전달받아 service 및 repository로 값을 넘기는데 사용하는 클래스입니다.
- *
- * @author 김승기
+ * member 데이터 접근 객체로 controller와 view의 데이터 전송에 사용합니다.
  */
 @Data
 public class MemberDTO {

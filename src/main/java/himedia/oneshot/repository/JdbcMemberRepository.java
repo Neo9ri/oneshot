@@ -43,13 +43,38 @@ public class JdbcMemberRepository implements MemberRepository {
         };
     }
 
+    /**
+     * 회원 관리를 위한 RowMapper 입니다.
+     * 비밀번호 및 기타 개인정보 등 중요 개인정보사항을 제외한 가공된 member 데이터를 구합니다.
+     * @return RowMapper&lt;Member&gt;
+     */
+    public RowMapper<Member> memberRowMapperForList(){
+        return new RowMapper<Member>() {
+            @Override
+            public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Member member = new Member();
+                member.setId(rs.getLong("id"));
+                member.setLogin_id(rs.getString("login_id"));
+                member.setEmail(rs.getString("email"));
+                member.setName(rs.getString("name"));
+                member.setPhone_number(rs.getString("phone_number"));
+                member.setAddress(rs.getString("address"));
+                member.setGender(rs.getString("gender"));
+                member.setAuthority(rs.getString("authority"));
+                member.setDate_created(rs.getDate("date_created"));
+                return member;
+            }
+        };
+    }
+
+
     @Override
-    public Member join(MemberDTO memberDTO) {
+    public Member join(Member member) {
         return null;
     }
 
     @Override
-    public Member edit(MemberDTO memberDTO) {
+    public Member edit(Member member) {
         return null;
     }
 
@@ -65,6 +90,6 @@ public class JdbcMemberRepository implements MemberRepository {
 
     @Override
     public List<Member> findAll() {
-        return jdbcTemplate.query("SELECT * FROM member;", memberRowMapper());
+        return jdbcTemplate.query("select id, login_id, email, name, phone_number, address, gender, authority, date_created from member;", memberRowMapperForList());
     }
 }

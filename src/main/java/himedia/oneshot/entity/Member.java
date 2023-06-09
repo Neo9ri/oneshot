@@ -5,7 +5,6 @@ import java.util.Date;
 
 /**
  * 회원 정보에 대한 데이터입니다.
- * @author 백채우, 김승기
  */
 
 @Data

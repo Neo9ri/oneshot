@@ -18,9 +18,11 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public List<MemberDTO> findAllMember(){
-       List<Member> rawMemberList = memberRepository.findAll();
-
-       return null;
+    /**
+     * 회원 목록 조회 서비스
+     * @return List&lt;Member&gt; - 회원 목록
+     */
+    public List<Member> findAllMember(){
+       return memberRepository.findAll();
     }
 }

@@ -13,8 +13,8 @@ import java.util.List;
  */
 public interface MemberRepository {
 
-    Member join(MemberDTO memberDTO);
-    Member edit(MemberDTO memberDTO);
+    Member join(Member member);
+    Member edit(Member member);
     void ban(Long memberId);
     Member findById(Long memberId);
     List<Member> findAll();
