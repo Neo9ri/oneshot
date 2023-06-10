@@ -79,17 +79,23 @@ public class JdbcMemberRepository implements MemberRepository {
     }
 
     @Override
-    public void ban(Long memberId) {
+    public void ban(int memberId) {
 
     }
 
     @Override
-    public Member findById(Long memberId) {
+    public Member findById(int memberId) {
         return null;
     }
 
+    /**
+     * 아래의 필드를 조회한 모든 member를 List로 반환합니다.
+     * 단, 관리자는 제외합니다.
+     * select id, login_id, email, name, phone_number, address, gender, authority, date_created
+     * @return List&lt;Member&gt;
+     */
     @Override
     public List<Member> findAll() {
-        return jdbcTemplate.query("select id, login_id, email, name, phone_number, address, gender, authority, date_created from member;", memberRowMapperForList());
+        return jdbcTemplate.query("SELECT id, login_id, email, name, phone_number, address, gender, authority, date_created FROM member WHERE authority NOT LIKE 'M';", memberRowMapperForList());
     }
 }

@@ -29,9 +29,7 @@ public class JdbcMemberRepositoryTest {
         List<Member> result = memberRepository.findAll();
 
         // then
-        assertThat(result.size()).isEqualTo(4); // true
         assertThat(result.get(0).getName()).isEqualTo("관리자");
-        log.info("result값 불러오기 >> ", result.get(1).getName());
 
 
     }

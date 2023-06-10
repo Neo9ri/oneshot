@@ -19,10 +19,11 @@ public class MemberService {
     }
 
     /**
-     * 회원 목록 조회 서비스
+     * 회원 목록 조회 기능
      * @return List&lt;Member&gt; - 회원 목록
      */
-    public List<Member> findAllMember(){
-       return memberRepository.findAll();
+    public List<Member> makeMemberList(){
+        return memberRepository.findAll();
     }
+
 }

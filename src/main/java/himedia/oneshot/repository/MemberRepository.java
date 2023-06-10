@@ -15,7 +15,7 @@ public interface MemberRepository {
 
     Member join(Member member);
     Member edit(Member member);
-    void ban(Long memberId);
-    Member findById(Long memberId);
+    void ban(int memberId);
+    Member findById(int memberId);
     List<Member> findAll();
 }

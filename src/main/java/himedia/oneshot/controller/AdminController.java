@@ -1,13 +1,17 @@
 package himedia.oneshot.controller;
 
+import himedia.oneshot.dto.Pagination;
 import himedia.oneshot.entity.Member;
 import himedia.oneshot.service.MemberService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+@Slf4j
 @Controller
 public class AdminController {
     private final MemberService memberService;
@@ -18,8 +22,23 @@ public class AdminController {
     }
 
     @GetMapping("/member-list")
-    public String memberList(Model model) {
-        List<Member> members = memberService.findAllMember();
+    public String memberList(@RequestParam(required = false) Integer page, Model model) {
+
+        List<Member> members = memberService.makeMemberList();
+        int totalItem = members.size();
+        int requestPage=1;
+        try {
+            requestPage = page.intValue();
+        } catch (NullPointerException npe) {
+            log.info("NullPointerException 발생");
+        };
+        Pagination pagination = new Pagination(10, requestPage, totalItem);
+        model.addAttribute(pagination);
+
+        int fromIndex = pagination.getFromIndex();
+        int toIndex = pagination.getToIndex();
+
+        members = members.subList(fromIndex,toIndex);
         model.addAttribute("members", members);
         return "/admin/member_list";
     }
