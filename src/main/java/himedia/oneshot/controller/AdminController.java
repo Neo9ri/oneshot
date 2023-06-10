@@ -38,7 +38,12 @@ public class AdminController {
         int fromIndex = pagination.getFromIndex();
         int toIndex = pagination.getToIndex();
 
-        members = members.subList(fromIndex,toIndex);
+        try {
+            members = members.subList(fromIndex, toIndex);
+        } catch (IndexOutOfBoundsException ioobe) {
+            toIndex = members.size()-1;
+            members = members.subList(fromIndex,toIndex);
+        }
         model.addAttribute("members", members);
         return "/admin/member_list";
     }

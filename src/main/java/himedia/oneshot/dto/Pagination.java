@@ -18,8 +18,8 @@ public class Pagination {
     private int firstPage; // 첫 버튼의 페이지 번호
     private int lastPage; // 마지막 버튼의 페이지 번호
     private int nextFirstPage; // 마지막 버튼의 다음 페이지 번호
-    private int fromIndex; // 쿼리 조회에 사용될 시작 인덱스
-    private int toIndex; // 쿼리 조회에 사용될 끝 인덱스
+    private int fromIndex; // 슬라이싱에 사용될 시작 인덱스
+    private int toIndex; // 슬라이싱에 사용될 끝 인덱스
 
     /**
      *
