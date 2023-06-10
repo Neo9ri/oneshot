@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 /**
- * member 데이터 접근 객체로 controller와 view의 데이터 전송에 사용합니다.
+ * member 데이터 전송 객체로 controller와 view의 데이터 전송에 사용합니다.
  */
 @Data
 public class MemberDTO {
