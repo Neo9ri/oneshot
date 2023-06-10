@@ -13,9 +13,9 @@ import java.util.List;
  */
 public interface MemberRepository {
 
-    Member join(MemberDTO memberDTO);
-    Member edit(MemberDTO memberDTO);
-    void ban(Long memberId);
-    Member findById(Long memberId);
+    Member join(Member member);
+    Member edit(Member member);
+    void ban(int memberId);
+    Member findById(int memberId);
     List<Member> findAll();
 }
