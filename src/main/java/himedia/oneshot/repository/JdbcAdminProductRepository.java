@@ -22,7 +22,7 @@ public class JdbcAdminProductRepository implements AdminProductRepository {
     }
 
     @Override
-    public Product save(Product product) {
+    public Product saveProduct(Product product) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName("product").usingGeneratedKeyColumns("id");
 
@@ -40,6 +40,7 @@ public class JdbcAdminProductRepository implements AdminProductRepository {
         parameter.put("img_exp3", product.getImg_exp3());
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameter));
+        product.setId(key.longValue());
         return product;
     }
 
@@ -49,7 +50,6 @@ public class JdbcAdminProductRepository implements AdminProductRepository {
         jdbcTemplate.update(query,
                 updatedProduct.getName(),
                 updatedProduct.getQuantity(),
-                updatedProduct.getType_local(),
                 updatedProduct.getType_local(),
                 updatedProduct.getType_kind(),
                 updatedProduct.getCreator(),
@@ -67,5 +67,13 @@ public class JdbcAdminProductRepository implements AdminProductRepository {
     public void deleteProduct(Long id) {
         String query= "delete from product where id=?";
         jdbcTemplate.update(query,id);
+    }
+
+    public Optional<Product> findById(Long id){
+        return jdbcProductRepository.findById(id);
+    }
+
+    public List<Product> findAll(){
+        return jdbcProductRepository.findAll();
     }
 }

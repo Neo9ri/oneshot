@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AdminProductRepository {
-    Product save(Product product);
-    Product updateProduct(Long id, Product updatedProduct);
+    Product saveProduct(Product product);
+    Product updateProduct(Long id, Product updateProduct);
     void deleteProduct(Long id);
 }

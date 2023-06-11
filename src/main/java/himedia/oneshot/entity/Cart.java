@@ -7,4 +7,8 @@ public class Cart {
     private Long memberId; //회원 고유 번호
     private  Long productId;//상품 고유 번호
     private int quantity;
+
+    public void setProduct(Product product) {
+
+    }
 }
