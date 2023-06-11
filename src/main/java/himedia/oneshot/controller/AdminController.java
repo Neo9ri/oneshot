@@ -24,6 +24,7 @@ public class AdminController {
     @GetMapping("/member-list")
     public String memberList(@RequestParam(required = false) Integer page, Model model) {
 
+        // 목록 구현 -- START
         List<Member> members = memberService.makeMemberList();
         int totalItem = members.size();
         int requestPage;
@@ -45,6 +46,7 @@ public class AdminController {
             members = members.subList(fromIndex,toIndex);
         }
         model.addAttribute("members", members);
+        // 목록 구현 -- END
         return "/admin/member_list";
     }
 }
