@@ -1,10 +1,14 @@
 package himedia.oneshot.entity;
 
 import lombok.Data;
+import lombok.Generated;
+import org.springframework.data.annotation.Id;
+
 import java.util.Date;
 
 /**
  * 회원 정보에 대한 데이터입니다.
+ * DB에 존재하지 않는 필드를 가질 수 없습니다.
  */
 
 @Data

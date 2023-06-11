@@ -1,6 +1,6 @@
 package himedia.oneshot.controller;
 
-import himedia.oneshot.dto.Pagination;
+import himedia.oneshot.service.Pagination;
 import himedia.oneshot.entity.Member;
 import himedia.oneshot.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,13 +26,13 @@ public class AdminController {
 
         List<Member> members = memberService.makeMemberList();
         int totalItem = members.size();
-        int requestPage=1;
+        int requestPage;
         try {
             requestPage = page.intValue();
         } catch (NullPointerException npe) {
-            log.info("NullPointerException 발생");
+            requestPage = 1;
         };
-        Pagination pagination = new Pagination(10, requestPage, totalItem);
+        Pagination pagination = new Pagination(totalItem,10, requestPage);
         model.addAttribute(pagination);
 
         int fromIndex = pagination.getFromIndex();
@@ -41,7 +41,7 @@ public class AdminController {
         try {
             members = members.subList(fromIndex, toIndex);
         } catch (IndexOutOfBoundsException ioobe) {
-            toIndex = members.size()-1;
+            toIndex = members.size();
             members = members.subList(fromIndex,toIndex);
         }
         model.addAttribute("members", members);
