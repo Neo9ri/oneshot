@@ -54,7 +54,7 @@ public class JdbcProductRepository implements ProductRepository{
     public Optional<Product> findById(Long id) {
         String sql = "select * from product where id = ?";
         List<Product> result = jdbcTemplate.query(sql, productRowMapper);
-//        List<Product> result = jdbcTemplate.query(sql, new Object[]{id}, productRowMapper); 
+//        List<Product> result = jdbcTemplate.query(sql, new Object[]{id}, productRowMapper);
 //        --> 테스트를 위해 넣은 코드 service 추가하면 해결됨
         return result.stream().findAny();
     }
