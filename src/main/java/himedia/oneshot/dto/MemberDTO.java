@@ -5,11 +5,12 @@ import lombok.Data;
 import java.util.Date;
 
 /**
- * member 데이터 전송 객체로 controller와 view의 데이터 전송에 사용합니다.
+ * member 데이터 전송 객체로 주로 controller와 view 간 데이터 전송에 사용합니다.
+ * entity에 존재하지 않는 값을 추가하여 사용 가능합니다.
  */
 @Data
 public class MemberDTO {
-    private Long id;                 //회원 고유 번호
+    private Long id;                //회원 고유 번호
     private String login_id;        //로그인 아이디
     private String pw;              //비밀번호
     private String email;           //이메일
