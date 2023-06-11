@@ -41,9 +41,11 @@ public class AdminController {
         try {
             members = members.subList(fromIndex, toIndex);
         } catch (IndexOutOfBoundsException ioobe) {
-            toIndex = members.size()-1;
+            toIndex = members.size();
             members = members.subList(fromIndex,toIndex);
         }
+        log.info("fromIndex >> " + fromIndex);
+        log.info("toIndex >> " + toIndex);
         model.addAttribute("members", members);
         return "/admin/member_list";
     }

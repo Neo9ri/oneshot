@@ -49,6 +49,6 @@ public class Pagination {
         nextFirstPage = (lastPage == totalPage)? -1: lastPage + 1;
 
         fromIndex = rangeItem * (requestPage - 1);
-        toIndex = (rangeItem * requestPage) - 1;
+        toIndex = (rangeItem * requestPage);
     }
 }
