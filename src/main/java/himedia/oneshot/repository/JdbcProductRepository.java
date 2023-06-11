@@ -53,7 +53,7 @@ public class JdbcProductRepository implements ProductRepository{
     public Optional<Product> findById(Long id) {
         String sql = "select * from product where id = ?";
         List<Product> result = jdbcTemplate.query(sql, productRowMapper);
-//        List<Product> result = jdbcTemplate.query(sql, new Object[]{id}, productRowMapper); 
+//        List<Product> result = jdbcTemplate.query(sql, new Object[]{id}, productRowMapper);
 //        --> 테스트를 위해 넣은 코드 service 추가하면 해결됨
         return result.stream().findAny();
     }
@@ -65,16 +65,39 @@ public class JdbcProductRepository implements ProductRepository{
     }
 
     @Override
-    public void addCart(Long id) {
+    public void addCart(Long id,Long memberId) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName("cart")
-                .usingColumns("product_id","quantity");
+                .usingColumns("member_id","product_id","quantity");
         Map<String, Object> parameter = new HashMap<>();
+        parameter.put("member_id",memberId);
         parameter.put("product_id",id);
         parameter.put("quantity",1);
 
         jdbcInsert.execute(new MapSqlParameterSource(parameter));
     }
+
+    @Override
+    public List<Cart> showCart(Long memberId) {
+        String sql = "SELECT c.member_id, c.product_id, c.quantity, p.name FROM cart c " +
+                "INNER JOIN member m ON c.member_id = m.id " +
+                "INNER JOIN product p ON c.product_id = p.id " +
+                "WHERE c.member_id = ?";
+
+        List<Cart> cartItems = jdbcTemplate.query(sql, new Object[]{memberId}, (rs, rowNum) -> {
+            Cart cart = new Cart();
+            cart.setMemberId(rs.getLong("member_id"));
+            cart.setProductId(rs.getLong("product_id"));
+            cart.setQuantity(rs.getInt("quantity"));
+            Product product = new Product();
+            product.setName(rs.getString("name"));
+            cart.setProduct(product);
+            return cart;
+        });
+
+        return cartItems;
+    }
+
     @Override
     public void truncateTableCart() {
         jdbcTemplate.update("truncate table cart");
