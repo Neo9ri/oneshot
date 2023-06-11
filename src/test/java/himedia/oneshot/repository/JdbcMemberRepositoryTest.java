@@ -1,9 +1,9 @@
-package himedia.oneshot;
+package himedia.oneshot.repository;
 
 
 
 import himedia.oneshot.entity.Member;
-import himedia.oneshot.repository.JdbcMemberRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,8 +14,9 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
+@Slf4j
 @Transactional
-public class JDBCMemberRepositoryTest {
+public class JdbcMemberRepositoryTest {
 
     @Autowired
     JdbcMemberRepository memberRepository;
@@ -28,7 +29,7 @@ public class JDBCMemberRepositoryTest {
         List<Member> result = memberRepository.findAll();
 
         // then
-        assertThat(result.size()).isEqualTo(3);
+        assertThat(result.get(0).getName()).isEqualTo("관리자");
 
 
     }

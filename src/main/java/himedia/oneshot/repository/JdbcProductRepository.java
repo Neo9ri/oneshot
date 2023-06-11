@@ -27,6 +27,7 @@ public class JdbcProductRepository implements ProductRepository{
       product.setQuantity(rs.getInt("quantity"));
       product.setType_local(rs.getString("type_local"));
       product.setType_kind(rs.getString("type_kind"));
+      product.setAlcohol(rs.getFloat("alcohol"));
       product.setCreator(rs.getString("creator"));
       product.setPrice(rs.getInt("price"));
       product.setImg_thumb(rs.getString("img_thumb"));
