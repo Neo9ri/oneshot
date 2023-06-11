@@ -19,10 +19,17 @@ public class Product {
     private String img_exp1;     //상품 상세 내용 이미지 파일 경로1
     private String img_exp2;     //상품 상세 내용 이미지 파일 경로2
     private String img_exp3;     //상품 상세 내용 이미지 파일 경로3
-    public Product(String name, int quantity, int price, String img_thumb) {
+    public Product(String name, int quantity,String type_local,String type_kind, String creator, float alcohol, int price, String img_thumb, String img_exp1, String img_exp2, String img_exp3) {
         this.name = name;
-        this.quantity=quantity;
+        this.quantity = quantity;
+        this.type_local = type_local;
+        this.type_kind = type_kind;
+        this.creator = creator;
+        this.alcohol = alcohol;
         this.price = price;
         this.img_thumb = img_thumb;
+        this.img_exp1 = img_exp1;
+        this.img_exp2 = img_exp2;
+        this.img_exp3 = img_exp3;
     }
 }
