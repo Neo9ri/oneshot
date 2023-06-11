@@ -33,7 +33,6 @@ public class AdminController {
             requestPage = 1;
         };
         Pagination pagination = new Pagination(totalItem,10, requestPage);
-        new Pagination();
         model.addAttribute(pagination);
 
         int fromIndex = pagination.getFromIndex();
