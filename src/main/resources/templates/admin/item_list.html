@@ -74,7 +74,7 @@
             <th>상품 관리</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody th:unless="${#lists.isEmpty(products)}">
           <tr th:each="product : ${products}">
             <td th:text="${product.id}">101</td>
             <td th:text="${product.type_local}">전라북도, 경상도권</td>
@@ -98,19 +98,15 @@
     <div class="d-flex justify-content-center py-5">
       <nav aria-label="">
         <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
+          <li th:if="${pagination.existPreviousLastPage}" class="page-item">
+            <a class="page-link" href="#" th:href="@{item-list(page=${pagination.previousLastPage})} + ${'#table'}" aria-label="Previous">
               <span>&laquo;</span>
             </a>
           </li>
-          <li class="page-item"><a class="page-link active" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">4</a></li>
-          <li class="page-item"><a class="page-link" href="#">5</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
+          <li th:each="page : ${#numbers.sequence(pagination.firstPage,pagination.lastPage)}" class="page-item"><a class="page-link" th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'" href="#" th:href="@{item-list(page=${page})} + ${'#table'}" th:text="${page}">1</a></li>
+          <li th:if="${pagination.existNextFirstPage}" class="page-item">
+            <a class="page-link" href="#" th:href="@{item-list(page=${pagination.nextFirstPage})} + ${'#table'}" aria-label="Next">
+              <span>&raquo;</span>
             </a>
           </li>
         </ul>

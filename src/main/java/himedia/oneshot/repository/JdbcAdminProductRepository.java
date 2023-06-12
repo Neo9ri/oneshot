@@ -71,7 +71,5 @@ public class JdbcAdminProductRepository implements AdminProductRepository {
         return jdbcProductRepository.findById(id);
     }
 
-    public List<Product> findAll(){
-        return jdbcProductRepository.findAll();
-    }
+    public List<Product> findAll(){ return jdbcProductRepository.findAll(); }
 }
