@@ -256,12 +256,12 @@
 .mypage_inquiry_search th{
     padding:0px 30px;
 }
-.mypage_inquiry_search .btn-primary{
+.mypage_inquiry_search .btn_primary{
     background-color: #fedf12;
     color:#2b1807;
     border: 0px;
 }
-.mypage_inquiry_search .btn-primary:hover{
+.mypage_inquiry_search .btn_primary:hover{
     background-color: #fedf12;
     color:#2b1807;
     border: 0px;
