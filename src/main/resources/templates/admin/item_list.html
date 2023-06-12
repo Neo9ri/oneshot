@@ -38,9 +38,9 @@
     </div>
     <nav class="gnb">
       <ul class="center">
-        <li><a href="member_list.html">회원관리</a></li>
-        <li><a href="item_list.html">상품관리</a></li>
-        <li><a href="inquiry_delivery.html">고객 문의관리</a></li>
+        <li><a href="/member-list">회원관리</a></li>
+        <li><a href="/item-list">상품관리</a></li>
+        <li><a href="/inquiry/delivery">고객 문의관리</a></li>
       </ul>
     </nav>
   </header>
@@ -58,7 +58,7 @@
         <div class="row">
           <div class="col"></div>
           <div class="col position-relative">
-            <button class="position-absolute btn btn_ylw admin_table_name_btn">상품 등록</button>
+            <button type="button" th:onclick="|location.href='@{/product/add}'|" class="position-absolute btn btn_ylw admin_table_name_btn">상품 등록</button>
           </div>
         </div>
       </div>
@@ -75,28 +75,21 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>101</td>
-            <td>전라북도, 경상도권</td>
-            <td>증류주</td>
-            <td>안동 소주 일품</td>
-            <td>안동 소주</td>
-            <td>15000</td>
+          <tr th:each="product : ${products}">
+            <td th:text="${product.id}">101</td>
+            <td th:text="${product.type_local}">전라북도, 경상도권</td>
+            <td th:text="${product.type_kind}">증류주</td>
+            <td th:text="${product.creator}">안동 소주 일품</td>
+            <td th:text="${product.name}">안동 소주</td>
+            <td th:text="${product.price}">15000</td>
             <td>
-              <button class="btn btn_default"> 수정 </button>
-              <button class="btn btn_ylw"> 삭제 </button>
-            </td>
-          </tr>
-          <tr>
-            <td>102</td>
-            <td>서울, 경기, 인천권</td>
-            <td>탁주</td>
-            <td>한강 주조</td>
-            <td>한강 막걸리</td>
-            <td>7000</td>
-            <td>
-              <button class="btn btn_default"> 수정 </button>
-              <button class="btn btn_ylw"> 삭제 </button>
+              <button type="button" th:onclick="|location.href='@{/product/{productId}/edit(productId=${product.id})}'|" class="btn btn_default"> 수정 </button>
+              <form th:action="@{/product/delete}" method="post" class="delete"
+                    onsubmit="return confirm('정말로 삭제하시겠습니까?')">
+                <input type="hidden" name="_method" value="DELETE" /> <input
+                      type="hidden" name="id" th:value="${product.id}" />
+                <button type="submit" class="btn btn_ylw">삭제</button>
+              </form>
             </td>
           </tr>
         </tbody>
