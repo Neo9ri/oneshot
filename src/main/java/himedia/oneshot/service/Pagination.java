@@ -2,6 +2,7 @@ package himedia.oneshot.service;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 페이지네이션 버튼 UI 구현에 필요한 값들을 저장하는 클래스입니다.
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
  */
 @Getter
 @NoArgsConstructor
+@Slf4j
 public class Pagination {
     private int totalItem; // 목록을 구성하는 전체 아이템의 개수
     private int rangeItem; // 한 화면에 보여줄 목록의 최대 개수
@@ -56,9 +58,11 @@ public class Pagination {
             existPreviousLastPage = true;
         }
 
-        if (lastPage == totalPage)
+        if (lastPage == totalPage) {
             existNextFirstPage = false;
-        else {
+            if(lastPage == 0)
+                lastPage = 1;
+        } else {
             nextFirstPage = lastPage + 1;
             existNextFirstPage = true;
         }
@@ -100,9 +104,11 @@ public class Pagination {
             existPreviousLastPage = true;
         }
 
-        if (lastPage == totalPage)
+        if (lastPage == totalPage) {
             existNextFirstPage = false;
-        else {
+            if(lastPage == 0)
+                lastPage = 1;
+        } else {
             nextFirstPage = lastPage + 1;
             existNextFirstPage = true;
         }

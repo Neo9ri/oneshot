@@ -2,6 +2,7 @@ package himedia.oneshot.repository;
 
 import himedia.oneshot.dto.MemberDTO;
 import himedia.oneshot.entity.Member;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -15,6 +16,7 @@ import java.util.List;
  *
  */
 @Repository
+@Slf4j
 public class JdbcMemberRepository implements MemberRepository {
     private final JdbcTemplate jdbcTemplate;
 
