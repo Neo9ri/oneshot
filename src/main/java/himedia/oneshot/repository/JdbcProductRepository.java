@@ -20,22 +20,22 @@ public class JdbcProductRepository implements ProductRepository{
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
     RowMapper<Product> productRowMapper = (rs, rowNum) -> {
-      Product product = new Product();
+        Product product = new Product();
 
-      product.setId(rs.getLong("id"));
-      product.setName(rs.getString("name"));
-      product.setQuantity(rs.getInt("quantity"));
-      product.setType_local(rs.getString("type_local"));
-      product.setType_kind(rs.getString("type_kind"));
-      product.setAlcohol(rs.getFloat("alcohol"));
-      product.setCreator(rs.getString("creator"));
-      product.setPrice(rs.getInt("price"));
-      product.setImg_thumb(rs.getString("img_thumb"));
-      product.setImg_exp1(rs.getString("img_exp1"));
-      product.setImg_exp2(rs.getString("img_exp2"));
-      product.setImg_exp3(rs.getString("img_exp3"));
+        product.setId(rs.getLong("id"));
+        product.setName(rs.getString("name"));
+        product.setQuantity(rs.getInt("quantity"));
+        product.setType_local(rs.getString("type_local"));
+        product.setType_kind(rs.getString("type_kind"));
+        product.setAlcohol(rs.getFloat("alcohol"));
+        product.setCreator(rs.getString("creator"));
+        product.setPrice(rs.getInt("price"));
+        product.setImg_thumb(rs.getString("img_thumb"));
+        product.setImg_exp1(rs.getString("img_exp1"));
+        product.setImg_exp2(rs.getString("img_exp2"));
+        product.setImg_exp3(rs.getString("img_exp3"));
 
-      return product;
+        return product;
     };
 
     RowMapper<Long> productIdRowMapper = (rs, rowNum) -> {
@@ -131,3 +131,4 @@ public class JdbcProductRepository implements ProductRepository{
     }
 
 }
+

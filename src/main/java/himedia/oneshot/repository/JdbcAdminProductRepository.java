@@ -2,12 +2,10 @@ package himedia.oneshot.repository;
 
 import himedia.oneshot.entity.Product;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.util.*;
 
 @Repository
@@ -28,7 +26,7 @@ public class JdbcAdminProductRepository implements AdminProductRepository {
 
         Map<String, Object> parameter= new HashMap<>();
         parameter.put("name", product.getName());
-        parameter.put("quantity", product.getQuantity());
+        parameter.put("quantity", 1);
         parameter.put("type_local", product.getType_local());
         parameter.put("type_kind", product.getType_kind());
         parameter.put("creator", product.getCreator());
