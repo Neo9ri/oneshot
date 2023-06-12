@@ -51,21 +51,21 @@
         <h2 class="text-center">상품 등록</h2>
         <hr>
     </div>
-    <form th:action="@{/product/{productId}/edit(productId=${product.id})}" method="post" enctype="multipart/form-data"
+    <form  method="post" enctype="multipart/form-data"
           class="row align-items-end gy-3">
         <div class="col"></div>
         <div id="productEditorLeft" class="col-4 text-center">
-            <img id="thumbnailPreview" alt="상품 이미지 미리보기">
+            <img id="thumbnailPreview" src="" alt="상품 이미지 미리보기" style="display: none">
             <div>
                 <!-- <label for="thumbnail"> 상품 이미지 첨부하기</label> -->
-                <input type="file" id="thumbnail" onchange="showThumbnail(this);">
+                <input type="file" id="thumbnail" name="thumb" onchange="showThumbnail(this);" required>
                 <div class="btn btn_ylw thumbnail_btn" onclick="onClickThumbnailUpload();">상품 이미지 첨부하기</div>
             </div>
         </div>
         <div id="productEditorRight" class="col-4">
             <div class="row">
                 <label for="type_local" class="col col_name align-self-center">지역 카테고리</label>
-                <select id="type_local" name="type_local" class="col form-select">
+                <select id="type_local" name="type_local" class="col form-select" required>
                     <option selected>지역 카테고리 선택</option>
                     <option value="서울, 경기, 인천권">서울/경기/인천</option>
                     <option value="강원, 세종권">강원/세종</option>
@@ -75,7 +75,7 @@
             </div>
             <div class="row">
                 <label for="type_kind" class="col col_name align-self-center">주종 카테고리</label>
-                <select name="type_kind" id="type_kind" class="col form-select">
+                <select name="type_kind" id="type_kind" class="col form-select" required>
                     <option selected>주종 카테고리 선택</option>
                     <option value="증류주">증류주</option>
                     <option value="과실주">과실주</option>
@@ -86,17 +86,28 @@
             </div>
             <div class="row">
                 <label for="creator" class="col col_name align-self-center">제조사</label>
-                <input id="creator" name="creator" class="col form-control" type="text" placeholder="제조사를 입력하세요">
+                <input id="creator" name="creator" class="col form-control" type="text"
+                       placeholder="제조사를 입력하세요" required>
             </div>
             <div class="row">
-                <div for="name" class="col col_name align-self-center">상품명</div>
-                <input id="name" name="name" class="col form-control" type="text" placeholder="상품명을 입력하세요">
+                <label for="name" class="col col_name align-self-center">상품명</label>
+                <input id="name" name="name" class="col form-control" type="text"
+                       placeholder="상품명을 입력하세요" required>
             </div>
             <div class="row">
                 <label for="price" class="col-6 col_name align-self-center">가격</label>
-                <input id="price" name="price" class="col form-control" type="text" placeholder="0">
+                <input id="price" name="price" class="col form-control" type="text" placeholder="0" required
+                       oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                 <div class="col-1 align-self-center">원</div>
             </div>
+            <div class="row">
+                <label for="alcohol" class="col-6 col_name align-self-center">도수</label>
+                <input id="alcohol" name="alcohol" class="col form-control" type="text" placeholder="0" required
+                       oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                <div class="col-1 align-self-center">도</div>
+            </div>
+            <label for="quantity" class="blind">수량</label>
+            <input id="quantity" type="text" name="quantity" value="1" class="blind">
             <div id="productEditorRightWhiteSpace"></div>
         </div>
         <div class="col"></div>
@@ -106,7 +117,7 @@
             <div class="col-2"></div>
             <div class="col-8">
                 <label for="exp" class="exp_title">상품 설명</label>
-                <input type="file" id="exp" name="exp" multiple onchange="showMultipleExp(this);">
+                <input type="file" id="exp" name="exp" multiple onchange="showMultipleExp(this);" required>
                 <div class="btn btn_ylw" onclick="onClickExpUpload();">상품 설명 이미지 첨부하기</div>
                 <div id="multipleExpPreview">
                     <!--            <img id="expPreview" alt="상품 설명 미리보기">-->
@@ -184,8 +195,9 @@
 
     function showThumbnail(input) { // 썸네일 미리보기 함수
       if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+              document.getElementById('thumbnailPreview').style.display='block';
           document.getElementById('thumbnailPreview').src = e.target.result;
         };
         reader.readAsDataURL(input.files[0]);
@@ -196,32 +208,52 @@
 
     function onClickExpUpload() { // 상품설명 파일 첨부하기 함수
       let expImageButton = document.getElementById("exp");
-      expImageButton.click()
+      expImageButton.addEventListener("change", handleExpUpload);
+      expImageButton.click();
     }
 
+    function handleExpUpload(event) {
+        const input = event.target;
+        const fileArr = Array.from(input.files);
+
+        if (fileArr.length != 3) {
+            // 3개 이상의 파일이 선택되었을 때 알림 창 표시
+            alert("이미지는 3개를 첨부해야합니다. 다시 선택해주세요.");
+            input.value = "";
+            location.reload();
+        }
+    }
+
+
 //상품설명 여러개 미리보기 함수
-function showMultipleExp(input) {
+    function showMultipleExp(input) {
 
-  const multipleExpPreview = document.getElementById('multipleExpPreview');
+        const multipleExpPreview = document.getElementById('multipleExpPreview');
 
-  if(input.files) {
-      const fileArr = Array.from(input.files);
+        const images = multipleExpPreview.querySelectorAll('img');
+        images.forEach((image) => {
+            multipleExpPreview.removeChild(image);
+        });
 
-      fileArr.forEach((file,index) => {
-          const reader = new FileReader();
-          const exp = document.createElement('img');
-          exp.setAttribute('id',`exp${index+1}`);
-          exp.classList.add('selected');
 
-          multipleExpPreview.appendChild(exp);
-          reader.onload = e => {
-              exp.src = e.target.result;
-          };
+        if(input.files) {
+            const fileArr = Array.from(input.files);
 
-          reader.readAsDataURL(file);
-      });
-  };
-}
+            fileArr.forEach((file,index) => {
+                const reader = new FileReader();
+                const exp = document.createElement('img');
+                exp.setAttribute('id',`exp${index+1}`);
+                multipleExpPreview.appendChild(exp);
+                exp.classList.add('selected');
+                reader.onload = e => {
+                    exp.src = e.target.result;
+                };
+
+                reader.readAsDataURL(file);
+                multipleExpPreview.appendChild(document.createElement('br'));
+            });
+        }
+    }
 </script>
 </body>
 

@@ -24,10 +24,10 @@ public class JdbcAdminProductRepositoryTest {
     void save() {
         //given
         Product beforeSave = new Product("테스트",1,"서울","증류주","테스터",17,7000,"img/product/thumbnail/test.jpg",null,null,null);
-        log.info("id",beforeSave.getId());
+        log.info("id>>{}",beforeSave.getId());
         // when
         Product afterSave = adminProductRepository.saveProduct(beforeSave);
-        log.info("id",afterSave.getId());
+        log.info("id>>{}",afterSave.getId());
         // then
         assertThat(afterSave.getId()).isEqualTo(beforeSave.getId());
     }

@@ -16,3 +16,7 @@ spring:
       &serverTimezone=Asia/Seoul
     username: root # DB ????
     password: 1111 # DB ???? ????
+
+  spring.resources.cache.cachecontrol.no-cache: true
+  spring.resources.cache.period: 0
+
