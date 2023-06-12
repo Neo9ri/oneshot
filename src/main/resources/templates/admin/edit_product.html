@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta_name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>상품 수정</title>
   <link rel="icon" href="/img/favicon-32x32.png" type="image/x-icon" />
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
@@ -56,7 +56,7 @@
     <form th:action class="row align-items-end gy-3" method="post">
       <div class="col"></div>
       <div id="productEditorLeft" class="col-4 text-center">
-        <img id="thumbnailPreview" alt="상품 이미지 미리보기">
+        <img th:if="${thumb}" th:src="@{'/' + ${product.img_thumb}}" id="thumbnailPreview" alt="상품 이미지 미리보기">
         <div>
           <!-- <label for="thumbnail"> 상품 이미지 첨부하기</label> -->
           <input type="file" id="thumbnail" onchange="showThumbnail(this);">
@@ -65,36 +65,33 @@
       </div>
       <div id="productEditorRight" class="col-4">
         <div class="row">
-          <div class="col col_name align-self-center">지역 카테고리</div>
-          <select class="col form-select">
-            <option selected>지역 카테고리 선택</option>
-            <option value="">서울/경기/인천</option>
-            <option value="">강원/세종</option>
-            <option value="">충북/충남/제주</option>
-            <option value="">전북/전남/경북/경남</option>
+          <label for="type_local" class="col col_name align-self-center">지역 카테고리</label>
+          <select id="type_local" name="type_local" class="col form-select">
+            <option th:each="local : ${typeLocal}"
+            th:value="${local}"
+            th:text="${local}"
+            th:selected="${local eq product.type_local}"></option>
           </select>
         </div>
         <div class="row">
-          <div class="col col_name align-self-center">주종 카테고리</div>
-          <select class="col form-select">
-            <option selected>주종 카테고리 선택</option>
-            <option value="">증류주</option>
-            <option value="">과실주</option>
-            <option value="">약주/청주</option>
-            <option value="">숙성 전통주</option>
-            <option value="">기타</option>
+          <label for="type_kind" class="col col_name align-self-center">주종 카테고리</label>
+          <select id="type_kind" name="type_kind" class="col form-select">
+            <option th:each="kind : ${typeKind}"
+            th:value="${kind}"
+            th:text="${kind}"
+            th:selected="${kind eq product.type_kind}">증류주</option>
           </select>
         </div>
         <div class="row">
-          <div class="col col_name align-self-center"><label for="creator">제조사</label></div>
+          <label for="creator" class="col col_name align-self-center">제조사</label>
           <input class="col form-control" type="text" placeholder="제조사를 입력하세요" id="creator" name="creator" th:value="${product.creator}">
         </div>
         <div class="row">
-          <div class="col col_name align-self-center"><label for="productName"></label> 상품명</div>
-          <input class="col form-control" type="text" placeholder="상품명을 입력하세요" id="productName" name="productName" th:value="${product.name}">
+          <label for="name" class="col col_name align-self-center">상품명</label>
+          <input class="col form-control" type="text" placeholder="상품명을 입력하세요" id="name" name="name" th:value="${product.name}">
         </div>
         <div class="row">
-          <div class="col-6 col_name align-self-center"><label for="price">가격</label></div>
+          <label for="price" class="col-6 col_name align-self-center">가격</label>
           <input class="col form-control" type="text" placeholder="0" id="price" name="price" th:value="${product.price}">
           <div class="col-1 align-self-center">원</div>
         </div>
@@ -106,16 +103,18 @@
         <hr>
         <div class="col-2"></div>
         <div class="col-8">
-          <div class="exp-title">상품 설명</div>
-          <input type="file" id="exp" onchange="showExp(this);">
+          <label for="exp" class="exp-title">상품 설명</label>
+          <input type="file" id="exp" name="exp" onchange="showExp(this);">
           <div class="btn btn_ylw" onclick="onClickExpUpload();">상품 설명 이미지 첨부하기</div>
           <div>
-            <img id="expPreview" alt="상품 설명 미리보기">
+            <img th:if="${exp1}" th:src="@{'/' + ${product.img_exp1}}" id="expPreview" alt="상품 설명 미리보기">
+            <img th:if="${exp2}" th:src="@{'/' + ${product.img_exp2}}" id="expPreview" alt="상품 설명 미리보기">
+            <img th:if="${exp3}" th:src="@{'/' + ${product.img_exp3}}" id="expPreview" alt="상품 설명 미리보기">
           </div>
           <hr>
           <div class="row justify-content-end">
-            <button class="col-2 btn btn_ylw">수정</button>
-            <button class="col-2 btn btn_default">취소</button>
+            <button type="submit" class="col-2 btn btn_ylw">저장</button>
+            <button type="button" th:onclick="|location.href='@{/item-list}'|" class="col-2 btn btn_default">취소</button>
           </div>
         </div>
         <div class="col-2"></div>

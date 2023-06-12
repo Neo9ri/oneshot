@@ -51,7 +51,7 @@
       <h2 class="text-center">상품 등록</h2>
       <hr>
     </div>
-    <form class="row align-items-end gy-3">
+    <form th:action="@{/product/{productId}/edit(productId=${product.id})}"  method="post" enctype="multipart/form-data" class="row align-items-end gy-3">
       <div class="col"></div>
       <div id="productEditorLeft" class="col-4 text-center">
         <img id="thumbnailPreview" alt="상품 이미지 미리보기">
@@ -63,37 +63,37 @@
       </div>
       <div id="productEditorRight" class="col-4">
         <div class="row">
-          <div class="col col_name align-self-center">지역 카테고리</div>
-          <select class="col form-select">
+          <label for="type_local" class="col col_name align-self-center">지역 카테고리</label>
+          <select id="type_local" name="type_local" class="col form-select">
             <option selected>지역 카테고리 선택</option>
-            <option value="">서울/경기/인천</option>
-            <option value="">강원/세종</option>
-            <option value="">충북/충남/제주</option>
-            <option value="">전북/전남/경북/경남</option>
+            <option value="서울, 경기, 인천권">서울/경기/인천</option>
+            <option value="강원, 세종권">강원/세종</option>
+            <option value="충북, 충남, 제주도">충북/충남/제주</option>
+            <option value="전북, 전남, 경북, 경남도">전북/전남/경북/경남</option>
           </select>
         </div>
         <div class="row">
           <label for="type_kind" class="col col_name align-self-center">주종 카테고리</label>
           <select name="type_kind" id="type_kind" class="col form-select">
             <option selected>주종 카테고리 선택</option>
-            <option value="">증류주</option>
-            <option value="">과실주</option>
-            <option value="">약주/청주</option>
-            <option value="">숙성 전통주</option>
-            <option value="">기타</option>
+            <option value="증류주">증류주</option>
+            <option value="과실주">과실주</option>
+            <option value="약주/청주">약주/청주</option>
+            <option value="숙성 전통주">숙성 전통주</option>
+            <option value="기타">기타</option>
           </select>
         </div>
         <div class="row">
-          <div class="col col_name align-self-center">제조사</div>
-          <input class="col form-control" type="text" placeholder="제조사를 입력하세요">
+          <label for="creator" class="col col_name align-self-center">제조사</label>
+          <input id="creator" name="creator" class="col form-control" type="text" placeholder="제조사를 입력하세요">
         </div>
         <div class="row">
-          <div class="col col_name align-self-center">상품명</div>
-          <input class="col form-control" type="text" placeholder="상품명을 입력하세요">
+          <div for="name" class="col col_name align-self-center">상품명</div>
+          <input id="name" name="name" class="col form-control" type="text" placeholder="상품명을 입력하세요">
         </div>
         <div class="row">
-          <div class="col-6 col_name align-self-center">가격</div>
-          <input class="col form-control" type="text" placeholder="0">
+          <label for="price" class="col-6 col_name align-self-center">가격</label>
+          <input id="price" name="price" class="col form-control" type="text" placeholder="0">
           <div class="col-1 align-self-center">원</div>
         </div>
         <div id="productEditorRightWhiteSpace"></div>
@@ -104,15 +104,16 @@
         <hr>
         <div class="col-2"></div>
         <div class="col-8">
-          <div class="exp_title">상품 설명</div>
-          <input type="file" id="exp" onchange="showExp(this);">
+          <label for="exp" class="exp_title">상품 설명</label>
+          <input type="file" id="exp" name="exp" onchange="showExp(this);">
           <div class="btn btn_ylw" onclick="onClickExpUpload();">상품 설명 이미지 첨부하기</div>
           <div>
             <img id="expPreview" alt="상품 설명 미리보기">
           </div>
+          <hr>
           <div class="row justify-content-end">
-            <button class="col-2 btn btn_ylw">등록</button>
-            <button class="col-2 btn btn_default">취소</button>
+            <button type="submit" class="col-2 btn btn_ylw">등록</button>
+            <button type="button" th:onclick="|location.href='@{/item-list}'|" class="col-2 btn btn_default">취소</button>
           </div>
         </div>
         <div class="col-2"></div>
