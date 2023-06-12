@@ -104,9 +104,9 @@
         <div class="col-2"></div>
         <div class="col-8">
           <label for="exp" class="exp-title">상품 설명</label>
-          <input type="file" id="exp" name="exp" onchange="showExp(this);">
+          <input type="file" id="exp" name="exp" multiple onchange="showMultipleExp(this);">
           <div class="btn btn_ylw" onclick="onClickExpUpload();">상품 설명 이미지 첨부하기</div>
-          <div>
+          <div id="multipleExpPreview">
             <img th:if="${exp1}" th:src="@{'/' + ${product.img_exp1}}" id="expPreview" alt="상품 설명 미리보기">
             <img th:if="${exp2}" th:src="@{'/' + ${product.img_exp2}}" id="expPreview" alt="상품 설명 미리보기">
             <img th:if="${exp3}" th:src="@{'/' + ${product.img_exp3}}" id="expPreview" alt="상품 설명 미리보기">
@@ -210,17 +210,34 @@
       expImageButton.click()
     }
 
-    function showExp(input) { // 상품설명 미리보기 함수
-      if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-          document.getElementById('expPreview').src = e.target.result;
-        };
-        reader.readAsDataURL(input.files[0]);
-      } else {
-        document.getElementById('expPreview').src = "";
-      }
-    }
+    //상품설명 여러개 미리보기 함수(이미 파일 존재시 파일 추가하면 삭제)//
+function showMultipleExp(input) {
+
+  const multipleExpPreview = document.getElementById('multipleExpPreview');
+
+<!--  if (multipleExpPreview.children.length > 0){-->
+<!--    multipleExpPreview.removeChild();-->
+<!--  };-->
+
+
+  if(input.files) {
+      const fileArr = Array.from(input.files);
+
+      fileArr.forEach((file,index) => {
+          const reader = new FileReader();
+          const exp = document.createElement("img");
+          exp.setAttribute('id','exp' + index);
+          multipleExpPreview.appendChild(exp);
+          exp.classList.add('selected');
+          reader.onload = e => {
+              exp.src = e.target.result;
+          };
+
+          reader.readAsDataURL(file);
+          multipleExpPreview.appendChild(document.createElement('br'));
+      });
+  };
+}
   </script>
 </body>
 

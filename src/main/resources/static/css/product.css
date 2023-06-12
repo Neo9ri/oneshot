@@ -61,11 +61,28 @@ section.product_container ul.pagination li a {
   background-color: #eee;
   border: none;
 }
-a.prev,
-a.next {
-  border-radius: 50%;
+/* pagination-START */
+.pagination li a {
+  margin: 10px;
+  border-radius: 100%;
+  color: #333;
+  background-color: #eeeeee;
 }
-section.product_container ul.pagination li.on a {
+
+.pagination li a.active {
   background-color: #fedf12;
+  color: #333;
+  border-color: #eeeeee;
 }
+
+.page-item:first-child .page-link {
+  border-radius: 100%;
+}
+
+.page-item:last-child .page-link {
+  border-radius: 100%;
+}
+
+/* paginaton-END */
+
 /* product-container:END */

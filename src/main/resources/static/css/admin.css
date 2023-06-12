@@ -280,8 +280,10 @@ input#price{
   display: block;
 }
 
-#expPreview {
-  width: 776px;
+#multipleExpPreview img.selected{
+  max-width: 776px;
+  margin: 0 auto;
+  display=block;
 }
 
 #productEditorBottom button {
