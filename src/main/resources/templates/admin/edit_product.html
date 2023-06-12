@@ -174,19 +174,6 @@
   </footer>
   <!-- footer : END -->
   <script>
-    const gnbbar = document.querySelector(".gnbbar")
-    const gnbmenu = document.querySelectorAll("nav.gnb>ul>li")
-    gnbmenu.forEach((v, index) => {
-      if (index !== 0) {
-        v.addEventListener("mouseover", (e) => {
-          gnbbar.style.display = "block";
-        });
-
-        v.addEventListener("mouseout", (e) => {
-          gnbbar.style.display = "none";
-        });
-      }
-    });
 
     function onClickThumbnailUpload() { // 썸네일 파일 첨부하기 함수
       let thumbnailImageButton = document.getElementById("thumbnail");
@@ -215,9 +202,10 @@ function showMultipleExp(input) {
 
   const multipleExpPreview = document.getElementById('multipleExpPreview');
 
-<!--  if (multipleExpPreview.children.length > 0){-->
-<!--    multipleExpPreview.removeChild();-->
-<!--  };-->
+  const images = multipleExpPreview.querySelectorAll('img');
+  images.forEach((image) => {
+    multipleExpPreview.removeChild(image);
+  });
 
 
   if(input.files) {
@@ -226,7 +214,7 @@ function showMultipleExp(input) {
       fileArr.forEach((file,index) => {
           const reader = new FileReader();
           const exp = document.createElement("img");
-          exp.setAttribute('id','exp' + index);
+          exp.setAttribute('id',`exp${index+1}`);
           multipleExpPreview.appendChild(exp);
           exp.classList.add('selected');
           reader.onload = e => {

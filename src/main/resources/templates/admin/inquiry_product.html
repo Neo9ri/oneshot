@@ -38,15 +38,13 @@
     </div>
     <nav class="gnb">
       <ul class="center">
-        <li><a href="member_list.html">회원관리</a></li>
-        <li><a href="item_list.html">상품관리</a></li>
-        <li><a href="inquiry_delivery.html">고객 문의관리</a></li>
+        <li><a href="/member_list">회원관리</a></li>
+        <li><a href="/item-list">상품관리</a></li>
+        <li><a href="/inquiry/delivery">고객 문의관리</a></li>
       </ul>
     </nav>
   </header>
   <!-- header : END -->
-  <!-- mainbanner : START -->
-  <!-- mainbanner : END -->
   <!-- container : START -->
   <section class="center">
     <div>
@@ -173,21 +171,6 @@
     </div>
   </footer>
   <!-- footer : END -->
-  <script>
-    const gnbbar = document.querySelector(".gnbbar")
-    const gnbmenu = document.querySelectorAll("nav.gnb>ul>li")
-    gnbmenu.forEach((v, index) => {
-      if (index !== 0) {
-        v.addEventListener("mouseover", (e) => {
-          gnbbar.style.display = "block";
-        });
-
-        v.addEventListener("mouseout", (e) => {
-          gnbbar.style.display = "none";
-        });
-      }
-    });
-  </script>
 </body>
 
 </html>
