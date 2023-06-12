@@ -8,418 +8,420 @@
     <title>상품상세</title>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUITE/fonts/static/woff2/SUITE.css" rel="stylesheet">
-    <link rel="icon" href="../img/favicon-32x32.png" type="image/x-icon" />
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/main_style.css" />
+    <link rel="icon" href="../img/favicon-32x32.png" type="image/x-icon"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/main_style.css"/>
     <link rel="stylesheet" href="../css/item_detail.css">
 </head>
 
 <body>
-    <!-- Header 시작 -->
-    <header>
-        <div class="center">
-            <div>
-                <h1>
-                    <a href="/"><img src="../img/oneshot_logo.png" alt="원샷-우리술 한잔" />우리술
-                        한 잔,</a>
-                </h1>
-                <form role="search" class="main_search">
-                    <div class="row">
-                        <input type="search" name="keyword" placeholder="상품명을 입력하세요." class="col form-control"
-                            aria-label="Search" />
-                        <button type="submit" class="col-1">
-                            <img src="../img/search.png" alt="검색" />
-                        </button>
-                    </div>
-                </form>
-                <div class="util main">
-                    <a href="login.html">로그인</a>|
-                    <a href="join.html">회원가입</a>
-                    <a href="cart.html"><img src="../img/cart.png" alt="장바구니" /></a>
-                </div>
-                <div class="util mypage" style="display:none">
-                    <div>홍길동님</div>|
-                    <a href="#">로그아웃</a>
-                    <a href="cart.html"><img src="../img/cart.png" alt="장바구니" /></a>
-                    <a href="mypage.html"><img src="../img/user.png" alt="마이페이지" /></a>
-                </div>
-            </div>
-        </div>
-        <nav class="gnb">
-            <div class="gnbbar"></div>
-            <ul class="center">
-                <li><a href="">전통주 이야기</a></li>
-                <li>
-                    <a href="">지역별 전통주</a>
-                    <ul>
-                        <li><a href="">전체 상품</a></li>
-                        <li><a href="">서울, 경기, 인천권</a></li>
-                        <li><a href="">강원, 세종권</a></li>
-                        <li><a href="">충북, 충남, 제주도</a></li>
-                        <li><a href="">전북, 전남, 경북, 경남</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="">주종별 전통주</a>
-                    <!-- <div class="gnbbar"></div> -->
-                    <ul>
-                        <li><a href="">증류주</a></li>
-                        <li><a href="">과실주</a></li>
-                        <li><a href="">약주 / 청주</a></li>
-                        <li><a href="">숙성 전통주</a></li>
-                        <li><a href="">기타주</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="">가격별 전통주</a>
-                    <!-- <div class="gnbbar"></div> -->
-                    <ul>
-                        <li><a href="">10,000원 이하 제품</a></li>
-                        <li><a href="">20,000원 이하 제품</a></li>
-                        <li><a href="">30,000원 이하 제품</a></li>
-                        <li><a href="">40,000원 이하 제품</a></li>
-                        <li><a href="">50,000원 이하 제품</a></li>
-                        <li><a href="">50,000원 이상 제품</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <!-- header 종료 -->
-    <!-- item-detail 시작 -->
-    <div class="item_detail_container">
-        <h1>상품 상세</h1>
-        <div class="item_img">
-            <img src="../img/product/thumbnail/1000000319_detail_025.jpg" alt="">
-        </div>
-        <div class="item_info">
-            <h2>아리랑주조 겨울소주 45도 375ml 증류식소주</h2>
-            <p>겨울에 잘어울리는 소주, 100일 저온숙성으로 부드럽습니다</p>
-            <table>
-                <tr>
-                    <td>판매가</td>
-                    <td>26,000원</td>
-                </tr>
-                <tr>
-                    <td>배송비</td>
-                    <td>3000원/주문시결제(선결제)<p>택배</p></td>
-                </tr>
-                <tr>
-                    <td>상품코드</td>
-                    <td>100000813</td>
-                </tr>
-                <tr>
-                    <td>제조사</td>
-                    <td>아리랑주조(주)</td>
-                </tr>
-                <tr>
-                    <td>원산지</td>
-                    <td>국내산</td>
-                </tr>
-            </table>
-            <button type="submit" class="btn btn_primary">장바구니</button>
-        </div>
-        <div class="item_detail_benner">
-            <img src="../img/product/explanation/11376a38a70dccafb16df553bc07afd3_68678.jpg" alt="" />
-            <img src="../img/product/explanation/a9cd158c8073fc64f1dcfcb31360db4a_53228.jpg" alt="" />
-        </div>
-        <div class="item_detail_nav">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">상품상세정보</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">배송안내</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">교환 및 반품안내</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">상품후기</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Q&A</a>
-                </li>
-            </ul>
-        </div>
-        <div class="item_detail_img">
-            <img src="../img/product/explanation/pro_01.jpg" />
-            <img src="../img/product/explanation/pro_02.jpg" />
-            <img src="../img/product/explanation/notice.jpg" />
-        </div>
-        <div class="delivery_info">
-            <h3>배송안내</h3>
-            <ul>
-                <li>- 배송비 : 기본배송료는 3,000원 입니다. (도서,산간,오지 일부지역은 배송비가 추가될 수 있습니다.) 30,000원 이상 구매시 무료배송입니다.</li>
-                <li>- 본 상품의 평균 배송일은 0일 입니다.(입금 확인 후) 설치 상품의 경우 다소 늦어질수 있습니다.</li>
-                <li>- 배송예정일은 주문시점(주문순서)에 따른 유동성이 발생하므로 평균 배송일과는 차이가 발생할 수 있습니다.</li>
-                <li>- 본 상품의 배송 가능일은 0일 입니다. 배송 가능일이란 본 상품을 주문 하신 고객님들께 상품 배송이 가능한 기간을 의미합니다.</li>
-                <li>- 단, 연휴 및 공휴일은 기간 계산시 제외하면 현금 주문일 경우 입금일 기준입니다.</li>
-            </ul>
-        </div>
-        <div class="exchange_info">
-            <h3>교환 및 반품안내</h3>
-            <ul>
-                <li>
-                    <h4>01.</h4>
-                    <h5>상품의 파손 및 하자, 변질 등 문제가 있는 경우</h5>
-                    <p>- 성함, 연락처, 상품의 사진과 함께 원샷 고객센터로 문의 부탁드립니다.</p>
-                </li>
-                <li>
-                    <h4>02.</h4>
-                    <h5>수령하신 상품의 불량, 파손, 오배송의 경우</h5>
-                    <p>- 교환/반품이 가능하며 배송비는 판매자가 부담합니다.</p>
-                </li>
-                <li>
-                    <h4>03.</h4>
-                    <h5>교환 / 반품 / 환불이 제한되는 경우</h5>
-                    <p>- 배송완료 후 7일이 지나 자동으로 수령확인 처리가 되거나,</p>
-                    <p>상품을 확인하고 직접 수령확인하신 이후</p>
-                    <h5 class="exchange_info_importance">&#8251; 식품 특성상, 아래와 같은 경우 교환/반품/환불이 제한될 수 있습니다.</h5>
-                    <ul>
-                        <li>- 제품이 개봉되었거나 포장이 훼손된 경우</li>
-                        <p>(단, 상품의 내용을 확인하기 위하여 포장 등을 훼손한 경우는 제외)</p>
-                        <li>- 사전 연락없이 임의 반송된 경우</li>
-                        <li>- 주소의 오기재, 잘못된 주문, 주소 불명, 수취인 부재의 경우</li>
-                        <li>- 단순 변심에 의한 경우</li>
-                        <li>- 잘못된 방법으로 보관하거나 고객님의 부주의로 인한 오염, 파손, 변질된 제품</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+<!-- Header 시작 -->
+<header>
+    <div class="center">
         <div>
-            <div class="item_review">
-                <h3>상품후기</h3>
-                <form id="review_form">
-                    <label for="satisfaction">만족도:</label>
-                    <select id="satisfaction">
-                        <option value="very-satisfied">아주 만족</option>
-                        <option value="satisfied">만족</option>
-                        <option value="neutral">보통</option>
-                        <option value="dissatisfied">불만족</option>
-                        <option value="very-dissatisfied">매우 불만족</option>
-                    </select>
-                    <label for="review_content">리뷰 내용:</label><br>
-                    <textarea id="review_content" rows="5" placeholder="상품리뷰 내용을 적어주세요!!"></textarea>
-
-                    <div class="item_review_submit">
-                        <label for="file_upload">
-                            <img src="../img/camera.png" alt="카메라 아이콘" width="60" height="60">
-                        </label>
-                        <input id="file_upload" type="file" accept="image/*" multiple onchange="previewImages(event)">
-                        <div class="item_review_preview_img">
-                            <img src="../img/product/thumbnail/1000000319_detail_025.jpg" width="60px" height="60px"/>
-                            <img src="../img/product/thumbnail/1000000319_detail_025.jpg" width="60px" height="60px"/>
-                            <img src="../img/product/thumbnail/1000000319_detail_025.jpg" width="60px" height="60px"/>
-                        </div>
-                        <button id="submit_button" type="button" onclick="submitReview()">리뷰 등록</button>
-                    </div>
-                </form>
-                <div id="review_summary">
-                    <div class="review_summary_first">
-                        <img src="../img/product/thumbnail/1000000319_detail_025.jpg" alt="사용자 등록 이미지" width="160" height="180">
-                        <h4>홍길동</h4>
-                        <div class="review_summary_star">
-                            <img src="../img/star.png" alt="노란별" width="25px" height="25px">
-                            <img src="../img/star.png" alt="노란별" width="25px" height="25px">
-                            <img src="../img/star.png" alt="노란별" width="25px" height="25px">
-                            <img src="../img/star.png" alt="노란별" width="25px" height="25px">
-                            <img src="../img/star (1).png" alt="빈별" width="25px" height="25px">
-                        </div>
-                        <div class="review_summary_date">
-                            <p>상품 구입 날짜 2023.05.31</p>
-                        </div>
-                        <div class="review_summary_content">
-                            <p>구매리뷰내용피가 아니더면 인간이 얼마나 쓸쓸하랴? 얼음에 싸인 만물은 얼음이 있을 뿐이다 
-                                그들에게 생명을 불어 넣는 것은 따뜻한 봄바람이다 풀밭에 속잎나고 가지에 싹이 트고 꽃 피고 새 
-                                우는 봄날의 천지는 얼마나 기쁘며 얼마나..........</p>
-                        </div>
-                    </div>
-                    <div class="review_summary_second">
-                        <img src="../img/product/thumbnail/1000000319_detail_025.jpg" alt="사용자 등록 이미지" width="160" height="180">
-                        <h4>홍길동</h4>
-                        <div class="review_summary_star">
-                            <img src="../img/star.png" alt="노란별" width="25px" height="25px">
-                            <img src="../img/star.png" alt="노란별" width="25px" height="25px">
-                            <img src="../img/star.png" alt="노란별" width="25px" height="25px">
-                            <img src="../img/star (1).png" alt="빈별" width="25px" height="25px">
-                            <img src="../img/star (1).png" alt="빈별" width="25px" height="25px">
-                        </div>
-                        <div class="review_summary_date">
-                            <p>상품 구입 날짜 2023.05.30</p>
-                        </div>
-                        <div class="review_summary_content">
-                            <p>구매리뷰내용피가 아니더면 인간이 얼마나 쓸쓸하랴? 얼음에 싸인 만물은 얼음이 있을 뿐이다 
-                                그들에게 생명을 불어 넣는 것은 따뜻한 봄바람이다 풀밭에 속잎나고 가지에 싹이 트고 꽃 피고 새 
-                                우는 봄날의 천지는 얼마나 기쁘며 얼마나............</p>
-                        </div>
-                    </div>
+            <h1>
+                <a href="/"><img src="../img/oneshot_logo.png" alt="원샷-우리술 한잔"/>우리술
+                    한 잔,</a>
+            </h1>
+            <form role="search" class="main_search">
+                <div class="row">
+                    <input type="search" name="keyword" placeholder="상품명을 입력하세요." class="col form-control"
+                           aria-label="Search"/>
+                    <button type="submit" class="col-1">
+                        <img src="../img/search.png" alt="검색"/>
+                    </button>
                 </div>
-                <div class="review-pagination">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                          <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                              <span aria-hidden="true">&laquo;</span>
-                            </a>
-                          </li>
-                          <li class="page-item"><a class="page-link" href="#">1</a></li>
-                          <li class="page-item"><a class="page-link" href="#">2</a></li>
-                          <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item"><a class="page-link" href="#">4</a></li>
-                          <li class="page-item"><a class="page-link" href="#">5</a></li>
-                          <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                              <span aria-hidden="true">&raquo;</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </nav>
-                </div>
+            </form>
+            <div class="util main">
+                <a href="login.html">로그인</a>|
+                <a href="join.html">회원가입</a>
+                <a href="cart.html"><img src="../img/cart.png" alt="장바구니"/></a>
             </div>
-            <!-- <script>
-                function previewImages(event) {
-                    var files = event.target.files;
-                    var preview = document.getElementById("preview");
-
-                    preview.innerHTML = ""; // 이전에 선택한 파일들의 미리보기를 초기화
-
-                    for (var i = 0; i < files.length; i++) {
-                        var file = files[i];
-                        var reader = new FileReader();
-
-                        reader.onload = function (e) {
-                            var image = document.createElement("div");
-                            image.className = "preview-image";
-                            image.innerHTML = '<img src="' + e.target.result + '">';
-                            preview.appendChild(image);
-                        };
-
-                        reader.readAsDataURL(file);
-                    }
-                }
-
-                function submitReview() {
-                    var title = document.getElementById("review-title").value;
-                    var content = document.getElementById("review-content").value;
-                    var satisfaction = document.getElementById("satisfaction").value;
-                    var images = document.getElementById("file-upload").files;
-
-                    var firstImage = images[0];
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        var imageUrl = e.target.result;
-
-                        // DB에 저장하는 로직
-                        // 저장 성공 후에 화면에 출력하기 위해 setTimeout을 사용하여 시뮬레이션
-                        setTimeout(function () {
-                            // DB 저장 성공 시 리뷰 요약을 출력
-                            var reviewSummary = document.getElementById("review-summary");
-                            reviewSummary.innerHTML = `
-                        <h3>리뷰 등록 내용:</h3>
-                        <p><strong>리뷰 제목:</strong> ${title}</p>
-                        <p><strong>리뷰 내용:</strong> ${content}</p>
-                        <p><strong>만족도:</strong> ${satisfaction}</p>
-                        <p><strong>이미지:</strong></p>
-                        <img id="review-image" src="${imageUrl}" alt="리뷰 이미지">
-                    `;
-
-                            // 입력된 리뷰 제목, 내용, 이미지 초기화
-                            document.getElementById("review-title").value = "";
-                            document.getElementById("review-content").value = "";
-                            document.getElementById("preview").innerHTML = "";
-                        }, 1000); // 1초 후에 시뮬레이션 완료 후 출력
-                    };
-                    reader.readAsDataURL(firstImage);
-                }
-            </script> -->
-        </div>
-        <div class="item-inquiry">
-            <h3>Q&A</h3>
-            <div>
-                <form id="inquiry-form">
-                    <select id="satisfaction">
-                        <option value="item-inquiry">상품문의</option>
-                        <option value="delivery-inquiry">배송문의</option>
-                    </select><br>
-                    <div class="form-floating">
-                        <textarea class="form-control" placeholder="문의내용 작성" id="floatingTextarea2" style="height: 100px"></textarea>
-                    </div>
-                    <div class="item-inquiry-button">
-                        <button id="inquiry-button" type="button">문의 등록</button>
-                    </div>
-                </form>
+            <div class="util mypage" style="display:none">
+                <div>홍길동님</div>
+                |
+                <a href="#">로그아웃</a>
+                <a href="cart.html"><img src="../img/cart.png" alt="장바구니"/></a>
+                <a href="mypage.html"><img src="../img/user.png" alt="마이페이지"/></a>
             </div>
         </div>
     </div>
-    <!-- item-detail 종료 -->
-    <!-- footer : START -->
-    <footer>
-        <div class="center">
-            <div class="left_wrap">
-                <p class="btm_logo"><img src="../img/oneshot_logo_bw.png" alt="원샷 - 우리술 한잔,">
-                <div class="text_wrap">
-                    <p>원샷 - 우리술 한잔,</p>
-                    <address>서울시 서대문구 연세로 8-1</address>
-                    <nav>
-                        <ul>
-                            <li><a href="">전통주 이야기</a></li>
-                            <li><a href="">지역별 전통주</a></li>
-                            <li><a href="">주종별 전통주</a></li>
-                            <li><a href="">가격별 전통주</a></li>
-                        </ul>
-                    </nav>
-                    <div class="info">
-                        <p>대표 : 홍길동</p>
-                        <p>사업자 등록번호 : 100-11-111111</p>
-                        <p>개인정보관리자 : 홍길동</p>
+    <nav class="gnb">
+        <div class="gnbbar"></div>
+        <ul class="center">
+            <li><a href="">전통주 이야기</a></li>
+            <li>
+                <a href="">지역별 전통주</a>
+                <ul>
+                    <li><a href="">전체 상품</a></li>
+                    <li><a href="">서울, 경기, 인천권</a></li>
+                    <li><a href="">강원, 세종권</a></li>
+                    <li><a href="">충북, 충남, 제주도</a></li>
+                    <li><a href="">전북, 전남, 경북, 경남</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">주종별 전통주</a>
+                <!-- <div class="gnbbar"></div> -->
+                <ul>
+                    <li><a href="">증류주</a></li>
+                    <li><a href="">과실주</a></li>
+                    <li><a href="">약주 / 청주</a></li>
+                    <li><a href="">숙성 전통주</a></li>
+                    <li><a href="">기타주</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">가격별 전통주</a>
+                <!-- <div class="gnbbar"></div> -->
+                <ul>
+                    <li><a href="">10,000원 이하 제품</a></li>
+                    <li><a href="">20,000원 이하 제품</a></li>
+                    <li><a href="">30,000원 이하 제품</a></li>
+                    <li><a href="">40,000원 이하 제품</a></li>
+                    <li><a href="">50,000원 이하 제품</a></li>
+                    <li><a href="">50,000원 이상 제품</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</header>
+<!-- header 종료 -->
+<!-- item-detail 시작 -->
+<div class="item_detail_container">
+    <h1>상품 상세</h1>
+    <div class="item_img">
+        <img src="../img/product/thumbnail/1000000319_detail_025.jpg" alt="">
+    </div>
+    <div class="item_info">
+        <h2>아리랑주조 겨울소주 45도 375ml 증류식소주</h2>
+        <p>겨울에 잘어울리는 소주, 100일 저온숙성으로 부드럽습니다</p>
+        <table>
+            <tr>
+                <td>판매가</td>
+                <td>26,000원</td>
+            </tr>
+            <tr>
+                <td>배송비</td>
+                <td>3000원/주문시결제(선결제)<p>택배</p></td>
+            </tr>
+            <tr>
+                <td>상품코드</td>
+                <td>100000813</td>
+            </tr>
+            <tr>
+                <td>제조사</td>
+                <td>아리랑주조(주)</td>
+            </tr>
+            <tr>
+                <td>원산지</td>
+                <td>국내산</td>
+            </tr>
+        </table>
+        <button type="submit" class="btn btn_primary">장바구니</button>
+    </div>
+    <div class="item_detail_benner">
+        <img src="../img/product/explanation/11376a38a70dccafb16df553bc07afd3_68678.jpg" alt=""/>
+        <img src="../img/product/explanation/a9cd158c8073fc64f1dcfcb31360db4a_53228.jpg" alt=""/>
+    </div>
+    <div class="item_detail_nav">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">상품상세정보</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">배송안내</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">교환 및 반품안내</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">상품후기</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Q&A</a>
+            </li>
+        </ul>
+    </div>
+    <div class="item_detail_img">
+        <img src="../img/product/explanation/pro_01.jpg"/>
+        <img src="../img/product/explanation/pro_02.jpg"/>
+        <img src="../img/product/explanation/notice.jpg"/>
+    </div>
+    <div class="delivery_info">
+        <h3>배송안내</h3>
+        <ul>
+            <li>- 배송비 : 기본배송료는 3,000원 입니다. (도서,산간,오지 일부지역은 배송비가 추가될 수 있습니다.) 30,000원 이상 구매시 무료배송입니다.</li>
+            <li>- 본 상품의 평균 배송일은 0일 입니다.(입금 확인 후) 설치 상품의 경우 다소 늦어질수 있습니다.</li>
+            <li>- 배송예정일은 주문시점(주문순서)에 따른 유동성이 발생하므로 평균 배송일과는 차이가 발생할 수 있습니다.</li>
+            <li>- 본 상품의 배송 가능일은 0일 입니다. 배송 가능일이란 본 상품을 주문 하신 고객님들께 상품 배송이 가능한 기간을 의미합니다.</li>
+            <li>- 단, 연휴 및 공휴일은 기간 계산시 제외하면 현금 주문일 경우 입금일 기준입니다.</li>
+        </ul>
+    </div>
+    <div class="exchange_info">
+        <h3>교환 및 반품안내</h3>
+        <ul>
+            <li>
+                <h4>01.</h4>
+                <h5>상품의 파손 및 하자, 변질 등 문제가 있는 경우</h5>
+                <p>- 성함, 연락처, 상품의 사진과 함께 원샷 고객센터로 문의 부탁드립니다.</p>
+            </li>
+            <li>
+                <h4>02.</h4>
+                <h5>수령하신 상품의 불량, 파손, 오배송의 경우</h5>
+                <p>- 교환/반품이 가능하며 배송비는 판매자가 부담합니다.</p>
+            </li>
+            <li>
+                <h4>03.</h4>
+                <h5>교환 / 반품 / 환불이 제한되는 경우</h5>
+                <p>- 배송완료 후 7일이 지나 자동으로 수령확인 처리가 되거나,</p>
+                <p>상품을 확인하고 직접 수령확인하신 이후</p>
+                <h5 class="exchange_info_importance">&#8251; 식품 특성상, 아래와 같은 경우 교환/반품/환불이 제한될 수 있습니다.</h5>
+                <ul>
+                    <li>- 제품이 개봉되었거나 포장이 훼손된 경우</li>
+                    <p>(단, 상품의 내용을 확인하기 위하여 포장 등을 훼손한 경우는 제외)</p>
+                    <li>- 사전 연락없이 임의 반송된 경우</li>
+                    <li>- 주소의 오기재, 잘못된 주문, 주소 불명, 수취인 부재의 경우</li>
+                    <li>- 단순 변심에 의한 경우</li>
+                    <li>- 잘못된 방법으로 보관하거나 고객님의 부주의로 인한 오염, 파손, 변질된 제품</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <div class="item_review">
+            <h3>상품후기</h3>
+            <form id="review_form">
+                <label for="satisfaction">만족도:</label>
+                <select id="satisfaction">
+                    <option value="very-satisfied">아주 만족</option>
+                    <option value="satisfied">만족</option>
+                    <option value="neutral">보통</option>
+                    <option value="dissatisfied">불만족</option>
+                    <option value="very-dissatisfied">매우 불만족</option>
+                </select>
+                <label for="review_content">리뷰 내용:</label><br>
+                <textarea id="review_content" rows="5" placeholder="상품리뷰 내용을 적어주세요!!"></textarea>
+
+                <div class="item_review_submit">
+                    <label for="file_upload">
+                        <img src="../img/camera.png" alt="카메라 아이콘" width="60" height="60">
+                    </label>
+                    <input id="file_upload" type="file" accept="image/*" multiple onchange="previewImages(event)">
+                    <div class="item_review_preview_img">
+                        <img src="../img/product/thumbnail/1000000319_detail_025.jpg" width="60px" height="60px"/>
+                        <img src="../img/product/thumbnail/1000000319_detail_025.jpg" width="60px" height="60px"/>
+                        <img src="../img/product/thumbnail/1000000319_detail_025.jpg" width="60px" height="60px"/>
                     </div>
-                    <div class="contact_info">
-                        <p>대표번호 : 02-1234-1234</p>
-                        <p>메일 : oneshot@oneshot.com</p>
+                    <button id="submit_button" type="button" onclick="submitReview()">리뷰 등록</button>
+                </div>
+            </form>
+            <div id="review_summary">
+                <div class="review_summary_first">
+                    <img src="../img/product/thumbnail/1000000319_detail_025.jpg" alt="사용자 등록 이미지" width="160"
+                         height="180">
+                    <h4>홍길동</h4>
+                    <div class="review_summary_star">
+                        <img src="../img/star.png" alt="노란별" width="25px" height="25px">
+                        <img src="../img/star.png" alt="노란별" width="25px" height="25px">
+                        <img src="../img/star.png" alt="노란별" width="25px" height="25px">
+                        <img src="../img/star.png" alt="노란별" width="25px" height="25px">
+                        <img src="../img/star (1).png" alt="빈별" width="25px" height="25px">
                     </div>
-                    <div>Copyrights&copy; oneshot All Rights Reserved.</div>
+                    <div class="review_summary_date">
+                        <p>상품 구입 날짜 2023.05.31</p>
+                    </div>
+                    <div class="review_summary_content">
+                        <p>구매리뷰내용피가 아니더면 인간이 얼마나 쓸쓸하랴? 얼음에 싸인 만물은 얼음이 있을 뿐이다
+                            그들에게 생명을 불어 넣는 것은 따뜻한 봄바람이다 풀밭에 속잎나고 가지에 싹이 트고 꽃 피고 새
+                            우는 봄날의 천지는 얼마나 기쁘며 얼마나..........</p>
+                    </div>
+                </div>
+                <div class="review_summary_second">
+                    <img src="../img/product/thumbnail/1000000319_detail_025.jpg" alt="사용자 등록 이미지" width="160"
+                         height="180">
+                    <h4>홍길동</h4>
+                    <div class="review_summary_star">
+                        <img src="../img/star.png" alt="노란별" width="25px" height="25px">
+                        <img src="../img/star.png" alt="노란별" width="25px" height="25px">
+                        <img src="../img/star.png" alt="노란별" width="25px" height="25px">
+                        <img src="../img/star (1).png" alt="빈별" width="25px" height="25px">
+                        <img src="../img/star (1).png" alt="빈별" width="25px" height="25px">
+                    </div>
+                    <div class="review_summary_date">
+                        <p>상품 구입 날짜 2023.05.30</p>
+                    </div>
+                    <div class="review_summary_content">
+                        <p>구매리뷰내용피가 아니더면 인간이 얼마나 쓸쓸하랴? 얼음에 싸인 만물은 얼음이 있을 뿐이다
+                            그들에게 생명을 불어 넣는 것은 따뜻한 봄바람이다 풀밭에 속잎나고 가지에 싹이 트고 꽃 피고 새
+                            우는 봄날의 천지는 얼마나 기쁘며 얼마나............</p>
+                    </div>
                 </div>
             </div>
-            <div class="cs">
-                <dl>
-                    <dt>CS CENTER</dt>
-                    <dd>070-1234-1234</dd>
-                    <dd>평일 : 09:00 ~ 18:00<br>
-                        점심 시간 : 12:00 ~ 13:00<br>
-                        주말 밋 공휴일 제외
-                    </dd>
-                </dl>
+            <div class="review-pagination">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-            <div class="social">
-                <h4>SOCIAL MEDIA</h4>
-                <p>Follow @oneshot</p>
-                <ul>
-                    <li><a href="#"><img src="../img/instagram_footer.svg" alt="인스타그램"></a></li>
-                    <li><a href="#"><img src="../img/youtube_footer.svg" alt="유투브"></a></li>
-                    <li><a href="#"><img src="../img/facebook_footer.svg" alt="페이스북"></a></li>
-                </ul>
-            </div>
-            </p>
         </div>
-    </footer>
-    <!-- footer : END -->
-    <script>
-        const gnbbar = document.querySelector(".gnbbar")
-        const gnbmenu = document.querySelectorAll("nav.gnb>ul>li")
-        gnbmenu.forEach((v, index) => {
-            if (index !== 0) {
-                v.addEventListener("mouseover", (e) => {
-                    gnbbar.style.display = "block";
-                });
+        <!-- <script>
+            function previewImages(event) {
+                var files = event.target.files;
+                var preview = document.getElementById("preview");
 
-                v.addEventListener("mouseout", (e) => {
-                    gnbbar.style.display = "none";
-                });
+                preview.innerHTML = ""; // 이전에 선택한 파일들의 미리보기를 초기화
+
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        var image = document.createElement("div");
+                        image.className = "preview-image";
+                        image.innerHTML = '<img src="' + e.target.result + '">';
+                        preview.appendChild(image);
+                    };
+
+                    reader.readAsDataURL(file);
+                }
             }
-        });
-    </script>
+
+            function submitReview() {
+                var title = document.getElementById("review-title").value;
+                var content = document.getElementById("review-content").value;
+                var satisfaction = document.getElementById("satisfaction").value;
+                var images = document.getElementById("file-upload").files;
+
+                var firstImage = images[0];
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var imageUrl = e.target.result;
+
+                    // DB에 저장하는 로직
+                    // 저장 성공 후에 화면에 출력하기 위해 setTimeout을 사용하여 시뮬레이션
+                    setTimeout(function () {
+                        // DB 저장 성공 시 리뷰 요약을 출력
+                        var reviewSummary = document.getElementById("review-summary");
+                        reviewSummary.innerHTML = `
+                    <h3>리뷰 등록 내용:</h3>
+                    <p><strong>리뷰 제목:</strong> ${title}</p>
+                    <p><strong>리뷰 내용:</strong> ${content}</p>
+                    <p><strong>만족도:</strong> ${satisfaction}</p>
+                    <p><strong>이미지:</strong></p>
+                    <img id="review-image" src="${imageUrl}" alt="리뷰 이미지">
+                `;
+
+                        // 입력된 리뷰 제목, 내용, 이미지 초기화
+                        document.getElementById("review-title").value = "";
+                        document.getElementById("review-content").value = "";
+                        document.getElementById("preview").innerHTML = "";
+                    }, 1000); // 1초 후에 시뮬레이션 완료 후 출력
+                };
+                reader.readAsDataURL(firstImage);
+            }
+        </script> -->
+    </div>
+    <div class="item-inquiry">
+        <h3>Q&A</h3>
+        <div>
+            <form id="inquiry-form">
+                <select id="satisfaction">
+                    <option value="item-inquiry">상품문의</option>
+                    <option value="delivery-inquiry">배송문의</option>
+                </select><br>
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="문의내용 작성" id="floatingTextarea2"
+                              style="height: 100px"></textarea>
+                </div>
+                <div class="item-inquiry-button">
+                    <button id="inquiry-button" type="button">문의 등록</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- item-detail 종료 -->
+<!-- footer : START -->
+<footer>
+    <div class="center">
+        <div class="left_wrap">
+            <p class="btm_logo"><img src="../img/oneshot_logo_bw.png" alt="원샷 - 우리술 한잔,"></p>
+            <div class="text_wrap">
+                <p>원샷 - 우리술 한잔,</p>
+                <address>서울시 서대문구 연세로 8-1</address>
+                <nav>
+                    <ul>
+                        <li><a href="">전통주 이야기</a></li>
+                        <li><a href="">지역별 전통주</a></li>
+                        <li><a href="">주종별 전통주</a></li>
+                        <li><a href="">가격별 전통주</a></li>
+                    </ul>
+                </nav>
+                <div class="info">
+                    <p>대표 : 홍길동</p>
+                    <p>사업자 등록번호 : 100-11-111111</p>
+                    <p>개인정보관리자 : 홍길동</p>
+                </div>
+                <div class="contact_info">
+                    <p>대표번호 : 02-1234-1234</p>
+                    <p>메일 : oneshot@oneshot.com</p>
+                </div>
+                <div>Copyrights&copy; oneshot All Rights Reserved.</div>
+            </div>
+        </div>
+        <div class="cs">
+            <dl>
+                <dt>CS CENTER</dt>
+                <dd>070-1234-1234</dd>
+                <dd>평일 : 09:00 ~ 18:00<br>
+                    점심 시간 : 12:00 ~ 13:00<br>
+                    주말 밋 공휴일 제외
+                </dd>
+            </dl>
+        </div>
+        <div class="social">
+            <h4>SOCIAL MEDIA</h4>
+            <p>Follow @oneshot</p>
+            <ul>
+                <li><a href="#"><img src="../img/instagram_footer.svg" alt="인스타그램"></a></li>
+                <li><a href="#"><img src="../img/youtube_footer.svg" alt="유투브"></a></li>
+                <li><a href="#"><img src="../img/facebook_footer.svg" alt="페이스북"></a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+<!-- footer : END -->
+<script>
+    const gnbbar = document.querySelector(".gnbbar")
+    const gnbmenu = document.querySelectorAll("nav.gnb>ul>li")
+    gnbmenu.forEach((v, index) => {
+        if (index !== 0) {
+            v.addEventListener("mouseover", (e) => {
+                gnbbar.style.display = "block";
+            });
+
+            v.addEventListener("mouseout", (e) => {
+                gnbbar.style.display = "none";
+            });
+        }
+    });
+</script>
 </body>
 
 </html>

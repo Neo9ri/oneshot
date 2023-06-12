@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>상품 등록</title>
-  <link rel="icon" href="img/favicon-32x32.png" type="image/x-icon" />
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="icon" href="/img/favicon-32x32.png" type="image/x-icon" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/admin.css" />
 </head>
 
 <body>
@@ -17,7 +17,7 @@
     <div class="center">
       <div>
         <h1>
-          <a href="/"><img src="img/oneshot_logo.png" alt="원샷-우리술 한잔" />우리술
+          <a href="/"><img src="/img/oneshot_logo.png" alt="원샷-우리술 한잔" />우리술
             한 잔,</a>
         </h1>
         <form role="search" class="main_search">
@@ -25,35 +25,33 @@
             <input type="search" name="keyword" placeholder="상품명을 입력하세요." class="col form-control"
               aria-label="Search" />
             <button type="submit" class="col-1">
-              <img src="img/search.png" alt="검색" />
+              <img src="/img/search.png" alt="검색" />
             </button>
           </div>
         </form>
         <div class="util">
           <div>관리자님</div>
           <a href="#">로그아웃</a>
-          <a href="mypage.html"><img src="img/user.png" alt="마이페이지" /></a>
+          <a href="mypage.html"><img src="/img/util_user.png" alt="마이페이지" /></a>
         </div>
       </div>
     </div>
     <nav class="gnb">
       <ul class="center">
-        <li><a href="member_list.html">회원관리</a></li>
-        <li><a href="item_list.html">상품관리</a></li>
-        <li><a href="inquiry_delivery.html">고객 문의관리</a></li>
+        <li><a href="/member-list">회원관리</a></li>
+        <li><a href="/item-list">상품관리</a></li>
+        <li><a href="/inquiry/delivery">고객 문의관리</a></li>
       </ul>
     </nav>
   </header>
   <!-- header : END -->
-  <!-- mainbanner : START -->
-  <!-- mainbanner : END -->
   <!-- container : START -->
   <section id="productEditor" class="center">
     <div>
       <h2 class="text-center">상품 등록</h2>
       <hr>
     </div>
-    <form class="row align-items-end gy-3">
+    <form th:action="@{/product/{productId}/edit(productId=${product.id})}"  method="post" enctype="multipart/form-data" class="row align-items-end gy-3">
       <div class="col"></div>
       <div id="productEditorLeft" class="col-4 text-center">
         <img id="thumbnailPreview" alt="상품 이미지 미리보기">
@@ -65,37 +63,37 @@
       </div>
       <div id="productEditorRight" class="col-4">
         <div class="row">
-          <div class="col col_name align-self-center">지역 카테고리</div>
-          <select class="col form-select">
+          <label for="type_local" class="col col_name align-self-center">지역 카테고리</label>
+          <select id="type_local" name="type_local" class="col form-select">
             <option selected>지역 카테고리 선택</option>
-            <option value="">서울/경기/인천</option>
-            <option value="">강원/세종</option>
-            <option value="">충북/충남/제주</option>
-            <option value="">전북/전남/경북/경남</option>
+            <option value="서울, 경기, 인천권">서울/경기/인천</option>
+            <option value="강원, 세종권">강원/세종</option>
+            <option value="충북, 충남, 제주도">충북/충남/제주</option>
+            <option value="전북, 전남, 경북, 경남도">전북/전남/경북/경남</option>
           </select>
         </div>
         <div class="row">
-          <div class="col col_name align-self-center">주종 카테고리</div>
-          <select class="col form-select">
+          <label for="type_kind" class="col col_name align-self-center">주종 카테고리</label>
+          <select name="type_kind" id="type_kind" class="col form-select">
             <option selected>주종 카테고리 선택</option>
-            <option value="">증류주</option>
-            <option value="">과실주</option>
-            <option value="">약주/청주</option>
-            <option value="">숙성 전통주</option>
-            <option value="">기타</option>
+            <option value="증류주">증류주</option>
+            <option value="과실주">과실주</option>
+            <option value="약주/청주">약주/청주</option>
+            <option value="숙성 전통주">숙성 전통주</option>
+            <option value="기타">기타</option>
           </select>
         </div>
         <div class="row">
-          <div class="col col_name align-self-center">제조사</div>
-          <input class="col form-control" type="text" placeholder="제조사를 입력하세요">
+          <label for="creator" class="col col_name align-self-center">제조사</label>
+          <input id="creator" name="creator" class="col form-control" type="text" placeholder="제조사를 입력하세요">
         </div>
         <div class="row">
-          <div class="col col_name align-self-center">상품명</div>
-          <input class="col form-control" type="text" placeholder="상품명을 입력하세요">
+          <div for="name" class="col col_name align-self-center">상품명</div>
+          <input id="name" name="name" class="col form-control" type="text" placeholder="상품명을 입력하세요">
         </div>
         <div class="row">
-          <div class="col-6 col_name align-self-center">가격</div>
-          <input class="col form-control" type="text" placeholder="0">
+          <label for="price" class="col-6 col_name align-self-center">가격</label>
+          <input id="price" name="price" class="col form-control" type="text" placeholder="0">
           <div class="col-1 align-self-center">원</div>
         </div>
         <div id="productEditorRightWhiteSpace"></div>
@@ -106,15 +104,16 @@
         <hr>
         <div class="col-2"></div>
         <div class="col-8">
-          <div class="exp_title">상품 설명</div>
-          <input type="file" id="exp" onchange="showExp(this);">
+          <label for="exp" class="exp_title">상품 설명</label>
+          <input type="file" id="exp" name="exp" onchange="showExp(this);">
           <div class="btn btn_ylw" onclick="onClickExpUpload();">상품 설명 이미지 첨부하기</div>
           <div>
             <img id="expPreview" alt="상품 설명 미리보기">
           </div>
+          <hr>
           <div class="row justify-content-end">
-            <button class="col-2 btn btn_ylw">등록</button>
-            <button class="col-2 btn btn_default">취소</button>
+            <button type="submit" class="col-2 btn btn_ylw">등록</button>
+            <button type="button" th:onclick="|location.href='@{/item-list}'|" class="col-2 btn btn_default">취소</button>
           </div>
         </div>
         <div class="col-2"></div>
@@ -127,7 +126,7 @@
   <footer>
     <div class="center">
       <div class="left_wrap">
-        <p class="btm_logo"><img src="img/oneshot_logo_bw.png" alt="원샷 - 우리술 한잔,">
+        <p class="btm_logo"><img src="/img/oneshot_logo_bw.png" alt="원샷 - 우리술 한잔,"></p>
         <div class="text_wrap">
           <p>원샷 - 우리술 한잔,</p>
           <address>서울시 서대문구 연세로 8-1</address>
@@ -165,12 +164,11 @@
         <h4>SOCIAL MEDIA</h4>
         <p>Follow @oneshot</p>
         <ul>
-          <li><a href="#"><img src="img/instagram_footer.svg" alt="인스타그램"></a></li>
-          <li><a href="#"><img src="img/youtube_footer.svg" alt="유투브"></a></li>
-          <li><a href="#"><img src="img/facebook_footer.svg" alt="페이스북"></a></li>
+          <li><a href="#"><img src="/img/instagram_footer.svg" alt="인스타그램"></a></li>
+          <li><a href="#"><img src="/img/youtube_footer.svg" alt="유투브"></a></li>
+          <li><a href="#"><img src="/img/facebook_footer.svg" alt="페이스북"></a></li>
         </ul>
       </div>
-      </p>
     </div>
   </footer>
   <!-- footer : END -->

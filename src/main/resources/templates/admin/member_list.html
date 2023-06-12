@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8" />
@@ -32,7 +32,7 @@
         <div class="util">
           <div>관리자님</div>|
           <a href="#">로그아웃</a>
-          <a href="mypage.html"><img src="img/user.png" alt="마이페이지" /></a>
+          <a href="mypage.html"><img src="img/util_user.png" alt="마이페이지" /></a>
         </div>
       </div>
     </div>
@@ -62,7 +62,7 @@
           <div class="col"></div>
         </div>
       </div>
-      <table class="table text-center admin_table">
+      <table id="table" class="table text-center admin_table">
         <thead>
           <tr>
             <th>회원 번호</th>
@@ -75,32 +75,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>ID1</td>
-            <td>홍길동</td>
-            <td>010-1111-1111</td>
-            <td>hong@example.com</td>
-            <td>일반 회원</td>
-            <td><button class="btn btn_ylw"> 차단 </button></td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>ID2</td>
-            <td>박보검</td>
-            <th>010-2222-2222</th>
-            <td>park@example.com</td>
-            <td>일반 회원</td>
-            <td><button class="btn btn_ylw"> 차단 </button></td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>ID3</td>
-            <td>이미자</td>
-            <td>010-3333-3333</td>
-            <td>lee@example.com</td>
-            <td>차단 회원</td>
-            <td><button class="btn btn_default"> 해제 </button></td>
+          <tr th:each="member : ${members}">
+            <td th:text="${member.id}">1</td>
+            <td th:text="${member.login_id}">ID1</td>
+            <td th:text="${member.name}">홍길동</td>
+            <td th:text="${member.phone_number}">010-1111-1111</td>
+            <td th:text="${member.email}">hong@example.com</td>
+            <td th:text="${member.authority} == 'A'? '일반 회원' : '차단 회원' ">일반 회원</td>
+            <td th:if="${member.authority} != 'M'">
+              <button th:if="${member.authority} == 'A'"  th:class="'btn btn_ylw'"> 차단 </button>
+              <button th:if="${member.authority} == 'B'"  th:class="'btn btn_default'"> 해제 </button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -108,19 +93,19 @@
     <div class="d-flex justify-content-center py-5">
       <nav aria-label="">
         <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
+          <li th:if="${pagination.existPreviousLastPage}" class="page-item">
+            <a class="page-link" href="#" th:href="@{member-list(page=${pagination.previousLastPage})} + ${'#table'}" aria-label="Previous">
               <span>&laquo;</span>
             </a>
           </li>
-          <li class="page-item"><a class="page-link active" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">4</a></li>
-          <li class="page-item"><a class="page-link" href="#">5</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
+          <li th:each="page : ${#numbers.sequence(pagination.firstPage,pagination.lastPage)}" class="page-item"><a class="page-link" th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'" href="#" th:href="@{member-list(page=${page})} + ${'#table'}" th:text="${page}">1</a></li>
+<!--          <li class="page-item"><a class="page-link" href="#" th:href="@{member-list}">2</a></li>-->
+<!--          <li class="page-item"><a class="page-link" href="#" th:href="@{member-list}">3</a></li>-->
+<!--          <li class="page-item"><a class="page-link" href="#" th:href="@{member-list}">4</a></li>-->
+<!--          <li class="page-item"><a class="page-link" href="#" th:href="@{member-list}">5</a></li>-->
+          <li th:if="${pagination.existNextFirstPage}" class="page-item">
+            <a class="page-link" href="#" th:href="@{member-list(page=${pagination.nextFirstPage})} + ${'#table'}" aria-label="Next">
+              <span>&raquo;</span>
             </a>
           </li>
         </ul>
@@ -132,7 +117,7 @@
   <footer>
     <div class="center">
       <div class="left_wrap">
-        <p class="btm_logo"><img src="img/oneshot_logo_bw.png" alt="원샷 - 우리술 한잔,">
+        <p class="btm_logo"><img src="img/oneshot_logo_bw.png" alt="원샷 - 우리술 한잔,"></p>
         <div class="text_wrap">
           <p>원샷 - 우리술 한잔,</p>
           <address>서울시 서대문구 연세로 8-1</address>
@@ -175,7 +160,6 @@
           <li><a href="#"><img src="img/facebook_footer.svg" alt="페이스북"></a></li>
         </ul>
       </div>
-      </p>
     </div>
   </footer>
   <!-- footer : END -->
