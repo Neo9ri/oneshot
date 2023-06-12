@@ -12,5 +12,7 @@ public interface ProductRepository {
     void addCart(Long id,Long memberId);
 //    void showCart(Long memberId);
     List<Cart> showCart(Long memberId);
+    void updateProductQuantity(int quantity, Long id);
     void truncateTableCart();
+    void deleteCartItem(Long id);
 }
