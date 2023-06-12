@@ -99,10 +99,6 @@
             </a>
           </li>
           <li th:each="page : ${#numbers.sequence(pagination.firstPage,pagination.lastPage)}" class="page-item"><a class="page-link" th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'" href="#" th:href="@{member-list(page=${page})} + ${'#table'}" th:text="${page}">1</a></li>
-<!--          <li class="page-item"><a class="page-link" href="#" th:href="@{member-list}">2</a></li>-->
-<!--          <li class="page-item"><a class="page-link" href="#" th:href="@{member-list}">3</a></li>-->
-<!--          <li class="page-item"><a class="page-link" href="#" th:href="@{member-list}">4</a></li>-->
-<!--          <li class="page-item"><a class="page-link" href="#" th:href="@{member-list}">5</a></li>-->
           <li th:if="${pagination.existNextFirstPage}" class="page-item">
             <a class="page-link" href="#" th:href="@{member-list(page=${pagination.nextFirstPage})} + ${'#table'}" aria-label="Next">
               <span>&raquo;</span>

@@ -206,7 +206,7 @@ table.admin_table td {
   border: #aaa solid 1px;
 }
 
-table.admin_table td form.delete{
+table.admin_table td form.delete {
   display: inline-block;
 }
 
