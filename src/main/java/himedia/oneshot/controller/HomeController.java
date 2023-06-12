@@ -23,4 +23,10 @@ public class HomeController {
         model.addAttribute("products",products);
         return "index";
     }
+
+    // login.html의 id 값 중복으로 인해 실행 불가
+//    @GetMapping("/login")
+//    public String login() {
+//        return "login";
+//    }
 }

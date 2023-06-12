@@ -120,14 +120,11 @@ public class AdminProductController {
     @GetMapping("/item-list")
     public String productList(@RequestParam(required = false) Integer page, Model model) {
         List<Product> products = adminProductService.findAll();
-        log.info("products 불러오기 완료");
         int totalItem = products.size();
-        log.info("products 개수 >> " + products.size());
         int requestPage;
         try {
             requestPage = page.intValue();
         } catch (NullPointerException npe) {
-            log.info("npe 발생");
             requestPage = 1;
         };
         Pagination pagination = new Pagination(totalItem,10, requestPage);

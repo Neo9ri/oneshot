@@ -4,13 +4,16 @@ import himedia.oneshot.dto.MemberDTO;
 import himedia.oneshot.entity.Member;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -86,8 +89,10 @@ public class JdbcMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Member findById(int memberId) {
-        return null;
+    public Optional<Member> findByLoginId(String loginId) {
+        String sql = "SELECT * FROM MEMBER WHERE login_id = ?;";
+        List<Member> memberList = jdbcTemplate.query(sql, memberRowMapper(), loginId);
+        return memberList.stream().findAny();
     }
 
     /**
