@@ -84,7 +84,12 @@
             <td th:text="${product.price}">15000</td>
             <td>
               <button type="button" th:onclick="|location.href='@{/product/{productId}/edit(productId=${product.id})}'|" class="btn btn_default"> 수정 </button>
-              <button class="btn btn_ylw"> 삭제 </button>
+              <form th:action="@{/product/delete}" method="post" class="delete"
+                    onsubmit="return confirm('정말로 삭제하시겠습니까?')">
+                <input type="hidden" name="_method" value="DELETE" /> <input
+                      type="hidden" name="id" th:value="${product.id}" />
+                <button type="submit" class="btn btn_ylw">삭제</button>
+              </form>
             </td>
           </tr>
         </tbody>
