@@ -113,4 +113,6 @@ select quantity from cart where product_id = 1;
 
 update cart set quantity = 1 where product_id = 1;
 
+set autocommit=true;
+
 DROP TABLE IF EXISTS cart, purchase_detail, purchase, product, inquiry, member;
