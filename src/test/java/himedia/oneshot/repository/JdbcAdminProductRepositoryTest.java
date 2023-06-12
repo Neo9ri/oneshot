@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
 
 
 @SpringBootTest
@@ -50,6 +52,31 @@ public class JdbcAdminProductRepositoryTest {
         adminProductRepository.saveProduct(beforeSave);
         adminProductRepository.deleteProduct(beforeSave.getId());
         assertThat(adminProductRepository.findById(beforeSave.getId())).isEmpty();
+
+    }
+
+    @Test
+    void findById(){
+        //given
+        Product beforeSave = new Product("테스트2",1,"강원,세종권","과실주","테스터",25,24000,"img/product/thumbnail/test2.jpg",null,null,null);
+        Product afterSave = adminProductRepository.saveProduct(beforeSave);
+        //when
+        Optional<Product> id = adminProductRepository.findById(afterSave.getId());
+        //then
+        assertThat(id.isPresent()).isEqualTo(true);
+
+    }
+
+    @Test
+    void findAll(){
+        //given
+        List<Product> before = adminProductRepository.findAll();
+        Product beforeSave = new Product("테스트2",1,"강원,세종권","과실주","테스터",25,24000,"img/product/thumbnail/test2.jpg",null,null,null);
+        adminProductRepository.saveProduct(beforeSave);
+        //when
+        List<Product> after = adminProductRepository.findAll();
+        //then
+        assertThat(after.size()).isEqualTo(before.size()+1);
 
     }
 }
