@@ -74,7 +74,7 @@
             <th>회원 권한 관리</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody th:unless="${#lists.isEmpty(members)}">
           <tr th:each="member : ${members}">
             <td th:text="${member.id}">1</td>
             <td th:text="${member.login_id}">ID1</td>

@@ -29,7 +29,7 @@ public class JdbcMemberRepositoryTest {
         List<Member> result = memberRepository.findAll();
 
         // then
-        assertThat(result.get(0).getName()).isEqualTo("관리자");
+        assertThat(result.get(0).getName()).isEqualTo("홍길동");
 
 
     }

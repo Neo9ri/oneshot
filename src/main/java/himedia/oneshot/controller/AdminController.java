@@ -41,11 +41,14 @@ public class AdminController {
 
         try {
             members = members.subList(fromIndex, toIndex);
+            model.addAttribute("members", members);
         } catch (IndexOutOfBoundsException ioobe) {
-            toIndex = members.size();
-            members = members.subList(fromIndex,toIndex);
+            if (members.size() != 0){
+                toIndex = members.size();
+                members = members.subList(fromIndex,toIndex);
+                model.addAttribute("members", members);
+            }
         }
-        model.addAttribute("members", members);
         // 목록 구현 -- END
         return "/admin/member_list";
     }
