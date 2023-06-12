@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS purchase_detail -- 주문 상세 내역
 	member_id BIGINT UNSIGNED NOT NULL, -- 주문자의 고유 번호
     product_id BIGINT UNSIGNED NOT NULL, -- 주문 상품별 고유 번호
     price INT UNSIGNED NOT NULL, -- 주문 상품의 개당 가격
-    qauntity SMALLINT UNSIGNED NOT NULL, -- 주문 상품의 수량
+    quantity SMALLINT UNSIGNED NOT NULL, -- 주문 상품의 수량
     FOREIGN KEY(purchase_id) REFERENCES purchase(id), -- 외래키 지정 시작
     FOREIGN KEY(member_id) REFERENCES member(id),
     FOREIGN KEY(product_id) REFERENCES product(id) -- 외래키 지정 종료
@@ -104,7 +104,13 @@ select * from product where id=1;
 SELECT * FROM product;
 SELECT * FROM cart;
 SELECT * FROM member;
+SELECT * FROM purchase;
+SELECT * FROM purchase_detail;
 
+insert into cart(member_id,product_id,quantity) values(2,1,1);
 
+select quantity from cart where product_id = 1;
+
+update cart set quantity = 1 where product_id = 1;
 
 DROP TABLE IF EXISTS cart, purchase_detail, purchase, product, inquiry, member;

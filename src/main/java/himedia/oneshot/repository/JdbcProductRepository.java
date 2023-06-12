@@ -2,6 +2,7 @@ package himedia.oneshot.repository;
 
 import himedia.oneshot.entity.Cart;
 import himedia.oneshot.entity.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -14,7 +15,6 @@ import java.util.*;
 @Repository
 public class JdbcProductRepository implements ProductRepository{
     private final JdbcTemplate jdbcTemplate;
-    private Long id;
 
     public JdbcProductRepository(DataSource dataSource){
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -80,10 +80,10 @@ public class JdbcProductRepository implements ProductRepository{
 
     @Override
     public List<Cart> showCart(Long memberId) {
-        String sql = "SELECT c.member_id, c.product_id, c.quantity, p.name FROM cart c " +
-                "INNER JOIN member m ON c.member_id = m.id " +
-                "INNER JOIN product p ON c.product_id = p.id " +
-                "WHERE c.member_id = ?";
+        String sql = "select c.member_id, c.product_id, c.quantity, p.name from cart c " +
+                "inner join member m ON c.member_id = m.id " +
+                "inner join product p ON c.product_id = p.id " +
+                "where c.member_id = ?";
 
         List<Cart> cartItems = jdbcTemplate.query(sql, new Object[]{memberId}, (rs, rowNum) -> {
             Cart cart = new Cart();
@@ -100,7 +100,34 @@ public class JdbcProductRepository implements ProductRepository{
     }
 
     @Override
+    public void updateProductQuantity(int quantity, Long id) {
+        String sql = "update cart set quantity = quantity + ? where product_id = ?";
+
+        // 상품 수량 조회
+        String selectSql = "select quantity from cart where product_id = ?";
+        Integer currentQuantity = jdbcTemplate.queryForObject(selectSql, Integer.class, id);
+
+        // 수량 증감 후의 새로운 수량 계산
+        int newQuantity = currentQuantity + quantity;
+
+        // 새로운 수량이 0 이상인 경우에만 업데이트 수행
+        if (newQuantity >= 0) {
+            // 상품 수량 업데이트
+            String updateSql = "update cart set quantity = ? where product_id = ?";
+            jdbcTemplate.update(updateSql, newQuantity, id);
+        }
+    }
+
+    @Override
     public void truncateTableCart() {
+        // 상품구매후 장바구니 비워주기
         jdbcTemplate.update("truncate table cart");
     }
+
+    @Override
+    public void deleteCartItem(Long id) {
+        // 상품 삭제
+        jdbcTemplate.update("delete from cart where id = ?",id);
+    }
+
 }
