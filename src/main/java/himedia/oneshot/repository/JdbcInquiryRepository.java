@@ -54,7 +54,7 @@ public class JdbcInquiryRepository implements InquiryRepository {
 
     @Override
     public void replyInquiry(Long id, String title, String content) {
-        String sql = "update "
+        String sql = "update ";
 
     }
 
