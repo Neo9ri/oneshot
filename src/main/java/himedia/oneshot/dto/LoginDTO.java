@@ -2,11 +2,13 @@ package himedia.oneshot.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 로그인과 관련된 데이터만을 담고 있는 DTO입니다.
  */
 @Data
+@NoArgsConstructor
 public class LoginDTO {
     private long id;
     private String loginId;
@@ -45,6 +47,7 @@ public class LoginDTO {
     public LoginDTO(Boolean loginSuccess){
         this.loginSuccess = loginSuccess;
     }
+
 }
 
 

@@ -30,6 +30,11 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
+    /**
+     * 로그인 데이터 일치 여부 및 로그인 회원의 권한을 반환합니다.
+     * @param loginData
+     * @return
+     */
     public LoginDTO loginCheck(LoginDTO loginData){
         Optional<Member> loginMember = memberRepository.findByLoginId(loginData.getLoginId());
 
