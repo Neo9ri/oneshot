@@ -184,71 +184,7 @@
     </div>
   </footer>
   <!-- footer : END -->
-  <script>
-
-    function onClickThumbnailUpload() { // 썸네일 파일 첨부하기 함수
-      let thumbnailImageButton = document.getElementById("thumbnail");
-      thumbnailImageButton.click()
-    }
-
-    function showThumbnail(input) { // 썸네일 미리보기 함수
-      if (input.files && input.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          document.getElementById('thumbnailPreview').src = e.target.result;
-        };
-        reader.readAsDataURL(input.files[0]);
-      } else {
-        document.getElementById('thumbnailPreview').src = "";
-      }
-    }
-
-    function onClickExpUpload() { // 상품설명 파일 첨부하기 함수
-      let expImageButton = document.getElementById("exp");
-      expImageButton.addEventListener("change", handleExpUpload);
-      expImageButton.click()
-    }
-    function handleExpUpload(event) {
-      const input = event.target;
-      const fileArr = Array.from(input.files);
-
-      if (fileArr.length > 3) {
-        // 3개 이상의 파일이 선택되었을 때 알림 창 표시
-        alert("이미지는 최대 3개까지 첨부할 수 있습니다. 다시 선택해주세요.");
-        input.value = "";
-        location.reload();
-      }
-    }
-    //상품설명 여러개 미리보기 함수(이미 파일 존재시 파일 추가하면 삭제)//
-function showMultipleExp(input) {
-
-  const multipleExpPreview = document.getElementById('multipleExpPreview');
-
-  const images = multipleExpPreview.querySelectorAll('img');
-  images.forEach((image) => {
-    multipleExpPreview.removeChild(image);
-  });
-
-
-  if(input.files) {
-      const fileArr = Array.from(input.files);
-
-      fileArr.forEach((file,index) => {
-          const reader = new FileReader();
-          const exp = document.createElement("img");
-          exp.setAttribute('id',`exp${index+1}`);
-          multipleExpPreview.appendChild(exp);
-          exp.classList.add('selected');
-          reader.onload = e => {
-              exp.src = e.target.result;
-          };
-
-          reader.readAsDataURL(file);
-          multipleExpPreview.appendChild(document.createElement('br'));
-      });
-  }
-}
-  </script>
+  <script src="/js/admin_product.js"></script>
 </body>
 
 </html>

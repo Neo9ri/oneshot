@@ -6,9 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>고객 배송 문의 관리</title>
-  <link rel="icon" href="img/favicon-32x32.png" type="image/x-icon" />
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="icon" href="/img/favicon-32x32.png" type="image/x-icon" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/admin.css" />
 </head>
 
 <body>
@@ -17,7 +17,7 @@
     <div class="center">
       <div>
         <h1>
-          <a href="/"><img src="img/oneshot_logo.png" alt="원샷-우리술 한잔" />우리술
+          <a href="/"><img src="/img/oneshot_logo.png" alt="원샷-우리술 한잔" />우리술
             한 잔,</a>
         </h1>
         <form role="search" class="main_search">
@@ -25,14 +25,14 @@
             <input type="search" name="keyword" placeholder="상품명을 입력하세요." class="col form-control"
               aria-label="Search" />
             <button type="submit" class="col-1">
-              <img src="img/search.png" alt="검색" />
+              <img src="/img/search.png" alt="검색" />
             </button>
           </div>
         </form>
         <div class="util">
           <div>관리자님</div>|
           <a href="#">로그아웃</a>
-          <a href="mypage.html"><img src="img/util_user.png" alt="마이페이지" /></a>
+          <a href="mypage.html"><img src="/img/util_user.png" alt="마이페이지" /></a>
         </div>
       </div>
     </div>
@@ -55,45 +55,48 @@
         </div>
         <div class="row">
           <div class="col position-relative"><a class="position-absolute top-50 start-50 translate-middle-x selected"
-              href="inquiry_delivery.html">배송 문의 내역</a></div>
-          <div class="col position-relative"><a class="position-absolute top-50 start-50 translate-middle-x" href="inquiry_product.html">상품
+              href="/inquiry/delivery">배송 문의 내역</a></div>
+          <div class="col position-relative"><a class="position-absolute top-50 start-50 translate-middle-x" href="/inquiry/product">상품
               문의 내역</a></div>
         </div>
       </div>
       <table class="table text-center admin_table">
         <thead>
           <tr>
-            <th>배송문의번호</th>
-            <th>문의자</th>
-            <th>문의일</th>
+            <th>문의번호</th>
+            <th>문의 상품번호</th>
+            <th>문의 회원번호</th>
             <th>제목</th>
             <th>내용</th>
-            <th>문의 상태</th>
-            <th>답변 내용</th>
-            <th>답변 등록</th>
+            <th>문의일</th>
+            <th>답변일</th>
+            <th>답변내용</th>
+            <th>답변하기</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>D1</td>
-            <td>홍길동</td>
-            <td>2023-06-01</td>
-            <td>배송 날짜 지정...</td>
-            <td>안녕하세요 ...</td>
-            <td>답변 완료</td>
-            <td>안녕하십니까...</td>
-            <td><button class="btn btn_default"> 완료 </button></td>
-          </tr>
-          <tr>
-            <td>D2</td>
-            <td>이하루</td>
-            <td>2023-06-02</td>
-            <th>아직 배송이 ...</th>
-            <td>주문한지 일주일...</td>
-            <td>미답변</td>
-            <td></td>
-            <td><button class="btn btn_ylw"> 답변등록 </button></td>
-          </tr>
+        <tr>
+          <td>1</td>
+          <td>11</td>
+          <td>2</td>
+          <td>안동 소주 관련...</td>
+          <td><button class="btn btn_ylw"> 보기 </button></td>
+          <td>2023-05-31</td>
+          <td>2023-06-01.</td>
+          <td><button class="btn btn_ylw"> 보기 </button></td>
+          <td><button class="btn btn_ylw"> 등록 </button></td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>11</td>
+          <td>2</td>
+          <td>안동 소주 관련...</td>
+          <td><button class="btn btn_ylw"> 보기 </button></td>
+          <td>2023-05-31</td>
+          <td>2023-06-01.</td>
+          <td><button class="btn btn_ylw"> 보기 </button></td>
+          <td><button class="btn btn_ylw"> 등록 </button></td>
+        </tr>
         </tbody>
       </table>
     </div>
@@ -124,7 +127,7 @@
   <footer>
     <div class="center">
       <div class="left_wrap">
-        <p class="btm_logo"><img src="img/oneshot_logo_bw.png" alt="원샷 - 우리술 한잔,"></p>
+        <p class="btm_logo"><img src="/img/oneshot_logo_bw.png" alt="원샷 - 우리술 한잔,"></p>
         <div class="text_wrap">
           <p>원샷 - 우리술 한잔,</p>
           <address>서울시 서대문구 연세로 8-1</address>
@@ -162,9 +165,9 @@
         <h4>SOCIAL MEDIA</h4>
         <p>Follow @oneshot</p>
         <ul>
-          <li><a href="#"><img src="img/instagram_footer.svg" alt="인스타그램"></a></li>
-          <li><a href="#"><img src="img/youtube_footer.svg" alt="유투브"></a></li>
-          <li><a href="#"><img src="img/facebook_footer.svg" alt="페이스북"></a></li>
+          <li><a href="#"><img src="/img/instagram_footer.svg" alt="인스타그램"></a></li>
+          <li><a href="#"><img src="/img/youtube_footer.svg" alt="유투브"></a></li>
+          <li><a href="#"><img src="/img/facebook_footer.svg" alt="페이스북"></a></li>
         </ul>
       </div>
     </div>

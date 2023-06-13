@@ -38,14 +38,20 @@ public class AdminProductService {
         thumbImgFile.transferTo(thumbSaveFile);
         log.info("썸네일 저장완료");
         for (int i = 0; i < expImgFiles.length; i++) {
-            File expSaveFile = new File(expPath, expImgNames.get(i));
-            expImgFiles[i].transferTo(expSaveFile);
+            if (i < expImgNames.size() && !expImgNames.get(i).isEmpty()) {
+                File expSaveFile = new File(expPath, expImgNames.get(i));
+                expImgFiles[i].transferTo(expSaveFile);
+            }
         }
         log.info("설명저장완료");
         product.setImg_thumb("img/product/thumbnail/"+thumbImgName);
         product.setImg_exp1("img/product/explanation/"+expImgNames.get(0));
-        product.setImg_exp2("img/product/explanation/"+expImgNames.get(1));
-        product.setImg_exp3("img/product/explanation/"+expImgNames.get(2));
+        if (expImgNames.size() > 1 && !expImgNames.get(1).isEmpty()) {
+            product.setImg_exp2("img/product/explanation/" + expImgNames.get(1));
+        }
+        if (expImgNames.size() > 2 && !expImgNames.get(2).isEmpty()) {
+            product.setImg_exp3("img/product/explanation/" + expImgNames.get(2));
+        }
         log.info("이미지1>>{}",product.getImg_thumb());
         log.info("이미지2>>{}",product.getImg_exp1());
         log.info("이미지3>>{}",product.getImg_exp2());
@@ -72,15 +78,20 @@ public class AdminProductService {
         thumbImgFile.transferTo(thumbSaveFile);
         log.info("썸네일 저장완료");
         for (int i = 0; i < expImgFiles.length; i++) {
-            File expSaveFile = new File(expPath, expImgNames.get(i));
-            expImgFiles[i].transferTo(expSaveFile);
+            if (i < expImgNames.size() && !expImgNames.get(i).isEmpty()) {
+                File expSaveFile = new File(expPath, expImgNames.get(i));
+                expImgFiles[i].transferTo(expSaveFile);
+            }
         }
-        log.info("설명 저장완료");
-
-        updatedProduct.setImg_thumb("img/product/thumbnail/" + thumbImgName);
-        updatedProduct.setImg_exp1("img/product/explanation/" + expImgNames.get(0));
-        updatedProduct.setImg_exp2("img/product/explanation/" + expImgNames.get(1));
-        updatedProduct.setImg_exp3("img/product/explanation/" + expImgNames.get(2));
+        log.info("설명저장완료");
+        updatedProduct.setImg_thumb("img/product/thumbnail/"+thumbImgName);
+        updatedProduct.setImg_exp1("img/product/explanation/"+expImgNames.get(0));
+        if (expImgNames.size() > 1 && !expImgNames.get(1).isEmpty()) {
+            updatedProduct.setImg_exp2("img/product/explanation/" + expImgNames.get(1));
+        }
+        if (expImgNames.size() > 2 && !expImgNames.get(2).isEmpty()) {
+            updatedProduct.setImg_exp3("img/product/explanation/" + expImgNames.get(2));
+        }
 
         adminProductRepository.updateProduct(id, updatedProduct);
     }
