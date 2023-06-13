@@ -67,20 +67,23 @@ public class JdbcPurchaseRepository implements PurchaseRepository{
         // 2. purchase_detail 테이블에 주문 상세 내역 저장
         String purchaseDetailInsertSql = "INSERT INTO purchase_detail (purchase_id, member_id, product_id, price, quantity) VALUES (?, ?, ?, ?, ?)";
         for (Map<String, Object> cartItem : cartItems) {
-            Long productId = (Long) cartItem.get("product_id");
+            BigInteger productIdBigInt = (BigInteger) cartItem.get("product_id");
+            Long productId = productIdBigInt.longValue();
             int quantity = (int) cartItem.get("quantity");
             Integer price = getProductPrice(productId); // 상품 가격 조회
 
             jdbcTemplate.update(purchaseDetailInsertSql, purchaseId, memberId, productId, price, quantity);
         }
         // 3. 장바구니에서 해당 회원의 상품 삭제
-        productRepository.truncateTableCart();
+        productRepository.truncateTableCart(memberId);
     }
     @Override
     public int calculateTotalPrice(List<Map<String, Object>> cartItems) {
         int totalPrice = 0;
         for (Map<String, Object> item : cartItems) {
-            Long productId = (Long) item.get("product_id");
+            BigInteger productIdBigInt = (BigInteger) item.get("product_id");
+            Long productId = productIdBigInt.longValue(); // BigInteger를 Long으로 변환
+//            Long productId = (Long) item.get("product_id");
             int quantity = (int) item.get("quantity");
             Integer price = getProductPrice(productId); // 상품 가격 조회
             totalPrice += (price * quantity);

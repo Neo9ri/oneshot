@@ -8,6 +8,7 @@
   <title>장바구니</title>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
+
   <link rel="icon" href="../img/favicon-32x32.png" type="image/x-icon" />
   <link rel="stylesheet" href="../css/bootstrap.min.css" />
   <link rel="stylesheet" href="../css/main_style.css" />
@@ -94,13 +95,34 @@
         <thead>
           <tr>
             <th class="cart_thead_img">이미지</th>
-            <th class="cart_thead_info">상품정보</th>
-            <th class="cart_thead_price">판매가</th>
+            <th class="cart_thead_info" >상품정보</th>
+            <th class="cart_thead_price" >판매가</th>
             <th class="cart_thead_quantity">수량</th>
             <th class="cart_thead_btn">선택</th>
           </tr>
         </thead>
         <tbody>
+          <tr th:each="product:${cartProducts}">
+            <td class="cart_tbody_img"><img src="../img/product/thumbnail/1000000319_detail_025.jpg" alt="" width="200px" height="200px"></td>
+            <td class="cart_tbody_info"th:text="${product.name}"></td>
+            <td class="cart_tbody_price"th:text="${product.price}"></td>
+            <td class="cart_tbody_quantity">
+              <form method="post" th:action="@{/user/item_cart/update/-1}">
+                <button class="quantity_sub_btn" th:name="id" th:value="${product.id}">-</button>
+              </form>
+              <input type="text" readonly="readonly" th:value="${product.quantity}"/>
+              <form method="post" th:action="@{/user/item_cart/update/1}">
+                <button class="quantity_add_btn" th:name="id" th:value="${product.id}">+</button>
+              </form>
+            </td>
+            <td class="cart_tbody_btn">
+              <form method="post" th:action="@{/user/item_cart/delete}">
+                <button type="submit" th:name="id" th:value="${product.id}">삭제</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+        <!-- <tbody>
           <tr>
             <td class="cart_tbody_img"><img src="../img/product/thumbnail/1000000319_detail_025.jpg" alt="" width="200px" height="200px"></td>
             <td class="cart_tbody_info">아리랑주조 겨울소주 45도 375ml 증류식소주</td>
@@ -114,22 +136,7 @@
               <button>삭제</button>
             </td>
           </tr>
-        </tbody>
-        <tbody>
-          <tr>
-            <td class="cart_tbody_img"><img src="../img/product/thumbnail/1000000319_detail_025.jpg" alt="" width="200px" height="200px"></td>
-            <td class="cart_tbody_info">아리랑주조 겨울소주 45도 375ml 증류식소주</td>
-            <td class="cart_tbody_price">26,000원</td>
-            <td class="cart_tbody_quantity">
-              <button class="quantity_sub_btn">-</button>
-              <input type="text" value="0" readonly="readonly"/>
-              <button class="quantity_add_btn">+</button>
-            </td>
-            <td class="cart_tbody_btn">
-              <button>삭제</button>
-            </td>
-          </tr>
-        </tbody>
+        </tbody> -->
       </table>
     </div>
     <div class="item_cart_delivery">
@@ -138,15 +145,17 @@
     </div>
     <div class="item_cart_total_price">
       <h3>총 결제금액</h3>
-      <p>81,0000원</p>
+      <p th:text="${totalPrice}"></p>
     </div>
     <div class="item_cart_btn">
-      <div class="item_cart_cancle_btn">  
-        <button id="item_cart_cancle_btn" type="reset">취소</button>
-      </div>
-      <div class="item_cart_order_btn">
-        <button id="item_cart_order_btn" type="submit">주문하기</button>
-      </div>
+      <form action="" method="post" th:action="@{/user/item_cart/order}" id="orderForm">
+        <div class="item_cart_cancle_btn">  
+          <button id="item_cart_cancle_btn" type="reset" th:onclick="location.href='/'">취소</button>
+        </div>
+        <div class="item_cart_order_btn">
+          <button id="item_cart_order_btn" type="submit" onclick="confirmOrder(event)">주문하기</button>
+        </div>
+      </form>
     </div>
   </div>
   <!-- 장바구니 종료 -->
@@ -200,8 +209,20 @@
     </div>
   </footer>
   <!-- footer : END -->
-  <script src="/js/header.js"></script>
+  <script>
+    function confirmOrder(event) {
+        event.preventDefault(); // 폼의 기본 동작인 제출을 막습니다.
 
+        // 주문하기 버튼을 클릭하면 알림창이 표시됩니다.
+        if (confirm('상품을 구매하시겠습니까?')) {
+            // 확인 버튼을 누르면 '상품이 장바구니에 담겼습니다' 알림창이 표시됩니다.
+            alert('상품이 구매되었습니다.');
+            document.getElementById('orderForm').submit(); // 폼을 제출하여 주문 처리를 진행합니다.
+        }
+    }
+
+  </script>
+  <script src="/js/header.js"></script>
 </body>
 
 </html>
