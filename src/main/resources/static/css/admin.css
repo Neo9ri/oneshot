@@ -4,6 +4,14 @@
   width: 1200px;
   margin: 0 auto;
 }
+.blind {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: polygon(0 0, 0 0, 0 0);
+}
 
 /* header- START */
 header div.center>div {
@@ -254,7 +262,7 @@ img#thumbnailPreview {
 input#creator, input#name{
   margin-left: -24px;
 }
-input#price{
+input#price, input#alcohol{
   margin-left: -12px;
 }
 
@@ -280,10 +288,10 @@ input#price{
   display: block;
 }
 
-#multipleExpPreview img.selected{
+#multipleExpPreview img{
   max-width: 776px;
   margin: 0 auto;
-  display=block;
+  display:block;
 }
 
 #productEditorBottom button {

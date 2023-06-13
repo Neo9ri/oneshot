@@ -119,11 +119,23 @@ values
 ('우담청주', 1,'전북, 전남, 경북, 경남', '약주/청주', '참주가', 13, 3990, 'img/product/thumbnail/우담청주.jpg', 'img/product/explanation/우담청주_exp01.jpg', 'img/product/explanation/우담청주_exp02.jpg', NULL),
 ('초가 한청', 1,'강원, 세종권', '약주/청주', '초가', 15, 19000, 'img/product/thumbnail/초가_한청.jpg', 'img/product/explanation/초가_한청_exp01.jpg', 'img/product/explanation/초가_한청_exp02.jpg', NULL);
 
+INSERT INTO inquiry
+(type, product_id, inquirer_id, title, content, answer, date_inquired, date_replied)
+values
+('P', 1, 2, '상품 문의 드립니다.','구매 개수 제한이 있는지 궁금합니다.','한 상품당 구매는 최대 10개까지 가능합니다.', '2023-05-31','2023-06-01'),
+('D', 1, 2, '배송 문의 드립니다.','상품 손상없도록 배송 잘 부탁 드립니다.',NULL, '2023-06-02',NULL),
+('P', 2, 3, '상품이 궁금합니다.','인기가 많은 제품인가요?.',NULL, '2023-06-05',NULL),
+('D', 2, 3, '배송은 퀵으로 받을 수 있나요?.','빨리받고 싶은데 퀵으로 받을 수 있나요?.',NULL, '2023-06-10',NULL);    
+
+
+
+
 select * from product where id=1;
 
 SELECT * FROM product;
 SELECT * FROM cart;
 SELECT * FROM member;
+SELECT * FROM inquiry;
 SELECT * FROM purchase;
 SELECT * FROM purchase_detail;
 
