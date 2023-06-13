@@ -52,4 +52,14 @@ public class AdminController {
         // 목록 구현 -- END
         return "/admin/member_list";
     }
+//     문의
+    @GetMapping("/inquiry/delivery")
+    public String inquiryDelivery(){
+        return "admin/inquiry_delivery";
+    }
+    @GetMapping("/inquiry/product")
+    public String inquiryProduct(){
+        return "/admin/inquiry_product";
+    }
+
 }
