@@ -14,7 +14,7 @@ import java.util.Date;
 @Data
 // 회원 목록
 public class Member {
-    private Long id;                 //회원 고유 번호
+    private Long id;                //회원 고유 번호
     private String login_id;        //로그인 아이디
     private String pw;              //비밀번호
     private String email;           //이메일
@@ -25,4 +25,9 @@ public class Member {
     private String gender;          //성별
     private String authority;       //회원상태
     private Date date_created;      //회원가입 날짜
+    
+//	public Member() {}
+    
+
+
 }
