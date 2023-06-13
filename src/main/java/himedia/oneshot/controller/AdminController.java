@@ -1,8 +1,10 @@
 package himedia.oneshot.controller;
 
+import himedia.oneshot.entity.Inquiry;
 import himedia.oneshot.service.Pagination;
 import himedia.oneshot.entity.Member;
 import himedia.oneshot.service.MemberService;
+import himedia.oneshot.service.InquiryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +17,12 @@ import java.util.List;
 @Controller
 public class AdminController {
     private final MemberService memberService;
+    private final InquiryService inquiryService;
 
-    public AdminController(MemberService memberService){
+    public AdminController(MemberService memberService, InquiryService inquiryService){
 
         this.memberService = memberService;
+        this.inquiryService = inquiryService;
     }
 
     @GetMapping("/member-list")
@@ -54,7 +58,10 @@ public class AdminController {
     }
 //     문의
     @GetMapping("/inquiry/delivery")
-    public String inquiryDelivery(){
+    public String inquiryDelivery(Model model){
+        List<Inquiry> deliveries = inquiryService.findListByType("D");
+        model.addAttribute("deliveries", deliveries);
+
         return "admin/inquiry_delivery";
     }
     @GetMapping("/inquiry/product")
