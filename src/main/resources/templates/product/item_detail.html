@@ -8,10 +8,10 @@
     <title>상품상세</title>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
-    <link rel="icon" href="../img/favicon-32x32.png" type="image/x-icon"/>
-    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../css/main_style.css"/>
-    <link rel="stylesheet" href="../css/item_detail.css">
+    <link rel="icon" href="../img/favicon-32x32.png" type="image/x-icon" th:href="@{/img/favicon-32x32.png}"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="../css/main_style.css" th:href="@{/css/main_style.css}"/>
+    <link rel="stylesheet" href="../css/item_detail.css" th:href="@{/css/item_detail.css}"/>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
     <div class="center">
         <div>
             <h1>
-                <a href="/"><img src="../img/oneshot_logo.png" alt="원샷-우리술 한잔"/>우리술
+                <a href="/"><img src="../../static/img/oneshot_logo.png" th:src="@{/img/oneshot_logo.png}"alt="원샷-우리술 한잔"/>우리술
                     한 잔,</a>
             </h1>
             <form role="search" class="main_search">
@@ -28,21 +28,21 @@
                     <input type="search" name="keyword" placeholder="상품명을 입력하세요." class="col form-control"
                            aria-label="Search"/>
                     <button type="submit" class="col-1">
-                        <img src="../img/search.png" alt="검색"/>
+                        <img src="../../static/img/search.png" th:src="@{/img/search.png}" alt="검색"/>
                     </button>
                 </div>
             </form>
             <div class="util main">
                 <a href="login.html">로그인</a>|
                 <a href="join.html">회원가입</a>
-                <a href="cart.html"><img src="../img/cart.png" alt="장바구니"/></a>
+                <a href="../user/item_cart.html" th:href="@{/user/item_cart}"><img src="../../static/img/cart.png" th:src="@{/img/cart.png}"alt="장바구니"/></a>
             </div>
             <div class="util mypage" style="display:none">
                 <div>홍길동님</div>
                 |
                 <a href="#">로그아웃</a>
-                <a href="cart.html"><img src="../img/cart.png" alt="장바구니"/></a>
-                <a href="mypage.html"><img src="../img/user.png" alt="마이페이지"/></a>
+                <a href="../user/item_cart.html" th:href="@{/user/item_cart}" ><img src="../../static/img/cart.png" th:src="@{/img/cart.png}" alt="장바구니"/></a>
+                <a href="mypage.html"><img src="../img/user.png" th:src="@{/img/user.png}" alt="마이페이지"/></a>
             </div>
         </div>
     </div>
@@ -88,18 +88,18 @@
 </header>
 <!-- header 종료 -->
 <!-- item-detail 시작 -->
-<div class="item_detail_container">
+<div class="item_detail_container" >
     <h1>상품 상세</h1>
     <div class="item_img">
-        <img src="../img/product/thumbnail/1000000319_detail_025.jpg" alt="">
+        <img src="../../static/img/product/thumbnail/1000000319_detail_025.jpg" th:src="@{/img/product/thumbnail/1000000319_detail_025.jpg}" alt="">
     </div>
-    <div class="item_info">
+    <div class="item_info" th:with="product=${product}, member=${member}">
         <h2>아리랑주조 겨울소주 45도 375ml 증류식소주</h2>
         <p>겨울에 잘어울리는 소주, 100일 저온숙성으로 부드럽습니다</p>
         <table>
             <tr>
                 <td>판매가</td>
-                <td>26,000원</td>
+                <td th:text="${product.price}"></td>
             </tr>
             <tr>
                 <td>배송비</td>
@@ -111,18 +111,22 @@
             </tr>
             <tr>
                 <td>제조사</td>
-                <td>아리랑주조(주)</td>
+                <td th:text="${product.creator}"></td>
             </tr>
             <tr>
                 <td>원산지</td>
                 <td>국내산</td>
             </tr>
         </table>
-        <button type="submit" class="btn btn_primary">장바구니</button>
+        <form method="post" action="/addCart" id="orderForm">
+            <input type="hidden" name="id" th:value="${product.id}"/>
+<!--            <input type="hidden" name="memberId" th:value="${member.id}"/>-->
+            <button type="submit" class="btn btn_primary" onclick="confirmOrder(event)">장바구니</button>
+        </form>
     </div>
     <div class="item_detail_benner">
-        <img src="../img/product/explanation/11376a38a70dccafb16df553bc07afd3_68678.jpg" alt=""/>
-        <img src="../img/product/explanation/a9cd158c8073fc64f1dcfcb31360db4a_53228.jpg" alt=""/>
+        <img src="../../static/img/product/explanation/11376a38a70dccafb16df553bc07afd3_68678.jpg" th:src="@{/img/product/explanation/11376a38a70dccafb16df553bc07afd3_68678.jpg}"alt=""/>
+        <img src="../../static/img/product/explanation/a9cd158c8073fc64f1dcfcb31360db4a_53228.jpg"th:src="@{/img/product/explanation/a9cd158c8073fc64f1dcfcb31360db4a_53228.jpg}" alt=""/>
     </div>
     <div class="item_detail_nav">
         <ul class="nav">
@@ -144,9 +148,9 @@
         </ul>
     </div>
     <div class="item_detail_img">
-        <img src="../img/product/explanation/pro_01.jpg"/>
-        <img src="../img/product/explanation/pro_02.jpg"/>
-        <img src="../img/product/explanation/notice.jpg"/>
+        <img src="../../static/img/product/explanation/pro_01.jpg" th:src="@{/img/product/explanation/pro_01.jpg}"/>
+        <img src="../../static/img/product/explanation/pro_02.jpg" th:src="@{/img/product/explanation/pro_02.jpg}"/>
+        <img src="../../static/img/product/explanation/notice.jpg"th:src="@{/img/product/explanation/notice.jpg}"/>
     </div>
     <div class="delivery_info">
         <h3>배송안내</h3>
@@ -209,24 +213,24 @@
                     </label>
                     <input id="file_upload" type="file" accept="image/*" multiple onchange="previewImages(event)">
                     <div class="item_review_preview_img">
-                        <img src="../img/product/thumbnail/1000000319_detail_025.jpg" width="60px" height="60px"/>
-                        <img src="../img/product/thumbnail/1000000319_detail_025.jpg" width="60px" height="60px"/>
-                        <img src="../img/product/thumbnail/1000000319_detail_025.jpg" width="60px" height="60px"/>
+                        <img src="../../static/img/product/thumbnail/1000000319_detail_025.jpg" width="60px" height="60px"/>
+                        <img src="../../static/img/product/thumbnail/1000000319_detail_025.jpg" width="60px" height="60px"/>
+                        <img src="../../static/img/product/thumbnail/1000000319_detail_025.jpg" width="60px" height="60px"/>
                     </div>
                     <button id="submit_button" type="button" onclick="submitReview()">리뷰 등록</button>
                 </div>
             </form>
             <div id="review_summary">
                 <div class="review_summary_first">
-                    <img src="../img/product/thumbnail/1000000319_detail_025.jpg" alt="사용자 등록 이미지" width="160"
+                    <img src="../../static/img/product/thumbnail/1000000319_detail_025.jpg" alt="사용자 등록 이미지" width="160"
                          height="180">
                     <h4>홍길동</h4>
                     <div class="review_summary_star">
-                        <img src="../img/star.png" alt="노란별" width="25px" height="25px">
-                        <img src="../img/star.png" alt="노란별" width="25px" height="25px">
-                        <img src="../img/star.png" alt="노란별" width="25px" height="25px">
-                        <img src="../img/star.png" alt="노란별" width="25px" height="25px">
-                        <img src="../img/star (1).png" alt="빈별" width="25px" height="25px">
+                        <img src="../../static/img/star.png" alt="노란별" width="25px" height="25px">
+                        <img src="../../static/img/star.png" alt="노란별" width="25px" height="25px">
+                        <img src="../../static/img/star.png" alt="노란별" width="25px" height="25px">
+                        <img src="../../static/img/star.png" alt="노란별" width="25px" height="25px">
+                        <img src="../../static/img/star (1).png" alt="빈별" width="25px" height="25px">
                     </div>
                     <div class="review_summary_date">
                         <p>상품 구입 날짜 2023.05.31</p>
@@ -238,15 +242,15 @@
                     </div>
                 </div>
                 <div class="review_summary_second">
-                    <img src="../img/product/thumbnail/1000000319_detail_025.jpg" alt="사용자 등록 이미지" width="160"
+                    <img src="../../static/img/product/thumbnail/1000000319_detail_025.jpg" alt="사용자 등록 이미지" width="160"
                          height="180">
                     <h4>홍길동</h4>
                     <div class="review_summary_star">
-                        <img src="../img/star.png" alt="노란별" width="25px" height="25px">
-                        <img src="../img/star.png" alt="노란별" width="25px" height="25px">
-                        <img src="../img/star.png" alt="노란별" width="25px" height="25px">
-                        <img src="../img/star (1).png" alt="빈별" width="25px" height="25px">
-                        <img src="../img/star (1).png" alt="빈별" width="25px" height="25px">
+                        <img src="../../static/img/star.png" alt="노란별" width="25px" height="25px">
+                        <img src="../../static/img/star.png" alt="노란별" width="25px" height="25px">
+                        <img src="../../static/img/star.png" alt="노란별" width="25px" height="25px">
+                        <img src="../../static/img/star (1).png" alt="빈별" width="25px" height="25px">
+                        <img src="../../static/img/star (1).png" alt="빈별" width="25px" height="25px">
                     </div>
                     <div class="review_summary_date">
                         <p>상품 구입 날짜 2023.05.30</p>
@@ -361,7 +365,7 @@
 <footer>
     <div class="center">
         <div class="left_wrap">
-            <p class="btm_logo"><img src="../img/oneshot_logo_bw.png" alt="원샷 - 우리술 한잔,"></p>
+            <p class="btm_logo"><img src="../../static/img/oneshot_logo_bw.png" alt="원샷 - 우리술 한잔,"></p>
             <div class="text_wrap">
                 <p>원샷 - 우리술 한잔,</p>
                 <address>서울시 서대문구 연세로 8-1</address>
@@ -399,28 +403,25 @@
             <h4>SOCIAL MEDIA</h4>
             <p>Follow @oneshot</p>
             <ul>
-                <li><a href="#"><img src="../img/instagram_footer.svg" alt="인스타그램"></a></li>
-                <li><a href="#"><img src="../img/youtube_footer.svg" alt="유투브"></a></li>
-                <li><a href="#"><img src="../img/facebook_footer.svg" alt="페이스북"></a></li>
+                <li><a href="#"><img src="../../static/img/instagram_footer.svg" alt="인스타그램"></a></li>
+                <li><a href="#"><img src="../../static/img/youtube_footer.svg" alt="유투브"></a></li>
+                <li><a href="#"><img src="../../static/img/facebook_footer.svg" alt="페이스북"></a></li>
             </ul>
         </div>
     </div>
 </footer>
 <!-- footer : END -->
 <script>
-    const gnbbar = document.querySelector(".gnbbar")
-    const gnbmenu = document.querySelectorAll("nav.gnb>ul>li")
-    gnbmenu.forEach((v, index) => {
-        if (index !== 0) {
-            v.addEventListener("mouseover", (e) => {
-                gnbbar.style.display = "block";
-            });
+    function confirmOrder(event) {
+        event.preventDefault(); // 폼의 기본 동작인 제출을 막습니다.
 
-            v.addEventListener("mouseout", (e) => {
-                gnbbar.style.display = "none";
-            });
+        // 주문하기 버튼을 클릭하면 알림창이 표시됩니다.
+        if (confirm('상품을 주문하시겠습니까?')) {
+            // 확인 버튼을 누르면 '상품이 장바구니에 담겼습니다' 알림창이 표시됩니다.
+            alert('상품이 장바구니에 담겼습니다.');
+            document.getElementById('orderForm').submit(); // 폼을 제출하여 주문 처리를 진행합니다.
         }
-    });
+    }
 </script>
 </body>
 

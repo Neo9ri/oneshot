@@ -1,6 +1,8 @@
 package himedia.oneshot.repository;
 
+import himedia.oneshot.controller.ProductController;
 import himedia.oneshot.entity.Cart;
+import himedia.oneshot.entity.Member;
 import himedia.oneshot.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -50,6 +52,12 @@ public class JdbcProductRepository implements ProductRepository{
         cart.setQuantity(rs.getInt("quantity"));
         return cart;
     };
+
+    RowMapper<Member> memberIdRowMapper = (rs, rowNum) -> {
+        Member member = new Member();
+        member.setId(rs.getLong("id"));
+        return member;
+    };
     @Override
     public Optional<Product> findById(Long id) {
         String sql = "select * from product where id = ?";
@@ -78,27 +86,47 @@ public class JdbcProductRepository implements ProductRepository{
         jdbcInsert.execute(new MapSqlParameterSource(parameter));
     }
 
+//    @Override
+//    public List<Product> showCart(Long memberId){
+//        String cartSql = "select * from cart";
+//        List<Cart> cartAddList = jdbcTemplate.query(cartSql, cartRowMapper);
+//
+//        List<Product> result = new ArrayList<>();
+//        String productSql = "select * from product where id = ?";
+//
+//        String memberSql = "select * from member where id = ?";
+//        List<Member> memberList =jdbcTemplate.query(memberSql,memberIdRowMapper,memberId);
+//
+//        if (memberList.isEmpty()) {
+//            // 일치하는 맴버 정보가 없는 경우 빈 결과를 반환합니다.
+//            return result;
+//        }
+//
+//        Member member = memberList.get(0);
+//
+//        for(Cart cart : cartAddList){
+//            Product product = jdbcTemplate.queryForObject(productSql, productRowMapper, cart.getProductId());
+//            product.setQuantity(cart.getQuantity());
+//            result.add(product);
+//        }
+//        return result;
+//    }
     @Override
-    public List<Cart> showCart(Long memberId) {
-        String sql = "select c.member_id, c.product_id, c.quantity, p.name from cart c " +
-                "inner join member m ON c.member_id = m.id " +
-                "inner join product p ON c.product_id = p.id " +
-                "where c.member_id = ?";
+    public List<Product> showCart(Long memberId) {
+        String cartSql = "select * from cart where member_id = ?";
+        List<Cart> cartList = jdbcTemplate.query(cartSql, cartRowMapper, memberId);
 
-        List<Cart> cartItems = jdbcTemplate.query(sql, new Object[]{memberId}, (rs, rowNum) -> {
-            Cart cart = new Cart();
-            cart.setMemberId(rs.getLong("member_id"));
-            cart.setProductId(rs.getLong("product_id"));
-            cart.setQuantity(rs.getInt("quantity"));
-            Product product = new Product();
-            product.setName(rs.getString("name"));
-            cart.setProduct(product);
-            return cart;
-        });
+        List<Product> result = new ArrayList<>();
+        String productSql = "select * from product where id = ?";
 
-        return cartItems;
+        for (Cart cart : cartList) {
+            Product product = jdbcTemplate.queryForObject(productSql, productRowMapper, cart.getProductId());
+            product.setQuantity(cart.getQuantity());
+            result.add(product);
+        }
+
+        return result;
     }
-
     @Override
     public void updateProductQuantity(int quantity, Long id) {
         String sql = "update cart set quantity = quantity + ? where product_id = ?";
@@ -119,16 +147,22 @@ public class JdbcProductRepository implements ProductRepository{
     }
 
     @Override
-    public void truncateTableCart() {
+    public void truncateTableCart(Long memberId) {
         // 상품구매후 장바구니 비워주기
-        jdbcTemplate.update("truncate table cart");
+        jdbcTemplate.update("delete from cart where member_id = ?",memberId);
     }
 
     @Override
     public void deleteCartItem(Long id) {
         // 상품 삭제
-        jdbcTemplate.update("delete from cart where id = ?",id);
+        jdbcTemplate.update("delete from cart where product_id = ?",id);
     }
 
+    @Override
+    public List<Map<String, Object>> getCartItems(Long memberId){
+        String cartItemsSql = "select product_id, quantity from cart where member_id = ?";
+        List<Map<String, Object>> cartItems = jdbcTemplate.queryForList(cartItemsSql, memberId);
+        return cartItems;
+    }
 }
 
