@@ -52,11 +52,6 @@ public class JdbcInquiryRepository implements InquiryRepository {
         return inquiry;
     }
 
-    @Override
-    public void replyInquiry(Long id, String title, String content) {
-        String sql = "update "
-
-    }
 
     @Override
     public Optional<Inquiry> findById(Long id) {
