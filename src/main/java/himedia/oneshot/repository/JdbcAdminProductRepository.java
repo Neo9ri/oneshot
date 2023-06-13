@@ -26,7 +26,7 @@ public class JdbcAdminProductRepository implements AdminProductRepository {
 
         Map<String, Object> parameter= new HashMap<>();
         parameter.put("name", product.getName());
-        parameter.put("quantity", 1);
+        parameter.put("quantity", product.getQuantity());
         parameter.put("type_local", product.getType_local());
         parameter.put("type_kind", product.getType_kind());
         parameter.put("creator", product.getCreator());
