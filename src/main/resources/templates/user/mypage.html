@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="h-100" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,27 +14,31 @@
     <link rel="stylesheet" href="../css/mypage.css"/>
 </head>
 <body>
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <!-- order Modal -->
+    <div class="modal fade" id="order_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">문의 내역</h1>
+                <h1 class="modal-title fs-5" id="order_modal_head_title">문의 내역</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">제목</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="제목" disabled readonly>
-                      </div>
-                      <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">문의 내용</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled readonly></textarea>
-                      </div>
-                      <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">답변</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled readonly></textarea>
-                      </div>
+                    <table class="order_modal_table">
+                        <thead>
+                        <tr>
+                            <th>상품명</th>
+                            <th>상품금액</th>
+                            <th>수량</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="detail : ${purchaseDetailList}">
+                            <td>아무거나</td>
+                            <td th:text="${detail.price"></td>
+                            <td th:text="${detail.quantity"></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
@@ -42,6 +46,35 @@
             </div>
         </div>
     </div>
+    <!--inquiry Modal-->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">문의 내역</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">제목</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="제목" disabled readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">문의 내용</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled readonly></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">답변</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" disabled readonly></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
     <!-- header 시작 -->
     <header>
         <div class="center">
@@ -189,52 +222,49 @@
                         <th>상품금액/배송비</th>
                         <th>총 상품금액</th>
                         <th>주문상태</th>
+                        <th>내용보기</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td >1</td>
-                        <td>170723-521507-00</td>
-                        <td>2023-05-31</td>
-                        <td>58,000/3000</td>
-                        <td>61,000</td>
-                        <td>배송완료</td>
+                    <tr th:each="purchase:${purchaseList}">
+                        <td th:text="${purchase.id}" ></td>
+                        <td th:text="${purchase.member_id}"></td>
+                        <td th:text="${purchase.date_created}"></td>
+                        <td th:text="${purchase.total_price+'/3000'}"></td>
+                        <td th:text="${purchase.total_price+3000}"></td>
+                        <td th:text="${purchase.status}"></td>
+                        <td>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn_order_primary" data-bs-toggle="modal" data-bs-target="#order_modal">
+                                내용보기
+                            </button>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>170723-521507-11</td>
-                        <td>2023-05-27</td>
-                        <td>46,000/3000</td>
-                        <td>49,000</td>
-                        <td>배송준비</td>
-                    </tr>
+<!--                    <tr>-->
+<!--                        <td>2</td>-->
+<!--                        <td>170723-521507-11</td>-->
+<!--                        <td>2023-05-27</td>-->
+<!--                        <td>46,000/3000</td>-->
+<!--                        <td>49,000</td>-->
+<!--                        <td>배송준비</td>-->
+<!--                    </tr>-->
                 </tbody>
             </table>
         </div>
-        <div class="mypage_order_pageMove">
-            <ul>
-                <li>
-                    <a href="#" class="mypage_back">&lt;</a>
-                </li>
-                <li>
-                    <a href="#">1</a>
-                </li>
-                <li>
-                    <a href="#">2</a>
-                </li>
-                <li>
-                    <a href="#">3</a>
-                </li>
-                <li>
-                    <a href="#">4</a>
-                </li>
-                <li>
-                    <a href="#">5</a>
-                </li>
-                <li>
-                    <a href="#" class="mypage_front">&gt;</a>
-                </li>
-            </ul>
+        <div class="d-flex justify-content-center py-5">
+            <nav aria-label="">
+                <ul class="pagination">
+                    <li th:if="${pagination.existPreviousLastPage}" class="page-item">
+                        <a href="#" class="page-link" th:href="@{mypage(page=${pagination.previousLastPage})} + ${'#table'}">&lt;</a>
+                    </li>
+                    <li th:each="page : ${#numbers.sequence(pagination.firstPage,pagination.lastPage)}">
+                        <a class="page-link" th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'" href="#" th:href="@{mypage(page=${page})} + ${'#table'}" th:text="${page}">1</a>
+                    </li>
+                    <li th:if="${pagination.existNextFirstPage}" class="page-item">
+                        <a href="#" class="page-link" th:href="@{mypage(page=${pagination.nextFirstPage})} + ${'#table'}" >&gt;</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
         <hr>
         <div class="mypage_inquiry_search">
@@ -359,7 +389,5 @@
     </footer>
     <!-- footer : END -->
     <script src="/js/header.js"></script>
-
-      
 </body>
 </html>

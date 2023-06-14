@@ -81,14 +81,14 @@ public class AdminProductController {
         }
 
         redirectAttributes.addAttribute("id", updatedProduct.getId());
-        return "redirect:/item-list";
+        return "redirect:/product-list";
     }
 
 
     @PostMapping("/product/{id}/delete")
     public String bookingDelete(@PathVariable("id") Long id) {
         adminProductService.deleteProduct(id);
-        return "redirect:/item-list";
+        return "redirect:/product-list";
     }
 
 
