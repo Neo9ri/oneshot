@@ -18,14 +18,11 @@ public class Inquiry {
     Date date_inquired;//문의일
     Date date_replied; //답변일
 
-    public Inquiry(String type, Long product_id, Long inquirer_id,
-                   String title, String content, Date date_inquired){
-    this.type = type;
-    this.product_id = product_id;
-    this.inquirer_id = inquirer_id;
-    this.title = title;
-    this.content = content;
-    this.date_inquired = date_inquired;
+    public Inquiry(String type,Long inquirer_id, String title, String content){
+        this.type = type;
+        this.inquirer_id=inquirer_id;
+        this.title = title;
+        this.content = content;
     }
 
 }

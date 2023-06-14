@@ -19,9 +19,6 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    @Autowired
-    MemberService memberService;
-
     private final ProductService productService;
 
     public HomeController(ProductService productService){
@@ -33,36 +30,5 @@ public class HomeController {
         List<Product> products = productService.findAll();
         model.addAttribute("products",products);
         return "index";
-    }
-
-    @GetMapping("/test")
-    public String login(HttpServletRequest request, Model model) {
-        HttpSession session = request.getSession();
-        if (session.isNew()) {
-            log.info("최초 유저");
-            return "test";
-        } else {
-            try {
-                LoginDTO loginUser = (LoginDTO) session.getAttribute("loginUser");
-                if (loginUser.getLoginSuccess()){
-                    model.addAttribute("loginUser", loginUser);
-                    log.info("이미 로그인한 유저");
-                    return "result";
-                }
-                log.info("로그인 실패한 사용자");
-                return  "test";
-            } catch (NullPointerException npe) {
-                log.info("로그인 하지 않고 이용하던 사용자");
-                return "test";
-            }
-        }
-    }
-
-    @PostMapping("/result")
-    public String result(HttpServletRequest request, @ModelAttribute LoginDTO loginData, Model model) {
-        LoginDTO loginUser = memberService.loginCheck(loginData);
-        request.getSession().setAttribute("loginUser", loginUser);
-        model.addAttribute("loginUser", loginUser);
-        return "result";
     }
 }

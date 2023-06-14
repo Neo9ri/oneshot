@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS inquiry -- 문의 목록
     content TEXT NOT NULL, -- 문의 내용
     answer TEXT, -- 답변 내용
     date_inquired DATETIME DEFAULT CURRENT_TIMESTAMP, -- 문의 날짜 및 시간
-    date_replied DATETIME, -- 답변 날짜 및 시간
+    date_replied DATETIME ON UPDATE CURRENT_TIMESTAMP, -- 답변 날짜 및 시간
     FOREIGN KEY(inquirer_id) REFERENCES member(id),	-- 외래키 지정
     FOREIGN KEY(product_id) REFERENCES product(id) -- 외래키 지정
 );
@@ -120,15 +120,20 @@ values
 ('초가 한청', 1,'강원, 세종권', '약주/청주', '초가', 15, 19000, 'img/product/thumbnail/초가_한청.jpg', 'img/product/explanation/초가_한청_exp01.jpg', 'img/product/explanation/초가_한청_exp02.jpg', NULL);
 
 INSERT INTO inquiry
-(type, product_id, inquirer_id, title, content, answer, date_inquired, date_replied)
+(type, product_id, inquirer_id, title, content)
 values
-('P', 1, 2, '상품 문의 드립니다.','구매 개수 제한이 있는지 궁금합니다.','한 상품당 구매는 최대 10개까지 가능합니다.', '2023-05-31','2023-06-01'),
-('D', 1, 2, '배송 문의 드립니다.','상품 손상없도록 배송 잘 부탁 드립니다.',NULL, '2023-06-02',NULL),
-('P', 2, 3, '상품이 궁금합니다.','인기가 많은 제품인가요?.',NULL, '2023-06-05',NULL),
-('D', 2, 3, '배송은 퀵으로 받을 수 있나요?.','빨리받고 싶은데 퀵으로 받을 수 있나요?.',NULL, '2023-06-10',NULL);    
+('P', 11, 2, '상품 문의 드립니다.','구매 개수 제한이 있는지 궁금합니다.'),
+('D', 7, 2, '배송 문의 드립니다.','상품 손상없도록 배송 잘 부탁 드립니다.'),
+('P', 5, 3, '상품이 궁금합니다.','인기가 많은 제품인가요?.'),
+('P', 2, 3, '상품이 궁금합니다.','인기가 많은 제품인가요?.'),
+('D', 12, 2, '배송 문의 드립니다.','상품 손상없도록 배송 잘 부탁 드립니다.'),
+('D', NULL, 3, '배송은 퀵으로 받을 수 있나요?.','빨리받고 싶은데 퀵으로 받을 수 있나요?.');
+
+update inquiry set answer="답변드립니다." where id=1;    
+update inquiry set answer="답변드립니다." where id=5;    
 
 
-
+drop table inquiry;
 
 select * from product where id=1;
 
