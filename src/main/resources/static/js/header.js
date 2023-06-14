@@ -12,20 +12,16 @@
       }
     });
 
-    // swiper
-    var swiper = new Swiper(".mySwiper", {
-      spaceBetween: 30,
-      centeredSlides: true,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
+// upButton
+    window.addEventListener("scroll",function(){
+      const upButton = document.getElementById("up");
+      if(window.scrollY>500){
+        upButton.classList.add('show');
+      }else upButton.classList.remove('show');
+    })
+    const scrollToTop = ()=>{
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
+    }
