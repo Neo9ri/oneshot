@@ -21,7 +21,6 @@ public class MemberService {
 		memberRepository.join(member);
 		return "회원 가입 완료!";
 	}
-	    
     
     /**
      * 회원 목록 조회 기능
