@@ -50,7 +50,7 @@ public class ProductController {
         List<Product> cartProducts = productService.showCart(2L);
         int totalPrice = productService.cartTotalPrice(2L);
         model.addAttribute("cartProducts",cartProducts);
-        model.addAttribute("totalPrice",totalPrice+"원");
+        model.addAttribute("totalPrice",totalPrice+3000+"원");
         return "user/item_cart";
     }
 

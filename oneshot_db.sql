@@ -137,5 +137,7 @@ truncate table purchase_detail;
 set autocommit=true;
 delete from cart where member_id = 2;
 select product_id, quantity from cart where member_id = 2;
+select * from purchase where member_id = 2;
+select * from purchase_detail where purchase_id = 2;
 
 DROP TABLE IF EXISTS cart, purchase_detail, purchase, product, inquiry, member;

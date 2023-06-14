@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
-
+<html lang="ko" class="h-100" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -34,16 +33,16 @@
             </button>
           </div>
         </form>
-        <div class="util main">
+        <div class="util main" style="display:none">
           <a href="login.html">로그인</a>|
           <a href="join.html">회원가입</a>
           <a href="../user/item_cart.html" th:href="@{/user/item_cart}"><img src="img/cart.png" alt="장바구니" /></a>
         </div>
-        <div class="util mypage" style="display:none">
+        <div class="util mypage" >
           <div>홍길동님</div>|
           <a href="#">로그아웃</a>
           <a href="user/item_cart.html" th:href="@{/user/item_cart}"><img src="img/cart.png" alt="장바구니" /></a>
-          <a href="mypage.html"><img src="img/util_user.png" alt="마이페이지" /></a>
+          <a href="user/mypage.html" th:href="@{/user/mypage}"><img src="img/util_user.png" alt="마이페이지" /></a>
         </div>
       </div>
     </div>

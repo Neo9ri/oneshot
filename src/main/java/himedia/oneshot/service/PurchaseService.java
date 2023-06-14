@@ -1,10 +1,13 @@
 package himedia.oneshot.service;
 
+import himedia.oneshot.entity.Purchase;
+import himedia.oneshot.entity.PurchaseDetail;
 import himedia.oneshot.repository.PurchaseRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class PurchaseService {
@@ -17,4 +20,11 @@ public class PurchaseService {
         purchaseRepository.placeOrder(memberId,cartItems);
     }
 
+    public List<Purchase> showPurchase(Long memberId){
+        return purchaseRepository.showPurchase(memberId);
+    }
+
+    public List<PurchaseDetail> showPurchaseDetail(Long purchaseId){
+        return purchaseRepository.showPurchaseDetail(purchaseId);
+    }
 }
