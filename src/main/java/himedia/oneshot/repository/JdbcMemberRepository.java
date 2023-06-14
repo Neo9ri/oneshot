@@ -43,8 +43,9 @@ public class JdbcMemberRepository implements MemberRepository {
                 member.setId_card_number(rs.getString("id_card_number"));
                 member.setAddress(rs.getString("address"));
                 member.setGender(rs.getString("gender"));
-                member.setAuthority(rs.getString("authority"));
-                member.setDate_created(rs.getDate("date_created"));
+				member.setAuthority(rs.getString("authority"));
+				member.setDate_created(rs.getDate("date_created"));
+
                 return member;
             }
         };
@@ -68,8 +69,9 @@ public class JdbcMemberRepository implements MemberRepository {
                 member.setPhone_number(rs.getString("phone_number"));
                 member.setAddress(rs.getString("address"));
                 member.setGender(rs.getString("gender"));
-                member.setAuthority(rs.getString("authority"));
-                member.setDate_created(rs.getDate("date_created"));
+				member.setAuthority(rs.getString("authority"));
+				member.setDate_created(rs.getDate("date_created"));
+
                 return member;
             }
         };
@@ -87,9 +89,10 @@ public class JdbcMemberRepository implements MemberRepository {
     		parameters.put("phone_number", member.getPhone_number());
     		parameters.put("id_card_number", member.getId_card_number());
     		parameters.put("address", member.getAddress());
-    		parameters.put("gender", member.getGender());
-    		parameters.put("authority", member.getAuthority());
-    		parameters.put("date_created", member.getDate_created());
+    		parameters.put("gender", member.getGender());		
+			parameters.put("authority", member.getAuthority());
+//			parameters.put("date_created", member.getDate_created());
+			 
     		Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
     		member.setId(key.longValue());
     		return member;
