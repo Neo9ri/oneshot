@@ -31,8 +31,8 @@ public class MemberService {
     }
 
     /**
-     * 로그인 데이터 일치 여부 및 로그인 회원의 권한을 반환합니다.
-     * @param loginData
+     * 로그인 데이터 일치 여부 및 로그인 회원의 권한을 설정합니다.
+     * @param loginData 로그인 시도 시 입력한 값을 받는 매개변수
      * @return
      */
     public LoginDTO loginCheck(LoginDTO loginData){
@@ -47,7 +47,7 @@ public class MemberService {
             LoginDTO loginResult = new LoginDTO(id, loginId, name, auth, true);
             return loginResult;
         } else
-            return new LoginDTO(false);
+            return new LoginDTO();
     }
 
 }

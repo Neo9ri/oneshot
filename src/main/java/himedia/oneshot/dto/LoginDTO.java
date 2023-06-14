@@ -14,8 +14,8 @@ public class LoginDTO {
     private String loginId;
     private String name;
     private String pw;
-    private String auth;
-    private Boolean loginSuccess;
+    private String auth = "A";
+    private Boolean loginSuccess = false;
 
     /**
      *
@@ -41,15 +41,6 @@ public class LoginDTO {
         this.loginId = loginId;
         this.pw = pw;
     }
-
-    /**
-     *
-     * @param loginSuccess 로그인 성공 여부
-     */
-    public LoginDTO(Boolean loginSuccess){
-        this.loginSuccess = loginSuccess;
-    }
-
 }
 
 

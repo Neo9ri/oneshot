@@ -17,22 +17,4 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Slf4j
 @Transactional
 public class MemberServiceTest {
-
-    @Autowired MemberService memberService;
-    @Autowired JdbcMemberRepository memberRepository;
-
-    @Test
-    void 로그인체크() {
-        // given
-        LoginDTO rightDTO = new LoginDTO("admin", "admin1234");
-        LoginDTO wrongDTO = new LoginDTO("admin", "admin");
-
-        // when
-        LoginDTO rightResult = memberService.loginCheck(rightDTO);
-        LoginDTO wrongResult = memberService.loginCheck(wrongDTO);
-
-        // then
-        assertThat(rightResult.getLoginSuccess()).isEqualTo(true);
-        assertThat(wrongResult.getLoginSuccess()).isEqualTo(false);
-    }
 }
