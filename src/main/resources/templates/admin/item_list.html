@@ -98,13 +98,13 @@
       <nav aria-label="">
         <ul class="pagination">
           <li th:if="${pagination.existPreviousLastPage}" class="page-item">
-            <a class="page-link" href="#" th:href="@{item-list(page=${pagination.previousLastPage})} + ${'#table'}" aria-label="Previous">
+            <a class="page-link" href="#" th:href="@{product-list(page=${pagination.previousLastPage})} + ${'#table'}" aria-label="Previous">
               <span>&laquo;</span>
             </a>
           </li>
-          <li th:each="page : ${#numbers.sequence(pagination.firstPage,pagination.lastPage)}" class="page-item"><a class="page-link" th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'" href="#" th:href="@{item-list(page=${page})} + ${'#table'}" th:text="${page}">1</a></li>
+          <li th:each="page : ${#numbers.sequence(pagination.firstPage,pagination.lastPage)}" class="page-item"><a class="page-link" th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'" href="#" th:href="@{product-list(page=${page})} + ${'#table'}" th:text="${page}">1</a></li>
           <li th:if="${pagination.existNextFirstPage}" class="page-item">
-            <a class="page-link" href="#" th:href="@{item-list(page=${pagination.nextFirstPage})} + ${'#table'}" aria-label="Next">
+            <a class="page-link" href="#" th:href="@{product-list(page=${pagination.nextFirstPage})} + ${'#table'}" aria-label="Next">
               <span>&raquo;</span>
             </a>
           </li>
