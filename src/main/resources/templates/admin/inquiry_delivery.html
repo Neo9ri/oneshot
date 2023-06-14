@@ -13,6 +13,7 @@
 </head>
 
 <body>
+<div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
   <!-- header : START -->
   <header>
     <div class="center">
@@ -107,13 +108,13 @@
           <td th:text="${delivery.date_replied !=null ? delivery.date_replied : '미등록'}">2023-06-01.</td>
           <td >
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn_ylw" data-bs-toggle="modal" th:data-bs-target="|#delivery${date_replied}|">보기</button>
+            <button type="button" class="btn btn_ylw" data-bs-toggle="modal" th:data-bs-target="|#delivery${delivery.date_replied}|">보기</button>
             <!-- Modal -->
-            <div class="modal fade" th:id="|delivery${date_replied}|" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" th:id="|delivery${delivery.date_replied}|" tabindex="-1" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h1 class="modal-title fs-5" th:id="|delivery${date_replied}|" >답변내용</h1>
+                    <h1 class="modal-title fs-5" th:id="|delivery${delivery.date_replied}|" >답변내용</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
@@ -127,8 +128,8 @@
               </div>
             </div>
           </td>
-          </td>
-          <td><button class="btn btn_ylw"> 등록 </button></td>
+          <td><button class="btn btn_ylw" type="button" th:onclick="|location.href='@{/inquiry/{inquiryId}/reply(inquiryId=${delivery.id})}'|"
+                      th:disabled="${delivery.answer != null}" th:text="${delivery.answer != null ? '완료' : '등록'}"> 등록 </button></td>
         </tr>
         </tbody>
       </table>
@@ -206,6 +207,7 @@
     </div>
   </footer>
   <!-- footer : END -->
+<script src="/js/header.js"></script>
 </body>
 
 </html>

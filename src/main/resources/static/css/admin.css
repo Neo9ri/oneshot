@@ -229,6 +229,12 @@ table.admin_table button {
   margin-right: 5px;
 }
 
+table.admin_table button:disabled{
+  background-color: #bbb;
+  color:#fff;
+  border:none;
+}
+
 
 
 /* admin table-END */
@@ -299,6 +305,55 @@ input#price, input#alcohol{
 }
 
 /* product_edit-END */
+
+/* reply-START */
+#reply{
+  width: 850px;
+  margin: 0 auto 200px;
+  background-color: #feee8886;
+  padding: 60px;
+}
+#reply h3{
+  font-size: 30px;
+  padding-left: 10px;
+  margin-bottom: 30px;
+}
+#reply form{
+  width: 700px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 30px;
+}
+#reply label{
+  font-size: 18px;
+  line-height: 40px;
+}
+#reply div.row{
+  margin: 15px 0;
+}
+#reply div.row input#title{
+  width: 430px;
+  margin: 0 15px
+}
+#reply .col{
+  margin: 0 15px;
+}
+#reply input:disabled, #reply input[readonly]{
+  background-color: #eeeeee5f;
+}
+#reply textarea{
+  margin-bottom: 10px;
+}
+#reply form>div:last-child{
+  text-align: right;
+}
+#reply form>div:last-child button:last-child{
+  width: 80px ;
+  background-color: #eeeeee;
+  margin-left: 50px;
+}
+
+/* reply-END */
 
 /* pagination-START */
 .pagination li a {
@@ -414,3 +469,20 @@ footer div.social ul {
 }
 
 /* footer-END */
+
+/*up button*/
+div#up.show{
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: #fedf12;
+  background-image: url(/img/up-arrow.png) ;
+  background-position: center center;
+  background-size: 40px;
+  background-repeat: no-repeat;
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 10;
+}

@@ -16,6 +16,7 @@
 </head>
 
 <body>
+<div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
   <!-- header : START -->
   <header>
     <div class="center">
@@ -399,6 +400,25 @@
   </footer>
   <!-- footer : END -->
   <script src="js/header.js"></script>
+<script>
+  // swiper
+  var swiper = new Swiper(".mySwiper", {
+    spaceBetween: 30,
+    centeredSlides: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>
 </body>
 
 </html>

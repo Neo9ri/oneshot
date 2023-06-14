@@ -12,6 +12,7 @@
 </head>
 
 <body>
+<div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
   <!-- header : START -->
   <header>
     <div class="center">
@@ -39,7 +40,7 @@
     <nav class="gnb">
       <ul class="center">
         <li><a href="/member_list">회원관리</a></li>
-        <li><a href="/item-list">상품관리</a></li>
+        <li><a href="/product-list">상품관리</a></li>
         <li><a href="/inquiry/delivery">고객 문의관리</a></li>
       </ul>
     </nav>
@@ -123,7 +124,7 @@
           <hr>
           <div class="row justify-content-end">
             <button type="submit" class="col-2 btn btn_ylw">저장</button>
-            <button type="button" th:onclick="|location.href='@{/item-list}'|" class="col-2 btn btn_default">취소</button>
+            <button type="button" th:onclick="|location.href='@{/product-list}'|" class="col-2 btn btn_default">취소</button>
           </div>
         </div>
         <div class="col-2"></div>
@@ -183,6 +184,7 @@
   </footer>
   <!-- footer : END -->
   <script src="/js/admin_product.js"></script>
+<script src="/js/header.js"></script>
 </body>
 
 </html>

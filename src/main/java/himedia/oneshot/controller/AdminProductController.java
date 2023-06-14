@@ -19,6 +19,15 @@ public class AdminProductController {
 
     private final AdminProductService adminProductService;
 
+    private List<String> typeLocal = List.of(
+            "서울, 경기, 인천권",
+            "강원, 세종권",
+            "충북, 충남, 제주도",
+            "전북, 전남, 경북, 경남"
+    );
+
+    private List<String> typeKind = List.of("증류주", "과실주","약주/청주","숙성 전통주","기타");
+
     @GetMapping("/product/add")
     public String addProduct(Model model) {
         Product product = new Product();
@@ -50,8 +59,8 @@ public class AdminProductController {
     public String editProduct(@PathVariable(name = "id") Long id, Model model) {
         Product product = adminProductService.findById(id).get();
         model.addAttribute("product",product);
-        model.addAttribute("typeLocal", getTypeLocal());
-        model.addAttribute("typeKind", getTypeKind());
+        model.addAttribute("typeLocal", typeLocal);
+        model.addAttribute("typeKind", typeKind);
         model.addAttribute("selectedTypeKind", product.getType_kind());
 
         return "/admin/edit_product";
@@ -75,35 +84,15 @@ public class AdminProductController {
         return "redirect:/item-list";
     }
 
-    private List<String> getTypeLocal() {
-        List<String> typeLocal = new ArrayList<>();
-        typeLocal.add("서울, 경기, 인천권");
-        typeLocal.add("강원, 세종권");
-        typeLocal.add("충북, 충남, 제주도");
-        typeLocal.add("전북, 전남, 경북, 경남");
 
-        return typeLocal;
-    }
-
-    private List<String> getTypeKind() {
-        List<String> typeKind = new ArrayList<>();
-        typeKind.add("증류주");
-        typeKind.add("과실주");
-        typeKind.add("약주/청주");
-        typeKind.add("숙성 전통주");
-        typeKind.add("기타");
-
-        return typeKind;
-    }
-
-    @PostMapping("/product/delete")
-    public String bookingDelete(@RequestParam("id") Long id) {
+    @PostMapping("/product/{id}/delete")
+    public String bookingDelete(@PathVariable("id") Long id) {
         adminProductService.deleteProduct(id);
         return "redirect:/item-list";
     }
 
 
-    @GetMapping("/item-list")
+    @GetMapping("/product-list")
     public String productList(@RequestParam(required = false) Integer page, Model model) {
         List<Product> products = adminProductService.findAll();
         log.info("products 불러오기 완료");
