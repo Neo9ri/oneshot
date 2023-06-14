@@ -42,8 +42,9 @@ public class MemberService {
             Member member = loginMember.get();
             long id = member.getId();
             String loginId = member.getLogin_id();
+            String name = member.getName();
             String auth = member.getAuthority();
-            LoginDTO loginResult = new LoginDTO(id, loginId, auth, true);
+            LoginDTO loginResult = new LoginDTO(id, loginId, name, auth, true);
             return loginResult;
         } else
             return new LoginDTO(false);

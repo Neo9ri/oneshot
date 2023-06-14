@@ -35,7 +35,7 @@ public class TestController {
             return  "test";
         } catch (NullPointerException npe) {
             log.info("로그인 하지 않은 사용자");
-            return "test";
+            return "/test/test";
         }
 //        }
     }
@@ -45,6 +45,6 @@ public class TestController {
         LoginDTO loginUser = memberService.loginCheck(loginData);
         request.getSession().setAttribute("loginUser", loginUser);
         model.addAttribute("loginUser", loginUser);
-        return "result";
+        return "/test/result";
     }
 }

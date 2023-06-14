@@ -14,36 +14,36 @@
 <body>
 <div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
   <!-- header : START -->
-  <header>
-    <div class="center">
-      <div>
-        <h1>
-          <a href="/"><img src="img/oneshot_logo.png" alt="원샷-우리술 한잔" />우리술
-            한 잔,</a>
-        </h1>
-        <form role="search" class="main_search">
-          <div class="row">
-            <input type="search" name="keyword" placeholder="상품명을 입력하세요." class="col form-control"
-              aria-label="Search" />
-            <button type="submit" class="col-1">
-              <img src="img/search.png" alt="검색" />
-            </button>
-          </div>
-        </form>
-        <div class="util">
-          <div>관리자님</div>|
-          <a href="#">로그아웃</a>
-          <a href="mypage.html"><img src="img/util_user.png" alt="마이페이지" /></a>
-        </div>
-      </div>
-    </div>
-    <nav class="gnb">
-      <ul class="center">
-        <li><a href="/member_list">회원관리</a></li>
-        <li><a href="/product-list">상품관리</a></li>
-        <li><a href="/inquiry/delivery">고객 문의관리</a></li>
-      </ul>
-    </nav>
+  <header th:replace="~{header_footer :: #adminHeader}">
+<!--    <div class="center">-->
+<!--      <div>-->
+<!--        <h1>-->
+<!--          <a href="/member-list-fake"><img src="img/oneshot_logo.png" alt="원샷-우리술 한잔" />우리술-->
+<!--            한 잔,</a>-->
+<!--        </h1>-->
+<!--        <form role="search" class="main_search">-->
+<!--          <div class="row">-->
+<!--            <input type="search" name="keyword" placeholder="상품명을 입력하세요." class="col form-control"-->
+<!--              aria-label="Search" />-->
+<!--            <button type="submit" class="col-1">-->
+<!--              <img src="img/search.png" alt="검색" />-->
+<!--            </button>-->
+<!--          </div>-->
+<!--        </form>-->
+<!--        <div class="util">-->
+<!--          <div>관리자님</div>|-->
+<!--          <a href="#">로그아웃</a>-->
+<!--          <a href="mypage.html"><img src="img/util_user.png" alt="마이페이지" /></a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <nav class="gnb">-->
+<!--      <ul class="center">-->
+<!--        <li><a href="/member_list">회원관리</a></li>-->
+<!--        <li><a href="/product-list">상품관리</a></li>-->
+<!--        <li><a href="/inquiry/delivery">고객 문의관리</a></li>-->
+<!--      </ul>-->
+<!--    </nav>-->
   </header>
   <!-- header : END -->
   <!-- container : START -->

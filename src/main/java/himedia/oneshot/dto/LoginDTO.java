@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class LoginDTO {
     private long id;
     private String loginId;
+    private String name;
     private String pw;
     private String auth;
     private Boolean loginSuccess;
@@ -23,9 +24,10 @@ public class LoginDTO {
      * @param auth 회원 상태
      * @param loginSuccess 로그인 성공 여부
      */
-    public LoginDTO(long id, String loginId, String auth, Boolean loginSuccess) {
+    public LoginDTO(long id, String loginId, String name , String auth, Boolean loginSuccess) {
         this.id = id;
         this.loginId = loginId;
+        this.name = name;
         this.auth = auth;
         this.loginSuccess = loginSuccess;
     }
