@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>고객 배송 문의 관리</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
   <link rel="icon" href="/img/favicon-32x32.png" type="image/x-icon" />
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
   <link rel="stylesheet" href="/css/admin.css" />
 </head>
 
 <body>
+<div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
   <!-- header : START -->
   <header>
     <div class="center">
@@ -74,28 +76,60 @@
             <th>답변하기</th>
           </tr>
         </thead>
-        <tbody>
-        <tr>
-          <td>1</td>
-          <td>11</td>
-          <td>2</td>
-          <td>안동 소주 관련...</td>
-          <td><button class="btn btn_ylw"> 보기 </button></td>
-          <td>2023-05-31</td>
-          <td>2023-06-01.</td>
-          <td><button class="btn btn_ylw"> 보기 </button></td>
-          <td><button class="btn btn_ylw"> 등록 </button></td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>11</td>
-          <td>2</td>
-          <td>안동 소주 관련...</td>
-          <td><button class="btn btn_ylw"> 보기 </button></td>
-          <td>2023-05-31</td>
-          <td>2023-06-01.</td>
-          <td><button class="btn btn_ylw"> 보기 </button></td>
-          <td><button class="btn btn_ylw"> 등록 </button></td>
+        <tbody th:unless="${#lists.isEmpty(deliveries)}">
+        <tr th:each="delivery : ${deliveries}">
+          <td th:text="${delivery.id}">1</td>
+          <td th:text="${delivery.product_id != 0 ? delivery.product_id : '미선택'}">11</td>
+          <td th:text="${delivery.inquirer_id}">2</td>
+          <td th:text="${delivery.title}">안동 소주 관련...</td>
+          <td >
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn_ylw" data-bs-toggle="modal" th:data-bs-target="|#delivery${delivery.id}|">보기</button>
+            <!-- Modal -->
+            <div class="modal fade" th:id="|delivery${delivery.id}|" tabindex="-1"  aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" th:id="|delivery${delivery.id}|" th:text="${delivery.title}">문의내용</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p th:text="${delivery.content}">
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn_ylw" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td th:text="${delivery.date_inquired}">2023-05-31</td>
+          <td th:text="${delivery.date_replied !=null ? delivery.date_replied : '미등록'}">2023-06-01.</td>
+          <td >
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn_ylw" data-bs-toggle="modal" th:data-bs-target="|#delivery${delivery.date_replied}|">보기</button>
+            <!-- Modal -->
+            <div class="modal fade" th:id="|delivery${delivery.date_replied}|" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" th:id="|delivery${delivery.date_replied}|" >답변내용</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p th:text="${delivery.answer != null ? delivery.answer : '답변 등록이 필요합니다.'}">
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn_ylw" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td><button class="btn btn_ylw" type="button" th:onclick="|location.href='@{/inquiry/{inquiryId}/reply(inquiryId=${delivery.id})}'|"
+                      th:disabled="${delivery.answer != null}" th:text="${delivery.answer != null ? '완료' : '등록'}"> 등록 </button></td>
         </tr>
         </tbody>
       </table>
@@ -173,6 +207,7 @@
     </div>
   </footer>
   <!-- footer : END -->
+<script src="/js/header.js"></script>
 </body>
 
 </html>

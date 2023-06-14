@@ -7,8 +7,9 @@ import java.util.Optional;
 
 public interface InquiryRepository {
     Inquiry saveInquiry(Inquiry inquiry);
-    void replyInquiry(Long id, String title, String content);
+    Inquiry replyInquiry(Long id, String answer);
     Optional<Inquiry> findById(Long id);
     List<Inquiry> findListByType(String type);
+    List<Inquiry> findListByInquirerId(Long inquirer_id);
 
 }
