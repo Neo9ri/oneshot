@@ -16,6 +16,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Transactional
 class JdbcPurchaseRepositoryTest {
 
     @Autowired
@@ -66,5 +67,9 @@ class JdbcPurchaseRepositoryTest {
             System.out.println("Quantity: " + purchaseDetail.get("quantity"));
             System.out.println("-------------------");
         }
+    }
+    @Test
+    public void showPurchase(){
+        purchaseRepository.showPurchase(2L);
     }
 }

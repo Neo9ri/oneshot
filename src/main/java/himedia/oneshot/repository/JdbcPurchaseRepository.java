@@ -12,8 +12,10 @@ import javax.sql.DataSource;
 import java.math.BigInteger;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Repository
 public class JdbcPurchaseRepository implements PurchaseRepository{
@@ -32,6 +34,7 @@ public class JdbcPurchaseRepository implements PurchaseRepository{
         purchase.setId(rs.getLong("id"));
         purchase.setMember_id(rs.getLong("member_id"));
         purchase.setTotal_price(rs.getInt("total_price"));
+        purchase.setStatus(rs.getString("status"));
         purchase.setDate_created(rs.getDate("date_created"));
 
         return  purchase;
@@ -51,7 +54,7 @@ public class JdbcPurchaseRepository implements PurchaseRepository{
     @Override
     public void placeOrder(Long memberId, List<Map<String, Object>> cartItems) {
         // 1. purchase 테이블에 주문 정보 저장
-        String purchaseInsertSql = "INSERT INTO purchase (member_id, total_price, status) VALUES (?, ?, ?)";
+        String purchaseInsertSql = "insert into purchase (member_id, total_price, status) VALUES (?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(purchaseInsertSql, Statement.RETURN_GENERATED_KEYS);
@@ -65,7 +68,7 @@ public class JdbcPurchaseRepository implements PurchaseRepository{
         Long purchaseId = keyHolder.getKey().longValue();
 
         // 2. purchase_detail 테이블에 주문 상세 내역 저장
-        String purchaseDetailInsertSql = "INSERT INTO purchase_detail (purchase_id, member_id, product_id, price, quantity) VALUES (?, ?, ?, ?, ?)";
+        String purchaseDetailInsertSql = "insert into purchase_detail (purchase_id, member_id, product_id, price, quantity) VALUES (?, ?, ?, ?, ?)";
         for (Map<String, Object> cartItem : cartItems) {
             BigInteger productIdBigInt = (BigInteger) cartItem.get("product_id");
             Long productId = productIdBigInt.longValue();
@@ -93,7 +96,20 @@ public class JdbcPurchaseRepository implements PurchaseRepository{
 
     @Override
     public Integer getProductPrice(Long productId) {
-        String priceSql = "SELECT price FROM product WHERE id = ?";
+        String priceSql = "select price from product where id = ?";
         return jdbcTemplate.queryForObject(priceSql, Integer.class, productId);
+    }
+
+    @Override
+    public List<Purchase> showPurchase(Long memberId) {
+        String sql = "select * from purchase where member_id = ?";
+        return jdbcTemplate.query(sql,purchaseRowMapper,memberId);
+    }
+
+    @Override
+    public List<PurchaseDetail> showPurchaseDetail(Long purchaseId) {
+        String sql = "select * from purchase_detail where purchase_id = ?";
+        List<PurchaseDetail> purchaseDetailList = jdbcTemplate.query(sql,purchaseDetailRowMapper,purchaseId);
+        return purchaseDetailList;
     }
 }
