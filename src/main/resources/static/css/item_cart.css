@@ -48,6 +48,7 @@
   height: 200px;
 }
 .item_cart_table tbody tr {
+  border-top: 1px solid #000;
   text-align: center;
 }
 .cart_tbody_quantity,
@@ -65,6 +66,9 @@
 .cart_tbody_quantity,
 .cart_tbody_btn {
   vertical-align: middle;
+}
+.cart_tbody_quantity form{
+  display: inline-block;
 }
 .cart_tbody_quantity input{
   border: 1px solid #000;
@@ -120,6 +124,7 @@
   font-size: 20px;
   font-weight: 600;
 }
+/* 총 결제금액 */
 .item_cart_total_price{
   display: flex;
   position: relative;
@@ -135,12 +140,16 @@
   font-size: 20px;
   font-weight: 700;
 }
+/* 취소 주문 버튼 */
 .item_cart_btn{
   display: flex;
   padding-top: 60px;
   padding-bottom: 60px;
   position: relative;
   margin-left:400px;
+}
+.item_cart_btn form{
+  display: flex;
 }
 .item_cart_btn button{
   border: 0;

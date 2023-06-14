@@ -139,7 +139,10 @@ SELECT * FROM inquiry;
 SELECT * FROM purchase;
 SELECT * FROM purchase_detail;
 
-insert into cart(member_id,product_id,quantity) values(2,1,1);
+insert into cart(member_id,product_id,quantity) values(2,4,1);
+insert into cart(member_id,product_id,quantity) values(2,5,1);
+insert into cart(member_id,product_id,quantity) values(2,6,1);
+insert into cart(member_id,product_id,quantity) values(3,4,1);
 
 select quantity from cart where product_id = 1;
 
@@ -147,5 +150,10 @@ update cart set quantity = 1 where product_id = 1;
 
 select @@autocommit; -- 자동 커밋 설정 확인
 set autocommit = true; -- 자동 커밋 설정
+
+truncate table cart;
+truncate table purchase_detail;
+delete from cart where member_id = 2;
+select product_id, quantity from cart where member_id = 2;
 
 DROP TABLE IF EXISTS cart, purchase_detail, purchase, product, inquiry, member;

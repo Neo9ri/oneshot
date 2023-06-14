@@ -36,12 +36,12 @@
         <div class="util main">
           <a href="login.html">로그인</a>|
           <a href="join.html">회원가입</a>
-          <a href="../templates/user/item_cart"><img src="img/cart.png" alt="장바구니" /></a>
+          <a href="../user/item_cart.html" th:href="@{/user/item_cart}"><img src="img/cart.png" alt="장바구니" /></a>
         </div>
         <div class="util mypage" style="display:none">
           <div>홍길동님</div>|
           <a href="#">로그아웃</a>
-          <a href="cart.html"><img src="img/cart.png" alt="장바구니" /></a>
+          <a href="user/item_cart.html" th:href="@{/user/item_cart}"><img src="img/cart.png" alt="장바구니" /></a>
           <a href="mypage.html"><img src="img/util_user.png" alt="마이페이지" /></a>
         </div>
       </div>
@@ -104,11 +104,11 @@
       <li th:each="product: ${products}">
         <div class="item_cont" >
           <div class="item_photo_box" >
-            <a href="" th:href="@{/product/item_detail/{id}(id=${product.id})}"><img src="img/dummy_item/1000000898_main_081.jpg" alt=""></a>
+            <a href="item_detail.html" th:href="@{/product/item_detail/{id}(id=${product.id})}"><img src="img/dummy_item/1000000898_main_081.jpg" alt=""></a>
           </div>
           <div class="item_info_cont">
             <div class="item_title_box">
-              <a href="" th:href="@{/product/item_detail/{id}(id=${product.id})}">
+              <a href="item_detail.html" th:href="@{/product/item_detail/{id}(id=${product.id})}">
                 <span class="item_title" th:text="${product.name}" ></span>
               </a>
             </div>
