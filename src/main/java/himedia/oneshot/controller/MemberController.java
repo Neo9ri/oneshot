@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import himedia.oneshot.dto.MemberDTO;
+import himedia.oneshot.entity.Member;
 import himedia.oneshot.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,8 +16,7 @@ public class MemberController {
    
    @Autowired
    MemberService meberService;
-
-
+   
    //로그인 페이지 접속
    @GetMapping("/user/login")
    public String login() {
@@ -28,17 +27,19 @@ public class MemberController {
    
    //회원가입 페이지 접속
    @GetMapping("/join")
-   public String join() { 
+   public String join() {
       return "/user/join";
    }
    
    //회원가입 진행
    @PostMapping("/join")
-   public String join(@ModelAttribute MemberDTO member) {
-      log.info("[POST] join 실행"); 
+   public String join(@ModelAttribute Member member) {
+      log.info("[POST] join 실행");
       meberService.save(member);
       return "/user/join";
    }
-    
+   
 
+
+   
 }

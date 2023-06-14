@@ -24,7 +24,7 @@ import java.util.Optional;
 @Slf4j
 public class JdbcMemberRepository implements MemberRepository {
     private final JdbcTemplate jdbcTemplate;
-
+                                           
     public JdbcMemberRepository(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
@@ -77,9 +77,10 @@ public class JdbcMemberRepository implements MemberRepository {
 
     @Override
     public Member join(Member member) {
-       		SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+    	SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
     		jdbcInsert.withTableName("member").usingGeneratedKeyColumns("id");
     		Map<String, Object> parameters = new HashMap<>();
+    		parameters.put("login_id", member.getLogin_id());
     		parameters.put("pw", member.getPw());
     		parameters.put("email", member.getEmail());
     		parameters.put("name", member.getName());
@@ -93,7 +94,7 @@ public class JdbcMemberRepository implements MemberRepository {
     		member.setId(key.longValue());
     		return member;
     }
-        
+ 
     
 
     @Override
