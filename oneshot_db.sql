@@ -112,8 +112,7 @@ values
 update inquiry set answer="답변드립니다." where id=1;    
 update inquiry set answer="답변드립니다." where id=5;    
 
-
-drop table inquiry;
+set autocommit=true;
 
 select * from product where id=1;
 
