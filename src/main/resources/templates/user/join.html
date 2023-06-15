@@ -137,10 +137,10 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="InputPassword2" class="form-label mt-4">비밀번호 재확인</label>
+              <label for="InputPassword2" class="form-label mt-4">비밀번호 재확인</label> &nbsp;<span id="check"></span>
               <div class="input-img-group">
                 <span><img src="../img/join/pw2.png" alt=""></span>
-                <input type="password" class="form-control" id="pw2" name="pw2" onchange="check_pw()">&nbsp;<span id="check"></span>
+                <input type="password" class="form-control" id="pw2" name="pw2" onchange="check_pw()">
               </div>
             </div>
       	  <div class="form-group">
@@ -255,7 +255,23 @@
   <!-- footer : END -->
   <script>
   
-  //비밀번호
+  
+  //아이디 중복체크
+ 	 $('.id_input').on("propertychange change keyup paste input", function(){
+		console.log("테스트");	
+		});// function 종료
+		
+	var memberId = $('.id_input').val();			// .id_input에 입력되는 값
+	var data = {memberId : memberId}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
+		
+		$.ajax({
+			type : "post",
+			url : "/member/memberIdChk",
+			data : data
+		}); 
+  
+  
+  //비밀번호 체크
         function check_pw(){
             var pw = document.getElementById('pw').value;
             var SC = ["!","@","#","$","%"];
@@ -287,7 +303,7 @@
         }
 
   
-  //전화번호
+  //전화번호 하이픈 추가
 		const autoHyphen = (target) => {
 		 target.value = target.value
 		   .replace(/[^0-9]/g, '')
