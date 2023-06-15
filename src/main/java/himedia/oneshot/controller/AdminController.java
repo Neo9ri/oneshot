@@ -15,9 +15,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@Slf4j
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class AdminController {
 
     private final LoginService loginService;
@@ -46,10 +46,10 @@ public class AdminController {
         // 목록 구현 -- END
         return "/admin/member_list";
     }
+
     @PostMapping("/member-list")
     public String memberListAjax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
         log.info("[POST] member-list");
-        // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
         try {
@@ -60,7 +60,6 @@ public class AdminController {
             log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
-        // 관리자 여부 확인 --END
         // 목록 구현 -- START
         List<Member> members = memberService.makeMemberList();
         pagination.makePagenation(model, members, "members", 10, page,"pagination");
@@ -89,7 +88,28 @@ public class AdminController {
         return "/admin/item_list";
     }
 
-//     문의
+    @PostMapping("/product-list")
+    public String productListAjax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
+        // 관리자 여부 확인 -- START
+        loginService.loginCheck(request, model);
+        LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
+        try {
+            if (!loginUser.getAuth().equals("M")){
+                return "redirect:/";
+            }
+        } catch (NullPointerException npe){
+            log.info("비정상적 관리자 페이지 접근");
+            return "redirect:/";
+        }
+        // 관리자 여부 확인 --END
+        // 목록 구현 -- START
+        List<Product> products = adminProductService.findAll();
+        pagination.makePagenation(model, products, "products", 10, page, "pagination");
+        // 목록 구현 -- END
+        return "/admin/item_list :: section";
+    }
+
+    //     문의
     @GetMapping("/inquiry/delivery")
     public String inquiryDelivery(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
         // 관리자 여부 확인 -- START
@@ -108,8 +128,30 @@ public class AdminController {
         List<Inquiry> deliveries = inquiryService.findListByType("D");
         pagination.makePagenation(model, deliveries, "deliveries", 10, page, "pagination");
         // 목록 구현 -- END
-        return "admin/inquiry_delivery";
+        return "/admin/inquiry_delivery";
     }
+
+    @PostMapping("/inquiry/delivery")
+    public String inquiryDeliveryAjax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
+        // 관리자 여부 확인 -- START
+        loginService.loginCheck(request, model);
+        LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
+        try {
+            if (!loginUser.getAuth().equals("M")){
+                return "redirect:/";
+            }
+        } catch (NullPointerException npe){
+            log.info("비정상적 관리자 페이지 접근");
+            return "redirect:/";
+        }
+        // 관리자 여부 확인 --END
+        // 목록 구현 -- START
+        List<Inquiry> deliveries = inquiryService.findListByType("D");
+        pagination.makePagenation(model, deliveries, "deliveries", 10, page, "pagination");
+        // 목록 구현 -- END
+        return "/admin/inquiry_delivery :: section";
+    }
+
     @GetMapping("/inquiry/product")
     public String inquiryProduct(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
         // 관리자 여부 확인 -- START
@@ -130,11 +172,13 @@ public class AdminController {
         // 목록 구현 -- END
         return "/admin/inquiry_product";
     }
+
     @GetMapping("/inquiry/{id}/reply")
     public String reply(@PathVariable("id") Long id, Model model){
         Inquiry inquiry = inquiryService.findById(id).get();
         model.addAttribute("inquiry", inquiry);
         return "/admin/inquiry_reply";
+
     }
     @PostMapping("/inquiry/{id}/reply")
     public String reply(@PathVariable("id") Long id, @RequestParam("answer") String answer, @RequestParam("type") String type){
@@ -143,6 +187,7 @@ public class AdminController {
             return "redirect:/inquiry/product";
         }else return "redirect:/inquiry/delivery";
     }
+
     @PostMapping("/product/{productId}")
     public String saveInquiry(@PathVariable("productId") Long productId, @RequestParam Long memberId,
                               @ModelAttribute Inquiry inquiry, RedirectAttributes redirectAttributes){
@@ -154,3 +199,4 @@ public class AdminController {
 //        return "redirect:/product/{productId}";
     }
 }
+
