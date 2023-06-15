@@ -112,7 +112,8 @@ values
 update inquiry set answer="답변드립니다." where id=1;    
 update inquiry set answer="답변드립니다." where id=5;    
 
-set autocommit=true;
+
+drop table inquiry;
 
 select * from product where id=1;
 
@@ -139,5 +140,10 @@ delete from cart where member_id = 2;
 select product_id, quantity from cart where member_id = 2;
 select * from purchase where member_id = 2;
 select * from purchase_detail where purchase_id = 2;
+SELECT pd.*, p.name FROM purchase_detail pd INNER JOIN product p ON pd.product_id = p.id WHERE pd.purchase_id = 2;
+
+SELECT pd.*, p.name
+FROM purchase_detail pd
+JOIN product p ON pd.product_id = p.id;
 
 DROP TABLE IF EXISTS cart, purchase_detail, purchase, product, inquiry, member;
