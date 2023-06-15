@@ -30,24 +30,4 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    /**
-     * 로그인 데이터 일치 여부 및 로그인 회원의 권한을 설정합니다.
-     * @param loginData 로그인 시도 시 입력한 값을 받는 매개변수
-     * @return
-     */
-    public LoginDTO loginCheck(LoginDTO loginData){
-        Optional<Member> loginMember = memberRepository.findByLoginId(loginData.getLoginId());
-
-        if (loginMember.isPresent() && loginMember.get().getPw().equals(loginData.getPw())) {
-            Member member = loginMember.get();
-            long id = member.getId();
-            String loginId = member.getLogin_id();
-            String name = member.getName();
-            String auth = member.getAuthority();
-            LoginDTO loginResult = new LoginDTO(id, loginId, name, auth, true);
-            return loginResult;
-        } else
-            return new LoginDTO();
-    }
-
 }

@@ -14,8 +14,7 @@
 <body>
 <div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
   <!-- header : START -->
-  <header th:replace="~{header_footer :: #adminHeader}">
-  </header>
+  <header th:replace="~{/fragment/adminHeader :: #header}"></header>
   <!-- header : END -->
   <!-- container : START -->
   <section class="center">
@@ -85,8 +84,7 @@
   </section>
   <!-- container : END -->
   <!-- footer : START -->
-  <footer th:replace="~{header_footer :: #footer}">
-  </footer>
+  <footer th:replace="~{/fragment/footer :: #footer}"></footer>
   <!-- footer : END -->
 <script src="js/header.js"></script>
 
