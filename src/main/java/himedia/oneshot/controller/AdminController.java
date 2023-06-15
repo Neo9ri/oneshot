@@ -7,7 +7,6 @@ import himedia.oneshot.service.*;
 import himedia.oneshot.entity.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +45,27 @@ public class AdminController {
         pagination.makePagenation(model, members, "members", 10, page,"pagination");
         // 목록 구현 -- END
         return "/admin/member_list";
+    }
+    @PostMapping("/member-list")
+    public String memberListAjax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
+        log.info("[POST] member-list");
+        // 관리자 여부 확인 -- START
+        loginService.loginCheck(request, model);
+        LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
+        try {
+            if (!loginUser.getAuth().equals("M")){
+                return "redirect:/";
+            }
+        } catch (NullPointerException npe){
+            log.info("비정상적 관리자 페이지 접근");
+            return "redirect:/";
+        }
+        // 관리자 여부 확인 --END
+        // 목록 구현 -- START
+        List<Member> members = memberService.makeMemberList();
+        pagination.makePagenation(model, members, "members", 10, page,"pagination");
+        // 목록 구현 -- END
+        return "/admin/member_list :: section";
     }
 
     @GetMapping("/product-list")

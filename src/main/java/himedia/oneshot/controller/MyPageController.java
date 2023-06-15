@@ -31,29 +31,6 @@ public class MyPageController {
         List<Purchase> purchaseList = purchaseService.showPurchase(2L);
         pagination.makePagenation(model, purchaseList,"purchaseList", 4, page, "pagination");
 
-//        int totalItem = purchaseList.size();
-//        int requestPage;
-//        try {
-//            requestPage = page.intValue();
-//        }catch (NullPointerException npe){
-//            requestPage = 1;
-//        }
-//        Pagination pagination = new Pagination(totalItem, 4,requestPage);
-//        model.addAttribute(pagination);
-//
-//        int fromIndex = pagination.getFromIndex();
-//        int toIndex = pagination.getToIndex();
-//
-//        try {
-//            purchaseList = purchaseList.subList(fromIndex, toIndex);
-//            model.addAttribute("purchaseList",purchaseList);
-//        }catch (IndexOutOfBoundsException ioobe){
-//            if(purchaseList.size() != 0){
-//                toIndex = purchaseList.size();
-//                purchaseList = purchaseList.subList(fromIndex, toIndex);
-//                model.addAttribute("purchaseList",purchaseList);
-//            }
-//        }
         return "/user/mypage";
     }
     @PostMapping("/purchaseDetail") // Ajax 요청을 처리할 경로로 설정해야 합니다.
