@@ -6,6 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>상품 수정</title>
+  <script>
+        function addUniqueParam(imageElement) {
+            var timestamp = new Date().getTime(); // 현재 타임스탬프를 고유 파라미터로 사용
+            var imageUrl = imageElement.src;
+            var separator = (imageUrl.indexOf('?') === -1) ? '?' : '&';
+            imageElement.src = imageUrl + separator + 'param=' + timestamp;
+        }
+    </script>
   <link rel="icon" href="/img/favicon-32x32.png" type="image/x-icon" />
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
   <link rel="stylesheet" href="/css/admin.css" />
@@ -55,7 +63,7 @@
     <form class="row align-items-end gy-3" method="post" enctype="multipart/form-data">
       <div class="col"></div>
       <div id="productEditorLeft" class="col-4 text-center">
-        <img th:src="@{'/' + ${product.img_thumb}}" id="thumbnailPreview" alt="상품 이미지 미리보기">
+        <img th:src="@{'/' + ${product.img_thumb}}" id="thumbnailPreview" alt="상품 이미지 미리보기" onload="addUniqueParam(this)" >
         <div>
           <!-- <label for="thumbnail"> 상품 이미지 첨부하기</label> -->
           <input type="file" id="thumbnail" name="thumb" onchange="showThumbnail(this);" required>
@@ -117,9 +125,9 @@
           <input type="file" id="exp" name="exp" multiple onchange="showMultipleExp(this);">
           <div class="btn btn_ylw" onclick="onClickExpUpload();">상품 설명 이미지 첨부하기</div>
           <div id="multipleExpPreview">
-            <img  th:src="@{'/' + ${product.img_exp1}}"  alt="상품 설명 미리보기">
-            <img  th:src="@{'/' + ${product.img_exp2}}"  alt="상품 설명 미리보기">
-            <img  th:src="@{'/' + ${product.img_exp3}}"  alt="상품 설명 미리보기">
+            <img  th:src="@{'/' + ${product.img_exp1}}"  alt="상품 설명 미리보기" class="exp" onload="addUniqueParam(this)">
+            <img  th:src="@{'/' + ${product.img_exp2}}"  alt="상품 설명 미리보기" th:class="${product.img_exp2} == null ? blind : exp" onload="addUniqueParam(this)">
+            <img  th:src="@{'/' + ${product.img_exp3}}"  alt="상품 설명 미리보기" th:class="${product.img_exp3} == null ? blind : exp" onload="addUniqueParam(this)">
           </div>
           <hr>
           <div class="row justify-content-end">

@@ -294,7 +294,7 @@ input#price, input#alcohol{
   display: block;
 }
 
-#multipleExpPreview img{
+#multipleExpPreview img.exp{
   max-width: 776px;
   margin: 0 auto;
   display:block;

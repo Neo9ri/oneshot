@@ -20,8 +20,6 @@ public class AdminProductService {
 
     public void saveProduct(Product product, MultipartFile thumbImgFile,MultipartFile[] expImgFiles)throws Exception{
 
-//        UUID uuid = UUID.randomUUID();
-//        String stringUuid = uuid.toString().replaceAll("-","");
         String thumbImgName = thumbImgFile.getOriginalFilename();
         log.info("이미지이름>>{}",thumbImgName);
         List<String> expImgNames = new ArrayList<>();
@@ -60,8 +58,6 @@ public class AdminProductService {
     }
     public void updateProduct(Long id,Product updatedProduct,MultipartFile thumbImgFile, MultipartFile[] expImgFiles) throws Exception {
 
-//        UUID uuid = UUID.randomUUID();
-//        String stringUuid = uuid.toString().replaceAll("-", "");
         String thumbImgName = thumbImgFile.getOriginalFilename();
         List<String> expImgNames = new ArrayList<>();
         for (MultipartFile img : expImgFiles) {
