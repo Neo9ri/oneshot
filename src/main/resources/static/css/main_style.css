@@ -150,6 +150,96 @@ header nav.gnb > ul > li > ul > li {
 }
 /* header- END */
 
+/* explanation -START*/
+section.story_container .title{
+  font-weight: 700;
+  font-size: 40px;
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+section.story_container div.definition{
+  text-align: center;
+  font-size: 20px;
+  min-width: 1200px;
+  height:420px;
+  color: #fff;
+  background-color: #666;
+  position: relative;
+}
+section.story_container div.definition::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height:100%;
+  background-image: url(/img/story_definition.jpg);
+  background-position: center;
+  background-size: cover;
+  opacity: 0.4;
+  margin: 0;
+}
+section.story_container div.definition>p{
+  padding-top: 90px;
+  font-size: 35px;
+  line-height: 60px;
+  width: 820px;
+  margin: 0 auto;
+  position: relative;
+}
+section.story_container div.definition dl{
+  width: 820px;
+  text-align: left;
+  font-size: 18px;
+  width: 736px;
+  margin: 0 auto;
+  position: relative;
+  margin-top: 40px;
+}
+section.story_container div.definition dl>dt{
+  width: 100px;
+  line-height: 80px;
+}
+section.story_container div.center ul{
+  width: 1000px;
+  margin: 0 auto;
+  font-size: 18px;
+}
+section.story_container div.center ul>li{
+  margin-bottom:30px ;
+}
+section.story_container div.center ul>li>dl{
+  height: 100px;
+}
+section.story_container div.center ul>li dt{
+  width: 100px;
+  background-color: #b39981;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  line-height:100px;
+  height: 100px;
+  font-size: 25px;
+}
+section.story_container div.center ul>li dd{
+  margin-left: 20px;
+  line-height: 1.5;
+}
+section.story_container div.center ul>li:nth-of-type(2n) dd{
+    padding-top: 20px;
+}
+section.story_container .analysis{
+  width: 810px;
+  margin: 50px auto;
+  line-height: 2.5em;
+  font-size: 18px;
+}
+section.story_container iframe~p.analysis{
+  margin-bottom: 200px;
+}
+
+/* explanation-END */
+
 /* product-START */
 section[class$="container"] .title {
   font-weight: 700;
@@ -178,6 +268,9 @@ section[class$="container"] .item_cont {
 }
 section[class$="container"] .item_cont .item_photo_box {
   text-align: center;
+}
+section[class$="container"] .item_cont .item_photo_box img{
+width:248px
 }
 section[class$="container"] .item_info_cont {
   font-weight: 700;

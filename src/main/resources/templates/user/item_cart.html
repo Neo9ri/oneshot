@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
-
+<html lang="ko" class="h-100" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -145,7 +144,7 @@
     </div>
     <div class="item_cart_total_price">
       <h3>총 결제금액</h3>
-      <p th:text="${totalPrice}"></p>
+      <p id="cartItemCount" th:text="${totalPrice}"></p>
     </div>
     <div class="item_cart_btn">
       <form action="" method="post" th:action="@{/user/item_cart/order}" id="orderForm">
@@ -211,15 +210,24 @@
   <!-- footer : END -->
   <script>
     function confirmOrder(event) {
-        event.preventDefault(); // 폼의 기본 동작인 제출을 막습니다.
+    event.preventDefault(); // 폼의 기본 동작인 제출을 막습니다.
 
-        // 주문하기 버튼을 클릭하면 알림창이 표시됩니다.
-        if (confirm('상품을 구매하시겠습니까?')) {
-            // 확인 버튼을 누르면 '상품이 장바구니에 담겼습니다' 알림창이 표시됩니다.
-            alert('상품이 구매되었습니다.');
-            document.getElementById('orderForm').submit(); // 폼을 제출하여 주문 처리를 진행합니다.
-        }
+    // 장바구니 상품 수량을 확인합니다.
+    var cartItemCount = parseInt(document.getElementById('cartItemCount').textContent);
+
+    // 장바구니가 비어있는 경우 메시지를 표시하고 주문을 처리하지 않습니다.
+    if (cartItemCount === 3000) {
+      alert('장바구니가 비어있습니다!');
+      return;
     }
+
+    // 주문하기 버튼을 클릭하면 알림창이 표시됩니다.
+    if (confirm('상품을 구매하시겠습니까?')) {
+      // 확인 버튼을 누르면 '상품이 장바구니에 담겼습니다' 알림창이 표시됩니다.
+      alert('상품이 구매되었습니다.');
+      document.getElementById('orderForm').submit(); // 폼을 제출하여 주문 처리를 진행합니다.
+    }
+  }
 
   </script>
   <script src="/js/header.js"></script>

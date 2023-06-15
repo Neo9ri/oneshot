@@ -78,10 +78,30 @@ CREATE TABLE IF NOT EXISTS cart -- 장바구니 목록
 INSERT INTO member -- 관리자, 유저 생성
 (login_id, pw, email, name, phone_number, id_card_number, address, gender, authority)
 values
-('admin', 'admin1234', 'admin@abc.com', '관리자', '01000000000', '0000000000000', '서울특별시 서대문구 창천동 18-29 7층', 'M', 'M'), -- 관리자
-('member01', 'member1234', 'member01@def.com', '홍길동', '01011111111', '8001011234567', '서울특별시 서대문구 창천동 버티고타워 7층', 'M', 'A'),
-('member02', 'member1234', 'member02@cde.com', '이미자', '01022222222', '7001012345678', '서울특별시 서대문구 창천동 버티고타워 8층', 'F', 'A'),
-('block', 'member1234', 'block@block.com', '사기꾼', '01100000000', '6006061234567', '경상북도 청송군 진보면 양정길 231', 'M', 'B'); -- 차단된 회원
+('admin', 'admin1234', 'admin@abc.com', '관리자', '010-0000-0000', '0000000000000', '서울특별시 서대문구 창천동 18-29 7층', 'M', 'M'), -- 관리자
+('member01', 'member1234', 'member01@def.com', '홍길동', '010-1111-1111', '8001011234567', '서울특별시 서대문구 창천동 버티고타워 7층', 'M', 'A'),
+('member02', 'member1234', 'member02@cde.com', '이미자', '010-2222-2222', '7001012345678', '서울특별시 서대문구 창천동 버티고타워 8층', 'F', 'A'),
+('block', 'member1234', 'block@block.com', '사기꾼', '011-0000-0000', '6006061234567', '경상북도 청송군 진보면 양정길 231', 'M', 'B'); -- 차단된 회원
+
+INSERT INTO member (login_id, pw, email, name, phone_number, id_card_number, address, gender, authority, date_created) -- member 테이블 더미 데이터 100개 생성
+SELECT
+    CONCAT('user', LPAD(ROW_NUMBER() OVER (ORDER BY (SELECT NULL)), 3, '0')) AS login_id,
+    CONCAT('password', LPAD(ROW_NUMBER() OVER (ORDER BY (SELECT NULL)), 3, '0')) AS pw,
+    CONCAT('user', LPAD(ROW_NUMBER() OVER (ORDER BY (SELECT NULL)), 3, '0'), '@example.com') AS email,
+    CONCAT('User', LPAD(ROW_NUMBER() OVER (ORDER BY (SELECT NULL)), 3, '0')) AS name,
+    CONCAT('010-', LPAD(FLOOR(RAND() * 1000), 3, '0'), '-', LPAD(FLOOR(RAND() * 10000), 4, '0')) AS phone_number,
+    CONCAT(LPAD(FLOOR(RAND() * 1000000), 6, '0'), '-', LPAD(FLOOR(RAND() * 100000), 5, '0')) AS id_card_number,
+    CONCAT('Address', LPAD(ROW_NUMBER() OVER (ORDER BY (SELECT NULL)), 3, '0')) AS address,
+    IF(RAND() > 0.5, 'M', 'F') AS gender,
+    CASE
+        WHEN RAND() < 0.1 THEN 'M'
+        WHEN RAND() < 0.3 THEN 'B'
+        ELSE 'A'
+    END AS authority,
+    DATE_SUB(CURRENT_DATE, INTERVAL FLOOR(RAND() * 365) DAY) AS date_created
+FROM
+    information_schema.tables
+LIMIT 100;
 
 INSERT INTO product
 (name, quantity,type_local, type_kind, creator, alcohol, price, img_thumb, img_exp1, img_exp2, img_exp3)
@@ -133,10 +153,19 @@ select quantity from cart where product_id = 1;
 
 update cart set quantity = 1 where product_id = 1;
 
+select @@autocommit; -- 자동 커밋 설정 확인
+set autocommit = true; -- 자동 커밋 설정
+
 truncate table cart;
 truncate table purchase_detail;
-set autocommit=true;
 delete from cart where member_id = 2;
 select product_id, quantity from cart where member_id = 2;
+select * from purchase where member_id = 2;
+select * from purchase_detail where purchase_id = 2;
+SELECT pd.*, p.name FROM purchase_detail pd INNER JOIN product p ON pd.product_id = p.id WHERE pd.purchase_id = 2;
+
+SELECT pd.*, p.name
+FROM purchase_detail pd
+JOIN product p ON pd.product_id = p.id;
 
 DROP TABLE IF EXISTS cart, purchase_detail, purchase, product, inquiry, member;

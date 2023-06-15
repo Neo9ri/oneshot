@@ -3,12 +3,19 @@ package himedia.oneshot.service;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * 페이지네이션 버튼 UI 구현에 필요한 값들을 저장하는 클래스입니다.
  * 활용 예시는 아래의 문서를 참고하세요.
  * @see himedia.oneshot.controller.AdminController
  */
+@Service
 @Getter
 @NoArgsConstructor
 @Slf4j
@@ -28,6 +35,7 @@ public class Pagination {
     private int toIndex; // 슬라이싱에 사용될 끝 인덱스
 
     /**
+     * @deprecated
      * 하단의 페이지 버튼이 최대 5개인 페이지네이션 UI를 구현하는 Pagination 생성자입니다.
      * @param totalItem 전체 목록 개수
      * @param rangeItem 한 페이지 내의 목록 개수
@@ -72,6 +80,7 @@ public class Pagination {
     }
 
     /**
+     * @deprecated
      * 하단의 페이지 버튼을 설정한 수에 따라 페이지네이션 UI를 구현하는 Pagination 생성자입니다.
      * @param totalItem 전체 목록 개수
      * @param rangeItem 한 페이지 내의 목록 개수
@@ -115,5 +124,79 @@ public class Pagination {
 
         fromIndex = rangeItem * (requestPage - 1);
         toIndex = (rangeItem * requestPage);
+    }
+
+    /**
+     * View에서 페이징 처리를 한 뒤 해당 값을 모델로 지정합니다.
+     * 화면에 생성되는 페이지 버튼의 최대 수는 5개입니다.
+     * @param itemList 목록으로 보여줄 타입의 리스트
+     * @param itemListName 목록으로 보여줄 타입의 리스트를 View에서 접근하기 위해서 사용할 이름
+     *                     (ex) ${itemListName.변수}
+     * @param rangeItem 한 페이지에 보여줄 목록의 최대 개수
+     * @param requestPage 요청 페이지 번호
+     * @param pageBtnName 페이지 버튼의 이름
+     *                    (ex) ${pageBtnName.변수}
+     * @see himedia.oneshot.controller.AdminController
+     */
+    public <T> void makePagenation (Model model,
+                           List<T> itemList,
+                           String itemListName,
+                           int rangeItem,
+                           Integer requestPage,
+                           String pageBtnName){
+        this.rangeItem = rangeItem;
+        try {
+            this.requestPage = requestPage;
+
+        } catch (NullPointerException npe){
+            this.requestPage = 1;
+        }
+
+        totalItem = itemList.size();
+
+        totalPage = (int)Math.ceil(totalItem/(float)rangeItem);
+        if (this.requestPage>totalPage)
+            this.requestPage=totalPage;
+        int lastGroup = (totalPage-1)/ button;
+        int currentGroup = (this.requestPage-1)/ button;
+        firstPage = currentGroup * button + 1;
+
+        if (currentGroup != lastGroup)
+            lastPage = firstPage + button -1;
+        else {
+            lastPage = totalPage;
+        }
+
+        if (firstPage == 1)
+            existPreviousLastPage = false;
+        else {
+            previousLastPage = firstPage -1;
+            existPreviousLastPage = true;
+        }
+
+        if (lastPage == totalPage) {
+            existNextFirstPage = false;
+            if(lastPage == 0)
+                lastPage = 1;
+        } else {
+            nextFirstPage = lastPage + 1;
+            existNextFirstPage = true;
+        }
+        fromIndex = rangeItem * (this.requestPage - 1);
+        toIndex = (rangeItem * this.requestPage);
+
+        model.addAttribute(pageBtnName, this);
+
+        try {
+            itemList = itemList.subList(fromIndex, toIndex);
+            model.addAttribute(itemListName, itemList);
+        } catch (IndexOutOfBoundsException ioobe) {
+            if (itemList.size() != 0){
+                toIndex = itemList.size();
+                itemList = itemList.subList(fromIndex,toIndex);
+                model.addAttribute(itemListName, itemList);
+            }
+        }
+
     }
 }

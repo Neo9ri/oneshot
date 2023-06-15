@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <header id="header">
+  <div class="center">
+    <div>
+      <h1>
+        <a href="/"><img src="/img/oneshot_logo.png" alt="원샷-우리술 한잔" />우리술
+          한 잔,</a>
+      </h1>
+      <form role="search" class="main_search">
+        <div class="row">
+          <input type="search" name="keyword" placeholder="상품명을 입력하세요." class="col form-control"
+                 aria-label="Search" />
+          <button type="submit" class="col-1">
+            <img src="/img/search.png" alt="검색" />
+          </button>
+        </div>
+      </form>
+      <div class="util main" th:unless="${user.loginSuccess}">
+        <a href="login.html" th:href="@{/login}">로그인</a>|
+        <a href="join.html" th:href="@{/join}">회원가입</a>
+        <a href="../user/item_cart.html" th:href="@{/user/item_cart}"><img src="img/cart.png" alt="장바구니" /></a>
+      </div>
+      <div class="util mypage" th:if="${user.loginSuccess}">
+        <div th:text="|${user.name} 님|">홍길동님</div>|
+        <a href="#" th:href="@{/logout}">로그아웃</a>
+        <a href="user/item_cart.html" th:href="@{/user/item_cart}"><img src="img/cart.png" alt="장바구니" /></a>
+        <a href="mypage.html"><img src="img/util_user.png" alt="마이페이지" /></a>
+      </div>
+    </div>
+  </div>
+  <nav class="gnb">
+    <div class="gnbbar"></div>
+    <ul class="center">
+      <li><a href="/story">전통주 이야기</a></li>
+      <li>
+        <a href="product/local_total.html">지역별 전통주</a>
+        <ul>
+          <li><a href="/product/local_total.html">전체 상품</a></li>
+          <li><a href="/product/local_seoul.html">서울, 경기, 인천권</a></li>
+          <li><a href="/product/local_kangwon.html">강원, 세종권</a></li>
+          <li><a href="/product/local_choongbook.html">충북, 충남, 제주도</a></li>
+          <li><a href="/product/local_jeonbook.html">전북, 전남, 경북, 경남</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="product/type_spirits.html">주종별 전통주</a>
+        <ul>
+          <li><a href="product/type_spirits.html">증류주</a></li>
+          <li><a href="product/type_fruitwine.html">과실주</a></li>
+          <li><a href="product/type_ricewine.html">약주 / 청주</a></li>
+          <li><a href="product/type_traditional.html">숙성 전통주</a></li>
+          <li><a href="product/type_etc.html">기타주</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="product/price_10000.html">가격별 전통주</a>
+        <ul>
+          <li><a href="product/price_10000.html">10,000원 이하 제품</a></li>
+          <li><a href="product/price_20000.html">20,000원 이하 제품</a></li>
+          <li><a href="product/price_30000.html">30,000원 이하 제품</a></li>
+          <li><a href="product/price_40000.html">40,000원 이하 제품</a></li>
+          <li><a href="product/price_50000.html">50,000원 이하 제품</a></li>
+          <li><a href="product/price_50000_more.html">50,000원 이상 제품</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</header>
+</body>
+</html>

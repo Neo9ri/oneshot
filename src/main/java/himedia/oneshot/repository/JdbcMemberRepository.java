@@ -1,6 +1,5 @@
 package himedia.oneshot.repository;
 
-import himedia.oneshot.dto.MemberDTO;
 import himedia.oneshot.entity.Member;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -8,7 +7,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -114,12 +112,13 @@ public class JdbcMemberRepository implements MemberRepository {
 
     }
 
-   @Override
-    public Member findById(int memberId) {
-        return null;
-   }
-   
-    
+    @Override
+    public Optional<Member> findByLoginId(String loginId) {
+        String sql = "SELECT * FROM MEMBER WHERE login_id = ?;";
+        List<Member> memberList = jdbcTemplate.query(sql, memberRowMapper(), loginId);
+        return memberList.stream().findAny();
+    }
+
     /**
      * 아래의 필드를 조회한 모든 member를 List로 반환합니다.
      * 단, 관리자는 제외합니다.

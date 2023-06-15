@@ -2,6 +2,7 @@ package himedia.oneshot.controller;
 
 import himedia.oneshot.entity.Product;
 import himedia.oneshot.service.AdminProductService;
+import himedia.oneshot.service.LoginService;
 import himedia.oneshot.service.Pagination;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @Slf4j
@@ -18,6 +21,7 @@ import java.util.*;
 public class AdminProductController {
 
     private final AdminProductService adminProductService;
+    private final LoginService loginService;
 
     private List<String> typeLocal = List.of(
             "서울, 경기, 인천권",
@@ -81,48 +85,13 @@ public class AdminProductController {
         }
 
         redirectAttributes.addAttribute("id", updatedProduct.getId());
-        return "redirect:/item-list";
+        return "redirect:/product-list";
     }
 
 
     @PostMapping("/product/{id}/delete")
     public String bookingDelete(@PathVariable("id") Long id) {
         adminProductService.deleteProduct(id);
-        return "redirect:/item-list";
+        return "redirect:/product-list";
     }
-
-
-    @GetMapping("/product-list")
-    public String productList(@RequestParam(required = false) Integer page, Model model) {
-        List<Product> products = adminProductService.findAll();
-        log.info("products 불러오기 완료");
-        int totalItem = products.size();
-        log.info("products 개수 >> " + products.size());
-        int requestPage;
-        try {
-            requestPage = page.intValue();
-        } catch (NullPointerException npe) {
-            log.info("npe 발생");
-            requestPage = 1;
-        };
-        Pagination pagination = new Pagination(totalItem,10, requestPage);
-        model.addAttribute(pagination);
-
-        int fromIndex = pagination.getFromIndex();
-        int toIndex = pagination.getToIndex();
-
-        try {
-            products = products.subList(fromIndex, toIndex);
-            model.addAttribute("products", products);
-        } catch (IndexOutOfBoundsException ioobe) {
-            if (products.size() != 0){
-                toIndex = products.size();
-                products = products.subList(fromIndex,toIndex);
-                model.addAttribute("products", products);
-            }
-        }
-        return "/admin/item_list";
-    }
-
-
 }
