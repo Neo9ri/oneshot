@@ -11,6 +11,7 @@ public class PurchaseDetail {
     private Long product_id; // 주줌 상품별 고유 번호
     private int price; // 주문상품의 개당 가격
     private int quantity; // 주문 상품의 수량
+    private String productName; // 추가된 필드 주문 상품의 이름
 
     public PurchaseDetail(Long member_id, Long product_id, int price, int quantity){
         this.member_id = member_id;
@@ -18,4 +19,5 @@ public class PurchaseDetail {
         this.price = price;
         this.quantity = quantity;
     }
+
 }
