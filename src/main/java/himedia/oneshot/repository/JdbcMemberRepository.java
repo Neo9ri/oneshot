@@ -94,8 +94,7 @@ public class JdbcMemberRepository implements MemberRepository {
     		parameters.put("address", member.getAddress());
     		parameters.put("gender", member.getGender());		
 			parameters.put("authority", "A");
-//			parameters.put("date_created", member.getDate_created());
-			 
+			parameters.put("date_created", member.getDate_created());	
     		Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
     		log.info("key >> "+ key);
     		member.setId(key.longValue());
