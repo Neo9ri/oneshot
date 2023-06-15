@@ -52,6 +52,7 @@ public class JdbcInquiryRepository implements InquiryRepository {
     }
 
     @Override
+
     public Inquiry replyInquiry(Long id, String answer) {
         String sql = "update inquiry set answer=? where id=?";
         jdbcTemplate.update(sql,answer,id);

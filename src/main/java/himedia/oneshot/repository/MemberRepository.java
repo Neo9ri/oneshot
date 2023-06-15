@@ -4,6 +4,7 @@ import himedia.oneshot.dto.MemberDTO;
 import himedia.oneshot.entity.Member;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * member 테이블에서 사용할 기능들을 선언한 인터페이스입니다.
@@ -15,7 +16,7 @@ public interface MemberRepository {
 
     Member join(Member member);
     Member edit(Member member);
-    void ban(int memberId);
-    Member findById(int memberId);
+    void ban(int loginId);
+    Optional<Member> findByLoginId(String loginId);
     List<Member> findAll();
 }
