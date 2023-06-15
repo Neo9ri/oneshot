@@ -39,7 +39,7 @@
       <li th:each="product: ${products}">
         <div class="item_cont" >
           <div class="item_photo_box" >
-            <a href="item_detail.html" th:href="@{/product/item_detail/{id}(id=${product.id})}"><img src="img/dummy_item/1000000898_main_081.jpg" alt=""></a>
+            <a href="item_detail.html" th:href="@{/product/item_detail/{id}(id=${product.id})}"><img src="img/dummy_item/1000000898_main_081.jpg" alt="" th:src="${product.img_thumb}"></a>
           </div>
           <div class="item_info_cont">
             <div class="item_title_box">
