@@ -1,0 +1,2298 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>전통주 이야기</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <link rel="icon" href="/img/favicon-32x32.png" type="image/x-icon" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/main_style.css" />
+</head>
+
+<body>
+  <div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
+  <!-- header : START -->
+  <header>
+    <div class="center">
+      <div>
+        <h1>
+          <a href="/"><img src="/img/oneshot_logo.png" alt="원샷-우리술 한잔" />우리술
+            한 잔,</a>
+        </h1>
+        <form role="search" class="main_search">
+          <div class="row">
+            <input type="search" name="keyword" placeholder="상품명을 입력하세요." class="col form-control"
+              aria-label="Search" />
+            <button type="submit" class="col-1">
+              <img src="/img/search.png" alt="검색" />
+            </button>
+          </div>
+        </form>
+        <div class="util main">
+          <a href="login.html">로그인</a>|
+          <a href="join.html">회원가입</a>
+          <a href="cart.html"><img src="/img/cart.png" alt="장바구니" /></a>
+        </div>
+        <div class="util mypage" style="display:none">
+          <div>홍길동님</div>|
+          <a href="#">로그아웃</a>
+          <a href="cart.html"><img src="/img/cart.png" alt="장바구니" /></a>
+          <a href="mypage.html"><img src="/img/user.png" alt="마이페이지" /></a>
+        </div>
+      </div>
+    </div>
+    <nav class="gnb">
+      <div class="gnbbar"></div>
+      <ul class="center">
+        <li><a href="">전통주 이야기</a></li>
+        <li>
+          <a href="">지역별 전통주</a>
+          <ul>
+            <li><a href="">전체 상품</a></li>
+            <li><a href="">서울, 경기, 인천권</a></li>
+            <li><a href="">강원, 세종권</a></li>
+            <li><a href="">충북, 충남, 제주도</a></li>
+            <li><a href="">전북, 전남, 경북, 경남</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="">주종별 전통주</a>
+          <!-- <div class="gnbbar"></div> -->
+          <ul>
+            <li><a href="">증류주</a></li>
+            <li><a href="">과실주</a></li>
+            <li><a href="">약주 / 청주</a></li>
+            <li><a href="">숙성 전통주</a></li>
+            <li><a href="">기타주</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="">가격별 전통주</a>
+          <!-- <div class="gnbbar"></div> -->
+          <ul>
+            <li><a href="">10,000원 이하 제품</a></li>
+            <li><a href="">20,000원 이하 제품</a></li>
+            <li><a href="">30,000원 이하 제품</a></li>
+            <li><a href="">40,000원 이하 제품</a></li>
+            <li><a href="">50,000원 이하 제품</a></li>
+            <li><a href="">50,000원 이상 제품</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <!-- header : END -->
+  <!-- container : START -->
+  <section class="story_container">
+    <h3 class="title center">전통주란?</h3>
+    <div class="definition">
+      <p>전통적으로 이어져오는 양조법을 계승하여 빚는 술로,<br>한국의 정서 및 시대상을 반영하는 술로서 과거의 생활방식,<br>역사와 문화가 담겨있는 술입니다.</p>
+      <dl class="row">
+        <dt class="col-2">법적정의</dt>
+        <dd class="col">‘전통주 등의 산업 진흥에 관한 법률에따라 주류부문의 무형문화재 보유자가 제조한 술이나<br>대한민국 식품 명인이 제조한술, 또는 지역 특산주와 같은 농어업경영체 또는
+          생산자 단체가 지역 농산물을 주원료로 제조한 술을 의미합니다.</dd>
+      </dl>
+    </div>
+    <div class="center">
+      <h3 class="title">전통주 종류</h3>
+      <ul>
+        <li>
+          <dl class="row">
+            <dt class="col-2">탁주</dt>
+            <dd class="col">곡류(쌀, 밀, 보리 등) 원료에 국(누룩, 입국 등)과 물을 섞어 일정한 온도에서 발효시킨 술덧을 체 등으로 걸러 제조한 술이다.
+              '탁하게 빚은 술'이라고 하여 탁주, '방금 막 거른 술'이라고하여 막걸리라고도 한다.
+              탁주의 주원료는 멥쌀, 밀누룩 그리고 물이다. 멥쌀 고두밥을 찐 뒤에 이를 식혀서 물과 함께 빻은 누룩을 비벼 항아리에 담는다.
+              항아리를 25도 전후의 따뜻한 곳에 놓아두면 술이 발효되기 시작하여 빠르게는 4~5일 만에, 더디게는 7~8일 만에 완성된다.</dd>
+          </dl>
+        </li>
+        <li>
+          <dl class="row">
+            <dt class="col-2">약/청주</dt>
+            <dd class="col">막걸리와 같은 방식으로 술을 빚고 발효시킨 술덧에서 술지게미를 걸러내어 맑게 만든 술이다.
+              곡류 중 쌀을 원료로 하고 누룩을 1% 이상 사용하면 약주, 1% 미만을 사용하면 일본 사케 방식인 청주라고 한다.</dd>
+          </dl>
+        </li>
+        <li>
+          <dl class="row">
+            <dt class="col-1">증류주</dt>
+            <dd class="col">막걸리, 약주, 청주와 같은 발효주를 증류하여 만든 술로, 주세법상의 증류식소주, 일반 증류주, 리큐르 등이 있다.
+              대표적인 한국 증류주인 소주는 '불로 익혀 만든 진한 술'이라는 뜻으로, 곡물을 발효시켜 증류한 술인 증류식 소주와 주정을 물에 희석하여 제조한 희석식 소주가 있다.</dd>
+          </dl>
+        </li>
+        <li>
+          <dl class="row">
+            <dt class="col-2">과실주</dt>
+            <dd class="col">과실을 발효시켜 만든 술을 말한다. 지역 대표 과실의 특성을 살려 만드는 경우가 많으며, 포도, 복분자, 머루, 사과, 복숭아, 딸기 등 다양한 과실이 사용된다.
+            </dd>
+          </dl>
+        </li>
+      </ul>
+      <h3 class="title">검색량으로 보는 전통주이야기</h3>
+      <p class="analysis">최근 전통주의 인기는 심상치 않습니다. 2017년 7월, 전통주의 온라인 판매가 허용이후 전통주는 더이상 명절용 술이 아닌 일상에서 즐길 수 있는 술로 자리잡았습니다.
+        전통주에 대한 관심을 확인해보고자 포털사이트 네이버의 주종별로 검색량을 비교해보았습니다.
+        아래의 그래프는 2018년 1월부터 2023년 5월까지 소주, 맥주, 전통주의 검색량을 비교한 그래프로 최대 검색량을 100으로 보았을 때의 검색량 추이 그래프입니다.</p>
+      <div id="graph1">
+        <script>
+          var graphs = {
+            "data": [
+              {
+                "line": {
+                  "dash": "solid",
+                  "color": "rgb(102,194,165)"
+                },
+                "meta": {
+                  "columnNames": {
+                    "x": "data.0.x",
+                    "y": "data.0.y"
+                  }
+                },
+                "mode": "lines",
+                "name": "소주",
+                "type": "scatter",
+                "xsrc": "jooeunjung0429:20:f1f752",
+                "x": [
+                  "2018-01-01",
+                  "2018-02-01",
+                  "2018-03-01",
+                  "2018-04-01",
+                  "2018-05-01",
+                  "2018-06-01",
+                  "2018-07-01",
+                  "2018-08-01",
+                  "2018-09-01",
+                  "2018-10-01",
+                  "2018-11-01",
+                  "2018-12-01",
+                  "2019-01-01",
+                  "2019-02-01",
+                  "2019-03-01",
+                  "2019-04-01",
+                  "2019-05-01",
+                  "2019-06-01",
+                  "2019-07-01",
+                  "2019-08-01",
+                  "2019-09-01",
+                  "2019-10-01",
+                  "2019-11-01",
+                  "2019-12-01",
+                  "2020-01-01",
+                  "2020-02-01",
+                  "2020-03-01",
+                  "2020-04-01",
+                  "2020-05-01",
+                  "2020-06-01",
+                  "2020-07-01",
+                  "2020-08-01",
+                  "2020-09-01",
+                  "2020-10-01",
+                  "2020-11-01",
+                  "2020-12-01",
+                  "2021-01-01",
+                  "2021-02-01",
+                  "2021-03-01",
+                  "2021-04-01",
+                  "2021-05-01",
+                  "2021-06-01",
+                  "2021-07-01",
+                  "2021-08-01",
+                  "2021-09-01",
+                  "2021-10-01",
+                  "2021-11-01",
+                  "2021-12-01",
+                  "2022-01-01",
+                  "2022-02-01",
+                  "2022-03-01",
+                  "2022-04-01",
+                  "2022-05-01",
+                  "2022-06-01",
+                  "2022-07-01",
+                  "2022-08-01",
+                  "2022-09-01",
+                  "2022-10-01",
+                  "2022-11-01",
+                  "2022-12-01",
+                  "2023-01-01",
+                  "2023-02-01",
+                  "2023-03-01",
+                  "2023-04-01",
+                  "2023-05-01"
+                ],
+                "ysrc": "jooeunjung0429:20:09f69a",
+                "y": [
+                  26.21782,
+                  21.33117,
+                  26.50191,
+                  25.93726,
+                  25.99662,
+                  24.99844,
+                  24.59327,
+                  22.43478,
+                  20.86428,
+                  23.31808,
+                  23.85556,
+                  28.94007,
+                  28.21742,
+                  22.86122,
+                  28.3196,
+                  32.00105,
+                  40.11936,
+                  46.84909,
+                  68.6516,
+                  62.59786,
+                  43.24502,
+                  39.36541,
+                  41.11488,
+                  44.81464,
+                  42.02299,
+                  65.63521,
+                  44.67023,
+                  48.59502,
+                  42.70665,
+                  37.44259,
+                  37.19423,
+                  35.67304,
+                  39.22809,
+                  33.54793,
+                  32.77596,
+                  36.78669,
+                  45.71447,
+                  41.22474,
+                  38.51962,
+                  31.45146,
+                  35.87888,
+                  32.7482,
+                  28.51422,
+                  60.40423,
+                  26.45939,
+                  28.88396,
+                  27.21658,
+                  28.94154,
+                  30.93878,
+                  31.64105,
+                  31.91481,
+                  29.09068,
+                  29.67689,
+                  31.93549,
+                  27.91177,
+                  28.96487,
+                  36.95591,
+                  56.76649,
+                  55.30998,
+                  51.39346,
+                  50.50189,
+                  45.60078,
+                  49.89708,
+                  40.88129,
+                  38.13216
+                ],
+                "xaxis": "x",
+                "yaxis": "y",
+                "marker": {
+                  "symbol": "circle"
+                },
+                "showlegend": true,
+                "legendgroup": "소주",
+                "orientation": "v",
+                "hovertemplate": "variable=소주<br>index=%{x}<br>value=%{y}<extra></extra>"
+              },
+              {
+                "line": {
+                  "dash": "solid",
+                  "color": "rgb(252,141,98)"
+                },
+                "meta": {
+                  "columnNames": {
+                    "x": "data.1.x",
+                    "y": "data.1.y"
+                  }
+                },
+                "mode": "lines",
+                "name": "맥주",
+                "type": "scatter",
+                "xsrc": "jooeunjung0429:20:ad8679",
+                "x": [
+                  "2018-01-01",
+                  "2018-02-01",
+                  "2018-03-01",
+                  "2018-04-01",
+                  "2018-05-01",
+                  "2018-06-01",
+                  "2018-07-01",
+                  "2018-08-01",
+                  "2018-09-01",
+                  "2018-10-01",
+                  "2018-11-01",
+                  "2018-12-01",
+                  "2019-01-01",
+                  "2019-02-01",
+                  "2019-03-01",
+                  "2019-04-01",
+                  "2019-05-01",
+                  "2019-06-01",
+                  "2019-07-01",
+                  "2019-08-01",
+                  "2019-09-01",
+                  "2019-10-01",
+                  "2019-11-01",
+                  "2019-12-01",
+                  "2020-01-01",
+                  "2020-02-01",
+                  "2020-03-01",
+                  "2020-04-01",
+                  "2020-05-01",
+                  "2020-06-01",
+                  "2020-07-01",
+                  "2020-08-01",
+                  "2020-09-01",
+                  "2020-10-01",
+                  "2020-11-01",
+                  "2020-12-01",
+                  "2021-01-01",
+                  "2021-02-01",
+                  "2021-03-01",
+                  "2021-04-01",
+                  "2021-05-01",
+                  "2021-06-01",
+                  "2021-07-01",
+                  "2021-08-01",
+                  "2021-09-01",
+                  "2021-10-01",
+                  "2021-11-01",
+                  "2021-12-01",
+                  "2022-01-01",
+                  "2022-02-01",
+                  "2022-03-01",
+                  "2022-04-01",
+                  "2022-05-01",
+                  "2022-06-01",
+                  "2022-07-01",
+                  "2022-08-01",
+                  "2022-09-01",
+                  "2022-10-01",
+                  "2022-11-01",
+                  "2022-12-01",
+                  "2023-01-01",
+                  "2023-02-01",
+                  "2023-03-01",
+                  "2023-04-01",
+                  "2023-05-01"
+                ],
+                "ysrc": "jooeunjung0429:20:666325",
+                "y": [
+                  56.39823,
+                  40.98199,
+                  37.18478,
+                  35.60246,
+                  37.55511,
+                  39.49831,
+                  41.98548,
+                  38.13305,
+                  31.64342,
+                  29.9031,
+                  27.81785,
+                  24.48961,
+                  29.6258,
+                  28.74811,
+                  49.14667,
+                  50.17261,
+                  49.85248,
+                  48.54688,
+                  71.68807,
+                  73.81171,
+                  44.59079,
+                  41.7321,
+                  33.38934,
+                  41.53158,
+                  43.53502,
+                  55.27808,
+                  50.46793,
+                  43.61564,
+                  44.27243,
+                  42.56254,
+                  53.06644,
+                  53.14056,
+                  40.54403,
+                  48.63902,
+                  42.58469,
+                  37.56515,
+                  81.65744,
+                  47.41817,
+                  41.27317,
+                  40.35975,
+                  88.83694,
+                  92.7192,
+                  57.20533,
+                  49.55037,
+                  74.67108,
+                  48.65054,
+                  34.05322,
+                  36.28849,
+                  35.34406,
+                  42.17685,
+                  33.08044,
+                  34.99706,
+                  60.84543,
+                  36.46893,
+                  33.76351,
+                  23.8027,
+                  19.90124,
+                  19.65642,
+                  22.6799,
+                  21.82495,
+                  19.93343,
+                  19.23411,
+                  24.13375,
+                  25.23942,
+                  23.57324
+                ],
+                "xaxis": "x",
+                "yaxis": "y",
+                "marker": {
+                  "symbol": "circle"
+                },
+                "showlegend": true,
+                "legendgroup": "맥주",
+                "orientation": "v",
+                "hovertemplate": "variable=맥주<br>index=%{x}<br>value=%{y}<extra></extra>"
+              },
+              {
+                "line": {
+                  "dash": "solid",
+                  "color": "rgb(141,160,203)"
+                },
+                "meta": {
+                  "columnNames": {
+                    "x": "data.2.x",
+                    "y": "data.2.y"
+                  }
+                },
+                "mode": "lines",
+                "name": "전통주",
+                "type": "scatter",
+                "xsrc": "jooeunjung0429:20:dea9ac",
+                "x": [
+                  "2018-01-01",
+                  "2018-02-01",
+                  "2018-03-01",
+                  "2018-04-01",
+                  "2018-05-01",
+                  "2018-06-01",
+                  "2018-07-01",
+                  "2018-08-01",
+                  "2018-09-01",
+                  "2018-10-01",
+                  "2018-11-01",
+                  "2018-12-01",
+                  "2019-01-01",
+                  "2019-02-01",
+                  "2019-03-01",
+                  "2019-04-01",
+                  "2019-05-01",
+                  "2019-06-01",
+                  "2019-07-01",
+                  "2019-08-01",
+                  "2019-09-01",
+                  "2019-10-01",
+                  "2019-11-01",
+                  "2019-12-01",
+                  "2020-01-01",
+                  "2020-02-01",
+                  "2020-03-01",
+                  "2020-04-01",
+                  "2020-05-01",
+                  "2020-06-01",
+                  "2020-07-01",
+                  "2020-08-01",
+                  "2020-09-01",
+                  "2020-10-01",
+                  "2020-11-01",
+                  "2020-12-01",
+                  "2021-01-01",
+                  "2021-02-01",
+                  "2021-03-01",
+                  "2021-04-01",
+                  "2021-05-01",
+                  "2021-06-01",
+                  "2021-07-01",
+                  "2021-08-01",
+                  "2021-09-01",
+                  "2021-10-01",
+                  "2021-11-01",
+                  "2021-12-01",
+                  "2022-01-01",
+                  "2022-02-01",
+                  "2022-03-01",
+                  "2022-04-01",
+                  "2022-05-01",
+                  "2022-06-01",
+                  "2022-07-01",
+                  "2022-08-01",
+                  "2022-09-01",
+                  "2022-10-01",
+                  "2022-11-01",
+                  "2022-12-01",
+                  "2023-01-01",
+                  "2023-02-01",
+                  "2023-03-01",
+                  "2023-04-01",
+                  "2023-05-01"
+                ],
+                "ysrc": "jooeunjung0429:20:ffd0d5",
+                "y": [
+                  51.35684,
+                  47.58266,
+                  50.87547,
+                  50.45434,
+                  59.25101,
+                  50.83235,
+                  53.53659,
+                  57.88014,
+                  55.77392,
+                  52.48584,
+                  50.25825,
+                  55.08347,
+                  51.5485,
+                  49.82797,
+                  53.66033,
+                  50.62533,
+                  55.56602,
+                  48.59531,
+                  56.98473,
+                  53.94738,
+                  63.91498,
+                  51.15218,
+                  49.68799,
+                  49.23379,
+                  54.75241,
+                  91.16287,
+                  66.93373,
+                  59.56759,
+                  100,
+                  63.98261,
+                  73.47859,
+                  92.51071,
+                  60.22645,
+                  56.5385,
+                  72.24917,
+                  77.70224,
+                  68.31877,
+                  60.98601,
+                  69.12086,
+                  66.2669,
+                  69.96547,
+                  62.33768,
+                  71.98723,
+                  71.39363,
+                  61.06456,
+                  61.96263,
+                  56.7656,
+                  58.64767,
+                  63.83524,
+                  57.37573,
+                  63.60312,
+                  60.93314,
+                  63.31814,
+                  71.09891,
+                  63.49622,
+                  97.0217,
+                  64.38808,
+                  62.74433,
+                  58.33906,
+                  61.90917,
+                  63.13711,
+                  56.95165,
+                  62.31701,
+                  63.6173,
+                  63.81575
+                ],
+                "xaxis": "x",
+                "yaxis": "y",
+                "marker": {
+                  "symbol": "circle"
+                },
+                "showlegend": true,
+                "legendgroup": "전통주",
+                "orientation": "v",
+                "hovertemplate": "variable=전통주<br>index=%{x}<br>value=%{y}<extra></extra>"
+              }
+            ],
+            "layout": {
+              "font": {
+                "size": 14,
+                "color": "rgb(43, 24, 7)"
+              },
+              "title": {
+                "font": {
+                  "size": 20
+                },
+                "text": "월별로보는 주종별 검색량 추이(2018-01 ~2023-05)"
+              },
+              "xaxis": {
+                "type": "date",
+                "range": [
+                  "2018-01-01",
+                  "2023-05-01"
+                ],
+                "title": {
+                  "text": "기간"
+                },
+                "anchor": "y",
+                "domain": [
+                  0,
+                  1
+                ],
+                "autorange": true
+              },
+              "yaxis": {
+                "type": "linear",
+                "range": [
+                  14.747116111111112,
+                  104.48699388888889
+                ],
+                "title": {
+                  "text": "검색량"
+                },
+                "anchor": "x",
+                "domain": [
+                  0,
+                  1
+                ],
+                "autorange": true
+              },
+              "legend": {
+                "title": {
+                  "text": "variable"
+                },
+                "tracegroupgap": 0
+              },
+              "margin": {
+                "t": 60
+              },
+              "template": {
+                "data": {
+                  "bar": [
+                    {
+                      "type": "bar",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "table": [
+                    {
+                      "type": "table",
+                      "cells": {
+                        "fill": {
+                          "color": "rgb(237,237,237)"
+                        },
+                        "line": {
+                          "color": "white"
+                        }
+                      },
+                      "header": {
+                        "fill": {
+                          "color": "rgb(217,217,217)"
+                        },
+                        "line": {
+                          "color": "white"
+                        }
+                      }
+                    }
+                  ],
+                  "carpet": [
+                    {
+                      "type": "carpet",
+                      "aaxis": {
+                        "gridcolor": "white",
+                        "linecolor": "white",
+                        "endlinecolor": "rgb(51,51,51)",
+                        "minorgridcolor": "white",
+                        "startlinecolor": "rgb(51,51,51)"
+                      },
+                      "baxis": {
+                        "gridcolor": "white",
+                        "linecolor": "white",
+                        "endlinecolor": "rgb(51,51,51)",
+                        "minorgridcolor": "white",
+                        "startlinecolor": "rgb(51,51,51)"
+                      }
+                    }
+                  ],
+                  "mesh3d": [
+                    {
+                      "type": "mesh3d",
+                      "colorbar": {
+                        "len": 0.2,
+                        "ticks": "inside",
+                        "ticklen": 6,
+                        "tickcolor": "rgb(237,237,237)",
+                        "outlinewidth": 0
+                      }
+                    }
+                  ],
+                  "contour": [
+                    {
+                      "type": "contour",
+                      "colorbar": {
+                        "len": 0.2,
+                        "ticks": "inside",
+                        "ticklen": 6,
+                        "tickcolor": "rgb(237,237,237)",
+                        "outlinewidth": 0
+                      },
+                      "autocolorscale": true
+                    }
+                  ],
+                  "heatmap": [
+                    {
+                      "type": "heatmap",
+                      "colorbar": {
+                        "len": 0.2,
+                        "ticks": "inside",
+                        "ticklen": 6,
+                        "tickcolor": "rgb(237,237,237)",
+                        "outlinewidth": 0
+                      },
+                      "autocolorscale": true
+                    }
+                  ],
+                  "scatter": [
+                    {
+                      "type": "scatter",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "surface": [
+                    {
+                      "type": "surface",
+                      "colorbar": {
+                        "len": 0.2,
+                        "ticks": "inside",
+                        "ticklen": 6,
+                        "tickcolor": "rgb(237,237,237)",
+                        "outlinewidth": 0
+                      }
+                    }
+                  ],
+                  "heatmapgl": [
+                    {
+                      "type": "heatmapgl",
+                      "colorbar": {
+                        "len": 0.2,
+                        "ticks": "inside",
+                        "ticklen": 6,
+                        "tickcolor": "rgb(237,237,237)",
+                        "outlinewidth": 0
+                      }
+                    }
+                  ],
+                  "histogram": [
+                    {
+                      "type": "histogram",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "parcoords": [
+                    {
+                      "line": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      },
+                      "type": "parcoords"
+                    }
+                  ],
+                  "scatter3d": [
+                    {
+                      "type": "scatter3d",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "scattergl": [
+                    {
+                      "type": "scattergl",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "choropleth": [
+                    {
+                      "type": "choropleth",
+                      "colorbar": {
+                        "len": 0.2,
+                        "ticks": "inside",
+                        "ticklen": 6,
+                        "tickcolor": "rgb(237,237,237)",
+                        "outlinewidth": 0
+                      }
+                    }
+                  ],
+                  "scattergeo": [
+                    {
+                      "type": "scattergeo",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "histogram2d": [
+                    {
+                      "type": "histogram2d",
+                      "colorbar": {
+                        "len": 0.2,
+                        "ticks": "inside",
+                        "ticklen": 6,
+                        "tickcolor": "rgb(237,237,237)",
+                        "outlinewidth": 0
+                      },
+                      "autocolorscale": true
+                    }
+                  ],
+                  "scatterpolar": [
+                    {
+                      "type": "scatterpolar",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "contourcarpet": [
+                    {
+                      "type": "contourcarpet",
+                      "colorbar": {
+                        "len": 0.2,
+                        "ticks": "inside",
+                        "ticklen": 6,
+                        "tickcolor": "rgb(237,237,237)",
+                        "outlinewidth": 0
+                      }
+                    }
+                  ],
+                  "scattercarpet": [
+                    {
+                      "type": "scattercarpet",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "scattermapbox": [
+                    {
+                      "type": "scattermapbox",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "scatterpolargl": [
+                    {
+                      "type": "scatterpolargl",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "scatterternary": [
+                    {
+                      "type": "scatterternary",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "histogram2dcontour": [
+                    {
+                      "type": "histogram2dcontour",
+                      "colorbar": {
+                        "len": 0.2,
+                        "ticks": "inside",
+                        "ticklen": 6,
+                        "tickcolor": "rgb(237,237,237)",
+                        "outlinewidth": 0
+                      },
+                      "autocolorscale": true
+                    }
+                  ]
+                },
+                "layout": {
+                  "geo": {
+                    "bgcolor": "white",
+                    "showland": true,
+                    "lakecolor": "white",
+                    "landcolor": "rgb(237,237,237)",
+                    "showlakes": true,
+                    "subunitcolor": "white"
+                  },
+                  "font": {
+                    "color": "rgb(51,51,51)"
+                  },
+                  "polar": {
+                    "bgcolor": "rgb(237,237,237)",
+                    "radialaxis": {
+                      "ticks": "outside",
+                      "showgrid": true,
+                      "gridcolor": "white",
+                      "linecolor": "white",
+                      "tickcolor": "rgb(51,51,51)"
+                    },
+                    "angularaxis": {
+                      "ticks": "outside",
+                      "showgrid": true,
+                      "gridcolor": "white",
+                      "linecolor": "white",
+                      "tickcolor": "rgb(51,51,51)"
+                    }
+                  },
+                  "scene": {
+                    "xaxis": {
+                      "ticks": "outside",
+                      "showgrid": true,
+                      "gridcolor": "white",
+                      "gridwidth": 2,
+                      "linecolor": "white",
+                      "tickcolor": "rgb(51,51,51)",
+                      "zerolinecolor": "white",
+                      "showbackground": true,
+                      "backgroundcolor": "rgb(237,237,237)"
+                    },
+                    "yaxis": {
+                      "ticks": "outside",
+                      "showgrid": true,
+                      "gridcolor": "white",
+                      "gridwidth": 2,
+                      "linecolor": "white",
+                      "tickcolor": "rgb(51,51,51)",
+                      "zerolinecolor": "white",
+                      "showbackground": true,
+                      "backgroundcolor": "rgb(237,237,237)"
+                    },
+                    "zaxis": {
+                      "ticks": "outside",
+                      "showgrid": true,
+                      "gridcolor": "white",
+                      "gridwidth": 2,
+                      "linecolor": "white",
+                      "tickcolor": "rgb(51,51,51)",
+                      "zerolinecolor": "white",
+                      "showbackground": true,
+                      "backgroundcolor": "rgb(237,237,237)"
+                    }
+                  },
+                  "xaxis": {
+                    "ticks": "outside",
+                    "showgrid": true,
+                    "gridcolor": "white",
+                    "linecolor": "white",
+                    "tickcolor": "rgb(51,51,51)",
+                    "automargin": true,
+                    "zerolinecolor": "white"
+                  },
+                  "yaxis": {
+                    "ticks": "outside",
+                    "showgrid": true,
+                    "gridcolor": "white",
+                    "linecolor": "white",
+                    "tickcolor": "rgb(51,51,51)",
+                    "automargin": true,
+                    "zerolinecolor": "white"
+                  },
+                  "ternary": {
+                    "aaxis": {
+                      "ticks": "outside",
+                      "showgrid": true,
+                      "gridcolor": "white",
+                      "linecolor": "white",
+                      "tickcolor": "rgb(51,51,51)"
+                    },
+                    "baxis": {
+                      "ticks": "outside",
+                      "showgrid": true,
+                      "gridcolor": "white",
+                      "linecolor": "white",
+                      "tickcolor": "rgb(51,51,51)"
+                    },
+                    "caxis": {
+                      "ticks": "outside",
+                      "showgrid": true,
+                      "gridcolor": "white",
+                      "linecolor": "white",
+                      "tickcolor": "rgb(51,51,51)"
+                    },
+                    "bgcolor": "rgb(237,237,237)"
+                  },
+                  "colorway": [
+                    "#F8766D",
+                    "#A3A500",
+                    "#00BF7D",
+                    "#00B0F6",
+                    "#E76BF3"
+                  ],
+                  "hovermode": "closest",
+                  "colorscale": {
+                    "diverging": [
+                      [
+                        0,
+                        "#40004b"
+                      ],
+                      [
+                        0.1,
+                        "#762a83"
+                      ],
+                      [
+                        0.2,
+                        "#9970ab"
+                      ],
+                      [
+                        0.3,
+                        "#c2a5cf"
+                      ],
+                      [
+                        0.4,
+                        "#e7d4e8"
+                      ],
+                      [
+                        0.5,
+                        "#f7f7f7"
+                      ],
+                      [
+                        0.6,
+                        "#d9f0d3"
+                      ],
+                      [
+                        0.7,
+                        "#a6dba0"
+                      ],
+                      [
+                        0.8,
+                        "#5aae61"
+                      ],
+                      [
+                        0.9,
+                        "#1b7837"
+                      ],
+                      [
+                        1,
+                        "#00441b"
+                      ]
+                    ],
+                    "sequential": [
+                      [
+                        0,
+                        "rgb(20,44,66)"
+                      ],
+                      [
+                        1,
+                        "rgb(90,179,244)"
+                      ]
+                    ],
+                    "sequentialminus": [
+                      [
+                        0,
+                        "rgb(20,44,66)"
+                      ],
+                      [
+                        1,
+                        "rgb(90,179,244)"
+                      ]
+                    ]
+                  },
+                  "plot_bgcolor": "rgb(237,237,237)",
+                  "paper_bgcolor": "white",
+                  "shapedefaults": {
+                    "line": {
+                      "width": 0
+                    },
+                    "opacity": 0.3,
+                    "fillcolor": "black"
+                  },
+                  "annotationdefaults": {
+                    "arrowhead": 0,
+                    "arrowwidth": 1
+                  }
+                },
+                "themeRef": "GGPLOT2"
+              },
+              "hoverlabel": {
+                "font": {
+                  "size": 14
+                }
+              }
+            },
+            "frames": []
+          }
+          Plotly.plot('graph1', graphs, {});
+        </script>
+      </div>
+      <!-- 전통주 검색량 간단 분석 from 주류 트렌드 리포트 2022 -->
+      <p class="analysis">
+        전반적인 기간에 걸쳐 소주, 맥주보다 전통주의 검색량이 대부분 높은 것으로 확인 할 수 있습니다. 그래프를 보면 전통주의 검색량이 고점을 찍는 시기는 1,2월과 5월, 8,9월과 12월로 확인 할 수
+        있습니다. 설기간과 가정의달, 추석과 연말로 전통주가 선물을 하거나 차례를 지낼 때 사용되기 때문에 특히 그 시기에 검색량이 증가하는 것을 확인할 수 있습니다. </p>
+      <div id="graph2">
+        <script>
+          var graphs = {
+            "data": [
+              {
+                "line": {
+                  "dash": "solid",
+                  "color": "rgb(102, 197, 204)"
+                },
+                "meta": {
+                  "columnNames": {
+                    "x": "data.0.x",
+                    "y": "data.0.y"
+                  }
+                },
+                "mode": "lines",
+                "name": "전통증류주",
+                "type": "scatter",
+                "xsrc": "jooeunjung0429:13:0f159b",
+                "x": [
+                  "2021-01-01",
+                  "2021-02-01",
+                  "2021-03-01",
+                  "2021-04-01",
+                  "2021-05-01",
+                  "2021-06-01",
+                  "2021-07-01",
+                  "2021-08-01",
+                  "2021-09-01",
+                  "2021-10-01",
+                  "2021-11-01",
+                  "2021-12-01",
+                  "2022-01-01",
+                  "2022-02-01",
+                  "2022-03-01",
+                  "2022-04-01",
+                  "2022-05-01",
+                  "2022-06-01",
+                  "2022-07-01",
+                  "2022-08-01",
+                  "2022-09-01",
+                  "2022-10-01",
+                  "2022-11-01",
+                  "2022-12-01",
+                  "2023-01-01",
+                  "2023-02-01",
+                  "2023-03-01",
+                  "2023-04-01",
+                  "2023-05-01"
+                ],
+                "ysrc": "jooeunjung0429:13:8de4c1",
+                "y": [
+                  24.45116,
+                  16.75488,
+                  17.26469,
+                  16.99921,
+                  19.11121,
+                  17.49357,
+                  17.20736,
+                  18.06964,
+                  16.51705,
+                  17.52813,
+                  18.2225,
+                  22.04198,
+                  23.9812,
+                  33.84395,
+                  26.60666,
+                  25.4102,
+                  25.49273,
+                  27.04776,
+                  25.41182,
+                  25.311,
+                  26.07408,
+                  28.67474,
+                  26.48144,
+                  27.5913,
+                  28.07021,
+                  31.47868,
+                  25.45045,
+                  24.02104,
+                  23.40675
+                ],
+                "xaxis": "x",
+                "yaxis": "y",
+                "marker": {
+                  "symbol": "circle"
+                },
+                "showlegend": true,
+                "legendgroup": "전통증류주",
+                "orientation": "v",
+                "hovertemplate": "variable=전통증류주<br>index=%{x}<br>value=%{y}<extra></extra>"
+              },
+              {
+                "line": {
+                  "dash": "solid",
+                  "color": "rgb(246, 207, 113)"
+                },
+                "meta": {
+                  "columnNames": {
+                    "x": "data.1.x",
+                    "y": "data.1.y"
+                  }
+                },
+                "mode": "lines",
+                "name": "전통과실주",
+                "type": "scatter",
+                "xsrc": "jooeunjung0429:13:bf1f5a",
+                "x": [
+                  "2021-01-01",
+                  "2021-02-01",
+                  "2021-03-01",
+                  "2021-04-01",
+                  "2021-05-01",
+                  "2021-06-01",
+                  "2021-07-01",
+                  "2021-08-01",
+                  "2021-09-01",
+                  "2021-10-01",
+                  "2021-11-01",
+                  "2021-12-01",
+                  "2022-01-01",
+                  "2022-02-01",
+                  "2022-03-01",
+                  "2022-04-01",
+                  "2022-05-01",
+                  "2022-06-01",
+                  "2022-07-01",
+                  "2022-08-01",
+                  "2022-09-01",
+                  "2022-10-01",
+                  "2022-11-01",
+                  "2022-12-01",
+                  "2023-01-01",
+                  "2023-02-01",
+                  "2023-03-01",
+                  "2023-04-01",
+                  "2023-05-01"
+                ],
+                "ysrc": "jooeunjung0429:13:5a5462",
+                "y": [
+                  54.99723,
+                  45.66217,
+                  40.90805,
+                  38.15738,
+                  38.65905,
+                  37.88621,
+                  34.09966,
+                  36.0466,
+                  44.95153,
+                  40.45191,
+                  42.5761,
+                  76.8457,
+                  63.28625,
+                  41.77765,
+                  36.84139,
+                  35.70104,
+                  39.24447,
+                  35.12781,
+                  32.80848,
+                  36.26695,
+                  39.10788,
+                  35.99416,
+                  41.13328,
+                  60.74332,
+                  53.26007,
+                  35.21725,
+                  36.6991,
+                  32.19094,
+                  31.3437
+                ],
+                "xaxis": "x",
+                "yaxis": "y",
+                "marker": {
+                  "symbol": "circle"
+                },
+                "showlegend": true,
+                "legendgroup": "전통과실주",
+                "orientation": "v",
+                "hovertemplate": "variable=전통과실주<br>index=%{x}<br>value=%{y}<extra></extra>"
+              },
+              {
+                "line": {
+                  "dash": "solid",
+                  "color": "rgb(248, 156, 116)"
+                },
+                "meta": {
+                  "columnNames": {
+                    "x": "data.2.x",
+                    "y": "data.2.y"
+                  }
+                },
+                "mode": "lines",
+                "name": "전통탁주",
+                "type": "scatter",
+                "xsrc": "jooeunjung0429:13:3c2f2a",
+                "x": [
+                  "2021-01-01",
+                  "2021-02-01",
+                  "2021-03-01",
+                  "2021-04-01",
+                  "2021-05-01",
+                  "2021-06-01",
+                  "2021-07-01",
+                  "2021-08-01",
+                  "2021-09-01",
+                  "2021-10-01",
+                  "2021-11-01",
+                  "2021-12-01",
+                  "2022-01-01",
+                  "2022-02-01",
+                  "2022-03-01",
+                  "2022-04-01",
+                  "2022-05-01",
+                  "2022-06-01",
+                  "2022-07-01",
+                  "2022-08-01",
+                  "2022-09-01",
+                  "2022-10-01",
+                  "2022-11-01",
+                  "2022-12-01",
+                  "2023-01-01",
+                  "2023-02-01",
+                  "2023-03-01",
+                  "2023-04-01",
+                  "2023-05-01"
+                ],
+                "ysrc": "jooeunjung0429:13:09be93",
+                "y": [
+                  35.51891,
+                  30.18099,
+                  35.37377,
+                  33.05241,
+                  34.59727,
+                  27.15956,
+                  29.33212,
+                  29.38863,
+                  26.36273,
+                  29.23659,
+                  25.89642,
+                  24.54223,
+                  28.18039,
+                  24.702,
+                  26.99816,
+                  27.03353,
+                  29.1439,
+                  38.59685,
+                  30.97863,
+                  32.69993,
+                  26.20621,
+                  26.81481,
+                  24.95771,
+                  23.04167,
+                  29.90413,
+                  23.85639,
+                  29.9143,
+                  33.97811,
+                  33.50733
+                ],
+                "xaxis": "x",
+                "yaxis": "y",
+                "marker": {
+                  "symbol": "circle"
+                },
+                "showlegend": true,
+                "legendgroup": "전통탁주",
+                "orientation": "v",
+                "hovertemplate": "variable=전통탁주<br>index=%{x}<br>value=%{y}<extra></extra>"
+              },
+              {
+                "line": {
+                  "dash": "solid",
+                  "color": "rgb(220, 176, 242)"
+                },
+                "meta": {
+                  "columnNames": {
+                    "x": "data.3.x",
+                    "y": "data.3.y"
+                  }
+                },
+                "mode": "lines",
+                "name": "전통청주",
+                "type": "scatter",
+                "xsrc": "jooeunjung0429:13:741a7c",
+                "x": [
+                  "2021-01-01",
+                  "2021-02-01",
+                  "2021-03-01",
+                  "2021-04-01",
+                  "2021-05-01",
+                  "2021-06-01",
+                  "2021-07-01",
+                  "2021-08-01",
+                  "2021-09-01",
+                  "2021-10-01",
+                  "2021-11-01",
+                  "2021-12-01",
+                  "2022-01-01",
+                  "2022-02-01",
+                  "2022-03-01",
+                  "2022-04-01",
+                  "2022-05-01",
+                  "2022-06-01",
+                  "2022-07-01",
+                  "2022-08-01",
+                  "2022-09-01",
+                  "2022-10-01",
+                  "2022-11-01",
+                  "2022-12-01",
+                  "2023-01-01",
+                  "2023-02-01",
+                  "2023-03-01",
+                  "2023-04-01",
+                  "2023-05-01"
+                ],
+                "ysrc": "jooeunjung0429:13:569f11",
+                "y": [
+                  58.96306,
+                  55.3554,
+                  60.83642,
+                  59.0521,
+                  61.72919,
+                  57.99346,
+                  68.64734,
+                  69.11243,
+                  58.56099,
+                  55.6912,
+                  51.67333,
+                  54.88665,
+                  58.91916,
+                  51.96807,
+                  57.18769,
+                  52.7153,
+                  55.49362,
+                  58.72808,
+                  54.02681,
+                  100,
+                  59.38262,
+                  56.59007,
+                  51.50665,
+                  58.62319,
+                  56.63398,
+                  52.76083,
+                  55.06309,
+                  53.37634,
+                  54.10812
+                ],
+                "xaxis": "x",
+                "yaxis": "y",
+                "marker": {
+                  "symbol": "circle"
+                },
+                "showlegend": true,
+                "legendgroup": "전통청주",
+                "orientation": "v",
+                "hovertemplate": "variable=전통청주<br>index=%{x}<br>value=%{y}<extra></extra>"
+              },
+              {
+                "line": {
+                  "dash": "solid",
+                  "color": "rgb(135, 197, 95)"
+                },
+                "meta": {
+                  "columnNames": {
+                    "x": "data.4.x",
+                    "y": "data.4.y"
+                  }
+                },
+                "mode": "lines",
+                "name": "과하주",
+                "type": "scatter",
+                "xsrc": "jooeunjung0429:13:c672ed",
+                "x": [
+                  "2021-01-01",
+                  "2021-02-01",
+                  "2021-03-01",
+                  "2021-04-01",
+                  "2021-05-01",
+                  "2021-06-01",
+                  "2021-07-01",
+                  "2021-08-01",
+                  "2021-09-01",
+                  "2021-10-01",
+                  "2021-11-01",
+                  "2021-12-01",
+                  "2022-01-01",
+                  "2022-02-01",
+                  "2022-03-01",
+                  "2022-04-01",
+                  "2022-05-01",
+                  "2022-06-01",
+                  "2022-07-01",
+                  "2022-08-01",
+                  "2022-09-01",
+                  "2022-10-01",
+                  "2022-11-01",
+                  "2022-12-01",
+                  "2023-01-01",
+                  "2023-02-01",
+                  "2023-03-01",
+                  "2023-04-01",
+                  "2023-05-01"
+                ],
+                "ysrc": "jooeunjung0429:13:39d3ae",
+                "y": [
+                  3.95363,
+                  3.59913,
+                  4.32928,
+                  4.598,
+                  4.56589,
+                  4.74233,
+                  3.76052,
+                  3.65808,
+                  4.80941,
+                  5.26921,
+                  4.31017,
+                  3.78207,
+                  4.0508,
+                  3.73288,
+                  4.37237,
+                  4.69273,
+                  4.7968,
+                  4.77444,
+                  4.27033,
+                  4.48783,
+                  4.98422,
+                  4.56589,
+                  4.56101,
+                  4.08047,
+                  4.14511,
+                  3.93778,
+                  4.55857,
+                  6.35021,
+                  4.60857
+                ],
+                "xaxis": "x",
+                "yaxis": "y",
+                "marker": {
+                  "symbol": "circle"
+                },
+                "showlegend": true,
+                "legendgroup": "과하주",
+                "orientation": "v",
+                "hovertemplate": "variable=과하주<br>index=%{x}<br>value=%{y}<extra></extra>"
+              }
+            ],
+            "layout": {
+              "font": {
+                "size": 14,
+                "color": "rgb(43, 24, 7)"
+              },
+              "title": {
+                "text": "월별로보는 전통주 검색량 추이( 2021-01 ~ 2023-05)"
+              },
+              "xaxis": {
+                "type": "date",
+                "range": [
+                  "2021-01-01",
+                  "2023-05-01"
+                ],
+                "title": {
+                  "text": "기간"
+                },
+                "anchor": "y",
+                "domain": [
+                  0,
+                  1
+                ],
+                "autorange": true
+              },
+              "yaxis": {
+                "type": "linear",
+                "range": [
+                  -1.7564738888888898,
+                  105.3556038888889
+                ],
+                "title": {
+                  "text": "검색량"
+                },
+                "anchor": "x",
+                "domain": [
+                  0,
+                  1
+                ],
+                "autorange": true
+              },
+              "legend": {
+                "title": {
+                  "text": "variable"
+                },
+                "tracegroupgap": 0
+              },
+              "margin": {
+                "t": 60
+              },
+              "autosize": true,
+              "template": {
+                "data": {
+                  "bar": [
+                    {
+                      "type": "bar",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "table": [
+                    {
+                      "type": "table",
+                      "cells": {
+                        "fill": {
+                          "color": "rgb(237,237,237)"
+                        },
+                        "line": {
+                          "color": "white"
+                        }
+                      },
+                      "header": {
+                        "fill": {
+                          "color": "rgb(217,217,217)"
+                        },
+                        "line": {
+                          "color": "white"
+                        }
+                      }
+                    }
+                  ],
+                  "carpet": [
+                    {
+                      "type": "carpet",
+                      "aaxis": {
+                        "gridcolor": "white",
+                        "linecolor": "white",
+                        "endlinecolor": "rgb(51,51,51)",
+                        "minorgridcolor": "white",
+                        "startlinecolor": "rgb(51,51,51)"
+                      },
+                      "baxis": {
+                        "gridcolor": "white",
+                        "linecolor": "white",
+                        "endlinecolor": "rgb(51,51,51)",
+                        "minorgridcolor": "white",
+                        "startlinecolor": "rgb(51,51,51)"
+                      }
+                    }
+                  ],
+                  "mesh3d": [
+                    {
+                      "type": "mesh3d",
+                      "colorbar": {
+                        "len": 0.2,
+                        "ticks": "inside",
+                        "ticklen": 6,
+                        "tickcolor": "rgb(237,237,237)",
+                        "outlinewidth": 0
+                      }
+                    }
+                  ],
+                  "contour": [
+                    {
+                      "type": "contour",
+                      "colorbar": {
+                        "len": 0.2,
+                        "ticks": "inside",
+                        "ticklen": 6,
+                        "tickcolor": "rgb(237,237,237)",
+                        "outlinewidth": 0
+                      },
+                      "autocolorscale": true
+                    }
+                  ],
+                  "heatmap": [
+                    {
+                      "type": "heatmap",
+                      "colorbar": {
+                        "len": 0.2,
+                        "ticks": "inside",
+                        "ticklen": 6,
+                        "tickcolor": "rgb(237,237,237)",
+                        "outlinewidth": 0
+                      },
+                      "autocolorscale": true
+                    }
+                  ],
+                  "scatter": [
+                    {
+                      "type": "scatter",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "surface": [
+                    {
+                      "type": "surface",
+                      "colorbar": {
+                        "len": 0.2,
+                        "ticks": "inside",
+                        "ticklen": 6,
+                        "tickcolor": "rgb(237,237,237)",
+                        "outlinewidth": 0
+                      }
+                    }
+                  ],
+                  "heatmapgl": [
+                    {
+                      "type": "heatmapgl",
+                      "colorbar": {
+                        "len": 0.2,
+                        "ticks": "inside",
+                        "ticklen": 6,
+                        "tickcolor": "rgb(237,237,237)",
+                        "outlinewidth": 0
+                      }
+                    }
+                  ],
+                  "histogram": [
+                    {
+                      "type": "histogram",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "parcoords": [
+                    {
+                      "line": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      },
+                      "type": "parcoords"
+                    }
+                  ],
+                  "scatter3d": [
+                    {
+                      "type": "scatter3d",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "scattergl": [
+                    {
+                      "type": "scattergl",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "choropleth": [
+                    {
+                      "type": "choropleth",
+                      "colorbar": {
+                        "len": 0.2,
+                        "ticks": "inside",
+                        "ticklen": 6,
+                        "tickcolor": "rgb(237,237,237)",
+                        "outlinewidth": 0
+                      }
+                    }
+                  ],
+                  "scattergeo": [
+                    {
+                      "type": "scattergeo",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "histogram2d": [
+                    {
+                      "type": "histogram2d",
+                      "colorbar": {
+                        "len": 0.2,
+                        "ticks": "inside",
+                        "ticklen": 6,
+                        "tickcolor": "rgb(237,237,237)",
+                        "outlinewidth": 0
+                      },
+                      "autocolorscale": true
+                    }
+                  ],
+                  "scatterpolar": [
+                    {
+                      "type": "scatterpolar",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "contourcarpet": [
+                    {
+                      "type": "contourcarpet",
+                      "colorbar": {
+                        "len": 0.2,
+                        "ticks": "inside",
+                        "ticklen": 6,
+                        "tickcolor": "rgb(237,237,237)",
+                        "outlinewidth": 0
+                      }
+                    }
+                  ],
+                  "scattercarpet": [
+                    {
+                      "type": "scattercarpet",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "scattermapbox": [
+                    {
+                      "type": "scattermapbox",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "scatterpolargl": [
+                    {
+                      "type": "scatterpolargl",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "scatterternary": [
+                    {
+                      "type": "scatterternary",
+                      "marker": {
+                        "colorbar": {
+                          "len": 0.2,
+                          "ticks": "inside",
+                          "ticklen": 6,
+                          "tickcolor": "rgb(237,237,237)",
+                          "outlinewidth": 0
+                        }
+                      }
+                    }
+                  ],
+                  "histogram2dcontour": [
+                    {
+                      "type": "histogram2dcontour",
+                      "colorbar": {
+                        "len": 0.2,
+                        "ticks": "inside",
+                        "ticklen": 6,
+                        "tickcolor": "rgb(237,237,237)",
+                        "outlinewidth": 0
+                      },
+                      "autocolorscale": true
+                    }
+                  ]
+                },
+                "layout": {
+                  "geo": {
+                    "bgcolor": "white",
+                    "showland": true,
+                    "lakecolor": "white",
+                    "landcolor": "rgb(237,237,237)",
+                    "showlakes": true,
+                    "subunitcolor": "white"
+                  },
+                  "font": {
+                    "color": "rgb(51,51,51)"
+                  },
+                  "polar": {
+                    "bgcolor": "rgb(237,237,237)",
+                    "radialaxis": {
+                      "ticks": "outside",
+                      "showgrid": true,
+                      "gridcolor": "white",
+                      "linecolor": "white",
+                      "tickcolor": "rgb(51,51,51)"
+                    },
+                    "angularaxis": {
+                      "ticks": "outside",
+                      "showgrid": true,
+                      "gridcolor": "white",
+                      "linecolor": "white",
+                      "tickcolor": "rgb(51,51,51)"
+                    }
+                  },
+                  "scene": {
+                    "xaxis": {
+                      "ticks": "outside",
+                      "showgrid": true,
+                      "gridcolor": "white",
+                      "gridwidth": 2,
+                      "linecolor": "white",
+                      "tickcolor": "rgb(51,51,51)",
+                      "zerolinecolor": "white",
+                      "showbackground": true,
+                      "backgroundcolor": "rgb(237,237,237)"
+                    },
+                    "yaxis": {
+                      "ticks": "outside",
+                      "showgrid": true,
+                      "gridcolor": "white",
+                      "gridwidth": 2,
+                      "linecolor": "white",
+                      "tickcolor": "rgb(51,51,51)",
+                      "zerolinecolor": "white",
+                      "showbackground": true,
+                      "backgroundcolor": "rgb(237,237,237)"
+                    },
+                    "zaxis": {
+                      "ticks": "outside",
+                      "showgrid": true,
+                      "gridcolor": "white",
+                      "gridwidth": 2,
+                      "linecolor": "white",
+                      "tickcolor": "rgb(51,51,51)",
+                      "zerolinecolor": "white",
+                      "showbackground": true,
+                      "backgroundcolor": "rgb(237,237,237)"
+                    }
+                  },
+                  "xaxis": {
+                    "ticks": "outside",
+                    "showgrid": true,
+                    "gridcolor": "white",
+                    "linecolor": "white",
+                    "tickcolor": "rgb(51,51,51)",
+                    "automargin": true,
+                    "zerolinecolor": "white"
+                  },
+                  "yaxis": {
+                    "ticks": "outside",
+                    "showgrid": true,
+                    "gridcolor": "white",
+                    "linecolor": "white",
+                    "tickcolor": "rgb(51,51,51)",
+                    "automargin": true,
+                    "zerolinecolor": "white"
+                  },
+                  "ternary": {
+                    "aaxis": {
+                      "ticks": "outside",
+                      "showgrid": true,
+                      "gridcolor": "white",
+                      "linecolor": "white",
+                      "tickcolor": "rgb(51,51,51)"
+                    },
+                    "baxis": {
+                      "ticks": "outside",
+                      "showgrid": true,
+                      "gridcolor": "white",
+                      "linecolor": "white",
+                      "tickcolor": "rgb(51,51,51)"
+                    },
+                    "caxis": {
+                      "ticks": "outside",
+                      "showgrid": true,
+                      "gridcolor": "white",
+                      "linecolor": "white",
+                      "tickcolor": "rgb(51,51,51)"
+                    },
+                    "bgcolor": "rgb(237,237,237)"
+                  },
+                  "colorway": [
+                    "#F8766D",
+                    "#A3A500",
+                    "#00BF7D",
+                    "#00B0F6",
+                    "#E76BF3"
+                  ],
+                  "hovermode": "closest",
+                  "colorscale": {
+                    "diverging": [
+                      [
+                        0,
+                        "#40004b"
+                      ],
+                      [
+                        0.1,
+                        "#762a83"
+                      ],
+                      [
+                        0.2,
+                        "#9970ab"
+                      ],
+                      [
+                        0.3,
+                        "#c2a5cf"
+                      ],
+                      [
+                        0.4,
+                        "#e7d4e8"
+                      ],
+                      [
+                        0.5,
+                        "#f7f7f7"
+                      ],
+                      [
+                        0.6,
+                        "#d9f0d3"
+                      ],
+                      [
+                        0.7,
+                        "#a6dba0"
+                      ],
+                      [
+                        0.8,
+                        "#5aae61"
+                      ],
+                      [
+                        0.9,
+                        "#1b7837"
+                      ],
+                      [
+                        1,
+                        "#00441b"
+                      ]
+                    ],
+                    "sequential": [
+                      [
+                        0,
+                        "rgb(20,44,66)"
+                      ],
+                      [
+                        1,
+                        "rgb(90,179,244)"
+                      ]
+                    ],
+                    "sequentialminus": [
+                      [
+                        0,
+                        "rgb(20,44,66)"
+                      ],
+                      [
+                        1,
+                        "rgb(90,179,244)"
+                      ]
+                    ]
+                  },
+                  "plot_bgcolor": "rgb(237,237,237)",
+                  "paper_bgcolor": "white",
+                  "shapedefaults": {
+                    "line": {
+                      "width": 0
+                    },
+                    "opacity": 0.3,
+                    "fillcolor": "black"
+                  },
+                  "annotationdefaults": {
+                    "arrowhead": 0,
+                    "arrowwidth": 1
+                  }
+                },
+                "themeRef": "GGPLOT2"
+              }
+            },
+            "frames": []
+          }
+          Plotly.plot('graph2', graphs, {});
+        </script>
+      </div>
+      <p class="analysis">
+        2021년 1월부터 2023년 5월까지 전통주 종류별로 검색량을 추이를 비교해보았습니다. 그래프에서 확인하실 수 있듯이 전반적으로 청주, 과실주, 탁주, 증류주, 과하주(포트와인곽 같은 주정강화주)
+        순으로 검색량이 높게 나타납니다. 특히, 청주의 경우 차례를 지낼 때 사용되기 때문에 검색량이 고점을 보이는 기간이 설과 추석 전인 1월과 8월인 것을 확인할 수 있습니다.
+      </p>
+      <iframe width="1200" height="700" frameborder="0" scrolling="no"
+        src="//plotly.com/~jooeunjung0429/22.embed"></iframe>
+      <p class="analysis">
+      2018년도부터 월별 전통주 검색량을 바탕으로 2024년 5월까지 앞으로의 전통주 검색량 추이를 예측해볼때 꾸준히 검색량은 조금씩 증가하는 추세로 보이며 여전히 전통주가 쓰이는 명절인 설, 추석기간과 가정의달인 5월에 높은 검색량을 보일것으로 예측 됩니다.  
+      </p>
+    </div>
+  </section>
+  <!-- container : END -->
+  <!-- footer : START -->
+  <footer>
+    <div class="center">
+      <div class="left_wrap">
+        <p class="btm_logo"><img src="/img/oneshot_logo_bw.png" alt="원샷 - 우리술 한잔,"></p>
+        <div class="text_wrap">
+          <p>원샷 - 우리술 한잔,</p>
+          <address>서울시 서대문구 연세로 8-1</address>
+          <nav>
+            <ul>
+              <li><a href="">전통주 이야기</a></li>
+              <li><a href="">지역별 전통주</a></li>
+              <li><a href="">주종별 전통주</a></li>
+              <li><a href="">가격별 전통주</a></li>
+            </ul>
+          </nav>
+          <div class="info">
+            <p>대표 : 홍길동</p>
+            <p>사업자 등록번호 : 100-11-111111</p>
+            <p>개인정보관리자 : 홍길동</p>
+          </div>
+          <div class="contact_info">
+            <p>대표번호 : 02-1234-1234</p>
+            <p>메일 : oneshot@oneshot.com</p>
+          </div>
+          <div>Copyrights&copy; oneshot All Rights Reserved.</div>
+        </div>
+      </div>
+      <div class="cs">
+        <dl>
+          <dt>CS CENTER</dt>
+          <dd>070-1234-1234</dd>
+          <dd>평일 : 09:00 ~ 18:00<br>
+            점심 시간 : 12:00 ~ 13:00<br>
+            주말 밋 공휴일 제외
+          </dd>
+        </dl>
+      </div>
+      <div class="social">
+        <h4>SOCIAL MEDIA</h4>
+        <p>Follow @oneshot</p>
+        <ul>
+          <li><a href="#"><img src="/img/instagram_footer.svg" alt="인스타그램"></a></li>
+          <li><a href="#"><img src="/img/youtube_footer.svg" alt="유투브"></a></li>
+          <li><a href="#"><img src="/img/facebook_footer.svg" alt="페이스북"></a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <!-- footer : END -->
+  <script src="js/header.js"></script>
+
+</body>
+
+</html>
