@@ -40,7 +40,10 @@ public class HomeController {
         model.addAttribute("products",products);
         return "index";
     }
-
+    @GetMapping("/story")
+    public String storyPage(){
+        return "story.html";
+    }
     @GetMapping("/login")
     public String login(HttpServletRequest request, Model model){
         loginService.loginCheck(request, model);
