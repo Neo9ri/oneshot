@@ -225,32 +225,10 @@
 .order_modal_table thead th,.order_modal_table tbody td{
     border-right: 1px solid #773300;
 }
+#order_modal_table_body tr{
+    border-bottom: 1px solid #773300;
+}
 /* 페이징 버튼 */
-/*.mypage_order_pageMove ul{
-    display: flex;
-    margin-left: 370px;
-    padding: 20px;
-}
-.mypage_order_pageMove ul li a{
-    display: inline-block;
-    background-color: #00000017;
-    width: 50px;
-    height: 50px;
-    padding: 15px;
-    margin: 5px;
-    border-radius: 100%;
-    text-align: center;
-}
-.mypage_order_pageMove ul li a:hover{
-    display: inline-block;
-    background-color: #fedf12;
-    width: 50px;
-    height: 50px;
-    padding: 15px;
-    margin: 5px;
-    border-radius: 100%;
-    text-align: center;
-}*/
 .pagination li a {
     width: 50px;
     height: 50px;

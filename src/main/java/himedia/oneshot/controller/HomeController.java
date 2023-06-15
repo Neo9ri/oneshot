@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -28,6 +29,7 @@ public class HomeController {
     private final LoginService loginService;
     private final ProductService productService;
     private final PurchaseService purchaseService;
+    private final Pagination pagination;
 
     @GetMapping("/")
     public String mainPage(HttpServletRequest request, Model model){
@@ -88,31 +90,9 @@ public class HomeController {
         @GetMapping("/user/mypage")
 //    @PostMapping("/user/mypage/{memberId}")
 //    public String myPage(@PathVariable Long memberId, @RequestParam(required = fals) Integer page,Model model){
-        public String myPage(@RequestParam(required = false) Integer page,Model model){
+        public String myPage(@RequestParam(required = false) Integer page, Model model){
         List<Purchase> purchaseList = purchaseService.showPurchase(2L);
-        int totalItem = purchaseList.size();
-        int requestPage;
-        try {
-            requestPage = page.intValue();
-        }catch (NullPointerException npe){
-            requestPage = 1;
-        }
-        Pagination pagination = new Pagination(totalItem, 4,requestPage);
-        model.addAttribute(pagination);
-
-        int fromIndex = pagination.getFromIndex();
-        int toIndex = pagination.getToIndex();
-
-        try {
-            purchaseList = purchaseList.subList(fromIndex, toIndex);
-            model.addAttribute("purchaseList",purchaseList);
-        }catch (IndexOutOfBoundsException ioobe){
-            if(purchaseList.size() != 0){
-                toIndex = purchaseList.size();
-                purchaseList = purchaseList.subList(fromIndex, toIndex);
-                model.addAttribute("purchaseList",purchaseList);
-            }
-        }
+        pagination.makePagenation(model, purchaseList,"purchaseList", 4, page, "pagination");
         return "/user/mypage";
     }
     @GetMapping("/user/mypage/{purchaseId}")

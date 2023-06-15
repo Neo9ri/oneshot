@@ -1,7 +1,9 @@
 package himedia.oneshot.repository;
 
+import himedia.oneshot.entity.Product;
 import himedia.oneshot.entity.Purchase;
 import himedia.oneshot.entity.PurchaseDetail;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -18,6 +20,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Repository
+@Slf4j
 public class JdbcPurchaseRepository implements PurchaseRepository{
     private final JdbcTemplate jdbcTemplate;
 
@@ -108,8 +111,18 @@ public class JdbcPurchaseRepository implements PurchaseRepository{
 
     @Override
     public List<PurchaseDetail> showPurchaseDetail(Long purchaseId) {
-        String sql = "select * from purchase_detail where purchase_id = ?";
-        List<PurchaseDetail> purchaseDetailList = jdbcTemplate.query(sql,purchaseDetailRowMapper,purchaseId);
+        String sql = "select pd.*, p.name from purchase_detail pd join product p ON pd.product_id = p.id where pd.purchase_id = ?";
+        List<PurchaseDetail> purchaseDetailList = jdbcTemplate.query(sql, new Object[]{purchaseId}, (rs, rowNum) -> {
+            PurchaseDetail purchaseDetail = new PurchaseDetail();
+            purchaseDetail.setPurchase_id(rs.getLong("purchase_id"));
+            purchaseDetail.setMember_id(rs.getLong("member_id"));
+            purchaseDetail.setProduct_id(rs.getLong("product_id"));
+            purchaseDetail.setPrice(rs.getInt("price"));
+            purchaseDetail.setQuantity(rs.getInt("quantity"));
+            purchaseDetail.setProductName(rs.getString("name")); // 상품 이름 설정
+            return purchaseDetail;
+        });
+        log.info("purchaseDetail >> {}",purchaseDetailList);
         return purchaseDetailList;
     }
 }
