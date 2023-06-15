@@ -87,14 +87,7 @@ public class HomeController {
         log.info("로그아웃");
         return "redirect:/";
     }
-        @GetMapping("/user/mypage")
-//    @PostMapping("/user/mypage/{memberId}")
-//    public String myPage(@PathVariable Long memberId, @RequestParam(required = fals) Integer page,Model model){
-        public String myPage(@RequestParam(required = false) Integer page, Model model){
-        List<Purchase> purchaseList = purchaseService.showPurchase(2L);
-        pagination.makePagenation(model, purchaseList,"purchaseList", 4, page, "pagination");
-        return "/user/mypage";
-    }
+
     @GetMapping("/user/mypage/{purchaseId}")
     public String showPurchaseDetailModal(@PathVariable Long purchaseId, Model model) {
         log.info("purchaseId >> {}",purchaseId);
