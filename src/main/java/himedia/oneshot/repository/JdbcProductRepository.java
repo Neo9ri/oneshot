@@ -1,10 +1,9 @@
 package himedia.oneshot.repository;
 
-import himedia.oneshot.controller.ProductController;
+import himedia.oneshot.dto.CartDTO;
 import himedia.oneshot.entity.Cart;
 import himedia.oneshot.entity.Member;
 import himedia.oneshot.entity.Product;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -86,43 +85,33 @@ public class JdbcProductRepository implements ProductRepository{
         jdbcInsert.execute(new MapSqlParameterSource(parameter));
     }
 
-//    @Override
-//    public List<Product> showCart(Long memberId){
-//        String cartSql = "select * from cart";
-//        List<Cart> cartAddList = jdbcTemplate.query(cartSql, cartRowMapper);
+    @Override
+//    public List<Product> showCart(Long memberId) {
+//        String cartSql = "select * from cart where member_id = ?";
+//        List<Cart> cartList = jdbcTemplate.query(cartSql, cartRowMapper, memberId);
 //
 //        List<Product> result = new ArrayList<>();
 //        String productSql = "select * from product where id = ?";
 //
-//        String memberSql = "select * from member where id = ?";
-//        List<Member> memberList =jdbcTemplate.query(memberSql,memberIdRowMapper,memberId);
-//
-//        if (memberList.isEmpty()) {
-//            // 일치하는 맴버 정보가 없는 경우 빈 결과를 반환합니다.
-//            return result;
-//        }
-//
-//        Member member = memberList.get(0);
-//
-//        for(Cart cart : cartAddList){
+//        for (Cart cart : cartList) {
 //            Product product = jdbcTemplate.queryForObject(productSql, productRowMapper, cart.getProductId());
 //            product.setQuantity(cart.getQuantity());
 //            result.add(product);
 //        }
+//
 //        return result;
 //    }
-    @Override
-    public List<Product> showCart(Long memberId) {
-        String cartSql = "select * from cart where member_id = ?";
+    public List<CartDTO> showCart(Long memberId) {
+        String cartSql = "SELECT * FROM cart WHERE member_id = ?";
         List<Cart> cartList = jdbcTemplate.query(cartSql, cartRowMapper, memberId);
 
-        List<Product> result = new ArrayList<>();
-        String productSql = "select * from product where id = ?";
+        List<CartDTO> result = new ArrayList<>();
+        String productSql = "SELECT * FROM product WHERE id = ?";
 
         for (Cart cart : cartList) {
             Product product = jdbcTemplate.queryForObject(productSql, productRowMapper, cart.getProductId());
-            product.setQuantity(cart.getQuantity());
-            result.add(product);
+            CartDTO cartDTO = new CartDTO(cart, product);
+            result.add(cartDTO);
         }
 
         return result;

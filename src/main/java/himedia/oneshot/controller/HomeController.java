@@ -91,11 +91,4 @@ public class HomeController {
         return "redirect:/";
     }
 
-    @GetMapping("/user/mypage/{purchaseId}")
-    public String showPurchaseDetailModal(@PathVariable Long purchaseId, Model model) {
-        log.info("purchaseId >> {}",purchaseId);
-        List<PurchaseDetail> purchaseDetailList = purchaseService.showPurchaseDetail(purchaseId);
-        model.addAttribute("purchaseDetailList", purchaseDetailList);
-        return "user/mypage_modal";
-    }
 }
