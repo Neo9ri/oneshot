@@ -3,6 +3,7 @@ package himedia.oneshot.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import himedia.oneshot.entity.Member;
@@ -35,7 +36,21 @@ public class MemberService {
 		memberRepository.join(member);
 		return "회원 가입 완료!";
 	}
-    
+	
+	
+
+	public int find(String login_id) {
+	    log.info("[service] find" + login_id);
+		return memberRepository.findByJoinId(login_id);
+	}	
+
+
+	
+	
+	
+	
+	
+
     /**
      * 회원 목록 조회 기능
      * @return List&lt;Member&gt; - 회원 목록

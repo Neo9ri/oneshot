@@ -19,4 +19,6 @@ public interface MemberRepository {
     void ban(int loginId);
     Optional<Member> findByLoginId(String loginId);
     List<Member> findAll();
+    int findByJoinId(String login_id); 
+    
 }

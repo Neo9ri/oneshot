@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import himedia.oneshot.entity.Member;
 import himedia.oneshot.service.MemberService;
@@ -38,8 +40,14 @@ public class MemberController {
       meberService.save(member);
       return "/user/join";
    }
-   
-   
-
-   
+      
+	//아이디 중복체크
+	@PostMapping("/idCheck")
+	public String join(@ModelAttribute String login_id) {
+	   log.info("[POST] idCheck 실행");
+	   meberService.find(login_id);
+	   return "/user/join/{login_id}"; 
+	}
+	
+	
 }

@@ -113,10 +113,18 @@ public class JdbcMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Optional<Member> findByLoginId(String loginId) {
-        String sql = "SELECT * FROM MEMBER WHERE login_id = ?;";
-        List<Member> memberList = jdbcTemplate.query(sql, memberRowMapper(), loginId);
+    public Optional<Member> findByLoginId(String login_id) {
+        String sql = "SELECT * FROM MEMBER WHERE login_id = '?';";
+        List<Member> memberList = jdbcTemplate.query(sql, memberRowMapper(), login_id);       
         return memberList.stream().findAny();
+    }
+    
+    @Override    
+    public int findByJoinId(String login_id) {
+    	log.info("나는 레포지토리");
+        String sql = "SELECT * FROM MEMBER WHERE login_id = '?';";
+        List<Member> memberList = jdbcTemplate.query(sql, memberRowMapper(), login_id);       
+        return memberList.size();
     }
 
     /**

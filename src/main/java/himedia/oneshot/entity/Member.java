@@ -10,7 +10,6 @@ import java.util.Date;
  * 회원 정보에 대한 데이터입니다.
  * DB에 존재하지 않는 필드를 가질 수 없습니다.
  */
-
 @Data
 // 회원 목록
 public class Member {
