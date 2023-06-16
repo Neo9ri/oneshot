@@ -16,6 +16,10 @@ spring:
       &serverTimezone=Asia/Seoul
     username: root # DB ????
     password: 1111 # DB ???? ????
+  web:
+    resources:
+      cache:
+        period: 0
 
 
 
