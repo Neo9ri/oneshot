@@ -68,13 +68,23 @@
       <nav aria-label="">
         <ul class="pagination">
           <li th:if="${pagination.existPreviousLastPage}" class="page-item">
-            <a class="page-link" href="#" th:href="@{product-list(page=${pagination.previousLastPage})} + ${'#table'}" aria-label="Previous">
+            <a class="page-link"
+               th:onclick="updateList([[${pagination.previousLastPage}]])"
+               aria-label="Previous">
               <span>&laquo;</span>
             </a>
           </li>
-          <li th:each="page : ${#numbers.sequence(pagination.firstPage,pagination.lastPage)}" class="page-item"><a class="page-link" th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'" href="#" th:href="@{product-list(page=${page})} + ${'#table'}" th:text="${page}">1</a></li>
+          <li th:each="page : ${#numbers.sequence(pagination.firstPage,pagination.lastPage)}" class="page-item">
+            <a class="page-link"
+               th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'"
+               th:onclick="updateList([[${page}]])"
+               th:text="${page}"
+               th:page="${page}">1</a>
+          </li>
           <li th:if="${pagination.existNextFirstPage}" class="page-item">
-            <a class="page-link" href="#" th:href="@{product-list(page=${pagination.nextFirstPage})} + ${'#table'}" aria-label="Next">
+            <a class="page-link"
+               th:onclick="updateList([[${pagination.nextFirstPage}]])"
+               aria-label="Next">
               <span>&raquo;</span>
             </a>
           </li>
@@ -87,6 +97,20 @@
   <footer th:replace="~{/fragment/footer :: #footer}"></footer>
   <!-- footer : END -->
 <script src="js/header.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+    function updateList(page) {
+        var section = document.querySelector('#section');
+        $.ajax({
+          type: 'POST',
+          data: {page: page},
+          url: "/product-list",
+        })
+        .done(function (result) {
+          $('section').replaceWith(result);
+        });
+    }
+  </script>
 
 </body>
 

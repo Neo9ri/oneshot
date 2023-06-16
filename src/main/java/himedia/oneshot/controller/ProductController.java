@@ -6,6 +6,7 @@ import himedia.oneshot.entity.Product;
 import himedia.oneshot.service.LoginService;
 import himedia.oneshot.service.ProductService;
 import himedia.oneshot.service.PurchaseService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,17 +20,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @Controller
+@RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;
     private final PurchaseService purchaseService;
     private final LoginService loginService;
-
-    @Autowired
-    public ProductController(ProductService productService,PurchaseService purchaseService,LoginService loginService){
-        this.productService = productService;
-        this.purchaseService = purchaseService;
-        this.loginService = loginService;
-    }
 
     //[상품 목록]
     @GetMapping("/product/item_detail/{id}")
