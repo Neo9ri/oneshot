@@ -82,7 +82,7 @@ public class AdminController {
         }
         // 관리자 여부 확인 --END
         // 목록 구현 -- START
-        List<Product> products = adminProductService.findAll();
+        List<Product> products = adminProductService.findAllAdmin();
         pagination.makePagination(model, products, "products", 10, page, "pagination");
         // 목록 구현 -- END
         return "/admin/item_list";
@@ -103,7 +103,7 @@ public class AdminController {
         }
         // 관리자 여부 확인 --END
         // 목록 구현 -- START
-        List<Product> products = adminProductService.findAll();
+        List<Product> products = adminProductService.findAllAdmin();
         pagination.makePagination(model, products, "products", 10, page, "pagination");
         // 목록 구현 -- END
         return "/admin/item_list :: section";

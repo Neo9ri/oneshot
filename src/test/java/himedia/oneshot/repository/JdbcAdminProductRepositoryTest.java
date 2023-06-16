@@ -70,13 +70,15 @@ public class JdbcAdminProductRepositoryTest {
     }
 
     @Test
-    void findAll(){
+    void findAllAdmin(){
         //given
-        List<Product> before = adminProductRepository.findAll();
+        List<Product> before = adminProductRepository.findAllAdmin();
+        log.info("before >> {}",before.get(0));
         Product beforeSave = new Product("테스트2",1,"강원,세종권","과실주","테스터",25,12,24000,"img/product/thumbnail/test2.jpg",null);
         adminProductRepository.saveProduct(beforeSave);
         //when
-        List<Product> after = adminProductRepository.findAll();
+        List<Product> after = adminProductRepository.findAllAdmin();
+        log.info("after >> {}",after.get(0));
         //then
         assertThat(after.size()).isEqualTo(before.size()+1);
 
