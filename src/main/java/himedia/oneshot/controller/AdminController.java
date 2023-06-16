@@ -42,7 +42,7 @@ public class AdminController {
         // 관리자 여부 확인 --END
         // 목록 구현 -- START
         List<Member> members = memberService.makeMemberList();
-        pagination.makePagenation(model, members, "members", 10, page,"pagination");
+        pagination.makePagination(model, members, "members", 10, page,"pagination");
         // 목록 구현 -- END
         return "/admin/member_list";
     }
@@ -62,7 +62,7 @@ public class AdminController {
         }
         // 목록 구현 -- START
         List<Member> members = memberService.makeMemberList();
-        pagination.makePagenation(model, members, "members", 10, page,"pagination");
+        pagination.makePagination(model, members, "members", 10, page,"pagination");
         // 목록 구현 -- END
         return "/admin/member_list :: section";
     }
@@ -83,7 +83,7 @@ public class AdminController {
         // 관리자 여부 확인 --END
         // 목록 구현 -- START
         List<Product> products = adminProductService.findAll();
-        pagination.makePagenation(model, products, "products", 10, page, "pagination");
+        pagination.makePagination(model, products, "products", 10, page, "pagination");
         // 목록 구현 -- END
         return "/admin/item_list";
     }
@@ -104,7 +104,7 @@ public class AdminController {
         // 관리자 여부 확인 --END
         // 목록 구현 -- START
         List<Product> products = adminProductService.findAll();
-        pagination.makePagenation(model, products, "products", 10, page, "pagination");
+        pagination.makePagination(model, products, "products", 10, page, "pagination");
         // 목록 구현 -- END
         return "/admin/item_list :: section";
     }
@@ -126,7 +126,7 @@ public class AdminController {
         // 관리자 여부 확인 --END
         // 목록 구현 -- START
         List<Inquiry> deliveries = inquiryService.findListByType("D");
-        pagination.makePagenation(model, deliveries, "deliveries", 10, page, "pagination");
+        pagination.makePagination(model, deliveries, "deliveries", 10, page, "pagination");
         // 목록 구현 -- END
         return "/admin/inquiry_delivery";
     }
@@ -147,7 +147,7 @@ public class AdminController {
         // 관리자 여부 확인 --END
         // 목록 구현 -- START
         List<Inquiry> deliveries = inquiryService.findListByType("D");
-        pagination.makePagenation(model, deliveries, "deliveries", 10, page, "pagination");
+        pagination.makePagination(model, deliveries, "deliveries", 10, page, "pagination");
         // 목록 구현 -- END
         return "/admin/inquiry_delivery :: section";
     }
@@ -168,7 +168,7 @@ public class AdminController {
         // 관리자 여부 확인 --END
         // 목록 구현 -- START
         List<Inquiry> products = inquiryService.findListByType("P");
-        pagination.makePagenation(model, products, "products", 10, page, "pagination");
+        pagination.makePagination(model, products, "products", 10, page, "pagination");
         // 목록 구현 -- END
         return "/admin/inquiry_product";
     }
