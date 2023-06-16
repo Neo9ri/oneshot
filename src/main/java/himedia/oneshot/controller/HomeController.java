@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -37,7 +39,8 @@ public class HomeController {
         loginService.loginCheck(request, model);
         // 메인 페이지 상품 목록
         List<Product> products = productService.findAll();
-        model.addAttribute("products",products);
+        Collections.reverse(products);
+        pagination.makePagenation(model, products,"products", 12, 1, "pagination");
         return "index";
     }
 
