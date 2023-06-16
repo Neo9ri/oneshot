@@ -47,13 +47,12 @@ public class AdminProductService {
         if (expImgNames.size() > 1 && !expImgNames.get(1).isEmpty()) {
             product.setImg_exp2("img/product/explanation/" + expImgNames.get(1));
         }
-        if (expImgNames.size() > 2 && !expImgNames.get(2).isEmpty()) {
-            product.setImg_exp3("img/product/explanation/" + expImgNames.get(2));
-        }
+//        if (expImgNames.size() > 2 && !expImgNames.get(2).isEmpty()) {
+//            product.setImg_exp3("img/product/explanation/" + expImgNames.get(2));
+//        }
         log.info("이미지1>>{}",product.getImg_thumb());
         log.info("이미지2>>{}",product.getImg_exp1());
         log.info("이미지3>>{}",product.getImg_exp2());
-        log.info("이미지4>>{}",product.getImg_exp3());
         adminProductRepository.saveProduct(product);
     }
     public void updateProduct(Long id,Product updatedProduct,MultipartFile thumbImgFile, MultipartFile[] expImgFiles) throws Exception {
@@ -85,15 +84,15 @@ public class AdminProductService {
         if (expImgNames.size() > 1 && !expImgNames.get(1).isEmpty()) {
             updatedProduct.setImg_exp2("img/product/explanation/" + expImgNames.get(1));
         }
-        if (expImgNames.size() > 2 && !expImgNames.get(2).isEmpty()) {
-            updatedProduct.setImg_exp3("img/product/explanation/" + expImgNames.get(2));
-        }
+//        if (expImgNames.size() > 2 && !expImgNames.get(2).isEmpty()) {
+//            updatedProduct.setImg_exp3("img/product/explanation/" + expImgNames.get(2));
+//        }
 
         adminProductRepository.updateProduct(id, updatedProduct);
     }
 
-    public void deleteProduct(Long id){
-        adminProductRepository.deleteProduct(id);
+    public void updateProductStatus(Long id, String status){
+        adminProductRepository.updateProductStatus(id,status);
     }
 
     public Optional<Product> findById(Long id){

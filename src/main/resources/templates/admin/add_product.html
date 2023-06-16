@@ -96,19 +96,29 @@
                        placeholder="상품명을 입력하세요" required>
             </div>
             <div class="row">
+                <label for="alcohol" class="col-6 col_name align-self-center">도수</label>
+                <input id="alcohol" name="alcohol" class="col form-control" type="text" placeholder="0" required
+                       oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                <div class="col-1 align-self-center">도</div>
+            </div>
+            <div class="row">
+                <label for="volume" class="col-6 co">용량</label>
+                <input id="volume" type="text" name="volume" class="col form-control" required
+                       oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                <div class="col-1 align-self-center">개</div>
+            </div>
+            <div class="row">
                 <label for="price" class="col-6 col_name align-self-center">가격</label>
                 <input id="price" name="price" class="col form-control" type="text" placeholder="0" required
                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                 <div class="col-1 align-self-center">원</div>
             </div>
             <div class="row">
-                <label for="alcohol" class="col-6 col_name align-self-center">도수</label>
-                <input id="alcohol" name="alcohol" class="col form-control" type="text" placeholder="0" required
+                <label for="quantity" class="col-6 co">수량</label>
+                <input id="quantity" type="text" name="quantity" class="col form-control" required
                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
-                <div class="col-1 align-self-center">도</div>
+                <div class="col-1 align-self-center">병</div>
             </div>
-            <label for="quantity" class="blind">수량</label>
-            <input id="quantity" type="text" name="quantity" value="1" class="blind">
             <div id="productEditorRightWhiteSpace"></div>
         </div>
         <div class="col"></div>
@@ -120,9 +130,7 @@
                 <label for="exp" class="exp_title">상품 설명</label>
                 <input type="file" id="exp" name="exp" multiple onchange="showMultipleExp(this);" required>
                 <div class="btn btn_ylw" onclick="onClickExpUpload();">상품 설명 이미지 첨부하기</div>
-                <div id="multipleExpPreview">
-                    <!--            <img id="expPreview" alt="상품 설명 미리보기">-->
-                </div>
+                <div id="multipleExpPreview"></div>
                 <hr>
                 <div class="row justify-content-end">
                     <button type="submit" class="col-2 btn btn_ylw">등록</button>

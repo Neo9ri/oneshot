@@ -23,7 +23,7 @@ public class JdbcAdminProductRepositoryTest {
     @Test
     void save() {
         //given
-        Product beforeSave = new Product("테스트",1,"서울","증류주","테스터",17,7000,"img/product/thumbnail/test.jpg",null);
+        Product beforeSave = new Product("테스트",1,"서울","증류주","테스터",17,10,7000,"img/product/thumbnail/test.jpg",null);
         log.info("id>>{}",beforeSave.getId());
         // when
         Product afterSave = adminProductRepository.saveProduct(beforeSave);
@@ -35,10 +35,10 @@ public class JdbcAdminProductRepositoryTest {
     @Test
     void update(){
         //given
-        Product beforeSave = new Product("테스트2",1,"강원,세종권","과실주","테스터",25,24000,"img/product/thumbnail/test2.jpg",null);
+        Product beforeSave = new Product("테스트2",1,"강원,세종권","과실주","테스터",2,25,24000,"img/product/thumbnail/test2.jpg",null);
         Product afterSave = adminProductRepository.saveProduct(beforeSave);
         //when
-        Product update = new Product("수정테스트",1,"충청, 제주","기타주","수정테스터",13,33000,"img/product/thumbnail/updated.jpg",null);
+        Product update = new Product("수정테스트",1,"충청, 제주","기타주","수정테스터",13,13,33000,"img/product/thumbnail/updated.jpg",null);
         adminProductRepository.updateProduct(beforeSave.getId(),update);
         //then
         assertThat(adminProductRepository.findById(beforeSave.getId()).get().getName()).isEqualTo(update.getName());
@@ -47,18 +47,20 @@ public class JdbcAdminProductRepositoryTest {
     }
 
     @Test
-    void delete(){
-        Product beforeSave = new Product("테스트2",1,"강원,세종권","과실주","테스터",25,24000,"img/product/thumbnail/test2.jpg",null);
-        adminProductRepository.saveProduct(beforeSave);
-        adminProductRepository.deleteProduct(beforeSave.getId());
-        assertThat(adminProductRepository.findById(beforeSave.getId())).isEmpty();
+    void updateStatus(){
+        Product beforeSave = new Product("테스트2",1,"강원,세종권","과실주","테스터",25,10,24000,"img/product/thumbnail/test2.jpg",null);
+        Product afterSave = adminProductRepository.saveProduct(beforeSave);
+        log.info("afterSave status >>{}",afterSave.getStatus());
+        Product updatedStatus = adminProductRepository.updateProductStatus(afterSave.getId(), "F");
+        log.info("updatedStatus status >>{}",updatedStatus.getStatus());
+        assertThat(adminProductRepository.findById(updatedStatus.getId()).get().getStatus()).isNotEqualTo(afterSave.getStatus());
 
     }
 
     @Test
     void findById(){
         //given
-        Product beforeSave = new Product("테스트2",1,"강원,세종권","과실주","테스터",25,24000,"img/product/thumbnail/test2.jpg",null);
+        Product beforeSave = new Product("테스트2",1,"강원,세종권","과실주","테스터",25,10,24000,"img/product/thumbnail/test2.jpg",null);
         Product afterSave = adminProductRepository.saveProduct(beforeSave);
         //when
         Optional<Product> id = adminProductRepository.findById(afterSave.getId());
@@ -71,7 +73,7 @@ public class JdbcAdminProductRepositoryTest {
     void findAll(){
         //given
         List<Product> before = adminProductRepository.findAll();
-        Product beforeSave = new Product("테스트2",1,"강원,세종권","과실주","테스터",25,24000,"img/product/thumbnail/test2.jpg",null);
+        Product beforeSave = new Product("테스트2",1,"강원,세종권","과실주","테스터",25,12,24000,"img/product/thumbnail/test2.jpg",null);
         adminProductRepository.saveProduct(beforeSave);
         //when
         List<Product> after = adminProductRepository.findAll();

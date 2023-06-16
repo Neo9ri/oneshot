@@ -40,6 +40,7 @@
             <th>제조사</th>
             <th>상품명</th>
             <th>가격</th>
+            <th>수량</th>
             <th>상품 관리</th>
           </tr>
         </thead>
@@ -51,13 +52,13 @@
             <td th:text="${product.creator}">안동 소주 일품</td>
             <td th:text="${product.name}">안동 소주</td>
             <td th:text="${product.price}">15000</td>
+            <td th:text="${product.quantity}"></td>
             <td>
               <button type="button" th:onclick="|location.href='@{/product/{productId}/edit(productId=${product.id})}'|" class="btn btn_default"> 수정 </button>
-              <form th:action="@{/product/delete}" method="post" class="delete"
-                    onsubmit="return confirm('정말로 삭제하시겠습니까?')">
-                <input type="hidden" name="_method" value="DELETE" /> <input
-                      type="hidden" name="id" th:value="${product.id}" />
-                <button type="submit" class="btn btn_ylw">삭제</button>
+              <form th:action="@{/product/{productId}/update(productId=${product.id})}" method="post" class="delete"
+                    onsubmit="return confirm('정말로 판매상태를 변경하시겠습니까?')">
+                <input type="hidden" name="id" th:value="${product.status =='T' ? 'F' : T}" />
+                <button type="submit" class="btn btn_ylw">차단</button>
               </form>
             </td>
           </tr>

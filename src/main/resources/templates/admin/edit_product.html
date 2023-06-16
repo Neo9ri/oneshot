@@ -119,7 +119,6 @@
           <div id="multipleExpPreview">
             <img  th:src="@{'/' + ${product.img_exp1}}"  alt="상품 설명 미리보기" id="exp1" class="exp">
             <img  th:src="@{'/' + ${product.img_exp2}}"  alt="상품 설명 미리보기" id="exp2" th:class="${product.img_exp2} == null ? blind : exp" >
-            <img  th:src="@{'/' + ${product.img_exp3}}"  alt="상품 설명 미리보기" id="exp3" th:class="${product.img_exp3} == null ? blind : exp" >
           </div>
           <hr>
           <div class="row justify-content-end">
@@ -185,60 +184,6 @@
   <!-- footer : END -->
 <script src="/js/admin_product.js"></script>
 <script src="/js/header.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-// $(document).ready(function() {
-//   var url = window.location.href;
-//   var productId = url.split("/")[4];
-//
-//   getProductImages(productId);
-// });
-//
-// function getProductImages(productId) {
-//   $.ajax({
-//     url: "/get-product-images/" + productId,
-//     type: "GET",
-//     success: function(data) {
-//       if (data.length > 0) {
-//         // 썸네일 이미지
-//         var thumbnailImage = "data:image/jpeg;base64," + arrayBufferToBase64(data[0]);
-//         $("#thumbnailPreview").attr("src", thumbnailImage);
-//
-//         // 상품 설명 이미지 1
-//         if (data.length > 1) {
-//           var exp1Image = "data:image/jpeg;base64," + arrayBufferToBase64(data[1]);
-//           $("#exp1").attr("src", exp1Image);
-//         }
-//
-//         // 상품 설명 이미지 2
-//         if (data.length > 2) {
-//           var exp2Image = "data:image/jpeg;base64," + arrayBufferToBase64(data[2]);
-//           $("#exp2").attr("src", exp2Image);
-//         }
-//
-//         // 상품 설명 이미지 3
-//         if (data.length > 3) {
-//           var exp3Image = "data:image/jpeg;base64," + arrayBufferToBase64(data[3]);
-//           $("#exp3").attr("src", exp3Image);
-//         }
-//       }
-//     },
-//     error: function() {
-//       console.log("Failed to fetch images.");
-//     }
-//   });
-// }
-//
-// function arrayBufferToBase64(buffer) {
-//   var binary = '';
-//   var bytes = new Uint8Array(buffer);
-//   var len = bytes.byteLength;
-//   for (var i = 0; i < len; i++) {
-//     binary += String.fromCharCode(bytes[i]);
-//   }
-//   return window.btoa(binary);
-// }
-</script>
 </body>
 
 </html>

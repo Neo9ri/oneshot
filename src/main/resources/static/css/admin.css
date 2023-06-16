@@ -268,7 +268,7 @@ img#thumbnailPreview {
 input#creator, input#name{
   margin-left: -24px;
 }
-input#price, input#alcohol{
+input#price, input#alcohol,input#volume,input#quantity{
   margin-left: -12px;
 }
 

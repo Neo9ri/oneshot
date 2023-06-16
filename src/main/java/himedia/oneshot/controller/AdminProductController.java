@@ -6,7 +6,6 @@ import himedia.oneshot.service.LoginService;
 import himedia.oneshot.service.Pagination;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.FileUtils;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,65 +74,6 @@ public class AdminProductController {
     }
 
 
-
-    @ResponseBody
-    @GetMapping("/get-product-images/{productId}")
-    public ResponseEntity<byte[]> getProductImages(@PathVariable Long productId) {
-        try {
-            Product product = adminProductService.findById(productId).orElse(null);
-            if (product != null) {
-                List<byte[]> imageBytesList = new ArrayList<>();
-
-                // 썸네일 이미지
-                if (product.getImg_thumb() != null) {
-                    File thumbnailFile = new File(product.getImg_thumb());
-                    byte[] thumbnailBytes = FileUtils.readFileToByteArray(thumbnailFile);
-                    imageBytesList.add(thumbnailBytes);
-                }
-
-                // 상품 설명 이미지 1
-                if (product.getImg_exp1() != null) {
-                    File exp1File = new File(product.getImg_exp1());
-                    byte[] exp1Bytes = FileUtils.readFileToByteArray(exp1File);
-                    imageBytesList.add(exp1Bytes);
-                }
-
-                // 상품 설명 이미지 2
-                if (product.getImg_exp2() != null) {
-                    File exp2File = new File(product.getImg_exp2());
-                    byte[] exp2Bytes = FileUtils.readFileToByteArray(exp2File);
-                    imageBytesList.add(exp2Bytes);
-                }
-
-                // 상품 설명 이미지 3
-                if (product.getImg_exp3() != null) {
-                    File exp3File = new File(product.getImg_exp3());
-                    byte[] exp3Bytes = FileUtils.readFileToByteArray(exp3File);
-                    imageBytesList.add(exp3Bytes);
-                }
-
-                if (imageBytesList.isEmpty()) {
-                    return ResponseEntity.noContent().build();
-                }
-
-                HttpHeaders headers = new HttpHeaders();
-                headers.setContentType(MediaType.IMAGE_JPEG);
-                return ResponseEntity.ok()
-                        .headers(headers)
-                        .body(imageBytesList.get(0));  // 첫 번째 이미지 데이터 반환
-            }
-
-            return ResponseEntity.notFound().build();
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-
-
-
-
-
-
     @PostMapping("/product/{id}/edit")
     public String editProduct(@PathVariable("id") Long id,
                               @ModelAttribute Product updatedProduct,
@@ -153,9 +93,9 @@ public class AdminProductController {
     }
 
 
-    @PostMapping("/product/{id}/delete")
-    public String bookingDelete(@PathVariable("id") Long id) {
-        adminProductService.deleteProduct(id);
+    @PostMapping("/product/{id}/update")
+    public String updateProductStatus(@PathVariable("id") Long id, String status) {
+        adminProductService.updateProductStatus(id, status);
         return "redirect:/product-list";
     }
 }
