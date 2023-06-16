@@ -3,22 +3,18 @@ package himedia.oneshot.controller;
 import himedia.oneshot.dto.LoginDTO;
 import himedia.oneshot.entity.Product;
 import himedia.oneshot.service.LoginService;
-import himedia.oneshot.entity.Purchase;
-import himedia.oneshot.entity.PurchaseDetail;
 import himedia.oneshot.service.Pagination;
 import himedia.oneshot.service.ProductService;
-import himedia.oneshot.service.PurchaseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -28,7 +24,6 @@ import java.util.List;
 public class HomeController {
     private final LoginService loginService;
     private final ProductService productService;
-    private final PurchaseService purchaseService;
     private final Pagination pagination;
 
     @GetMapping("/")
@@ -37,13 +32,16 @@ public class HomeController {
         loginService.loginCheck(request, model);
         // 메인 페이지 상품 목록
         List<Product> products = productService.findAll();
-        model.addAttribute("products",products);
+        Collections.reverse(products);
+        pagination.makePagination(model, products,"products", 12, 1, "pagination");
         return "index";
     }
+
     @GetMapping("/story")
     public String storyPage(){
         return "story.html";
     }
+
     @GetMapping("/login")
     public String login(HttpServletRequest request, Model model){
         loginService.loginCheck(request, model);

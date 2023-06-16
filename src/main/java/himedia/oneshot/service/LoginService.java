@@ -34,13 +34,13 @@ public class LoginService {
         if (session.getAttribute("user")!=null){
             LoginDTO loginUser = (LoginDTO) session.getAttribute("user");
             model.addAttribute("user", loginUser);
-            log.info("로그인 성공 여부 >> " + loginUser.getLoginSuccess());
+//            log.info("로그인 성공 여부 >> " + loginUser.getLoginSuccess());
         }
         else {
             LoginDTO loginUser = new LoginDTO();
             model.addAttribute("user", loginUser);
             session.setAttribute("user", loginUser);
-            log.info("비로그인 유저");
+//            log.info("비로그인 유저");
         }
     }
 
@@ -58,7 +58,7 @@ public class LoginService {
         }
         request.getSession().setAttribute("user", loginResult);
         model.addAttribute("user", loginResult);
-        log.info("로그인 성공 >> " + loginResult.getLoginSuccess());
+//        log.info("로그인 성공 >> " + loginResult.getLoginSuccess());
     }
 
 

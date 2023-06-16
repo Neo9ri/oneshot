@@ -65,6 +65,15 @@ public class JdbcProductRepository implements ProductRepository{
 //        --> 테스트를 위해 넣은 코드 service 추가하면 해결됨
         return result.stream().findAny();
     }
+
+    @Override
+    public List<Product> findByName(String name) {
+        String sql = "SELECT * FROM product WHERE name LIKE ?";
+        String searchName = "%" + name + "%";
+        List<Product> result = jdbcTemplate.query(sql, productRowMapper, searchName);
+        return result;
+    }
+
     @Override
     public List<Product> findAll() {
         String sql = "select * from product";

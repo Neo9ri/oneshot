@@ -10,6 +10,7 @@ import java.util.Optional;
 
 public interface ProductRepository {
     Optional<Product> findById(Long id);
+    List<Product> findByName(String name);
     List<Product> findAll();
     void addCart(Long id,Long memberId);
 //    List<Product> showCart(Long memberId);
@@ -18,4 +19,5 @@ public interface ProductRepository {
     void truncateTableCart(Long memberId);
     void deleteCartItem(Long id);
     List<Map<String, Object>> getCartItems(Long memberId);
+
 }

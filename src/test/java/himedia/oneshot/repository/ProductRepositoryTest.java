@@ -61,7 +61,7 @@ class ProductRepositoryTest {
         Product product2 = products.get(1);
         assertEquals(productId2, product2.getId());
         assertEquals(quantity2, product2.getQuantity());
-    }
+   }
     @Test
     void testUpdateProductQuantity() {
         // 가상의 상품 ID와 변경할 수량 설정
@@ -92,6 +92,19 @@ class ProductRepositoryTest {
     void truncateTableCart() {
 
         productRepository.truncateTableCart(2L);
+    }
+
+    @Test
+    void 상품검색(){
+        // given
+        String name = "산사";
+        // then
+        List<Product> result = productRepository.findByName(name);
+        // assert
+        String expectedName = "산사춘";
+        String resultName = result.get(0).getName();
+        assertEquals(expectedName, resultName);
+
     }
 
 }

@@ -12,7 +12,7 @@
         <a href="/"><img src="/img/oneshot_logo.png" alt="원샷-우리술 한잔" />우리술
           한 잔,</a>
       </h1>
-      <form role="search" class="main_search">
+      <form role="search" class="main_search" th:action="@{/search}">
         <div class="row">
           <input type="search" name="keyword" placeholder="상품명을 입력하세요." class="col form-control"
                  aria-label="Search" />

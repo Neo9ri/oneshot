@@ -377,6 +377,9 @@ input#price, input#alcohol{
   border-radius: 100%;
 }
 
+.page-item:hover {
+  cursor:pointer;
+}
 /* paginaton-END */
 
 /* footer-START */
