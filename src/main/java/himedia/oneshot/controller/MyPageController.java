@@ -1,11 +1,14 @@
 package himedia.oneshot.controller;
 
+import himedia.oneshot.dto.LoginDTO;
 import himedia.oneshot.entity.Purchase;
 import himedia.oneshot.entity.PurchaseDetail;
+import himedia.oneshot.service.LoginService;
 import himedia.oneshot.service.Pagination;
 import himedia.oneshot.service.PurchaseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,24 +16,42 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
 
 @Controller
-@RequiredArgsConstructor
 @Slf4j
 public class MyPageController {
     private final PurchaseService purchaseService;
     private final Pagination pagination;
+    private final LoginService loginService;
+
+    @Autowired
+    public MyPageController(PurchaseService purchaseService, Pagination pagination, LoginService loginService){
+        this.purchaseService = purchaseService;
+        this.pagination = pagination;
+        this.loginService = loginService;
+    }
 
     @GetMapping("/user/mypage")
-//    @PostMapping("/user/mypage/{memberId}")
-//    public String myPage(@PathVariable Long memberId, @RequestParam(required = fals) Integer page,Model model){
-    public String myPage(@RequestParam(required = false) Integer page, Model model){
-        List<Purchase> purchaseList = purchaseService.showPurchase(2L);
-        pagination.makePagination(model, purchaseList,"purchaseList", 4, page, "pagination");
+    public String myPage(HttpServletRequest request,
+                         @RequestParam(required = false) Integer page,
+                         Model model){
+        loginService.loginCheck(request, model);
+        HttpSession session = request.getSession();
+        LoginDTO user = (LoginDTO) session.getAttribute(("user"));
+        Long memberId;
+        if (user.getLoginSuccess()){
+            memberId = user.getId();
+        } else {
+            return "redirect:/";
+        }
 
+        List<Purchase> purchaseList = purchaseService.showPurchase(memberId);
+        pagination.makePagenation(model, purchaseList,"purchaseList", 4, page, "pagination");
         return "/user/mypage";
     }
 

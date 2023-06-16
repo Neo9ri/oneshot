@@ -74,8 +74,6 @@ CREATE TABLE IF NOT EXISTS cart -- 장바구니 목록
     FOREIGN KEY(product_id) REFERENCES product(id) -- 외래키 지정 종료
 );
 
-
-
 INSERT INTO member -- 관리자, 유저 생성
 (login_id, pw, email, name, phone_number, id_card_number, address, gender, authority)
 values
@@ -172,3 +170,20 @@ FROM purchase_detail pd
 JOIN product p ON pd.product_id = p.id;
 
 DROP TABLE IF EXISTS cart, purchase_detail, purchase, product, inquiry, member;
+
+CREATE TABLE IF NOT EXISTS product_review -- 상품리뷰
+(	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, -- 상품리뷰 고유 번호(PK)
+	member_id BIGINT UNSIGNED NOT NULL,				-- 회원 고유 번호
+	product_id BIGINT UNSIGNED NOT NULL,			-- 상품 고유 번호
+    purchase_id BIGINT UNSIGNED NOT NULL,			-- 통합 주문 목록 고유 번호
+    review_satisfaction VARCHAR(10) NOT NULL CHECK (review_satisfaction IN('VH','H','M','L','VL')),  
+    -- 리뷰 만족도 ('VH' : 아주만족(별 5개) , 'H' : 만족(별 4개) , 'M' : 보통(별 3개), 'L' : 불만족(별 2개), 'VL' : 아주불만족(별 1개)
+    content TEXT NOT NULL, 	-- 리뷰 후기
+    img_exp1 TEXT,			-- 사용자 등록 이미지
+    img_exp2 TEXT,			
+    img_exp3 TEXT,
+    FOREIGN KEY(member_id) REFERENCES member(id), -- 외래키 지정 member id
+    FOREIGN KEY(product_id) REFERENCES product(id), -- 외래키 지정 product id
+    FOREIGN KEY(purchase_id) REFERENCES purchase(id) -- 외래키 지정 purchase id
+);
+select * from product_review;

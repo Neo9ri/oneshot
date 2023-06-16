@@ -23,7 +23,7 @@
 <div class="item_detail_container">
     <h1>상품 상세</h1>
     <div class="item_img">
-        <img th:src="@{${'/'+product.img_thumb}}"alt="상품이미지">
+        <img th:src="@{${'/'+product.img_thumb}}"alt="">
     </div>
     <div class="item_info" >
         <h2 th:text="${product.name}"></h2>
@@ -79,9 +79,9 @@
         </ul>
     </div>
     <div class="item_detail_img">
-        <img th:if="${product.img_exp1 != null}" th:src="@{${'/'+product.img_exp1}}" />
-        <img th:if="${product.img_exp2 != null}" th:src="@{${'/'+product.img_exp2}}" />
-        <img th:if="${product.img_exp3 != null}" th:src="@{${'/'+product.img_exp3}}" />
+        <img src="../../static/img/product/explanation/pro_01.jpg" th:src="@{/img/product/explanation/pro_01.jpg}"/>
+        <img src="../../static/img/product/explanation/pro_02.jpg" th:src="@{/img/product/explanation/pro_02.jpg}"/>
+        <img src="../../static/img/product/explanation/notice.jpg"th:src="@{/img/product/explanation/notice.jpg}"/>
     </div>
     <div class="delivery_info">
         <h3>배송안내</h3>

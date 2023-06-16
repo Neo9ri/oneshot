@@ -112,6 +112,12 @@
   border-radius: 5px;
   transform: scale(1.1);
 }
+.quantity_submit{
+   display: block;
+   background-color: #feef88;
+   width: 100px !important;
+   margin-left: 20px !important;
+}
 /* 배송비 */
 .item_cart_delivery{
   display: flex;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" class="h-100" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,15 +39,22 @@
             <td class="cart_tbody_info"th:text="${product.name}"></td>
             <td class="cart_tbody_price"th:text="${product.price}"></td>
             <td class="cart_tbody_quantity">
-              <form class="count_box" th:action="@{/user/item_cart/update/{id}(id=${product.productId})}" method="post">
+<!--              <form method="post" th:action="@{/user/item_cart/update/-1}">
+                <button class="quantity_sub_btn" th:name="id" th:value="${product.productId}">-</button>
+              </form>
+              <input type="text" readonly="readonly" th:value="${product.quantity}"/>
+              <form method="post" th:action="@{/user/item_cart/update/1}">
+                <button class="quantity_add_btn" th:name="id" th:value="${product.productId}">+</button>
+              </form>-->
+              <form class="count_box">
                 <button class="quantity_sub_btn" type="button" onclick="decreaseQuantity(this)">-</button>
-                <input type="text" class="quantity-input" th:name="quantity" readonly="readonly" th:value="${product.quantity}" />
+                <input type="text" class="quantity-input" readonly="readonly" th:value="${product.quantity}" />
                 <button class="quantity_add_btn" type="button" onclick="increaseQuantity(this)">+</button>
                 <button class="quantity_submit" type="submit">적용</button>
               </form>
             </td>
             <td class="cart_tbody_btn">
-              <form method="post" th:action="@{/user/item_cart/delete/{id}(id=${product.productId})}">
+              <form method="post" th:action="@{/user/item_cart/delete}">
                 <button type="submit" th:name="id" th:value="${product.productId}">삭제</button>
               </form>
             </td>
