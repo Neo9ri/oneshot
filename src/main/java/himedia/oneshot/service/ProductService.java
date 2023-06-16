@@ -3,6 +3,7 @@ package himedia.oneshot.service;
 import himedia.oneshot.dto.CartDTO;
 import himedia.oneshot.entity.Product;
 import himedia.oneshot.repository.ProductRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,15 +12,15 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
 
-    public ProductService(ProductRepository productRepository){
-        this.productRepository = productRepository;
-    }
-
     public Optional<Product> findById(Long id){
         return productRepository.findById(id);
+    }
+    public List<Product> findByName(String name){
+        return productRepository.findByName(name);
     }
 
     public List<Product> findAll(){

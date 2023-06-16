@@ -54,6 +54,7 @@ public class MyPageController {
         pagination.makePagenation(model, purchaseList,"purchaseList", 4, page, "pagination");
         return "/user/mypage";
     }
+
     @PostMapping("/purchaseDetail") // Ajax 요청을 처리할 경로로 설정해야 합니다.
     @ResponseBody
     public List<PurchaseDetail> showPurchaseDetailModal(@RequestParam("purchaseId") Long purchaseId) {

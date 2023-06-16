@@ -5,9 +5,11 @@ import himedia.oneshot.dto.LoginDTO;
 import himedia.oneshot.entity.Cart;
 import himedia.oneshot.entity.Product;
 import himedia.oneshot.service.LoginService;
+import himedia.oneshot.service.Pagination;
 import himedia.oneshot.service.ProductService;
 import himedia.oneshot.service.PurchaseService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,17 +23,13 @@ import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @Controller
+@RequiredArgsConstructor
+@Slf4j
 public class ProductController {
     private final ProductService productService;
     private final PurchaseService purchaseService;
     private final LoginService loginService;
-
-    @Autowired
-    public ProductController(ProductService productService,PurchaseService purchaseService,LoginService loginService){
-        this.productService = productService;
-        this.purchaseService = purchaseService;
-        this.loginService = loginService;
-    }
+    private final Pagination pagination;
 
     //[상품 목록]
     @GetMapping("/product/item_detail/{id}")
@@ -125,5 +123,23 @@ public class ProductController {
         List<Map<String, Object>> cartItems = productService.getCartItems(memberId);
         purchaseService.placeOrder(memberId,cartItems);
         return "redirect:/";
+    }
+
+    @GetMapping("/search")
+    public String search(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page, @RequestParam String keyword) {
+        loginService.loginCheck(request, model);
+        List<Product> products = productService.findByName(keyword);
+        pagination.makePagination(model, products, "products", 12, page, "pagination");
+        model.addAttribute("keyword", keyword);
+        return "/product/search";
+    }
+
+    @PostMapping("/search")
+    public String searchMore(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page, @RequestParam String keyword) {
+        loginService.loginCheck(request, model);
+        List<Product> products = productService.findByName(keyword);
+        pagination.makePagination(model, products, "products", 12, page, "pagination");
+        model.addAttribute("keyword", keyword);
+        return "/product/search :: section";
     }
 }

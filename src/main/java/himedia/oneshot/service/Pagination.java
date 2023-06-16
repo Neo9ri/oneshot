@@ -6,9 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * 페이지네이션 버튼 UI 구현에 필요한 값들을 저장하는 클래스입니다.
@@ -138,12 +136,12 @@ public class Pagination {
      *                    (ex) ${pageBtnName.변수}
      * @see himedia.oneshot.controller.AdminController
      */
-    public <T> void makePagenation (Model model,
-                           List<T> itemList,
-                           String itemListName,
-                           int rangeItem,
-                           Integer requestPage,
-                           String pageBtnName){
+    public <T> void makePagination(Model model,
+                                   List<T> itemList,
+                                   String itemListName,
+                                   int rangeItem,
+                                   Integer requestPage,
+                                   String pageBtnName){
         this.rangeItem = rangeItem;
         try {
             this.requestPage = requestPage;

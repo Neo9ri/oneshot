@@ -24,17 +24,18 @@ public class JdbcProductRepository implements ProductRepository{
         Product product = new Product();
 
         product.setId(rs.getLong("id"));
+        product.setStatus(rs.getString("status"));
         product.setName(rs.getString("name"));
         product.setQuantity(rs.getInt("quantity"));
         product.setType_local(rs.getString("type_local"));
         product.setType_kind(rs.getString("type_kind"));
-        product.setAlcohol(rs.getFloat("alcohol"));
         product.setCreator(rs.getString("creator"));
+        product.setAlcohol(rs.getFloat("alcohol"));
+        product.setVolume(rs.getInt("volume"));
         product.setPrice(rs.getInt("price"));
         product.setImg_thumb(rs.getString("img_thumb"));
         product.setImg_exp1(rs.getString("img_exp1"));
         product.setImg_exp2(rs.getString("img_exp2"));
-        product.setImg_exp3(rs.getString("img_exp3"));
 
         return product;
     };
@@ -65,6 +66,15 @@ public class JdbcProductRepository implements ProductRepository{
 //        --> 테스트를 위해 넣은 코드 service 추가하면 해결됨
         return result.stream().findAny();
     }
+
+    @Override
+    public List<Product> findByName(String name) {
+        String sql = "SELECT * FROM product WHERE name LIKE ?";
+        String searchName = "%" + name + "%";
+        List<Product> result = jdbcTemplate.query(sql, productRowMapper, searchName);
+        return result;
+    }
+
     @Override
     public List<Product> findAll() {
         String sql = "select * from product";

@@ -21,6 +21,9 @@
   transform:translateX(-5%);
   padding-top: 50px;
 }
+.item_img img{
+   width:500px;
+}
 /* 상품 판매 정보 */
 .item_info{
   display: inline-block;
@@ -103,6 +106,9 @@
   border-bottom: 2px solid #0000001b;
   margin-bottom: 30px;
   padding-bottom: 30px;
+}
+.item_detail_img img{
+  width: 860px;
 }
 /* 배송 안내 */
 .delivery_info{

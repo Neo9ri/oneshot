@@ -2,6 +2,9 @@
 server:
   address: localhost
   port: 8080
+  servlet:
+      session:
+        tracking-modes: cookie
 
 spring:
   datasource:
@@ -16,7 +19,10 @@ spring:
       &serverTimezone=Asia/Seoul
     username: root # DB ????
     password: 1111 # DB ???? ????
+  web:
+    resources:
+      cache:
+        period: 0
 
-  spring.resources.cache.cachecontrol.no-cache: true
-  spring.resources.cache.period: 0
+
 

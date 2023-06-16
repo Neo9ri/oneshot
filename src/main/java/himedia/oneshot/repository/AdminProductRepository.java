@@ -5,5 +5,5 @@ import himedia.oneshot.entity.Product;
 public interface AdminProductRepository {
     Product saveProduct(Product product);
     Product updateProduct(Long id, Product updateProduct);
-    void deleteProduct(Long id);
+    Product updateProductStatus(Long id, String status);
 }

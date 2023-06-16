@@ -105,19 +105,25 @@
     <div class="d-flex justify-content-center py-5">
       <nav aria-label="">
         <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
+          <li th:if="${pagination.existPreviousLastPage}" class="page-item">
+            <a class="page-link"
+               th:onclick="updateList([[${pagination.previousLastPage}]])"
+               aria-label="Previous">
               <span>&laquo;</span>
             </a>
           </li>
-          <li class="page-item"><a class="page-link active" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">4</a></li>
-          <li class="page-item"><a class="page-link" href="#">5</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
+          <li th:each="page : ${#numbers.sequence(pagination.firstPage,pagination.lastPage)}" class="page-item">
+            <a class="page-link"
+               th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'"
+               th:onclick="updateList([[${page}]])"
+               th:text="${page}"
+               th:page="${page}">1</a>
+          </li>
+          <li th:if="${pagination.existNextFirstPage}" class="page-item">
+            <a class="page-link"
+               th:onclick="updateList([[${pagination.nextFirstPage}]])"
+               aria-label="Next">
+              <span>&raquo;</span>
             </a>
           </li>
         </ul>
@@ -128,6 +134,21 @@
   <!-- footer : START -->
   <footer th:replace="~{/fragment/footer :: #footer}"></footer>
   <!-- footer : END -->
+<script src="/js/header.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+    function updateList(page) {
+        var section = document.querySelector('#section');
+        $.ajax({
+          type: 'POST',
+          data: {page: page},
+          url: "/inquiry/product",
+        })
+        .done(function (result) {
+          $('section').replaceWith(result);
+        });
+    }
+  </script>
 </body>
 
 </html>

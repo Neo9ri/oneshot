@@ -13,80 +13,106 @@
 
 <body>
 <div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
-  <!-- header : START -->
-  <header th:replace="~{/fragment/adminHeader :: #header}"></header>
-  <!-- header : END -->
-  <!-- container : START -->
-  <section class="center">
-    <div>
-      <div class="admin_table_name justify-content-center">
-        <div class="row"></div>
-        <div class="row">
-          <h2 class="col align-self-center text-center">상품 관리</h2>
-        </div>
-        <div class="row">
-          <div class="col"></div>
-          <div class="col position-relative">
-            <button type="button" th:onclick="|location.href='@{/product/add}'|" class="position-absolute btn btn_ylw admin_table_name_btn">상품 등록</button>
-          </div>
+<!-- header : START -->
+<header th:replace="~{/fragment/adminHeader :: #header}"></header>
+<!-- header : END -->
+<!-- container : START -->
+<section class="center">
+  <div>
+    <div class="admin_table_name justify-content-center">
+      <div class="row"></div>
+      <div class="row">
+        <h2 class="col align-self-center text-center">상품 관리</h2>
+      </div>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col position-relative">
+          <button type="button" th:onclick="|location.href='@{/product/add}'|" class="position-absolute btn btn_ylw admin_table_name_btn">상품 등록</button>
         </div>
       </div>
-      <table id="table" class="table text-center admin_table">
-        <thead>
-          <tr>
-            <th>상품코드</th>
-            <th>지역 카테고리</th>
-            <th>주종 카테고리</th>
-            <th>제조사</th>
-            <th>상품명</th>
-            <th>가격</th>
-            <th>상품 관리</th>
-          </tr>
-        </thead>
-        <tbody th:unless="${#lists.isEmpty(products)}">
-          <tr th:each="product : ${products}">
-            <td th:text="${product.id}">101</td>
-            <td th:text="${product.type_local}">전라북도, 경상도권</td>
-            <td th:text="${product.type_kind}">증류주</td>
-            <td th:text="${product.creator}">안동 소주 일품</td>
-            <td th:text="${product.name}">안동 소주</td>
-            <td th:text="${product.price}">15000</td>
-            <td>
-              <button type="button" th:onclick="|location.href='@{/product/{productId}/edit(productId=${product.id})}'|" class="btn btn_default"> 수정 </button>
-              <form th:action="@{/product/delete}" method="post" class="delete"
-                    onsubmit="return confirm('정말로 삭제하시겠습니까?')">
-                <input type="hidden" name="_method" value="DELETE" /> <input
-                      type="hidden" name="id" th:value="${product.id}" />
-                <button type="submit" class="btn btn_ylw">삭제</button>
-              </form>
-            </td>
-          </tr>
-        </tbody>
-      </table>
     </div>
-    <div class="d-flex justify-content-center py-5">
-      <nav aria-label="">
-        <ul class="pagination">
-          <li th:if="${pagination.existPreviousLastPage}" class="page-item">
-            <a class="page-link" href="#" th:href="@{product-list(page=${pagination.previousLastPage})} + ${'#table'}" aria-label="Previous">
-              <span>&laquo;</span>
-            </a>
-          </li>
-          <li th:each="page : ${#numbers.sequence(pagination.firstPage,pagination.lastPage)}" class="page-item"><a class="page-link" th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'" href="#" th:href="@{product-list(page=${page})} + ${'#table'}" th:text="${page}">1</a></li>
-          <li th:if="${pagination.existNextFirstPage}" class="page-item">
-            <a class="page-link" href="#" th:href="@{product-list(page=${pagination.nextFirstPage})} + ${'#table'}" aria-label="Next">
-              <span>&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </section>
-  <!-- container : END -->
-  <!-- footer : START -->
-  <footer th:replace="~{/fragment/footer :: #footer}"></footer>
-  <!-- footer : END -->
+    <table id="table" class="table text-center admin_table">
+      <thead>
+      <tr>
+        <th>상품코드</th>
+        <th>지역 카테고리</th>
+        <th>주종 카테고리</th>
+        <th>제조사</th>
+        <th>상품명</th>
+        <th>가격</th>
+        <th>수량</th>
+        <th>상품 관리</th>
+      </tr>
+      </thead>
+      <tbody th:unless="${#lists.isEmpty(products)}">
+      <tr th:each="product : ${products}">
+        <td th:text="${product.id}">101</td>
+        <td th:text="${product.type_local}">전라북도, 경상도권</td>
+        <td th:text="${product.type_kind}">증류주</td>
+        <td th:text="${product.creator}">안동 소주 일품</td>
+        <td th:text="${product.name}">안동 소주</td>
+        <td th:text="${product.price}">15000</td>
+        <td th:text="${product.quantity}">10</td>
+        <td>
+          <button type="button" th:onclick="|location.href='@{/product/{productId}/edit(productId=${product.id})}'|" class="btn btn_default"> 수정 </button>
+          <form th:action="@{/product/{productId}/update(productId=${product.id})}" method="post" class="update"
+                onsubmit="return confirm('판매상태를 변경 하시겠습니까?')">
+            <input type="hidden" name="id" th:value="${product.id}" />
+            <input type="hidden" name="status" th:value="${product.status} == 'T' ? 'F' : 'T'" />
+            <button type="submit" th:class="${product.status} == 'T' ? 'btn btn_ylw' : 'btn btn_ylw deactive'" th:text="${product.status} == 'T' ? '판매중' : '판매중지'"></button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-center py-5">
+    <nav aria-label="">
+      <ul class="pagination">
+        <li th:if="${pagination.existPreviousLastPage}" class="page-item">
+          <a class="page-link"
+             th:onclick="updateList([[${pagination.previousLastPage}]])"
+             aria-label="Previous">
+            <span>&laquo;</span>
+          </a>
+        </li>
+        <li th:each="page : ${#numbers.sequence(pagination.firstPage,pagination.lastPage)}" class="page-item">
+          <a class="page-link"
+             th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'"
+             th:onclick="updateList([[${page}]])"
+             th:text="${page}"
+             th:page="${page}">1</a>
+        </li>
+        <li th:if="${pagination.existNextFirstPage}" class="page-item">
+          <a class="page-link"
+             th:onclick="updateList([[${pagination.nextFirstPage}]])"
+             aria-label="Next">
+            <span>&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>
+<!-- container : END -->
+<!-- footer : START -->
+<footer th:replace="~{/fragment/footer :: #footer}"></footer>
+<!-- footer : END -->
 <script src="js/header.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+    function updateList(page) {
+        var section = document.querySelector('#section');
+        $.ajax({
+          type: 'POST',
+          data: {page: page},
+          url: "/product-list",
+        })
+        .done(function (result) {
+          $('section').replaceWith(result);
+        });
+    }
+  </script>
 
 </body>
 
