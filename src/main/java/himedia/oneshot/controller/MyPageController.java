@@ -29,41 +29,16 @@ public class MyPageController {
 //    public String myPage(@PathVariable Long memberId, @RequestParam(required = fals) Integer page,Model model){
     public String myPage(@RequestParam(required = false) Integer page, Model model){
         List<Purchase> purchaseList = purchaseService.showPurchase(2L);
-        pagination.makePagenation(model, purchaseList,"purchaseList", 4, page, "pagination");
+        pagination.makePagination(model, purchaseList,"purchaseList", 4, page, "pagination");
 
-//        int totalItem = purchaseList.size();
-//        int requestPage;
-//        try {
-//            requestPage = page.intValue();
-//        }catch (NullPointerException npe){
-//            requestPage = 1;
-//        }
-//        Pagination pagination = new Pagination(totalItem, 4,requestPage);
-//        model.addAttribute(pagination);
-//
-//        int fromIndex = pagination.getFromIndex();
-//        int toIndex = pagination.getToIndex();
-//
-//        try {
-//            purchaseList = purchaseList.subList(fromIndex, toIndex);
-//            model.addAttribute("purchaseList",purchaseList);
-//        }catch (IndexOutOfBoundsException ioobe){
-//            if(purchaseList.size() != 0){
-//                toIndex = purchaseList.size();
-//                purchaseList = purchaseList.subList(fromIndex, toIndex);
-//                model.addAttribute("purchaseList",purchaseList);
-//            }
-//        }
         return "/user/mypage";
     }
+
     @PostMapping("/purchaseDetail") // Ajax 요청을 처리할 경로로 설정해야 합니다.
     @ResponseBody
     public List<PurchaseDetail> showPurchaseDetailModal(@RequestParam("purchaseId") Long purchaseId) {
         // purchaseId를 기반으로 구매 정보를 조회하고 필요한 처리를 수행합니다.
         List<PurchaseDetail> purchaseDetailList = purchaseService.showPurchaseDetail(purchaseId);
-        // 예를 들어 모달에 표시할 구매 정보를 가져오거나 다른 작업을 수행할 수 있습니다.
-//        log.info("purchaseDetailList >> {}",purchaseDetailList);
-        log.info("purchaseId >> {}",purchaseId);
         return purchaseDetailList;
     }
 

@@ -136,6 +136,8 @@ update inquiry set answer="답변드립니다." where id=5;
 drop table inquiry;
 
 select * from product where id=1;
+select img_thumb from product where id =2;
+
 
 SELECT * FROM product;
 SELECT * FROM cart;

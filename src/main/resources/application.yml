@@ -2,6 +2,9 @@
 server:
   address: localhost
   port: 8080
+  servlet:
+      session:
+        tracking-modes: cookie
 
 spring:
   datasource:

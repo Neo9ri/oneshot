@@ -1,8 +1,9 @@
 package himedia.oneshot.service;
 
-import himedia.oneshot.entity.Cart;
+import himedia.oneshot.dto.CartDTO;
 import himedia.oneshot.entity.Product;
 import himedia.oneshot.repository.ProductRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,25 +12,25 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
 
-    public ProductService(ProductRepository productRepository){
-        this.productRepository = productRepository;
-    }
-
     public Optional<Product> findById(Long id){
         return productRepository.findById(id);
+    }
+    public List<Product> findByName(String name){
+        return productRepository.findByName(name);
     }
 
     public List<Product> findAll(){
         return productRepository.findAll();
     }
     public void addCart(Long id, Long memberId){
-        List<Product> cart = productRepository.showCart(memberId);
+        List<CartDTO> cart = productRepository.showCart(memberId);
         List<Long> addProductList = new ArrayList<>();
-        for(Product product : cart){
-            addProductList.add(product.getId());
+        for(CartDTO cartDTO : cart){
+            addProductList.add(cartDTO.getProductId());
         }
         if(!addProductList.contains(id)){
             productRepository.addCart(id,memberId);
@@ -37,7 +38,10 @@ public class ProductService {
             productRepository.updateProductQuantity(1,id);
         }
     }
-    public List<Product> showCart(Long memberId){
+//    public List<Product> showCart(Long memberId){
+//        return productRepository.showCart(memberId);
+//    }
+    public List<CartDTO> showCart(Long memberId){
         return productRepository.showCart(memberId);
     }
     public void updateProductQuantity(int quantity, Long id){
@@ -56,10 +60,10 @@ public class ProductService {
 
     public int cartTotalPrice(Long memberId){
         int totalPrice = 0;
-        List<Product> result = productRepository.showCart(memberId);
+        List<CartDTO> result = productRepository.showCart(memberId);
 
-        for(Product product : result){
-            totalPrice +=(product.getPrice() * product.getQuantity());
+        for(CartDTO cartDTO : result){
+            totalPrice +=(cartDTO.getPrice() * cartDTO.getQuantity());
         }
 
         return totalPrice;

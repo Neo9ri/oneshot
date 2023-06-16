@@ -150,6 +150,14 @@ header nav.gnb > ul > li > ul > li {
 }
 /* header- END */
 
+.no_result {
+    font-weight: 400;
+        font-size: 30px;
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 50px;
+}
+
 /* explanation -START*/
 section.story_container .title{
   font-weight: 700;
@@ -282,6 +290,33 @@ section[class$="container"] .item_price_box {
   margin: 10px 0;
 }
 /* product-END */
+
+/* pagination-START */
+.pagination li a {
+  margin: 10px;
+  border-radius: 100%;
+  color: #333;
+  background-color: #eeeeee;
+}
+
+.pagination li a.active {
+  background-color: #fedf12;
+  color: #333;
+  border-color: #eeeeee;
+}
+
+.page-item:first-child .page-link {
+  border-radius: 100%;
+}
+
+.page-item:last-child .page-link {
+  border-radius: 100%;
+}
+
+.page-item:hover {
+  cursor:pointer;
+}
+/* paginaton-END */
 
 /* footer-START */
 footer {

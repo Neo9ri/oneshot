@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>원샷-우리술 한 잔,</title>
+  <link rel="icon" href="img/favicon-32x32.png" type="image/x-icon" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/main_style.css" />
+  <link rel="stylesheet" href="css/main_banner.css">
+</head>
+
+<body>
+<div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
+  <!-- header : START -->
+  <header th:replace="~{/fragment/defaultHeader :: #header}">
+  </header>
+  <!-- header : END -->
+  <!-- container : START -->
+  <section class="main_container">
+    <h2 class="center title">검색 결과</h2>
+    <h2 class="center no_result" th:if="${#arrays.isEmpty(products)}"> 검색 결과가 존재하지 않습니다.</h2>
+    <h2 class="center no_result" th:if="${#strings.isEmpty(keyword)}"> 검색어를 입력하지 않았습니다.</h2>
+    <ul class="product_list center" >
+      <li th:each="product: ${products}">
+        <div class="item_cont" >
+          <div class="item_photo_box" >
+            <a href="item_detail.html" th:href="@{/product/item_detail/{id}(id=${product.id})}"><img src="img/dummy_item/1000000898_main_081.jpg" alt="" th:src="${product.img_thumb}"></a>
+          </div>
+          <div class="item_info_cont">
+            <div class="item_title_box">
+              <a href="item_detail.html" th:href="@{/product/item_detail/{id}(id=${product.id})}">
+                <span class="item_title" th:text="${product.name}" ></span>
+              </a>
+            </div>
+            <div class="item_price_box">
+              <span th:text="${product.price+'원'}"></span>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="d-flex justify-content-center py-5" th:if="${#arrays.isEmpty(products)} ? false : true">
+      <nav aria-label="">
+        <ul class="pagination">
+          <li th:if="${pagination.existPreviousLastPage}" class="page-item">
+            <a class="page-link"
+               th:onclick="updateList([[${pagination.previousLastPage}]],[[${keyword}]])"
+               aria-label="Previous">
+              <span>&laquo;</span>
+            </a>
+          </li>
+          <li th:each="page : ${#numbers.sequence(pagination.firstPage,pagination.lastPage)}" class="page-item">
+            <a class="page-link"
+               th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'"
+               th:onclick="updateList([[${page}]],[[${keyword}]])"
+               th:text="${page}"
+               th:page="${page}">1</a>
+          </li>
+          <li th:if="${pagination.existNextFirstPage}" class="page-item">
+            <a class="page-link"
+               th:onclick="updateList([[${pagination.nextFirstPage}]], [[${keyword}]])"
+               aria-label="Next">
+              <span>&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+  <!-- container : END -->
+  <!-- footer : START -->
+  <footer th:replace="~{/fragment/footer :: #footer}">
+  </footer>
+  <!-- footer : END -->
+  <script src="js/header.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script>
+      function updateList(page, keyword) {
+          var section = document.querySelector('#section');
+          $.ajax({
+            type: 'POST',
+            data: {page: page,
+                   keyword: keyword
+            },
+            url: "/search",
+          })
+          .done(function (result) {
+            $('section').replaceWith(result);
+          });
+      }
+    </script>
+</body>
+
+</html>
