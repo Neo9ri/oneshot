@@ -214,8 +214,14 @@ table.admin_table td {
   border: #aaa solid 1px;
 }
 
-table.admin_table td form.delete {
+table.admin_table td form.update {
   display: inline-block;
+}
+
+table.admin_table td form.update button.deactive {
+  background-color: #bbb;
+    color:#fff;
+    border:none;
 }
 
 table.admin_table thead tr th {
