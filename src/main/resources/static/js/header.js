@@ -1,16 +1,20 @@
     const gnbbar = document.querySelector(".gnbbar");
-    const gnbmenu = document.querySelectorAll("nav.gnb>ul>li");
-    gnbmenu.forEach((v, index) => {
-      if (index !== 0) {
-        v.addEventListener("mouseover", (e) => {
-          gnbbar.style.display = "block";
-        });
 
-        v.addEventListener("mouseout", (e) => {
-          gnbbar.style.display = "none";
-        });
-      }
-    });
+    if(gnbbar != null){
+        const gnbmenu = document.querySelectorAll("nav.gnb>ul>li");
+        gnbmenu.forEach((v, index) => {
+              if (index !== 0) {
+                v.addEventListener("mouseover", (e) => {
+                  gnbbar.style.display = "block";
+                });
+
+                v.addEventListener("mouseout", (e) => {
+                  gnbbar.style.display = "none";
+                });
+              }
+            });
+    }
+
 
 // upButton
     window.addEventListener("scroll",function(){

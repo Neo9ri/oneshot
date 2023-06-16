@@ -6,6 +6,7 @@ import himedia.oneshot.service.LoginService;
 import himedia.oneshot.service.Pagination;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 @Slf4j
@@ -23,14 +26,14 @@ public class AdminProductController {
     private final AdminProductService adminProductService;
     private final LoginService loginService;
 
-    private List<String> typeLocal = List.of(
+    private final List<String> typeLocal = List.of(
             "서울, 경기, 인천권",
             "강원, 세종권",
             "충북, 충남, 제주도",
             "전북, 전남, 경북, 경남"
     );
 
-    private List<String> typeKind = List.of("증류주", "과실주","약주/청주","숙성 전통주","기타");
+    private final List<String> typeKind = List.of("증류주", "과실주","약주/청주","숙성 전통주","기타");
 
     @GetMapping("/product/add")
     public String addProduct(Model model) {
@@ -60,7 +63,7 @@ public class AdminProductController {
 
 
     @GetMapping("/product/{id}/edit")
-    public String editProduct(@PathVariable(name = "id") Long id, Model model) {
+    public String editProduct(@PathVariable(name = "id") Long id, Model model) throws IOException {
         Product product = adminProductService.findById(id).get();
         model.addAttribute("product",product);
         model.addAttribute("typeLocal", typeLocal);
@@ -69,6 +72,7 @@ public class AdminProductController {
 
         return "/admin/edit_product";
     }
+
 
     @PostMapping("/product/{id}/edit")
     public String editProduct(@PathVariable("id") Long id,
@@ -89,9 +93,9 @@ public class AdminProductController {
     }
 
 
-    @PostMapping("/product/{id}/delete")
-    public String bookingDelete(@PathVariable("id") Long id) {
-        adminProductService.deleteProduct(id);
+    @PostMapping("/product/{id}/update")
+    public String updateProductStatus(@PathVariable("id") Long id, String status) {
+        adminProductService.updateProductStatus(id, status);
         return "redirect:/product-list";
     }
 }

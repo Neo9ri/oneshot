@@ -36,12 +36,10 @@ public class HomeController {
         pagination.makePagination(model, products,"products", 12, 1, "pagination");
         return "index";
     }
-
     @GetMapping("/story")
     public String storyPage(){
-        return "story.html";
+        return "story";
     }
-
     @GetMapping("/login")
     public String login(HttpServletRequest request, Model model){
         loginService.loginCheck(request, model);
