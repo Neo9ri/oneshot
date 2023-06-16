@@ -125,7 +125,7 @@ public class JdbcProductRepository implements ProductRepository{
         Integer currentQuantity = jdbcTemplate.queryForObject(selectSql, Integer.class, id);
 
         // 수량 증감 후의 새로운 수량 계산
-        int newQuantity = currentQuantity + quantity;
+        int newQuantity = quantity;
 
         // 새로운 수량이 0 이상인 경우에만 업데이트 수행
         if (newQuantity >= 0) {
