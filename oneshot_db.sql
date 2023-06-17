@@ -169,7 +169,7 @@ SELECT pd.*, p.name
 FROM purchase_detail pd
 JOIN product p ON pd.product_id = p.id;
 
-DROP TABLE IF EXISTS cart, purchase_detail, purchase, product, inquiry, member;
+DROP TABLE IF EXISTS product_review, cart, purchase_detail, purchase, product, inquiry, member; -- 테이블 전체 삭제
 
 CREATE TABLE IF NOT EXISTS product_review -- 상품리뷰
 (	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, -- 상품리뷰 고유 번호(PK)

@@ -37,7 +37,8 @@ public class HomeController {
         return "index";
     }
     @GetMapping("/story")
-    public String storyPage(){
+    public String storyPage(HttpServletRequest request, Model model){
+        loginService.loginCheck(request, model);
         return "story";
     }
     @GetMapping("/login")
