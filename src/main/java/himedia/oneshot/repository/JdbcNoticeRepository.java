@@ -41,7 +41,6 @@ public class JdbcNoticeRepository implements NoticeRepository {
         Map<String, Object> parameter = new HashMap<>();
         parameter.put("title", notice.getTitle());
         parameter.put("content", notice.getContent());
-
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameter));
         notice.setId(key.longValue());
         return notice;

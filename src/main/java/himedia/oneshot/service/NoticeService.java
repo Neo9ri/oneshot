@@ -19,7 +19,7 @@ public class NoticeService {
         noticeRepository.saveNotice(notice);
     }
 
-    public void updateService(Long id,String title, String content){
+    public void updateNotice(Long id,String title, String content){
         noticeRepository.updateNotice(id, title, content);
     }
 

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -196,7 +196,8 @@ public class AdminController {
 
     }
     @PostMapping("/inquiry/{id}/reply")
-    public String reply(HttpServletRequest request, Model model, @PathVariable("id") Long id, @RequestParam("answer") String answer, @RequestParam("type") String type) {
+    public String reply(HttpServletRequest request, Model model, @PathVariable("id") Long id,
+                        @RequestParam("answer") String answer, @RequestParam("type") String type) {
         // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
@@ -219,7 +220,7 @@ public class AdminController {
     @PostMapping("/product/{productId}")
     public String saveInquiry(@PathVariable("productId") Long productId, @RequestParam Long memberId,
                               @ModelAttribute Inquiry inquiry, RedirectAttributes redirectAttributes) {
-
+        inquiry.setDate_inquired(new Date());
         inquiryService.saveInquiry(inquiry);
         redirectAttributes.addAttribute("memberId", memberId);
         return "redirect:/mypage";
@@ -269,7 +270,7 @@ public class AdminController {
     }
 
     @GetMapping("/notice/add")
-    public String noticeAdd(HttpServletRequest request, Model model){
+    public String addNotice(HttpServletRequest request, Model model){
 
         // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
@@ -289,7 +290,7 @@ public class AdminController {
     }
 
     @PostMapping("/notice/add")
-    public String addProduct(HttpServletRequest request, Model model,
+    public String addNotice(HttpServletRequest request, Model model,
                              @ModelAttribute Notice notice,
                              RedirectAttributes redirectAttributes) {
         // 관리자 여부 확인 -- START
@@ -304,7 +305,7 @@ public class AdminController {
             return "redirect:/";
         }
         // 관리자 여부 확인 --END
-
+        notice.setDate_created(new Date());
         try {
             noticeService.saveNotice(notice);
         } catch (Exception e) {
@@ -317,8 +318,8 @@ public class AdminController {
     }
 
     @GetMapping("/notice/{id}/edit")
-    public String editProduct(HttpServletRequest request,
-                              @PathVariable(name = "id") Long id, Model model) throws IOException {
+    public String editNotice(HttpServletRequest request,
+                              @PathVariable(name = "id") Long id, Model model){
         // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
@@ -335,6 +336,27 @@ public class AdminController {
         model.addAttribute("notice",notice);
 
         return "/admin/notice_edit";
+    }
+
+    @PostMapping("/notice/{id}/edit")
+    public String editNotice(HttpServletRequest request,
+                              @PathVariable(name = "id") Long id, Model model, @ModelAttribute Notice notice,
+                             @RequestParam("title") String title, @RequestParam("content") String content){
+        // 관리자 여부 확인 -- START
+        loginService.loginCheck(request, model);
+        LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
+        try {
+            if (!loginUser.getAuth().equals("M")){
+                return "redirect:/";
+            }
+        } catch (NullPointerException npe){
+            log.info("비정상적 관리자 페이지 접근");
+            return "redirect:/";
+        }
+        // 관리자 여부 확인 --END
+        noticeService.updateNotice(id, title,content );
+
+        return "redirect:/notice";
     }
 
     @PostMapping("/notice/{id}/delete")

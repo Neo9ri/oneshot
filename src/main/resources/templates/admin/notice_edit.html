@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>고객 배송 문의 관리</title>
+  <title>공지 수정</title>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
   <link rel="icon" href="/img/favicon-32x32.png" type="image/x-icon" />
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
@@ -38,12 +38,12 @@
           <hr>
         <div class="row">
           <label for="title" class="col-2">공지제목</label>
-          <input type="text" id="title" name="title" th:value="${notice.title}" class="form-control">
+          <input type="text" id="title" name="title" th:value="${notice.title}" class="form-control" required>
         </div>
           <hr>
         <div class="row">
           <label for="content">공지내용입력</label>
-          <textarea name="content" id="content" cols="30" rows="10" class="form-control" th:text="${notice.content}"></textarea>
+          <textarea name="content" id="content" cols="30" rows="10" class="form-control" th:text="${notice.content}" required ></textarea>
         </div>
         <div>
           <button type="submit" class="btn btn_ylw">수정완료</button>
