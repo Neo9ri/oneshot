@@ -39,7 +39,7 @@
       <li th:each="product: ${products}">
         <div class="item_cont" >
           <div class="item_photo_box" >
-            <a href="item_detail.html" th:href="@{/product/item_detail/{id}(id=${product.id})}"><img src="img/dummy_item/1000000898_main_081.jpg" alt="" th:src="${product.img_thumb}"></a>
+            <a href="item_detail.html" th:href="@{/product/item_detail/{id}(id=${product.id})}"><img alt="" th:src="${product.img_thumb}"></a>
           </div>
           <div class="item_info_cont">
             <div class="item_title_box">
@@ -70,83 +70,23 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>2023-06-02</td>
-          <td>6월 6일 현충일 휴무 안내</td>
+        <tr th:each="notice: ${notices}">
+          <td th:text="${notice.id}"></td>
+          <td th:text="${notice.date_created}">2023-06-02</td>
+          <td th:text="${notice.title}">6월 6일 현충일 휴무 안내</td>
           <td>
             <!-- Button trigger modal -->
-            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#notice">보기</button>
+            <button type="button" class="btn" data-bs-toggle="modal" th:data-bs-target="|#notice${notice.id}|">보기</button>
             <!-- Modal -->
-            <div class="modal fade" id="notice" tabindex="-1" aria-labelledby="notice" aria-hidden="true">
+            <div class="modal fade" th:id="|notice${notice.id}|" tabindex="-1" >
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="notice">공지사항</h1>
+                    <h1 class="modal-title fs-5" th:id="|notice${notice.id}|" th:text="${notice.title}">공지사항</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <p>2023년 6월 6일(화)는 현충일로<br>
-                      배송 업무와 고객센터는 휴무입니다.<br>
-                      감사합니다.<br><br>
-                      - 원샷팀 드림
-                    </p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>2023-06-02</td>
-          <td>6월 6일 현충일 휴무 안내</td>
-          <td>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#notice">보기</button>
-            <!-- Modal -->
-            <div class="modal fade" id="notice" tabindex="-1" aria-labelledby="notice" aria-hidden="true">
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="notice">공지사항</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <p>2023년 6월 6일(화)는 현충일로<br>
-                      배송 업무와 고객센터는 휴무입니다.<br>
-                      감사합니다.<br><br>
-                      - 원샷팀 드림
-                    </p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>2023-06-02</td>
-          <td>6월 6일 현충일 휴무 안내</td>
-          <td>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#notice">보기</button>
-            <!-- Modal -->
-            <div class="modal fade" id="notice" tabindex="-1" aria-labelledby="notice" aria-hidden="true">
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="notice">공지사항</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <p>2023년 6월 6일(화)는 현충일로<br>
+                    <p th:text="${notice.content}">2023년 6월 6일(화)는 현충일로<br>
                       배송 업무와 고객센터는 휴무입니다.<br>
                       감사합니다.<br><br>
                       - 원샷팀 드림

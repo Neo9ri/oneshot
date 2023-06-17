@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>고객 배송 문의 관리</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
+  <link rel="icon" href="/img/favicon-32x32.png" type="image/x-icon" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+
+<body>
+<div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
+  <!-- header : START -->
+<header th:replace="~{/fragment/adminHeader :: #header}"></header>
+  <!-- header : END -->
+  <!-- container : START -->
+  <section class="center">
+    <div>
+      <div class="admin_table_name justify-content-center">
+        <div class="row"></div>
+        <div class="row">
+          <h2 class="col align-self-center text-center">공지사항 수정</h2>
+        </div>
+      </div>
+      <hr>
+      <div id="notice">
+        <form method="post" id="edit">
+          <div class="row">
+          <label for="id" class="col-2">공지번호</label>
+          <input type="text" id="id" name="id" th:value="${notice.id}" class="form-control col" disabled>
+          <label for="date_created" class="col-2">공지등록일</label>
+          <input type="text" id="date_created" name="date_inquired" th:value="${notice.date_created}" class="form-control col" disabled>
+        </div>
+          <hr>
+        <div class="row">
+          <label for="title" class="col-2">공지제목</label>
+          <input type="text" id="title" name="title" th:value="${notice.title}" class="form-control">
+        </div>
+          <hr>
+        <div class="row">
+          <label for="content">공지내용입력</label>
+          <textarea name="content" id="content" cols="30" rows="10" class="form-control" th:text="${notice.content}"></textarea>
+        </div>
+        <div>
+          <button type="submit" class="btn btn_ylw">수정완료</button>
+          <button type="button" class="btn" onclick="history.back()">취소</button>
+        </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+  <!-- container : END -->
+  <!-- footer : START -->
+<footer th:replace="~{/fragment/twoDepthFooter :: #footer}"></footer>
+  <!-- footer : END -->
+<script src="/js/header.js"></script>
+
+</body>
+
+</html>
