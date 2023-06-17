@@ -97,4 +97,12 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @GetMapping("/welcome")
+    public String joinCompleted(HttpServletRequest request, Model model){
+
+        loginService.loginCheck(request, model);
+
+        return "welcome";
+    }
+
 }
