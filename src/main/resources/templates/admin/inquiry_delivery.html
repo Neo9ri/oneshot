@@ -86,8 +86,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <p th:text="${delivery.answer != null ? delivery.answer : '답변 등록이 필요합니다.'}">
-                    </p>
+                    <pre th:text="${delivery.answer != null ? delivery.answer : '답변 등록이 필요합니다.'}">
+                    </pre>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn_ylw" data-bs-dismiss="modal">Close</button>

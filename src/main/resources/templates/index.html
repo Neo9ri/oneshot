@@ -86,11 +86,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <p th:text="${notice.content}">2023년 6월 6일(화)는 현충일로<br>
-                      배송 업무와 고객센터는 휴무입니다.<br>
-                      감사합니다.<br><br>
-                      - 원샷팀 드림
-                    </p>
+                    <pre th:text="${notice.content}"></pre>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
