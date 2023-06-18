@@ -45,6 +45,7 @@ public class JdbcInquiryRepository implements InquiryRepository {
         parameter.put("inquirer_id", inquiry.getInquirer_id());
         parameter.put("title", inquiry.getTitle());
         parameter.put("content", inquiry.getContent());
+        parameter.put("date_inquired", new Date());
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameter));
         inquiry.setId(key.longValue());

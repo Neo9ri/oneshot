@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
@@ -216,16 +217,28 @@ public class AdminController {
         } else return "redirect:/inquiry/delivery";
     }
 
-    //문의 상품페이지 연결 필요
-    @PostMapping("/product/{productId}")
-    public String saveInquiry(@PathVariable("productId") Long productId, @RequestParam Long memberId,
+    @PostMapping("/inquiry/add")
+    public String saveInquiry(HttpServletRequest request, Model model,
                               @ModelAttribute Inquiry inquiry, RedirectAttributes redirectAttributes) {
-        inquiry.setDate_inquired(new Date());
-        inquiryService.saveInquiry(inquiry);
-        redirectAttributes.addAttribute("memberId", memberId);
-        return "redirect:/mypage";
-//        redirectAttributes.addAttribute("productId", productId);
-//        return "redirect:/product/{productId}";
+        loginService.loginCheck(request, model);
+        HttpSession session = request.getSession();
+        LoginDTO user = (LoginDTO) session.getAttribute(("user"));
+        Long memberId;
+        if (user.getLoginSuccess()){
+            memberId = user.getId();
+        } else {
+            redirectAttributes.addAttribute("productId",inquiry.getProduct_id());
+            return "redirect:/product/item_detail/{productId}";
+        }
+
+        try{
+            inquiry.setInquirer_id(memberId);
+            inquiryService.saveInquiry(inquiry);
+        }catch (Exception e){
+            redirectAttributes.addAttribute("productId",inquiry.getProduct_id());
+            return "redirect:product/item_detail/{productId}";
+        }
+        return "redirect:/user/mypage";
     }
     @GetMapping("/notice")
     public String noticeList(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
@@ -305,11 +318,10 @@ public class AdminController {
             return "redirect:/";
         }
         // 관리자 여부 확인 --END
-        notice.setDate_created(new Date());
         try {
             noticeService.saveNotice(notice);
         } catch (Exception e) {
-            // 이미지 저장 중 오류가 발생한 경우 예외 처리
+
             redirectAttributes.addFlashAttribute("error", "공지 등록 중 오류가 발생했습니다.");
             return "redirect:/notice/add";
         }

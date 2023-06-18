@@ -8,10 +8,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Repository
 public class JdbcNoticeRepository implements NoticeRepository {
@@ -41,6 +38,7 @@ public class JdbcNoticeRepository implements NoticeRepository {
         Map<String, Object> parameter = new HashMap<>();
         parameter.put("title", notice.getTitle());
         parameter.put("content", notice.getContent());
+        parameter.put("date_created", new Date());
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameter));
         notice.setId(key.longValue());
         return notice;
