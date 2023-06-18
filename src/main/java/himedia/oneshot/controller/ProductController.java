@@ -129,7 +129,7 @@ public class ProductController {
     public String search(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page, @RequestParam String keyword) {
         loginService.loginCheck(request, model);
         List<Product> products = productService.findByName(keyword);
-        pagination.makePagination(model, products, "products", 12, page, "pagination");
+        pagination.makePagination(model, products, "products", 8, page, "pagination");
         model.addAttribute("keyword", keyword);
         return "/product/search";
     }
@@ -138,7 +138,7 @@ public class ProductController {
     public String searchMore(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page, @RequestParam String keyword) {
         loginService.loginCheck(request, model);
         List<Product> products = productService.findByName(keyword);
-        pagination.makePagination(model, products, "products", 12, page, "pagination");
+        pagination.makePagination(model, products, "products", 8, page, "pagination");
         model.addAttribute("keyword", keyword);
         return "/product/search :: section";
     }
