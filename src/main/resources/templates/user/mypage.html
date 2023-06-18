@@ -237,53 +237,7 @@
     </div>
     <!-- mypage 종료 -->
     <!-- footer : START -->
-    <footer>
-        <div class="center">
-            <div class="left_wrap">
-                <p class="btm_logo"><img src="../img/oneshot_logo_bw.png" alt="원샷 - 우리술 한잔,"></p>
-                <div class="text_wrap">
-                    <p>원샷 - 우리술 한잔,</p>
-                    <address>서울시 서대문구 연세로 8-1</address>
-                    <nav>
-                        <ul>
-                            <li><a href="">전통주 이야기</a></li>
-                            <li><a href="">지역별 전통주</a></li>
-                            <li><a href="">주종별 전통주</a></li>
-                            <li><a href="">가격별 전통주</a></li>
-                        </ul>
-                    </nav>
-                    <div class="info">
-                        <p>대표 : 홍길동</p>
-                        <p>사업자 등록번호 : 100-11-111111</p>
-                        <p>개인정보관리자 : 홍길동</p>
-                    </div>
-                    <div class="contact_info">
-                        <p>대표번호 : 02-1234-1234</p>
-                        <p>메일 : oneshot@oneshot.com</p>
-                    </div>
-                    <div>Copyrights&copy; oneshot All Rights Reserved.</div>
-                </div>
-            </div>
-            <div class="cs">
-                <dl>
-                    <dt>CS CENTER</dt>
-                    <dd>070-1234-1234</dd>
-                    <dd>평일 : 09:00 ~ 18:00<br>
-                        점심 시간 : 12:00 ~ 13:00<br>
-                        주말 밋 공휴일 제외
-                    </dd>
-                </dl>
-            </div>
-            <div class="social">
-                <h4>SOCIAL MEDIA</h4>
-                <p>Follow @oneshot</p>
-                <ul>
-                    <li><a href="#"><img src="../img/instagram_footer.svg" alt="인스타그램"></a></li>
-                    <li><a href="#"><img src="../img/youtube_footer.svg" alt="유투브"></a></li>
-                    <li><a href="#"><img src="../img/facebook_footer.svg" alt="페이스북"></a></li>
-                </ul>
-            </div>
-        </div>
+    <footer th:replace="~{/fragment/footer :: #footer}">
     </footer>
     <!-- footer : END -->
     <script>
