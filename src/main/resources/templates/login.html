@@ -16,8 +16,7 @@
 <body>
 <div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
   <!-- header-START -->
-  <header th:replace="~{/fragment/defaultHeader :: #header}">
-  </header>
+<header th:replace="~{/fragment/defaultHeader :: #header}"></header>
   <!-- header-END -->
   <!-- container-START  -->
     <section class="center login_container">
@@ -25,8 +24,11 @@
       <form class="login_form" th:method="post" th:action="@{/login}">
         <div class="login_box row pb-3">
           <div class="col">
-            <input type="text" class="form-control py-2" placeholder="아이디" name="loginId">
-            <input type="password" class="form-control py-2" placeholder="비밀번호" name="pw">
+            <label for="loginId" class="blind">아이디</label>
+            <input type="text" id="loginId" class="form-control  mb-2 py-2" placeholder="아이디" name="loginId"
+            oninput="this.value = this.value.replace( /^[A-Za-z0-9]{4,10}$/">
+            <label for="pw" class="blind">비밀번호</label>
+            <input type="password" class="form-control py-2" placeholder="비밀번호" id="pw" name="pw">
           </div>
            <button class="btn login btn-lg col-3" type="submit">로그인</button>
         </div>
