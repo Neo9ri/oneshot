@@ -18,18 +18,17 @@ CREATE TABLE IF NOT EXISTS member -- 회원 목록
 
 CREATE TABLE IF NOT EXISTS product -- 상품 목록
 (	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, -- 상품 고유 번호(PK)
-	status CHAR(1) DEFAULT 'T' CHECK (status IN ('T', 'F')),-- 상품 판매 가능 상태
 	name VARCHAR(30) NOT NULL, -- 이름
     quantity SMALLINT UNSIGNED NOT NULL,
     type_local VARCHAR(20), -- 지역
     type_kind VARCHAR(10), -- 주종
     creator VARCHAR(20), -- 제조사
     alcohol FLOAT, -- 도수
-	volume INT UNSIGNED, -- ML
 	price INT UNSIGNED NOT NULL, -- 상품 가격
     img_thumb TEXT, -- 상품 썸네일 이미지 파일 경로
-    img_exp1 TEXT, -- 상품 상세 내용 이미지 파일 경로 (기존: img_context -변경-> img_exp1~2)
-    img_exp2 TEXT
+    img_exp1 TEXT, -- 상품 상세 내용 이미지 파일 경로 (기존: img_context -변경-> img_exp1~3)
+    img_exp2 TEXT,
+    img_exp3 TEXT
 );
 
 CREATE TABLE IF NOT EXISTS inquiry -- 문의 목록
@@ -111,7 +110,7 @@ FROM
 LIMIT 100;
 
 INSERT INTO product
-(name, quantity,type_local, type_kind, creator, alcohol, volume, price, img_thumb, img_exp1, img_exp2)
+(name, quantity,type_local, type_kind, creator, alcohol, price, img_thumb, img_exp1, img_exp2, img_exp3)
 values
 ('운암', 1,'전북, 전남, 경북, 경남', '증류주', '맑은 내일', 32, 375, 12900, 'img/product/thumbnail/운암.jpg', 'img/product/explanation/운암_exp01.jpg', 'img/product/explanation/운암_exp02.jpg'),
 ('용25', 1,'강원, 세종권', '증류주', '두루양조', 25, 375, 12000, 'img/product/thumbnail/용25.jpg', 'img/product/explanation/용25_exp01.jpg', 'img/product/explanation/용25_exp02.jpg'),
@@ -197,6 +196,7 @@ select * from purchase_detail where purchase_id = 2;
 SELECT pd.*, p.name FROM purchase_detail pd INNER JOIN product p ON pd.product_id = p.id WHERE pd.purchase_id = 2;
 update product set status='F' where id=1;
 select * from product where name like '%암' and status like 'T';
+
 SELECT pd.*, p.name
 FROM purchase_detail pd
 JOIN product p ON pd.product_id = p.id;
@@ -218,4 +218,14 @@ CREATE TABLE IF NOT EXISTS product_review -- 상품리뷰
     FOREIGN KEY(product_id) REFERENCES product(id), -- 외래키 지정 product id
     FOREIGN KEY(purchase_id) REFERENCES purchase(id) -- 외래키 지정 purchase id
 );
+
+insert into product_review (member_id,product_id,purchase_id,review_satisfaction,content,img_exp1,img_exp2,img_exp3)
+value(2,2,2,'VH','너무좋아요','img.url','img.url','img.url');
+
+SELECT pr.*, m.login_id AS member_login_id, p.date_created AS purchase_date
+FROM product_review pr
+JOIN member m ON pr.member_id = m.id
+JOIN purchase p ON pr.purchase_id = p.id
+WHERE pr.product_id = 2;
+
 select * from product_review;
