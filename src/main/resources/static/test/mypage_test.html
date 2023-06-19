@@ -43,27 +43,25 @@
         </div>
     </div>
     <!--inquiry Modal-->
-    <div th:each="inquiry : ${inquiryList}" class="modal fade" th:id="|inquiry${inquiry.id}|" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog inquiry">
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" th:id="|inquiry${inquiry.id}|">문의 내역</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">문의 내역</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="title" class="form-label">제목</label>
-                        <input class="form-control" id="title" th:value="${inquiry.title}" disabled>
+                        <label for="exampleFormControlInput1" class="form-label">제목</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="제목" disabled readonly>
                     </div>
                     <div class="mb-3">
-                        <label for="content" class="form-label">문의 내용</label>
-                        <pre class="form-control" id="content" rows="3" th:text="${inquiry.content}" disabled></pre>
+                        <label for="exampleFormControlTextarea1" class="form-label">문의 내용</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled readonly></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="answer" class="form-label">답변</label>
-                        <pre class="form-control" id="answer" rows="3"
-                                  th:utext="${inquiry.answer != null ? inquiry.answer : '아직 답변등록이 되지 않았습니다. <br> 빠른 시일내에 답변 드리도록 하겠습니다.<br>- 원샷, 우리술 한잔-'}" disabled>
-                        </pre>
+                        <label for="exampleFormControlTextarea1" class="form-label">답변</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" disabled readonly></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -74,8 +72,8 @@
     </div>
     <div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
     <!-- header 시작 -->
-    <header th:replace="~{/fragment/defaultHeader :: #header}">
-    </header>
+    <!-- <header th:replace="~{/fragment/defaultHeader :: #header}">
+    </header> -->
     <!-- header 종료 -->
     <!-- mypage 시작 -->
     <div class="mypage_container">
@@ -86,9 +84,9 @@
                     유저 아이콘 이미지
                 </div>
                 <div class="mypage_user_text">
-                    <h3 th:text="${profile.name}">홍길동</h3>
+                    <h3>홍길동</h3>
                     <div>
-                        <p th:text="${profile.email}">hong123@naver.com</p>
+                        <p>hong123@naver.com</p>
                     </div>
                     <div>
                         <a href="#">비밀번호 변경</a>
@@ -99,23 +97,23 @@
                 </div>
             </div>
             <div class="mypage_user_interface">
-                <form th:action="@{/user/mypage}" th:method="post">
+                <form>
                     <div class="mypage_user_interface_bg">
                         <div class="input-group flex-nowrap">
-                            <span class="input-group-text mypage_icon user_icon_img" id="addon-wrapping1"></span>
-                            <input type="text" class="form-control" name="name" value="홍길동" th:value="${profile.name}" aria-label="name" aria-describedby="addon-wrapping1" readonly disabled>
+                            <span class="input-group-text mypage_icon user_icon_img" id="addon-wrapping"></span>
+                            <input type="text" class="form-control" value="홍길동" aria-label="name" aria-describedby="addon-wrapping" readonly disabled>
                         </div>
                         <div class="input-group flex-nowrap">
-                            <span class="input-group-text mypage_icon phone_icon_img" id="addon-wrapping2"></span>
-                            <input id="phoneNumber" type="text" class="form-control" name="phoneNumber" value="010-1111-1111" th:value="${profile.phoneNumber}" aria-label="phone_number" aria-describedby="addon-wrapping2" disabled>
+                            <span class="input-group-text mypage_icon phone_icon_img" id="addon-wrapping"></span>
+                            <input id="phone_number" type="text" class="form-control" name="phone_number" value="010-1111-1111" aria-label="phone_number" aria-describedby="addon-wrapping" disabled>
                         </div>
                         <div class="input-group flex-nowrap">
-                            <span class="input-group-text mypage_icon email_icon_img" id="addon-wrapping3"></span>
-                            <input id="email" type="text" class="form-control" name="email" value="hong123@naver.com" th:value="${profile.email}" aria-label="email" aria-describedby="addon-wrapping3" disabled>
+                            <span class="input-group-text mypage_icon email_icon_img" id="addon-wrapping"></span>
+                            <input id="email" type="text" class="form-control" name="email" value="hong123@naver.com" aria-label="email" aria-describedby="addon-wrapping" disabled>
                         </div>
                         <div class="input-group flex-nowrap">
-                            <span class="input-group-text mypage_icon home_icon_img" id="addon-wrapping4"></span>
-                            <input id="address" type="text" class="form-control" name="address" value="서울특별시 강남구 신사동" th:value="${profile.address}" aria-label="address" aria-describedby="addon-wrapping4" disabled>
+                            <span class="input-group-text mypage_icon home_icon_img" id="addon-wrapping"></span>
+                            <input id="address" type="text" class="form-control" name="address" value="서울특별시 강남구 신사동" aria-label="address" aria-describedby="addon-wrapping" disabled>
                         </div>
                     </div>
                     <div class="mypage_button">
@@ -123,15 +121,15 @@
                             <button id="btnEdit" class="mypage_edit_button offset-md-6" type="button" onclick="activateForm()">수정하기</button>
                         </div>
                         <div id="btnInterfaceBottom" class="mypage_button_hidden row">
-                            <button id="btnCancel" class="mypage_cancle_button col-6" type="button" th:onclick="|location.href='@{/user/mypage}'|">취소</button>
-                            <button id="btnConfirm" class="mypage_check_button col-6" type="submit">확인</button>
+                            <button id="btnCancle" class="mypage_cancle_button col-6" type="button" th:onclick="location.href='@{/user/mypage}'">취소</button>
+                            <button id="btnConfirm" class="mypage_check_button col-6" type="submit" type="submit">확인</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <hr>
-        <div id="purchase" class="mypage_order_search">
+        <div class="mypage_order_search">
             <h2>주문/배송 조회</h2>
             <table>
                 <thead>
@@ -172,20 +170,20 @@
         <div class="d-flex justify-content-center py-5">
             <nav aria-label="">
                 <ul class="pagination">
-                    <li th:if="${paginationPurchase.existPreviousLastPage}" class="page-item">
-                        <a href="#" class="page-link" th:href="@{mypage(page=${paginationPurchase.previousLastPage})} + ${'#purchase'}">&lt;</a>
+                    <li th:if="${pagination.existPreviousLastPage}" class="page-item">
+                        <a href="#" class="page-link" th:href="@{mypage(page=${pagination.previousLastPage})} + ${'#table'}">&lt;</a>
                     </li>
-                    <li th:each="page : ${#numbers.sequence(paginationPurchase.firstPage,paginationPurchase.lastPage)}">
-                        <a class="page-link" th:class="${page == paginationPurchase.requestPage}? 'page-link active': 'page-link'" href="#" th:href="@{mypage(pageOfPurchase=${page})} + ${'#purchase'}" th:text="${page}">1</a>
+                    <li th:each="page : ${#numbers.sequence(pagination.firstPage,pagination.lastPage)}">
+                        <a class="page-link" th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'" href="#" th:href="@{mypage(page=${page})} + ${'#table'}" th:text="${page}">1</a>
                     </li>
-                    <li th:if="${paginationPurchase.existNextFirstPage}" class="page-item">
-                        <a href="#" class="page-link" th:href="@{mypage(page=${paginationPurchase.nextFirstPage})} + ${'#purchase'}" >&gt;</a>
+                    <li th:if="${pagination.existNextFirstPage}" class="page-item">
+                        <a href="#" class="page-link" th:href="@{mypage(page=${pagination.nextFirstPage})} + ${'#table'}" >&gt;</a>
                     </li>
                 </ul>
             </nav>
         </div>
         <hr>
-        <div id="inquiry" class="mypage_inquiry_search">
+        <div class="mypage_inquiry_search">
             <h2>문의 내역</h2>
             <table>
                 <thead>
@@ -194,47 +192,71 @@
                         <th>문의 날짜</th>
                         <th>문의 종류</th>
                         <th>제목</th>
+                        <th>상태</th>
                         <th>내용보기</th>
-                        <th>답변일</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="inquiry : ${inquiryList}">
-                        <td th:text="${inquiry.id}">1</td>
-                        <td th:text="${inquiry.date_inquired}">2023-05-31</td>
-                        <td th:text="${inquiry.type} == 'P' ? '상품문의' :'배송문의'">배송문의</td>
-                        <td th:text="${inquiry.title}" >안동소주 배송날짜...</td>
+                    <tr>
+                        <td>1</td>
+                        <td>2023-05-31</td>
+                        <td>배송문의</td>
+                        <td>안동소주 배송날짜...</td>
+                        <td>답변완료</td>
                         <td>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn_primary" data-bs-toggle="modal" th:data-bs-target="|#inquiry${inquiry.id}|">
+                            <button type="button" class="btn btn_primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 내용보기
                             </button>
                         </td>
-                        <td th:text="${inquiry.date_replied !=null ? inquiry.date_replied : '미등록'}">답변일</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>2023-05-27</td>
+                        <td>상품 문의</td>
+                        <td>안동소주 박스 길이...</td>
+                        <td>답변대기</td>
+                        <td>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn_primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                내용보기
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-        <div class="d-flex justify-content-center py-5">
-            <nav aria-label="">
-                <ul class="pagination">
-                    <li th:if="${paginationInquiry.existPreviousLastPage}" class="page-item">
-                        <a href="#" class="page-link" th:href="@{mypage(page=${paginationInquiry.previousLastPage})} + ${'#inquiry'}">&lt;</a>
+            <div class="mypage_inquiry_pageMove">
+                <ul>
+                    <li>
+                        <a href="#">&lt;</a>
                     </li>
-                    <li th:each="page : ${#numbers.sequence(paginationInquiry.firstPage,paginationInquiry.lastPage)}">
-                        <a class="page-link" th:class="${page == paginationInquiry.requestPage}? 'page-link active': 'page-link'" href="#" th:href="@{mypage(pageOfInquiry=${page})} + ${'#inquiry'}" th:text="${page}">1</a>
+                    <li>
+                        <a href="#">1</a>
                     </li>
-                    <li th:if="${paginationInquiry.existNextFirstPage}" class="page-item">
-                        <a href="#" class="page-link" th:href="@{mypage(page=${paginationInquiry.nextFirstPage})} + ${'#inquiry'}" >&gt;</a>
+                    <li>
+                        <a href="#">2</a>
+                    </li>
+                    <li>
+                        <a href="#">3</a>
+                    </li>
+                    <li>
+                        <a href="#">4</a>
+                    </li>
+                    <li>
+                        <a href="#">5</a>
+                    </li>
+                    <li>
+                        <a href="#">&gt;</a>
                     </li>
                 </ul>
-            </nav>
+            </div>
         </div>
+        <hr>
     </div>
     <!-- mypage 종료 -->
     <!-- footer : START -->
-    <footer th:replace="~{/fragment/footer :: #footer}">
-    </footer>
+    <!-- <footer th:replace="~{/fragment/footer :: #footer}">
+    </footer> -->
     <!-- footer : END -->
     <script>
    $(document).ready(function() {
@@ -277,7 +299,7 @@
       });
     });
     </script>
-    <script src="/js/header.js"></script>
-    <script src="/js/mypage.js"></script>
+    <script src="/src/main/resources/static/js/mypage.js"></script>
+    <!-- <script src="/js/header.js"></script> -->
 </body>
 </html>

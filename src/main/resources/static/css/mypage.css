@@ -61,57 +61,118 @@
     width: 600px;
     height: 300px;
 }
-.mypage_user_interface table tr>:nth-child(1){
+/* mypage form -- START */
+.mypage_user_interface form{
+    background-color: #feef88;
+    border-radius: 10px;
+    width: 600px;
+    height: 300px;
+}
+.mypage_user_interface .input-group span{
+    background-color: #feef88;
+    border-right: 1px solid #773300;
+    border-bottom: 1px solid #773300;
+    border-radius: 0;
+    width:100px;
+    height: auto;
+    text-align: center;
+    align-items: center;
+}
+.mypage_user_interface_bg{
+    background-color: #feef88;
+    border-radius: 10px;
+}
+
+.mypage_user_interface .input-group:first-child *{
+    border-radius: 10px;
+    border-bottom: 0px !important;
+}
+
+.mypage_user_interface .input-group:nth-child(2) *{
+    border-top: 1px solid #773300;
+}
+.mypage_user_interface .input-group input {
+    background-color: #feef88;
+    border-left: 1px solid #773300;
+    border-bottom: 1px solid #773300;
+    border-radius: 0;
+    width: 270px;
+    font-size: 25px;
+    line-height: 75px;
+}
+.mypage_user_interface .input-group input:focus{
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #773300;
+    outline: 0 none;
+}
+.mypage_user_interface .input-group:last-child *{
+    border-radius: 10px;
+    border-bottom: 0px !important;
+}
+
+.mypage_icon {
+    background-size: 50px 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-size: 0;
+    left: 20px;
+    top: 20px;
+    width: 50px; 
+    height: 50px; 
+}
+
+/* mypage form -- END */
+/* .mypage_user_interface table tr>:nth-child(1){
     text-align: left;
     position: relative;
     border-right: 1px solid #773300;
     border-bottom: 1px solid #773300;
     margin-right: 10px;
-}
+} */
 /* user table icon img */
 .user_icon_img{
     background-image: url(../img/user.png);
-    background-size: 50px 50px;
+    /* background-size: 50px 50px;
+    background-position: center;
     background-repeat: no-repeat;
     font-size: 0;
     left: 20px;
     top: 20px;
     width: 50px; 
-    height: 50px; 
+    height: 50px;  */
 }
 .phone_icon_img{
     background-image: url(../img/telephone.png);
-    background-size: 50px 50px;
+    /* background-size: 50px 50px;
     background-repeat: no-repeat;
     font-size: 0;
     left: 20px;
     top: 20px;
     width: 50px; 
-    height: 50px; 
+    height: 50px;  */
 }
 .email_icon_img{
     background-image: url(../img/mail-inbox.png);
-    background-size: 50px 50px;
+    /* background-size: 50px 50px;
     background-repeat: no-repeat;
     font-size: 0;
     left: 20px;
     top: 20px;
     width: 50px; 
-    height: 50px; 
+    height: 50px;  */
 }
 .home_icon_img{
     background-image: url(../img/home.png);
-    background-size: 50px 50px;
+    /* background-size: 50px 50px;
     background-repeat: no-repeat;
     font-size: 0;
     left: 20px;
     top: 20px;
     width: 50px; 
     height: 50px; 
-    border-bottom: 0px !important;
+    border-bottom: 0px !important; */
 }
 /* user table text */
-.user_content{
+/* .user_content{
     width: 270px;
     padding-left: 10px;
     font-size: 25px;
@@ -128,7 +189,7 @@
 }
 .mypage_user_interface table tr:nth-child(1){
     font-weight: 700;
-}
+} */
 /* button */
 .mypage_button{
     display: inline-block;
@@ -148,27 +209,29 @@
     border-radius: 5px;
     transform: scale(1.1);
 }
-.mypage_add_button{
+.mypage_edit_button{
     background-color: #fedf12;
     size: 20px;
     font-weight: 500;
     border: 0px;
+
 }
 .mypage_button_hidden{
     padding-top: 10px;
+    display: none;
 }
 .mypage_cancle_button{
     size: 20px;
     font-weight: 500;
     border: 0px;
     background-color: #00000023;
+    margin-right: 20px;
 }
 .mypage_check_button{
     background-color: #fedf12;
     size: 20px;
     font-weight: 500;
     border: 0px;
-    margin-left: 20px;
 }
 /* 주문/배송 */
 .mypage_order_search{

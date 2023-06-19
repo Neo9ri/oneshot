@@ -124,7 +124,26 @@ values
 ('산사춘', 1,'서울, 경기, 인천권', '약주/청주', '배상면주가', 12, 375, 4300, 'img/product/thumbnail/산사춘.jpg', 'img/product/explanation/산사춘_exp01.jpg', NULL),
 ('대나무술', 1,'전북, 전남, 경북, 경남', '약주/청주', '백운주가', 11, 375, 3800, 'img/product/thumbnail/대나무술.jpg', 'img/product/explanation/대나무술_exp01.jpg', NULL),
 ('우담청주', 1,'전북, 전남, 경북, 경남', '약주/청주', '참주가', 13, 375, 3990, 'img/product/thumbnail/우담청주.jpg', 'img/product/explanation/우담청주_exp01.jpg', 'img/product/explanation/우담청주_exp02.jpg'),
-('초가 한청', 1,'강원, 세종권', '약주/청주', '초가', 15, 375, 19000, 'img/product/thumbnail/초가_한청.jpg', 'img/product/explanation/초가_한청_exp01.jpg', 'img/product/explanation/초가_한청_exp02.jpg');
+('초가 한청', 1,'강원, 세종권', '약주/청주', '초가', 15, 375, 19000, 'img/product/thumbnail/초가_한청.jpg', 'img/product/explanation/초가_한청_exp01.jpg', 'img/product/explanation/초가_한청_exp02.jpg'),
+('빙탄복', 10,'전북, 전남, 경북, 경남', '과실주', '배상면주가', 7, 370, 5300, 'img/product/thumbnail/빙탄복1.jpg', 'img/product/explanation/빙탄복2.jpg', NULL),
+('부안참뽕와인', 10,'전북, 전남, 경북, 경남', '과실주', '내변산', 13, 375, 11000, 'img/product/thumbnail/부안참뽕와인1.jpg', 'img/product/explanation/부안참뽕와인2.jpg', 'img/product/explanation/부안참뽕와인3.jpg'),
+('피에스 애플 시드르스', 10,'충북, 충남, 제주도', '과실주', '시나브로와이너리', 5, 750, 39000, 'img/product/thumbnail/피에스_애플_시드르스1.jpg', 'img/product/explanation/피에스_애플_시드르스2.jpg', 'img/product/explanation/피에스_애플_시드르스3.jpg'),
+('헤베', 10,'전북, 전남, 경북, 경남', '과실주', '애플리즈', 9, 330, 5700, 'img/product/thumbnail/헤베1.jpg', 'img/product/explanation/헤베2.jpg', 'img/product/explanation/헤베3.jpg'),
+('크라테 레드와인', 10,'전북, 전남, 경북, 경남', '과실주', '수도산와이너리', 11.5, 750, 79000, 'img/product/thumbnail/크라테_레드와인1.jpg', 'img/product/explanation/크라테_레드와인2.jpg', 'img/product/explanation/크라테_레드와인3.jpg'),
+('크라테 자두와인', 10,'전북, 전남, 경북, 경남', '과실주', '수도산와이너리', 8.5, 375, 27000, 'img/product/thumbnail/크라테_자두와인1.jpg', 'img/product/explanation/크라테_자두와인2.jpg', 'img/product/explanation/크라테_자두와인3.jpg'),
+('크라테 로제 미디엄 드라이', 10,'전북, 전남, 경북, 경남', '과실주', '수도산와이너리', 11.5, 375, 27000, 'img/product/thumbnail/크라테_로제_미디엄_드라이1.jpg', 'img/product/explanation/크라테_로제_미디엄_드라이2.jpg', 'img/product/explanation/크라테_로제_미디엄_드라이3.jpg'),
+('미라토 로제 스파클링와인', 10,'충북, 충남, 제주도', '과실주', '금용농산', 5, 250, 7000, 'img/product/thumbnail/미라토_로제_스파클링와인1.jpg', 'img/product/explanation/미라토_로제_스파클링와인2.jpg', 'img/product/explanation/미라토_로제_스파클링와인3.jpg'),
+('미라토 청수 스위트와인', 10,'충북, 충남, 제주도', '과실주', '금용농산', 12, 750, 32000, 'img/product/thumbnail/미라토_청수_스위트와인1.jpg', 'img/product/explanation/미라토_청수_스위트와인2.jpg', 'img/product/explanation/미라토_청수_스위트와인3.jpg'),
+('미라토 샤인머스캣와인', 10,'충북, 충남, 제주도', '과실주', '금용농산', 12, 750, 37000, 'img/product/thumbnail/미라토_샤인머스캣와인1.jpg', 'img/product/explanation/미라토_샤인머스캣와인2.jpg', 'img/product/explanation/미라토_샤인머스캣와인3.jpg'),
+('옐로우펀치 파인애플&망고', 10,'충북, 충남, 제주도', '과실주', '댄싱사이더', 5.2, 330, 5900, 'img/product/thumbnail/옐로우펀치_파인애플_망고1.jpg', 'img/product/explanation/옐로우펀치_파인애플_망고2.jpg', null),
+('샤토미소 청포도 엠버 화이트와인', 10,'충북, 충남, 제주도', '과실주', '도란원', 12, 375, 23000, 'img/product/thumbnail/샤토미소_청포도_엠버_화이트와인1.jpg', 'img/product/explanation/샤토미소_청포도_엠버_화이트와인2.jpg', 'img/product/explanation/샤토미소_청포도_엠버_화이트와인3.jpg'),
+('샤토미소 레인보우 스위트와인', 10,'충북, 충남, 제주도', '과실주', '도란원', 12, 375, 23000, 'img/product/thumbnail/샤토미소_레인보우_스위트와인1.jpg', 'img/product/explanation/샤토미소_레인보우_스위트와인2.jpg', 'img/product/explanation/샤토미소_레인보우_스위트와인3.jpg'),
+('샤토미소 복숭아 스위트와인', 10,'충북, 충남, 제주도', '과실주', '도란원', 12, 375, 23000, 'img/product/thumbnail/샤토미소_복숭아_스위트와인1.jpg', 'img/product/explanation/샤토미소_복숭아_스위트와인2.jpg', 'img/product/explanation/샤토미소_복숭아_스위트와인3.jpg'),
+('사랑할때 사과과실주', 10,'충북, 충남, 제주도', '과실주', '중원양조', 12, 300, 4200, 'img/product/thumbnail/사랑할때_사과과실주1.jpg', 'img/product/explanation/사랑할때_사과과실주2.jpg', null),
+('무주구천동 머루와인', 10,'전북, 전남, 경북, 경남', '과실주', '덕유', 12, 750, 27000, 'img/product/thumbnail/무주구천동_머루와인1.jpg', 'img/product/explanation/무주구천동_머루와인2.jpg', 'img/product/explanation/무주구천동_머루와인3.jpg'),
+('달1614 스위트', 10,'전북, 전남, 경북, 경남', '과실주', '덕유', 12, 750, 35000, 'img/product/thumbnail/달1614_스위트1.jpg', 'img/product/explanation/달1614_스위트2.jpg', 'img/product/explanation/달1614_스위트3.jpg'),
+('캔와인 캠밸 스위트와인', 10,'충북, 충남, 제주도', '과실주', '블루와인컴퍼니', 10, 330, 9900, 'img/product/thumbnail/캔와인_캠벨_스위트와인1.jpg', 'img/product/explanation/캔와인_캠벨_스위트와인2.jpg', 'img/product/explanation/캔와인_캠벨_스위트와인3.jpg'),
+('캔와인 애플 스위트와인', 10,'충북, 충남, 제주도', '과실주', '블루와인컴퍼니', 10, 330, 9900, 'img/product/thumbnail/캔와인_애플_스위트와인1.jpg', 'img/product/explanation/캔와인_애플_스위트와인2.jpg', 'img/product/explanation/캔와인_애플_스위트와인3.jpg');
 
 INSERT INTO inquiry
 (type, product_id, inquirer_id, title, content)
@@ -182,7 +201,7 @@ SELECT pd.*, p.name
 FROM purchase_detail pd
 JOIN product p ON pd.product_id = p.id;
 
-DROP TABLE IF EXISTS cart, purchase_detail, purchase, product, inquiry, member;
+DROP TABLE IF EXISTS product_review, cart, purchase_detail, purchase, product, inquiry, member; -- 테이블 전체 삭제
 
 CREATE TABLE IF NOT EXISTS product_review -- 상품리뷰
 (	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, -- 상품리뷰 고유 번호(PK)

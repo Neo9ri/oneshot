@@ -45,7 +45,6 @@ public class HomeController {
     }
     @GetMapping("/story")
     public String storyPage(HttpServletRequest request, Model model){
-
         loginService.loginCheck(request, model);
 
         return "story";
