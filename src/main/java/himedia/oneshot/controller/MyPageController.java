@@ -84,4 +84,16 @@ public class MyPageController {
         List<PurchaseDetail> purchaseDetailList = purchaseService.showPurchaseDetail(purchaseId);
         return purchaseDetailList;
     }
+
+    @GetMapping("/user/mypage/password")
+    public String changePwForm(){
+        return null;
+    }
+
+    @PostMapping("/user/mypage/password")
+    public String ChangePw(HttpServletRequest request, Model model, @RequestParam String originalPassword, @RequestParam String newPassword){
+        loginService.loginCheck(request, model);
+        memberService.changePassword(request, originalPassword, newPassword);
+        return "redirect:/user/mypage";
+    }
 }

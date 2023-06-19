@@ -88,4 +88,13 @@ public class HomeController {
         return "welcome";
     }
 
+    @GetMapping("/find-id")
+    public String findId(){
+        return null;
+    }
+
+    @PostMapping("/find-id")
+        public String findIdAjax(){
+        return null;
+    }
 }

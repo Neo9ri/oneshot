@@ -83,7 +83,6 @@ public class JdbcMemberRepository implements MemberRepository {
                 member.getPhone_number(),
                 member.getAddress(),
                 member.getId());
-//        return memberDTO;
     }
 
     @Override
@@ -113,5 +112,11 @@ public class JdbcMemberRepository implements MemberRepository {
     @Override
     public List<Member> findAll() {
         return jdbcTemplate.query("SELECT id, login_id, email, name, phone_number, address, gender, authority, date_created FROM member WHERE authority NOT LIKE 'M';", memberRowMapperForList());
+    }
+
+    @Override
+    public void changePassword(long id, String password) {
+        String sql = "UPDATE member SET pw =? WHERE id=?";
+        jdbcTemplate.update(sql, password, id);
     }
 }

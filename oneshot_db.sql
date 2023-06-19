@@ -85,7 +85,7 @@ INSERT INTO member -- 관리자, 유저 생성
 (login_id, pw, email, name, phone_number, id_card_number, address, gender, authority)
 values
 ('admin', 'admin1234', 'admin@abc.com', '관리자', '010-0000-0000', '0000000000000', '서울특별시 서대문구 창천동 18-29 7층', 'M', 'M'), -- 관리자
-('member01', 'member1234', 'member01@def.com', '홍길동', '010-1111-1111', '8001011234567', '서울특별시 서대문구 창천동 버티고타워 7층', 'M', 'A'),
+('member01', 'member1234', 'member01@def.com', '홍길동', '010-1111-1111', '12345678912345', '서울특별시 서대문구 창천동 버티고타워 7층', 'M', 'A'),
 ('member02', 'member1234', 'member02@cde.com', '이미자', '010-2222-2222', '7001012345678', '서울특별시 서대문구 창천동 버티고타워 8층', 'F', 'A'),
 ('block', 'member1234', 'block@block.com', '사기꾼', '011-0000-0000', '6006061234567', '경상북도 청송군 진보면 양정길 231', 'M', 'B'); -- 차단된 회원
 

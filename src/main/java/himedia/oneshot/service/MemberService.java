@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,6 +48,18 @@ public class MemberService {
         member.setEmail(memberDTO.getEmail());
         member.setAddress(memberDTO.getAddress());
         memberRepository.edit(member);
+    }
+
+    public Boolean changePassword(HttpServletRequest request, String originalPassword, String newPassword){
+        MemberDTO loginData = (MemberDTO) request.getSession().getAttribute("user");
+        long id = loginData.getId();
+        Optional<Member> member = memberRepository.findById(id);
+        if (member.get().getPw().equals(originalPassword)){
+            memberRepository.changePassword(id, newPassword);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
