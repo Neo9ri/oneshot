@@ -69,7 +69,7 @@ public class JdbcProductRepository implements ProductRepository{
 
     @Override
     public List<Product> findByName(String name) {
-        String sql = "SELECT * FROM product WHERE name LIKE ?";
+        String sql = "SELECT * FROM product WHERE name LIKE ? AND status LIKE 'T'";
         String searchName = "%" + name + "%";
         List<Product> result = jdbcTemplate.query(sql, productRowMapper, searchName);
         return result;
@@ -77,7 +77,7 @@ public class JdbcProductRepository implements ProductRepository{
 
     @Override
     public List<Product> findAll() {
-        String sql = "select * from product";
+        String sql = "select * from product where status like 'T'";
         List<Product> result = jdbcTemplate.query(sql, productRowMapper);
         return result;
     }

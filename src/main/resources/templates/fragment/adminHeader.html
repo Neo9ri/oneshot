@@ -24,7 +24,7 @@
       <div class="util">
         <div>관리자님</div>|
         <a href="#" th:href="@{/logout}">로그아웃</a>
-        <a href="mypage.html"><img src="/img/util_user.png" alt="마이페이지"/></a>
+        <a th:href="@{/member-list}"><img src="/img/util_user.png" alt="마이페이지"/></a>
       </div>
     </div>
   </div>
@@ -33,6 +33,7 @@
       <li><a href="/member-list" th:href="@{/member-list}">회원관리</a></li>
       <li><a href="/product-list" th:href="@{/product-list}">상품관리</a></li>
       <li><a href="/inquiry/delivery" th:href="@{/inquiry/delivery}">고객 문의관리</a></li>
+      <li><a href="/notice" th:href="@{/notice}">공지 관리</a></li>
     </ul>
   </nav>
 </header>

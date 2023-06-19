@@ -2,8 +2,10 @@ package himedia.oneshot.controller;
 
 import himedia.oneshot.dto.LoginDTO;
 import himedia.oneshot.dto.MemberDTO;
+import himedia.oneshot.entity.Inquiry;
 import himedia.oneshot.entity.Purchase;
 import himedia.oneshot.entity.PurchaseDetail;
+import himedia.oneshot.service.InquiryService;
 import himedia.oneshot.service.LoginService;
 import himedia.oneshot.service.MemberService;
 import himedia.oneshot.service.Pagination;
@@ -23,6 +25,7 @@ import java.util.List;
 @Slf4j
 public class MyPageController {
     private final PurchaseService purchaseService;
+    private final InquiryService inquiryService;
     private final Pagination pagination;
     private final LoginService loginService;
     private final MemberService memberService;
@@ -30,7 +33,8 @@ public class MyPageController {
 
     @GetMapping("/user/mypage")
     public String myPage(HttpServletRequest request,
-                         @RequestParam(required = false) Integer page,
+                         @RequestParam(required = false) Integer pageOfPurchase,
+                         @RequestParam(required = false) Integer pageOfInquiry,
                          Model model){
         loginService.loginCheck(request, model);
 
@@ -47,13 +51,15 @@ public class MyPageController {
         model.addAttribute("profile", profile);
 
         List<Purchase> purchaseList = purchaseService.showPurchase(memberId);
-        pagination.makePagination(model, purchaseList,"purchaseList", 4, page, "pagination");
-        return "/user/mypage";
+        pagination.makePagination(model, purchaseList,"purchaseList", 4, pageOfPurchase, "paginationPurchase");
+
+        List<Inquiry> inquiryList = inquiryService.findListByInquirerId(memberId);
+        pagination.makePagination(model, inquiryList,"inquiryList", 4, pageOfInquiry, "paginationInquiry");
+        return "user/mypage";
     }
 
     @PostMapping("/user/mypage")
     public String changeProfile(HttpServletRequest request,
-                                @RequestParam(required = false) Integer page,
                                 Model model,
                                 @ModelAttribute MemberDTO profile){
         loginService.loginCheck(request, model);
@@ -66,11 +72,7 @@ public class MyPageController {
         } else {
             return "redirect:/";
         }
-
         memberService.changeProfile(user.getId(), profile);
-
-        List<Purchase> purchaseList = purchaseService.showPurchase(memberId);
-        pagination.makePagination(model, purchaseList,"purchaseList", 4, page, "pagination");
         return "redirect:/user/mypage";
     }
 

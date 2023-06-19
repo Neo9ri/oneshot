@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS inquiry -- 문의 목록
     title VARCHAR(50) NOT NULL, -- 문의 제목
     content TEXT NOT NULL, -- 문의 내용
     answer TEXT, -- 답변 내용
-    date_inquired DATETIME DEFAULT CURRENT_TIMESTAMP, -- 문의 날짜 및 시간
+    date_inquired DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, -- 문의 날짜 및 시간
     date_replied DATETIME ON UPDATE CURRENT_TIMESTAMP, -- 답변 날짜 및 시간
     FOREIGN KEY(inquirer_id) REFERENCES member(id),	-- 외래키 지정
     FOREIGN KEY(product_id) REFERENCES product(id) -- 외래키 지정
@@ -72,6 +72,14 @@ CREATE TABLE IF NOT EXISTS cart -- 장바구니 목록
     quantity SMALLINT UNSIGNED NOT NULL, -- 장바구니 내 해당 상품 수량
     FOREIGN KEY(member_id) REFERENCES member(id), -- 외래키 지정 시작
     FOREIGN KEY(product_id) REFERENCES product(id) -- 외래키 지정 종료
+);
+
+CREATE TABLE IF NOT EXISTS notice -- 공지사항
+(   id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, -- 공지사항 고유 번호(PK)	
+	date_created DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, -- 게시일
+    date_updated DATETIME ON UPDATE CURRENT_TIMESTAMP, -- 수정일
+	title VARCHAR(50) NOT NULL, -- 공지사항 제목
+    content TEXT NOT NULL -- 문의 내용
 );
 
 INSERT INTO member -- 관리자, 유저 생성
@@ -150,8 +158,11 @@ values
 update inquiry set answer="답변드립니다." where id=1;    
 update inquiry set answer="답변드립니다." where id=5;    
 
-
-drop table inquiry;
+INSERT INTO NOTICE
+(title, content)
+values
+('7월 휴무 공지(여름휴가)', '7월 26일부터 28일은 원샷팀 여름휴가 기간으로 배송,문의 업무가 중단됩니다.'),
+('배송관련 안내드립니다.','주문 폭주로 배송이 지연되고 있습니다. ');
 
 select * from product where id=1;
 select img_thumb from product where id =2;
@@ -163,6 +174,7 @@ SELECT * FROM member;
 SELECT * FROM inquiry;
 SELECT * FROM purchase;
 SELECT * FROM purchase_detail;
+SELECT * FROM notice;
 
 insert into cart(member_id,product_id,quantity) values(2,4,1);
 insert into cart(member_id,product_id,quantity) values(2,5,1);
@@ -184,6 +196,7 @@ select * from purchase where member_id = 2;
 select * from purchase_detail where purchase_id = 2;
 SELECT pd.*, p.name FROM purchase_detail pd INNER JOIN product p ON pd.product_id = p.id WHERE pd.purchase_id = 2;
 update product set status='F' where id=1;
+select * from product where name like '%암' and status like 'T';
 SELECT pd.*, p.name
 FROM purchase_detail pd
 JOIN product p ON pd.product_id = p.id;
