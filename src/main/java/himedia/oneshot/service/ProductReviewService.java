@@ -25,7 +25,7 @@ public class ProductReviewService {
             thumbImgNames.add(imgName);
         }
         String thumbPath = System.getProperty("user.dir")+
-                "/src/main/resources/static/img/product_review";
+                "/src/main/resources/static/img/product_review/";
 
         for(int i = 0; i < thumbImgFile.length; i++){
             if(i < thumbImgNames.size() && !thumbImgNames.get(i).isEmpty()){
@@ -33,11 +33,11 @@ public class ProductReviewService {
                 thumbImgFile[i].transferTo(thumbSaveFile);
             }
         }
-        productReview.setImg_exp1("img/product_review"+thumbImgNames.get(0));
+        productReview.setImg_exp1("img/product_review/"+thumbImgNames.get(0));
         if(thumbImgNames.size() > 1 && !thumbImgNames.get(1).isEmpty()){
-            productReview.setImg_exp2("img/product_review"+thumbImgNames.get(1));
+            productReview.setImg_exp2("img/product_review/"+thumbImgNames.get(1));
         }else if (thumbImgNames.size() > 2 && !thumbImgNames.get(2).isEmpty()){
-            productReview.setImg_exp3("img/product_review"+thumbImgNames.get(2));
+            productReview.setImg_exp3("img/product_review/"+thumbImgNames.get(2));
         }
         return reviewRepository.saveReview(productReview);
     }
@@ -50,5 +50,9 @@ public class ProductReviewService {
 
     public List<Purchase> findByPurchaseId(Long memberId , Long productId){
         return reviewRepository.findByPurchaseId(memberId,productId);
+    }
+
+    public List<Purchase> findByPurchaseDate(Long memberId, Long productId){
+        return reviewRepository.findByPurchaseDate(memberId,productId);
     }
 }

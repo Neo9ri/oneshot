@@ -2,8 +2,10 @@ package himedia.oneshot.controller;
 
 import himedia.oneshot.dto.CartDTO;
 import himedia.oneshot.dto.LoginDTO;
+import himedia.oneshot.dto.ProductReviewDTO;
 import himedia.oneshot.entity.Cart;
 import himedia.oneshot.entity.Product;
+import himedia.oneshot.entity.Purchase;
 import himedia.oneshot.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,12 +33,33 @@ public class ProductController {
 
     //[상품 목록]
     @GetMapping("/product/item_detail/{id}")
-    public String detailPage(HttpServletRequest request, @PathVariable Long id, Model model){
+    public String detailPage(HttpServletRequest request, @PathVariable("id") Long id, Model model){
         // 로그인 확인 절차
         loginService.loginCheck(request, model);
+        HttpSession session = request.getSession();
+        LoginDTO user = (LoginDTO) session.getAttribute(("user"));
+        Long memberId;
+        if (user.getLoginSuccess()){
+            memberId = user.getId();
+        }else {
+            return "redirect:/";
+        }
         // 상품상세 페이지
         Optional<Product> product = productService.findById(id);
         model.addAttribute("product",product.get());
+
+
+        List<Purchase> purchaseDate =reviewService.findByPurchaseDate(memberId,id);
+        List<String> purchaseDates = new ArrayList<>();
+        for (Purchase purchase : purchaseDate) {
+            String formattedDate = purchase.getDate_created().toString(); // 날짜를 문자열로 변환
+            purchaseDates.add(formattedDate);
+        }
+        log.info("purchaseDates >> {}", purchaseDates);
+        model.addAttribute("purchaseDates",purchaseDates);
+
+        List<ProductReviewDTO> reviewDTOS = reviewService.showReview(id);
+        model.addAttribute("reviewDTO",reviewDTOS);
         return  "/product/item_detail";
     }
 

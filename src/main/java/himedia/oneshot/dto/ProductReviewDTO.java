@@ -23,9 +23,8 @@ public class ProductReviewDTO {
     private String name;
     private Date date;
 
-    public ProductReviewDTO(Member member, Product product, Purchase purchase, ProductReview review){
+    public ProductReviewDTO(Member member, Purchase purchase, ProductReview review){
         this.member_id = member.getId();
-        this.product_id = product.getId();
         this.review_satisfaction = review.getReview_satisfaction();
         this.content = review.getContent();
         this.img_exp1 = review.getImg_exp1();

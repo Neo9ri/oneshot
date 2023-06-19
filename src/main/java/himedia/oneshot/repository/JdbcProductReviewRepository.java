@@ -1,9 +1,8 @@
 package himedia.oneshot.repository;
 
 import himedia.oneshot.dto.ProductReviewDTO;
-import himedia.oneshot.entity.ProductReview;
-import himedia.oneshot.entity.Purchase;
-import himedia.oneshot.entity.PurchaseDetail;
+import himedia.oneshot.entity.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -16,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
+@Slf4j
 public class JdbcProductReviewRepository implements ProductReviewRepository{
     private final JdbcTemplate jdbcTemplate;
 
@@ -51,9 +51,7 @@ public class JdbcProductReviewRepository implements ProductReviewRepository{
     RowMapper<Purchase> purchaseRowMapper = (rs, rowNum) -> {
         Purchase purchase = new Purchase();
 
-        purchase.setId(rs.getLong("id"));
         purchase.setDate_created(rs.getDate("date_created"));
-        purchase.setMember_id(rs.getLong("member_id"));
 
         return purchase;
     };
@@ -77,26 +75,31 @@ public class JdbcProductReviewRepository implements ProductReviewRepository{
 
     @Override
     public List<ProductReviewDTO> showReview(Long productId) {
-        String sql = "select pr.*, m.login_id as member_login_id, p.date_created as purchase_date "+
-                "from product_review pr "+
-                "join member m on pr.member_id = m.id "+
-                "join purchase p on pr.purchase_id = p.id "+
-                "where pr.product_id = ?";
-        List<ProductReviewDTO> productReviewList = jdbcTemplate.query(sql,new Object[]{productId}, (rs, rowNum) -> {
-            ProductReviewDTO review = new ProductReviewDTO();
-            review.setMember_id(rs.getLong("member_id"));
-            review.setProduct_id(rs.getLong("product_id"));
+        String sql = "SELECT pr.*, p.date_created, m.name " +
+                "FROM product_review pr " +
+                "JOIN purchase_detail pd ON pr.member_id = pd.member_id AND pr.product_id = pd.product_id " +
+                "JOIN purchase p ON pd.purchase_id = p.id " +
+                "JOIN member m ON pr.member_id = m.id " +
+                "WHERE pr.product_id = ?";
+
+        return jdbcTemplate.query(sql, (rs, rowNum) -> {
+            Member member = new Member();
+            member.setName(rs.getString("name"));
+
+            Purchase purchase = new Purchase();
+            purchase.setDate_created(rs.getDate("date_created"));
+
+            ProductReview review = new ProductReview();
             review.setReview_satisfaction(rs.getString("review_satisfaction"));
             review.setContent(rs.getString("content"));
             review.setImg_exp1(rs.getString("img_exp1"));
             review.setImg_exp2(rs.getString("img_exp2"));
             review.setImg_exp3(rs.getString("img_exp3"));
-            review.setName(rs.getString("name"));
-            review.setDate(rs.getDate("date"));
-            return  review;
-        });
-        return productReviewList;
+
+            return new ProductReviewDTO(member,purchase, review);
+        }, productId);
     }
+
 
     @Override
     public List<ProductReview> findBySatisfaction(String satisfaction) {
@@ -118,6 +121,8 @@ public class JdbcProductReviewRepository implements ProductReviewRepository{
         String sql = "select p.date_created from purchase p "+
                 "join purchase_detail pd on p.id = pd.purchase_id "+
                 "where pd.product_id = ? and pd.member_id = ?";
-        return jdbcTemplate.query(sql,purchaseRowMapper ,productId,memberId);
+        List<Purchase> purchaseDateList = jdbcTemplate.query(sql, purchaseRowMapper, productId, memberId);
+        log.info("Purchase Dates: {}", purchaseDateList);
+        return purchaseDateList;
     }
 }

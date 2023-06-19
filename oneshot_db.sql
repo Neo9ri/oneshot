@@ -227,4 +227,20 @@ FROM purchase p
 JOIN purchase_detail pd on p.id  = pd.purchase_id
 WHERE pd.product_id= 31 AND pd.member_id = 2;
 
+
+truncate table product_review;
+
+SELECT pr.*, p.date_created, m.name 
+FROM product_review pr 
+JOIN purchase_detail pd ON pr.member_id = pd.member_id AND pr.product_id = pd.product_id 
+JOIN purchase p ON pd.purchase_id = p.id 
+JOIN member m ON pr.member_id = m.id 
+WHERE pr.product_id = 25;
+
+select p.date_created from purchase p 
+join purchase_detail pd on p.id = pd.purchase_id 
+where pd.product_id =25 and pd.member_id = 2;
+
+SELECT * FROM purchase;
+SELECT * FROM purchase_detail;
 select * from product_review;
