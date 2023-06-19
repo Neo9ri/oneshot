@@ -4,10 +4,7 @@ import himedia.oneshot.dto.CartDTO;
 import himedia.oneshot.dto.LoginDTO;
 import himedia.oneshot.entity.Cart;
 import himedia.oneshot.entity.Product;
-import himedia.oneshot.service.LoginService;
-import himedia.oneshot.service.Pagination;
-import himedia.oneshot.service.ProductService;
-import himedia.oneshot.service.PurchaseService;
+import himedia.oneshot.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -30,6 +27,7 @@ public class ProductController {
     private final PurchaseService purchaseService;
     private final LoginService loginService;
     private final Pagination pagination;
+    private final ProductReviewService reviewService;
 
     //[상품 목록]
     @GetMapping("/product/item_detail/{id}")

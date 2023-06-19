@@ -15,7 +15,6 @@ public class ProductReviewDTO {
     private Long id;
     private Long member_id;
     private Long product_id;
-    private Long purchase_id;
     private String review_satisfaction;
     private String content;
     private String img_exp1;
@@ -27,7 +26,6 @@ public class ProductReviewDTO {
     public ProductReviewDTO(Member member, Product product, Purchase purchase, ProductReview review){
         this.member_id = member.getId();
         this.product_id = product.getId();
-        this.purchase_id = purchase.getId();
         this.review_satisfaction = review.getReview_satisfaction();
         this.content = review.getContent();
         this.img_exp1 = review.getImg_exp1();

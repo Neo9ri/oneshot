@@ -126,32 +126,30 @@
     <div>
         <div class="item_review">
             <h3>상품후기</h3>
-            <form id="review_form">
+            <form id="review_form" th:object="${review}"th:action="@{/item_detail/{productId}/review(productId=${product.id})}"  method="post" enctype="multipart/form-data">
                 <label for="satisfaction">만족도:</label>
-                <select id="satisfaction">
-                    <option value="very-satisfied">아주 만족</option>
-                    <option value="satisfied">만족</option>
-                    <option value="neutral">보통</option>
-                    <option value="dissatisfied">불만족</option>
-                    <option value="very-dissatisfied">매우 불만족</option>
+                <select id="satisfaction"  name="review_satisfaction">
+                    <option value="VH">아주 만족</option>
+                    <option value="H">만족</option>
+                    <option value="M">보통</option>
+                    <option value="L">불만족</option>
+                    <option value="VL">매우 불만족</option>
                 </select>
                 <label for="review_content">리뷰 내용:</label><br>
-                <textarea id="review_content" rows="5" placeholder="상품리뷰 내용을 적어주세요!!"></textarea>
+                <textarea id="review_content" rows="5" placeholder="상품리뷰 내용을 적어주세요!!" name="content"></textarea>
 
                 <div class="item_review_submit">
-                    <label for="file_upload">
-                        <img src="../img/camera.png" alt="카메라 아이콘" width="60" height="60">
-                    </label>
-                    <input id="file_upload" type="file" accept="image/*" multiple onchange="previewImages(event)">
-                    <div class="item_review_preview_img">
-                        <img src="../../static/img/product/thumbnail/1000000319_detail_025.jpg" width="60px" height="60px"/>
-                        <img src="../../static/img/product/thumbnail/1000000319_detail_025.jpg" width="60px" height="60px"/>
-                        <img src="../../static/img/product/thumbnail/1000000319_detail_025.jpg" width="60px" height="60px"/>
+                    <div class="thumbnail_container">
+                        <label for="file_upload">
+                            <img src="../img/camera.png" th:src="@{/img/camera.png}" alt="카메라 아이콘" width="60" height="60">
+                        </label>
+                        <input id="file_upload" type="file" name="thumbnailImages" accept="image/*" multiple onchange="previewImages(this)" >
+                        <img  id="thumbnailPreview" src="" style="..." width="60px" height="60px"/>
                     </div>
-                    <button id="submit_button" type="button" onclick="submitReview()">리뷰 등록</button>
+                    <button id="submit_button" type="submit">리뷰 등록</button>
                 </div>
             </form>
-            <div id="review_summary">
+            <!--<div id="review_summary">
                 <div class="review_summary_first">
                     <img src="../../static/img/product/thumbnail/1000000319_detail_025.jpg" alt="사용자 등록 이미지" width="160"
                          height="180">
@@ -192,7 +190,7 @@
                             우는 봄날의 천지는 얼마나 기쁘며 얼마나............</p>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <div class="review-pagination">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
@@ -258,6 +256,19 @@
             alert('상품이 장바구니에 담겼습니다.');
             document.getElementById('orderForm').submit(); // 폼을 제출하여 주문 처리를 진행합니다.
         }
+    }
+    function previewImages(input){
+        if(input.files && input.files[0]){
+            const reader = new FileReader();
+            reader.onload = function(e){
+                document.getElementById("thumbnailPreview").style.display="inline";
+                document.getElementById("thumbnailPreview").src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }else{
+            document.getElementById("thumbnailPreview").src = "";
+        }
+
     }
 </script>
 <script src="/js/header.js"></script>
