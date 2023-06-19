@@ -1,16 +1,13 @@
 package himedia.oneshot.service;
 
-import himedia.oneshot.dto.LoginDTO;
 import himedia.oneshot.dto.MemberDTO;
 import himedia.oneshot.entity.Member;
 import himedia.oneshot.repository.MemberRepository;
-import himedia.oneshot.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,5 +58,4 @@ public class MemberService {
             return false;
         }
     }
-
 }

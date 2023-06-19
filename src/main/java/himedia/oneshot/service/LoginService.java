@@ -1,6 +1,7 @@
 package himedia.oneshot.service;
 
 import himedia.oneshot.dto.LoginDTO;
+import himedia.oneshot.dto.MemberDTO;
 import himedia.oneshot.entity.Member;
 import himedia.oneshot.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -56,6 +57,20 @@ public class LoginService {
         }
         request.getSession().setAttribute("user", loginResult);
         model.addAttribute("user", loginResult);
+    }
+
+    public MemberDTO findLoginId(MemberDTO info){
+        String name = info.getName();
+        String email = info.getEmail();
+        String birthday = info.getIdCardNumber();
+        MemberDTO member = new MemberDTO();
+        Optional<Member> result = memberRepository.findLoginId(name, email, birthday);
+        if(result.isPresent())
+            member.setLoginId(result.get().getLogin_id());
+        return member;
+    }
+    public MemberDTO findPassword(MemberDTO info){
+
     }
 
 

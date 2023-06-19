@@ -18,12 +18,14 @@ CREATE TABLE IF NOT EXISTS member -- 회원 목록
 
 CREATE TABLE IF NOT EXISTS product -- 상품 목록
 (	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, -- 상품 고유 번호(PK)
+	status CHAR(1) DEFAULT 'T' CHECK (status IN ('T', 'F')),-- 상품 판매 가능 상태
 	name VARCHAR(30) NOT NULL, -- 이름
     quantity SMALLINT UNSIGNED NOT NULL,
     type_local VARCHAR(20), -- 지역
     type_kind VARCHAR(10), -- 주종
     creator VARCHAR(20), -- 제조사
     alcohol FLOAT, -- 도수
+    volume INT UNSIGNED, -- ML
 	price INT UNSIGNED NOT NULL, -- 상품 가격
     img_thumb TEXT, -- 상품 썸네일 이미지 파일 경로
     img_exp1 TEXT, -- 상품 상세 내용 이미지 파일 경로 (기존: img_context -변경-> img_exp1~3)
@@ -85,7 +87,7 @@ INSERT INTO member -- 관리자, 유저 생성
 (login_id, pw, email, name, phone_number, id_card_number, address, gender, authority)
 values
 ('admin', 'admin1234', 'admin@abc.com', '관리자', '010-0000-0000', '0000000000000', '서울특별시 서대문구 창천동 18-29 7층', 'M', 'M'), -- 관리자
-('member01', 'member1234', 'member01@def.com', '홍길동', '010-1111-1111', '12345678912345', '서울특별시 서대문구 창천동 버티고타워 7층', 'M', 'A'),
+('member01', 'member1234', 'member01@def.com', '홍길동', '010-1111-1111', '1234567891234', '서울특별시 서대문구 창천동 버티고타워 7층', 'M', 'A'),
 ('member02', 'member1234', 'member02@cde.com', '이미자', '010-2222-2222', '7001012345678', '서울특별시 서대문구 창천동 버티고타워 8층', 'F', 'A'),
 ('block', 'member1234', 'block@block.com', '사기꾼', '011-0000-0000', '6006061234567', '경상북도 청송군 진보면 양정길 231', 'M', 'B'); -- 차단된 회원
 
@@ -201,7 +203,7 @@ SELECT pd.*, p.name
 FROM purchase_detail pd
 JOIN product p ON pd.product_id = p.id;
 
-DROP TABLE IF EXISTS product_review, cart, purchase_detail, purchase, product, inquiry, member; -- 테이블 전체 삭제
+DROP TABLE IF EXISTS notice, product_review, cart, purchase_detail, purchase, product, inquiry, member; -- 테이블 전체 삭제
 
 CREATE TABLE IF NOT EXISTS product_review -- 상품리뷰
 (	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, -- 상품리뷰 고유 번호(PK)

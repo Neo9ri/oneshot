@@ -99,8 +99,8 @@ public class JdbcMemberRepository implements MemberRepository {
     @Override
     public Optional<Member> findByLoginId(String loginId) {
         String sql = "SELECT * FROM member WHERE login_id = ?;";
-        List<Member> memberList = jdbcTemplate.query(sql, memberRowMapper(), loginId);
-        return memberList.stream().findAny();
+        List<Member> members = jdbcTemplate.query(sql, memberRowMapper(), loginId);
+        return members.stream().findAny();
     }
 
     /**
@@ -116,7 +116,15 @@ public class JdbcMemberRepository implements MemberRepository {
 
     @Override
     public void changePassword(long id, String password) {
-        String sql = "UPDATE member SET pw =? WHERE id=?";
+        String sql = "UPDATE member SET pw= ? WHERE id=?";
         jdbcTemplate.update(sql, password, id);
+    }
+
+    @Override
+    public Optional<Member> findLoginId(String name, String email, String birthday) {
+        String sql = "SELECT * FROM member WHERE name LIKE ? AND email LIKE ? AND id_card_number LIKE ?";
+        birthday = birthday +'%';
+        List<Member> members = jdbcTemplate.query(sql, memberRowMapper(), name, email, birthday);
+        return members.stream().findAny();
     }
 }
