@@ -28,7 +28,7 @@
         const fileArr = Array.from(input.files);
 
         if (fileArr.length>2) {
-            // 최소1개이상 최대3개 선택 가능 , 범위 벗어나면 경고창후 새로고침
+            // 최소1개이상 최대2개 선택 가능 , 범위 벗어나면 경고창후 새로고침
             alert("이미지는 최소 1개, 최대 2개까지 첨부가 가능합니다.");
             input.value = "";
             location.reload();
