@@ -51,7 +51,7 @@ public class MyPageController {
         }
 
         List<Purchase> purchaseList = purchaseService.showPurchase(memberId);
-        pagination.makePagenation(model, purchaseList,"purchaseList", 4, page, "pagination");
+        pagination.makePagination(model, purchaseList,"purchaseList", 4, page, "pagination");
         return "/user/mypage";
     }
 
