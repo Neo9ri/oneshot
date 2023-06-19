@@ -80,7 +80,7 @@ public class AdminProductController {
             redirectAttributes.addFlashAttribute("error", "이미지 저장 중 오류가 발생했습니다.");
             return "redirect:/product/add";
         }
-        Thread.sleep(8000L);
+        Thread.sleep(12000L);
         redirectAttributes.addAttribute("id", product.getId());
         return "redirect:/product/{id}/edit";
     }
@@ -118,7 +118,7 @@ public class AdminProductController {
                               @ModelAttribute Product updatedProduct,
                               @RequestParam("thumb") MultipartFile file,
                               @RequestParam("exp") MultipartFile[] files,
-                              RedirectAttributes redirectAttributes){
+                              RedirectAttributes redirectAttributes) throws InterruptedException {
         // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
@@ -138,7 +138,7 @@ public class AdminProductController {
             redirectAttributes.addFlashAttribute("error", "이미지 저장 중 오류가 발생했습니다.");
             return "redirect:/product/{id}/edit";
         }
-
+        Thread.sleep(12000L);
         redirectAttributes.addAttribute("id", updatedProduct.getId());
         return "redirect:/product-list";
     }

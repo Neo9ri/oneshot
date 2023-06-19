@@ -75,7 +75,7 @@ public class JdbcAdminProductRepository implements AdminProductRepository {
 
     @Override
     public List<Product> findAllAdmin() {
-        String query = "select * from product";
+        String query = "select * from product order by id desc";
         return jdbcTemplate.query(query, (rs, rowNum) -> {
             Product product = new Product();
 
