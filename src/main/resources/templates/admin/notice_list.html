@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>공지 관리</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
+  <link rel="icon" href="img/favicon-32x32.png" type="image/x-icon" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+
+<body>
+<div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
+  <!-- header : START -->
+<header th:replace="~{/fragment/adminHeader :: #header}"></header>
+  <!-- header : END -->
+<!--   container : START-->
+  <section class="center">
+    <div>
+      <div class="admin_table_name notice justify-content-center">
+        <div class="row"></div>
+        <div class="row">
+          <h2 class="col align-self-center text-center">공지 관리</h2>
+        </div>
+        <div class=" row position-relative">
+          <button type="button" th:onclick="|location.href='@{/notice/add}'|" class="position-absolute btn btn_ylw admin_table_name_btn">공지 등록</button>
+        </div>
+      </div>
+      <table class="table text-center admin_table">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>게시일</th>
+            <th>제목</th>
+            <th>내용</th>
+            <th>수정일</th>
+            <th>공지관리</th>
+          </tr>
+        </thead>
+        <tbody th:unless="${#lists.isEmpty(notices)}">
+        <tr th:each="notice : ${notices}">
+          <td th:text="${notice.id}">1</td>
+          <td th:text="${notice.date_created}">1</td>
+          <td th:text="${notice.title}">안동 소주 관련...</td>
+          <td >
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn_ylw" data-bs-toggle="modal" th:data-bs-target="|#notice${notice.id}|">보기</button>
+            <!-- Modal -->
+            <div class="modal fade" th:id="|notice${notice.id}|" tabindex="-1"  aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" th:id="|notice${notice.id}|" th:text="${notice.title}">문의내용</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <pre th:text="${notice.content}">
+                    </pre>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn_ylw" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td th:text="${notice.date_updated !=null ? notice.date_updated : '미수정'}">2023-06-01.</td>
+          <td>
+            <button class="btn btn_ylw" type="button" th:onclick="|location.href='@{/notice/{noticeId}/edit(noticeId=${notice.id})}'|"> 수정 </button>
+            <form th:action="@{/notice/{noticeId}/delete(noticeId=${notice.id})}" method="post" class="update"
+                  onsubmit="return confirm('공지를 삭제 하시겠습니까?')">
+              <input type="hidden" name="_method" value="DELETE" /> <input
+                    type="hidden" name="id" th:value="${notice.id}" />
+              <button type="submit" class="btn btn_ylw delete">삭제</button>
+            </form>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="d-flex justify-content-center py-5">
+      <nav aria-label="">
+        <ul class="pagination">
+          <li th:if="${pagination.existPreviousLastPage}" class="page-item">
+            <a class="page-link"
+               th:onclick="updateList([[${pagination.previousLastPage}]])"
+               aria-label="Previous">
+              <span>&laquo;</span>
+            </a>
+          </li>
+          <li th:each="page : ${#numbers.sequence(pagination.firstPage,pagination.lastPage)}" class="page-item">
+            <a class="page-link"
+               th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'"
+               th:onclick="updateList([[${page}]])"
+               th:text="${page}"
+               th:page="${page}">1</a>
+          </li>
+          <li th:if="${pagination.existNextFirstPage}" class="page-item">
+            <a class="page-link"
+               th:onclick="updateList([[${pagination.nextFirstPage}]])"
+               aria-label="Next">
+              <span>&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+  <!-- container : END -->
+  <!-- footer : START -->
+  <footer th:replace="~{/fragment/footer :: #footer}"></footer>
+  <!-- footer : END -->
+<script src="/js/header.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+    function updateList(page) {
+        var section = document.querySelector('#section');
+        $.ajax({
+          type: 'POST',
+          data: {page: page},
+          url: "/notice",
+        })
+        .done(function (result) {
+          $('section').replaceWith(result);
+        });
+    }
+  </script>
+</body>
+
+</html>

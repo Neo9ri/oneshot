@@ -45,6 +45,7 @@ public class JdbcInquiryRepository implements InquiryRepository {
         parameter.put("inquirer_id", inquiry.getInquirer_id());
         parameter.put("title", inquiry.getTitle());
         parameter.put("content", inquiry.getContent());
+        parameter.put("date_inquired", new Date());
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameter));
         inquiry.setId(key.longValue());
@@ -54,26 +55,26 @@ public class JdbcInquiryRepository implements InquiryRepository {
     @Override
 
     public Inquiry replyInquiry(Long id, String answer) {
-        String sql = "update inquiry set answer=? where id=?";
-        jdbcTemplate.update(sql,answer,id);
+        String query = "update inquiry set answer=? where id=?";
+        jdbcTemplate.update(query,answer,id);
         return findById(id).get();
     }
 
     @Override
     public Optional<Inquiry> findById(Long id) {
-        String sql = "select * from inquiry where id=?";
-        return jdbcTemplate.query(sql, inquiryRowMapper,id).stream().findAny();
+        String query = "select * from inquiry where id=?";
+        return jdbcTemplate.query(query, inquiryRowMapper,id).stream().findAny();
     }
 
     @Override
     public List<Inquiry> findListByType(String type) {
-        String sql = "select * from inquiry where type=?";
-        return jdbcTemplate.query(sql, inquiryRowMapper,type);
+        String query = "select * from inquiry where type=?";
+        return jdbcTemplate.query(query, inquiryRowMapper,type);
     }
 
     @Override
     public List<Inquiry> findListByInquirerId(Long inquirer_id) {
-        String sql = "select * from inquiry where inquirer_id = ?";
-        return jdbcTemplate.query(sql, inquiryRowMapper,inquirer_id);
+        String query = "select * from inquiry where inquirer_id = ?";
+        return jdbcTemplate.query(query, inquiryRowMapper,inquirer_id);
     }
 }

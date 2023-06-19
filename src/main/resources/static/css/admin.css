@@ -92,9 +92,9 @@ header nav.gnb {
 }
 
 header nav.gnb>ul {
-  width: 600px;
+  width: 620px;
   display: grid;
-  grid-template-columns: repeat(3, 150px);
+  grid-template-columns: repeat(4, 120px);
   text-align: center;
   height: 60px;
   justify-content: space-between;
@@ -113,48 +113,8 @@ header nav.gnb>ul>li>a {
   height: inherit;
 }
 
-header nav.gnb>ul>li>ul {
-  width: 700px;
-  font-size: 16px;
-  display: flex;
-  justify-content: space-between;
-  z-index: 6;
-  position: absolute;
-  bottom: -40px;
-  left: -120%;
-  visibility: hidden;
-}
-
-header nav.gnb>ul>li:hover ul {
-  visibility: visible;
-}
-
-header nav.gnb>ul>li:nth-child(1):hover::after {
-  display: none;
-}
-
-header nav.gnb>ul>li:nth-child(3)>ul {
-  width: 600px;
-  left: -200%;
-}
-
-header nav.gnb>ul>li:nth-child(4)>ul {
-  width: 1000px;
-  position: absolute;
-  bottom: -40px;
-  left: -640%;
-}
-
-header nav.gnb>ul>li>ul>li {
-  line-height: 40px;
-}
-
 /* header- END */
 
-.center {
-  width: 1200px;
-  margin: 0 auto;
-}
 
 /* common button-START */
 
@@ -191,8 +151,8 @@ header nav.gnb>ul>li>ul>li {
   color: #333;
   width: 120px;
   height: 50px;
-  bottom: 45%;
-  right: 12%;
+  bottom: 25%;
+  right: 3% ;
 }
 
 .admin_table_name a {
@@ -218,10 +178,10 @@ table.admin_table td form.update {
   display: inline-block;
 }
 
-table.admin_table td form.update button.deactive {
+table.admin_table td form.update button.deactive,button.delete {
   background-color: #bbb;
-    color:#fff;
-    border:none;
+  color:#fff;
+  border:none;
 }
 
 table.admin_table thead tr th {
@@ -312,8 +272,8 @@ input#price, input#alcohol,input#volume,input#quantity{
 
 /* product_edit-END */
 
-/* reply-START */
-#reply{
+/* reply&notice-START */
+#reply, #notice{
   width: 850px;
   margin: 0 auto 200px;
   background-color: #feee8886;
@@ -324,42 +284,62 @@ input#price, input#alcohol,input#volume,input#quantity{
   padding-left: 10px;
   margin-bottom: 30px;
 }
-#reply form{
+#reply form,#notice form{
   width: 700px;
   margin: 0 auto;
   background: #fff;
   padding: 30px;
 }
-#reply label{
+#reply label,#notice form#edit label{
   font-size: 18px;
   line-height: 40px;
 }
-#reply div.row{
+#notice label{
+  font-weight: 700;
+  font-size: 20px;
+}
+#notice div.row:nth-of-type(1){
+  margin-bottom: 40px;
+}
+#reply div.row,#notice div.row{
   margin: 15px 0;
 }
-#reply div.row input#title{
+#notice form input#id, #notice input#date_created{
+  height: 40px;
+}
+
+#reply div.row input#title,#notice div.row input#title{
   width: 430px;
   margin: 0 15px
 }
-#reply .col{
+#reply .col,#notice .col{
   margin: 0 15px;
 }
-#reply input:disabled, #reply input[readonly]{
+#reply input:disabled, #reply input,[readonly],
+#notice input:disabled, #notice input,[readonly]{
   background-color: #eeeeee5f;
 }
-#reply textarea{
+#reply textarea,#notice textarea{
   margin-bottom: 10px;
 }
-#reply form>div:last-child{
+#notice textarea{
+  margin-top: 20px;
+}
+#reply form>div:last-child,#notice form>div:last-child{
   text-align: right;
 }
-#reply form>div:last-child button:last-child{
+#reply form>div:last-child button:last-child,
+#notice form>div:last-child button:last-child{
   width: 80px ;
   background-color: #eeeeee;
   margin-left: 50px;
 }
+#notice{
+  margin-top: 100px;
+}
 
-/* reply-END */
+/* reply&notice-END */
+
 
 /* pagination-START */
 .pagination li a {

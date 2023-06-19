@@ -25,9 +25,11 @@ public class JdbcAdminProductRepositoryTest {
         //given
         Product beforeSave = new Product("테스트",1,"서울","증류주","테스터",17,10,7000,"img/product/thumbnail/test.jpg",null);
         log.info("id>>{}",beforeSave.getId());
+        log.info("status>>{}",beforeSave.getStatus());
         // when
         Product afterSave = adminProductRepository.saveProduct(beforeSave);
         log.info("id>>{}",afterSave.getId());
+        log.info("status>>{}",afterSave.getStatus());
         // then
         assertThat(afterSave.getId()).isEqualTo(beforeSave.getId());
     }
@@ -70,13 +72,15 @@ public class JdbcAdminProductRepositoryTest {
     }
 
     @Test
-    void findAll(){
+    void findAllAdmin(){
         //given
-        List<Product> before = adminProductRepository.findAll();
+        List<Product> before = adminProductRepository.findAllAdmin();
+        log.info("before >> {}",before.get(0));
         Product beforeSave = new Product("테스트2",1,"강원,세종권","과실주","테스터",25,12,24000,"img/product/thumbnail/test2.jpg",null);
         adminProductRepository.saveProduct(beforeSave);
         //when
-        List<Product> after = adminProductRepository.findAll();
+        List<Product> after = adminProductRepository.findAllAdmin();
+        log.info("after >> {}",after.get(0));
         //then
         assertThat(after.size()).isEqualTo(before.size()+1);
 

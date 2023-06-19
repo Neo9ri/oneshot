@@ -6,8 +6,8 @@
   width: 1200px;
   margin: 0 auto;
 }
-/* h1 */
-.item_detail_container h1{
+/* h2 */
+.item_detail_container h2{
   text-align: center;
   font-size: 45px;
   font-weight: 700;
@@ -34,7 +34,7 @@
   left: 10%;
   transform:translateX(-5%);
 }
-.item_info h2{
+.item_info h3{
   font-size: 25px;
   font-weight: 700;
   border-bottom: 1px solid #0000001b;
@@ -75,7 +75,7 @@
   transform: scale(1.1);
 }
 /*상품 밑 베너 */
-.item_detail_benner{
+.item_detail_banner{
   margin-top: 30px;
 }
 /* nav */
@@ -116,7 +116,7 @@
   padding-bottom: 30px;
   padding-left: 30px;
 }
-.delivery_info h3{
+.delivery_info h4{
   font-size: 20px;
   font-weight: 700;
   padding-bottom: 20px;
@@ -129,7 +129,7 @@
   border-bottom: 2px solid #0000001b;
   padding: 30px 0 20px 30px;
 }
-.exchange_info h3{
+.exchange_info h4{
   font-size: 20px;
   font-weight: 700;
   padding-bottom: 20px;
@@ -140,11 +140,11 @@
 .exchange_info>ul>li{
   padding-bottom: 15px;
 }
-.exchange_info ul>li>h4{
+.exchange_info ul>li>h5{
   font-size: 19px;
   font-weight: 700;
 }
-.exchange_info ul>li>h5{
+.exchange_info ul>li>h6{
   font-size: 17px;
   font-weight: 500;
   padding-bottom: 5px;
@@ -299,45 +299,50 @@
 }
 /* paginaton-END */
 /*상품 문의*/
-.item-inquiry{
+.item_inquiry{
   border-top: 2px solid #0000001b;
   padding: 30px;
+  margin-bottom: 200px;
 }
-.item-inquiry h3{
+.item_inquiry h5{
   font-size: 20px;
   font-weight: 700;
   padding-bottom: 40px;
 }
-#inquiry-form{
+#inquiry_form{
   width: 900px;
-  position: relative;
-  left: 10%;
+  margin: 50px auto;
 }
 .satisfaction{
   width: 900px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
-.item-inquiry .form-control{
-  border: 0;
-  border-top: 1px solid  #0000004f;
-  border-left: 1px solid  #0000004f;
-  border-right: 1px solid  #0000004f;
+#inquiry_form label{
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
 }
-.item-inquiry-button{
+#inquiry_form div.row:nth-of-type(2){
+  margin-bottom: 30px;
+}
+#inquiry_form label.content{
+  text-indent: 45px;
+  margin-bottom: 30px;
+}
+#inquiry_form label.content~textarea{
+  width: 924px;
+}
+.item_inquiry .form-control{
   border: 1px solid  #0000004f;
-  padding: 10px;
 }
-#inquiry-button{
-  position: relative;
-  left: 87%;
-  border: 0;
+
+button.inquiry_button{
+  margin-top: 20px;
   background-color: #fedf12;
-  size: 20px;
-  font-weight: 500;
-  width: 90px;
+  width: 120px;
   height: 50px;
-  border: 0px;
-  border-radius: 5px;
+  right: 0 ;
+
 }
 
 
