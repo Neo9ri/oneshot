@@ -1,8 +1,10 @@
 package himedia.oneshot.controller;
 
 import himedia.oneshot.dto.LoginDTO;
+import himedia.oneshot.entity.Notice;
 import himedia.oneshot.entity.Product;
 import himedia.oneshot.service.LoginService;
+import himedia.oneshot.service.NoticeService;
 import himedia.oneshot.service.Pagination;
 import himedia.oneshot.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ import java.util.List;
 public class HomeController {
     private final LoginService loginService;
     private final ProductService productService;
+    private final NoticeService noticeService;
     private final Pagination pagination;
 
     @GetMapping("/")
@@ -34,10 +37,17 @@ public class HomeController {
         List<Product> products = productService.findAll();
         Collections.reverse(products);
         pagination.makePagination(model, products,"products", 12, 1, "pagination");
+        //공지사항
+        List<Notice> notices = noticeService.findAll();
+        pagination.makePagination(model, notices,"notices", 4, 1, "pagination");
+
         return "index";
     }
     @GetMapping("/story")
-    public String storyPage(){
+    public String storyPage(HttpServletRequest request, Model model){
+
+        loginService.loginCheck(request, model);
+
         return "story";
     }
     @GetMapping("/login")
@@ -85,6 +95,14 @@ public class HomeController {
         request.getSession().invalidate();
         log.info("로그아웃");
         return "redirect:/";
+    }
+
+    @GetMapping("/welcome")
+    public String joinCompleted(HttpServletRequest request, Model model){
+
+        loginService.loginCheck(request, model);
+
+        return "welcome";
     }
 
 }

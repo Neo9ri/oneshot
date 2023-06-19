@@ -1,12 +1,13 @@
 package himedia.oneshot.controller;
 
 import himedia.oneshot.dto.LoginDTO;
+import himedia.oneshot.entity.Inquiry;
 import himedia.oneshot.entity.Purchase;
 import himedia.oneshot.entity.PurchaseDetail;
+import himedia.oneshot.service.InquiryService;
 import himedia.oneshot.service.LoginService;
 import himedia.oneshot.service.Pagination;
 import himedia.oneshot.service.PurchaseService;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,14 +27,16 @@ import java.util.List;
 @Slf4j
 public class MyPageController {
     private final PurchaseService purchaseService;
+    private final InquiryService inquiryService;
     private final Pagination pagination;
     private final LoginService loginService;
 
     @Autowired
-    public MyPageController(PurchaseService purchaseService, Pagination pagination, LoginService loginService){
+    public MyPageController(PurchaseService purchaseService, Pagination pagination, LoginService loginService, InquiryService inquiryService){
         this.purchaseService = purchaseService;
         this.pagination = pagination;
         this.loginService = loginService;
+        this.inquiryService = inquiryService;
     }
 
     @GetMapping("/user/mypage")
@@ -51,8 +54,10 @@ public class MyPageController {
         }
 
         List<Purchase> purchaseList = purchaseService.showPurchase(memberId);
-        pagination.makePagenation(model, purchaseList,"purchaseList", 4, page, "pagination");
-        return "/user/mypage";
+        pagination.makePagination(model, purchaseList,"purchaseList", 4, page, "pagination");
+        List<Inquiry> inquiryList = inquiryService.findListByInquirerId(memberId);
+        pagination.makePagination(model, inquiryList,"inquiryList", 4, page, "pagination");
+        return "user/mypage";
     }
 
     @PostMapping("/purchaseDetail") // Ajax 요청을 처리할 경로로 설정해야 합니다.

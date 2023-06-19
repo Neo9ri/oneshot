@@ -64,7 +64,7 @@ section.main_container div.btm_banner p {
 /* notice-START */
 section.main_container table.notice {
   width: 1000px;
-  margin: 0 auto 200px;
+  margin: 0 auto 400px;
   text-align: center;
 }
 section.main_container table.notice thead {
@@ -80,7 +80,7 @@ section.main_container table.notice button:hover {
   background-color: #feef88;
 }
 .modal-body {
-  text-align: left;
+  text-align: center;
 }
 /* notice-END */
 /* container-END*/

@@ -4,7 +4,7 @@
 /* container */
 .mypage_container{
     width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto 200px;
 }
 .mypage_user {
     display: inline-block;
@@ -227,6 +227,9 @@
 }
 #order_modal_table_body tr{
     border-bottom: 1px solid #773300;
+}
+div.modal-dialog.inquiry pre{
+    background-color: #eee;
 }
 /* 페이징 버튼 */
 .pagination li a {

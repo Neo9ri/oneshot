@@ -73,5 +73,28 @@ public class JdbcAdminProductRepository implements AdminProductRepository {
         return jdbcProductRepository.findById(id);
     }
 
-    public List<Product> findAll(){ return jdbcProductRepository.findAll(); }
+    @Override
+    public List<Product> findAllAdmin() {
+        String query = "select * from product";
+        return jdbcTemplate.query(query, (rs, rowNum) -> {
+            Product product = new Product();
+
+            product.setId(rs.getLong("id"));
+            product.setStatus(rs.getString("status"));
+            product.setName(rs.getString("name"));
+            product.setQuantity(rs.getInt("quantity"));
+            product.setType_local(rs.getString("type_local"));
+            product.setType_kind(rs.getString("type_kind"));
+            product.setCreator(rs.getString("creator"));
+            product.setAlcohol(rs.getFloat("alcohol"));
+            product.setVolume(rs.getInt("volume"));
+            product.setPrice(rs.getInt("price"));
+            product.setImg_thumb(rs.getString("img_thumb"));
+            product.setImg_exp1(rs.getString("img_exp1"));
+            product.setImg_exp2(rs.getString("img_exp2"));
+
+            return product;
+        });
+
+    }
 }

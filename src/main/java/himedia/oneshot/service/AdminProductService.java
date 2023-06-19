@@ -99,8 +99,8 @@ public class AdminProductService {
         return adminProductRepository.findById(id);
     }
 
-    public List<Product> findAll(){
-        return  adminProductRepository.findAll();
+    public List<Product> findAllAdmin(){
+        return  adminProductRepository.findAllAdmin();
     }
 
 
