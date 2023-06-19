@@ -29,7 +29,7 @@
             <img id="thumbnailPreview" src="" alt="상품 이미지 미리보기" style="display: none">
             <div>
                 <!-- <label for="thumbnail"> 상품 이미지 첨부하기</label> -->
-                <input type="file" id="thumbnail" name="thumb" onchange="showThumbnail(this);" required>
+                <input type="file" id="thumbnail" name="thumb" onchange="showThumbnail(this);" required class="blind">
                 <div class="btn btn_ylw thumbnail_btn" onclick="onClickThumbnailUpload();">상품 이미지 첨부하기</div>
             </div>
         </div>
@@ -98,7 +98,7 @@
             <div class="col-2"></div>
             <div class="col-8">
                 <label for="exp" class="exp_title">상품 설명</label>
-                <input type="file" id="exp" name="exp" multiple onchange="showMultipleExp(this);" required>
+                <input type="file" id="exp" name="exp" multiple onchange="showMultipleExp(this);" required class="blind">
                 <div class="btn btn_ylw" onclick="onClickExpUpload();">상품 설명 이미지 첨부하기</div>
                 <div id="multipleExpPreview"></div>
                 <hr>
