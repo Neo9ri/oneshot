@@ -4,6 +4,8 @@ import himedia.oneshot.entity.Product;
 import himedia.oneshot.repository.JdbcAdminProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,8 +20,7 @@ public class AdminProductService {
 
     private final JdbcAdminProductRepository adminProductRepository;
 
-    public void saveProduct(Product product, MultipartFile thumbImgFile,MultipartFile[] expImgFiles)throws Exception{
-
+    private Product saveImage(Product product,MultipartFile thumbImgFile, MultipartFile[] expImgFiles) throws Exception{
         String thumbImgName = thumbImgFile.getOriginalFilename();
         log.info("이미지이름>>{}",thumbImgName);
         List<String> expImgNames = new ArrayList<>();
@@ -31,7 +32,6 @@ public class AdminProductService {
                 "/src/main/resources/static/img/product/thumbnail";
         String expPath = System.getProperty("user.dir")+
                 "/src/main/resources/static/img/product/explanation";
-
         File thumbSaveFile = new File(thumbPath,thumbImgName);
         thumbImgFile.transferTo(thumbSaveFile);
         log.info("썸네일 저장완료");
@@ -47,48 +47,26 @@ public class AdminProductService {
         if (expImgNames.size() > 1 && !expImgNames.get(1).isEmpty()) {
             product.setImg_exp2("img/product/explanation/" + expImgNames.get(1));
         }
-//        if (expImgNames.size() > 2 && !expImgNames.get(2).isEmpty()) {
-//            product.setImg_exp3("img/product/explanation/" + expImgNames.get(2));
-//        }
-        log.info("이미지1>>{}",product.getImg_thumb());
-        log.info("이미지2>>{}",product.getImg_exp1());
-        log.info("이미지3>>{}",product.getImg_exp2());
+        return product;
+    }
+
+
+    public void saveProduct(Product product, MultipartFile thumbImgFile, MultipartFile[] expImgFiles)throws Exception{
+        saveImage(product,thumbImgFile, expImgFiles);
         adminProductRepository.saveProduct(product);
     }
     public void updateProduct(Long id,Product updatedProduct,MultipartFile thumbImgFile, MultipartFile[] expImgFiles) throws Exception {
-
-        String thumbImgName = thumbImgFile.getOriginalFilename();
-        List<String> expImgNames = new ArrayList<>();
-        for (MultipartFile img : expImgFiles) {
-            String imgName = img.getOriginalFilename();
-            expImgNames.add(imgName);
+        if ((thumbImgFile == null || thumbImgFile.isEmpty()) || (expImgFiles == null || expImgFiles.length == 0)) {
+            log.info("img null일 경우");
+            Product existingProduct = adminProductRepository.findById(id).get();
+            updatedProduct.setImg_thumb(existingProduct.getImg_thumb());
+            updatedProduct.setImg_exp1(existingProduct.getImg_exp1());
+            updatedProduct.setImg_exp2(existingProduct.getImg_exp2());
+            log.info("img 기존값으로 설정");
+        }else {
+            saveImage(updatedProduct,thumbImgFile,expImgFiles);
         }
-
-        String thumbPath = System.getProperty("user.dir")
-                + "/src/main/resources/static/img/product/thumbnail";
-        String expPath = System.getProperty("user.dir")
-                + "/src/main/resources/static/img/product/explanation";
-
-        File thumbSaveFile = new File(thumbPath, thumbImgName);
-        thumbImgFile.transferTo(thumbSaveFile);
-        log.info("썸네일 저장완료");
-        for (int i = 0; i < expImgFiles.length; i++) {
-            if (i < expImgNames.size() && !expImgNames.get(i).isEmpty()) {
-                File expSaveFile = new File(expPath, expImgNames.get(i));
-                expImgFiles[i].transferTo(expSaveFile);
-            }
-        }
-        log.info("설명저장완료");
-        updatedProduct.setImg_thumb("img/product/thumbnail/"+thumbImgName);
-        updatedProduct.setImg_exp1("img/product/explanation/"+expImgNames.get(0));
-        if (expImgNames.size() > 1 && !expImgNames.get(1).isEmpty()) {
-            updatedProduct.setImg_exp2("img/product/explanation/" + expImgNames.get(1));
-        }
-//        if (expImgNames.size() > 2 && !expImgNames.get(2).isEmpty()) {
-//            updatedProduct.setImg_exp3("img/product/explanation/" + expImgNames.get(2));
-//        }
-
-        adminProductRepository.updateProduct(id, updatedProduct);
+       adminProductRepository.updateProduct(id, updatedProduct);
     }
 
     public void updateProductStatus(Long id, String status){

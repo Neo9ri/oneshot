@@ -20,7 +20,6 @@ public class Product {
     private String img_thumb;    //상품 썸네일 이미지 파일 경로
     private String img_exp1;     //상품 상세 내용 이미지 파일 경로1
     private String img_exp2;     //상품 상세 내용 이미지 파일 경로2
-    private String img_exp3;     //상품 상세 내용 이미지 파일 경로3
     public Product(String name, int quantity,String type_local,String type_kind, String creator, float alcohol, int volume, int price, String img_thumb, String img_exp1) {
         this.name = name;
         this.quantity = quantity;

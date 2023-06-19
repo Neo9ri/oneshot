@@ -72,8 +72,9 @@ public class AdminProductController {
         // 관리자 여부 확인 --END
 
         try {
-            product.setStatus("T");
+            log.info("save start");
             adminProductService.saveProduct(product, file, files);
+            log.info("save end");
         } catch (Exception e) {
             // 이미지 저장 중 오류가 발생한 경우 예외 처리
             redirectAttributes.addFlashAttribute("error", "이미지 저장 중 오류가 발생했습니다.");
