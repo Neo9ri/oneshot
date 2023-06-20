@@ -22,4 +22,6 @@ public interface MemberRepository {
     List<Member> findAll();
     void changePassword(long id, String password);
     Optional<Member> findLoginId(String name, String email, String birthday);
+    int findByJoinId(String login_id); 
+
 }

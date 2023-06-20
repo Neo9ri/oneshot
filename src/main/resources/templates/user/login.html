@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>로그인</title>
+  <link rel="icon" href="img/favicon-32x32.png" type="image/x-icon" />
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/main_style.css" />
+  <link rel="stylesheet" href="../css/login.css" />
+
+</head>
+
+<body>
+  <!-- header : START -->
+  <header>
+    <div class="center">
+      <div>
+        <h1>
+          <a href="/"><img src="/img/oneshot_logo.png" alt="원샷-우리술 한잔" />우리술
+            한 잔,</a>
+        </h1>
+        <form role="search" class="main_search">
+          <div class="row">
+            <input type="search" name="keyword" placeholder="상품명을 입력하세요." class="col form-control"
+              aria-label="Search" />
+            <button type="submit" class="col-1">
+              <img src="/img/search.png" alt="검색" />
+            </button>
+          </div>
+        </form>
+        <div class="util main">
+          <a href="login.html">로그인</a>|
+          <a href="join.html">회원가입</a>
+          <a href="cart.html"><img src="img/cart.png" alt="장바구니" /></a>
+        </div>
+        <div class="util mypage" style="display:none">
+          <div>홍길동님</div>|
+          <a href="#">로그아웃</a>
+          <a href="cart.html"><img src="img/cart.png" alt="장바구니" /></a>
+          <a href="mypage.html"><img src="img/util_user.png" alt="마이페이지" /></a>
+        </div>
+      </div>
+    </div>
+    <nav class="gnb">
+      <ul class="center">
+        <li><a href="">전통주 이야기</a></li>
+        <li>
+          <a href="">지역별 전통주</a>
+          <div class="gnbbar"></div>
+          <ul>
+            <li><a href="">전체 상품</a></li>
+            <li><a href="">서울, 경기, 인천권</a></li>
+            <li><a href="">강원, 세종권</a></li>
+            <li><a href="">충북, 충남, 제주도</a></li>
+            <li><a href="">전북, 전남, 경북, 경남</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="">주종별 전통주</a>
+          <div class="gnbbar"></div>
+          <ul>
+            <li><a href="">증류주</a></li>
+            <li><a href="">과실주</a></li>
+            <li><a href="">약주 / 청주</a></li>
+            <li><a href="">숙성 전통주</a></li>
+            <li><a href="">기타주</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="">가격별 전통주</a>
+          <div class="gnbbar"></div>
+          <ul>
+            <li><a href="">10,000원 이하 제품</a></li>
+            <li><a href="">20,000원 이하 제품</a></li>
+            <li><a href="">30,000원 이하 제품</a></li>
+            <li><a href="">40,000원 이하 제품</a></li>
+            <li><a href="">50,000원 이하 제품</a></li>
+            <li><a href="">50,000원 이상 제품</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <!-- header : END -->
+
+  <!-- body-START  -->
+
+  <body>
+    <section class="bg-light login-section">
+      <div class="row align-items-center justify-content-between">
+        <a class="navbar-brand h1 text-center" href="index.do">
+          <span class="text-dark h4">로그인</span>
+        </a>
+      </div>
+
+      <form class="login-form">
+        <div class="login-box">
+          <div class="form-group">
+            <input type="text" class="form-control" id="btnId" placeholder="아이디">
+          </div>
+
+
+          <div class="form-group">
+            <input type="password" class="form-control" id="btnpw" placeholder="비밀번호">
+            <div class="valid-feedback"></div>
+          </div>
+
+          <div class="btn-group">
+            <button class="btn btn-primary btn-lg" type="submit">로그인</button>
+            <!-- <button class="btn btn-primary" type="submit">로그인</button> -->
+          </div>
+        </div>
+
+        <div class="find-group">
+         <button class="btn btn-primary2" id="FindId">아이디 찾기</button>
+         <button class="btn btn-primary2" id="FindPw">패스워드 찾기</button>
+        </div>
+
+
+        <div class="join-group">
+        <button class="btn btn-primary3" id="join">회원가입</button> 
+        </div>
+
+      </form>
+    </section>
+  </body>
+
+
+  <!-- footer : START -->
+  <footer>
+    <div class="center">
+      <div class="left_wrap">
+        <p class="btm_logo"><img src="img/oneshot_logo_bw.png" alt="원샷 - 우리술 한잔,"></p>
+        <div class="text_wrap">
+          <p>원샷 - 우리술 한잔,</p>
+          <address>서울시 서대문구 연세로 8-1</address>
+          <nav>
+            <ul>
+              <li><a href="">전통주 이야기</a></li>
+              <li><a href="">지역별 전통주</a></li>
+              <li><a href="">주종별 전통주</a></li>
+              <li><a href="">가격별 전통주</a></li>
+            </ul>
+          </nav>
+          <div class="info">
+            <p>대표 : 홍길동</p>
+            <p>사업자 등록번호 : 100-11-111111</p>
+            <p>개인정보관리자 : 홍길동</p>
+          </div>
+          <div class="contact_info">
+            <p>대표번호 : 02-1234-1234</p>
+            <p>메일 : oneshot@oneshot.com</p>
+          </div>
+          <div>Copyrights&copy; oneshot All Rights Reserved.</div>
+        </div>
+      </div>
+      <div class="cs">
+        <dl>
+          <dt>CS CENTER</dt>
+          <dd>070-1234-1234</dd>
+          <dd>평일 : 09:00 ~ 18:00<br>
+            점심 시간 : 12:00 ~ 13:00<br>
+            주말 밋 공휴일 제외
+          </dd>
+        </dl>
+      </div>
+      <div class="social">
+        <h4>SOCIAL MEDIA</h4>
+        <p>Follow @oneshot</p>
+        <ul>
+          <li><a href="#"><img src="img/instagram_footer.svg" alt="인스타그램"></a></li>
+          <li><a href="#"><img src="img/youtube_footer.svg" alt="유투브"></a></li>
+          <li><a href="#"><img src="img/facebook_footer.svg" alt="페이스북"></a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <!-- footer : END -->
+</body>
+
+</html>

@@ -1,15 +1,15 @@
 package himedia.oneshot.service;
 
-import himedia.oneshot.dto.MemberDTO;
+import java.util.List;
+import org.springframework.stereotype.Service;
 import himedia.oneshot.entity.Member;
 import himedia.oneshot.repository.MemberRepository;
+import himedia.oneshot.dto.MemberDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Optional;
+
 
 /**
  * 회원의 정보와 관련된 기능들을 모아둔 서비스입니다.
@@ -19,6 +19,20 @@ import java.util.Optional;
 @Slf4j
 public class MemberService {
     private final MemberRepository memberRepository;
+
+	public Member save(Member member) {
+//		memberRepository.join(member);
+		return memberRepository.join(member);
+	}
+
+	
+	public int find(String login_id) {
+	    log.info("[service] find" + login_id);
+		return memberRepository.findByJoinId(login_id);
+	}	
+	
+
+
 
     /**
      * 회원 목록 조회 기능
