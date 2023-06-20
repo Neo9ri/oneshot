@@ -1,9 +1,10 @@
 /* login -START */
-.login_container {
+.login_container,.find_container {
   padding-bottom: 100px;
 }
 
-.login_container form.login_form{
+.login_container form.login_form,
+.find_container .find_form{
   width: 700px;
   margin: 50px auto;
   padding: 80px;
@@ -72,6 +73,33 @@
   font-weight: 700;
 }
 /* welcome- END*/
+/* find-form ONLY -START*/
+.find_container .find_form{
+    position-relative;
+    background-color:#feef8888;
+}
+.find_container .find_form p{
+    font-size:20px;
+    text-align:center;
+    line-height:2;
+}
+.find_container .find_form label{
+    font-size:20px;
+    font-weight:700px;
+    line-height: 2;
+    text-align: center;
+}
+.find_container .find_form button.find{
+    background-color:#773300;
+    position:relative;
+    left: calc(50% - 73px);
+    color:#fff;
+}
+.find_container .find_form button.find.pw{
+    left:calc(50% - 113px)
+    }
+
+/* find-form ONLY -END*/
 
 
 /* 회원가입 */

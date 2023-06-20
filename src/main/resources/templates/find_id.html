@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>아이디찾기</title>
+  <link rel="icon" href="/img/favicon-32x32.png" type="image/x-icon" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/main_style.css" />
+  <link rel="stylesheet" href="/css/login.css" />
+
+</head>
+
+<body>
+<div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
+  <!-- header-START -->
+<header th:replace="~{/fragment/defaultHeader :: #header}"></header>
+  <!-- header-END -->
+  <!-- container-START  -->
+    <section class="center find_container">
+      <h3 class="title">아이디찾기</h3>
+      <form id="id"  class="find_form" th:method="post" th:action="@{/login}">
+        <p>가입 시 등록한 회원정보를 통해 <br>
+          고객님의 아이디를 찾을 수 있습니다.</p>
+        <hr>
+        <div class="row my-5">
+          <label for="name" class="col-3">이름</label>
+          <input type="text" id="name" class="form-control py-2 col" placeholder="이름" name="name">
+        </div>
+        <div class="row my-5">
+          <label for="dob" class="col-3">생년월일</label>
+          <input type="text"  maxlength="6" class="form-control py-2 col" id="dob" name="dob"
+                 placeholder="생년월일6자리" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+        </div>
+        <div class="row my-5">
+          <label for="email" class="col-3">이메일</label>
+          <input type="email" class="form-control py-2 col" id="email" name="email"
+                 placeholder="abc@oneshot.com" required>
+        </div>
+        <button class="btn find btn-lg col-3" type="submit">아이디찾기</button>
+      </form>
+    </section>
+  <!-- container-END -->
+  <!-- footer-START -->
+  <footer th:replace="~{/fragment/footer :: #footer}">
+  </footer>
+  <!-- footer-END -->
+  <script src="js/header.js"></script>
+</body>
+</html>

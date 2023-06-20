@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마이페이지</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>   
     <link rel="icon" href="../img/favicon-32x32.png" type="image/x-icon" th:href="@{/img/favicon-32x32.png}" />
@@ -20,7 +19,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                <h1 class="modal-title fs-5" id="order_modal_head_title">문의 내역</h1>
+                <h1 class="modal-title fs-5" id="order_modal_head_title">주문 내역</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -79,14 +78,14 @@
     <!-- header 종료 -->
     <!-- mypage 시작 -->
     <div class="mypage_container">
-        <h1>마이 원샷</h1>
-        <div class="m-5">
+        <h3>마이 원샷</h3>
+        <div class="mypage">
             <div class="mypage_user">
                 <div class="mypage_user_icon">
                     유저 아이콘 이미지
                 </div>
-                <div class="mypage_user_text">
-                    <h3 th:text="${profile.name}">홍길동</h3>
+                <div class="mypage_user_info">
+                    <h4 th:text="${profile.name}">홍길동</h4>
                     <div>
                         <p th:text="${profile.email}">hong123@naver.com</p>
                     </div>
@@ -94,7 +93,7 @@
                         <a href="#">비밀번호 변경</a>
                     </div>
                     <div>
-                        <a href="#">문의 내역</a>
+                        <a href="#inquiry">문의 내역</a>
                     </div>
                 </div>
             </div>
@@ -131,8 +130,8 @@
             </div>
         </div>
         <hr>
-        <div id="purchase" class="mypage_order_search">
-            <h2>주문/배송 조회</h2>
+        <div id="purchase" class="mypage_search">
+            <h4 class="title">주문/배송 조회</h4>
             <table>
                 <thead>
                     <tr>
@@ -153,7 +152,7 @@
                         <td th:text="${purchase.status}"></td>
                         <td>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn_order_primary" data-bs-toggle="modal" data-bs-target="#order_modal" th:data-purchase-id="${purchase.id}">
+                            <button type="button" class="btn btn_primary" data-bs-toggle="modal" data-bs-target="#order_modal" th:data-purchase-id="${purchase.id}">
                                 내용보기
                             </button>
                         </td>
@@ -185,8 +184,8 @@
             </nav>
         </div>
         <hr>
-        <div id="inquiry" class="mypage_inquiry_search">
-            <h2>문의 내역</h2>
+        <div id="inquiry" class="mypage_search">
+            <h4 class="title"> 문의 내역</h4>
             <table>
                 <thead>
                     <tr>

@@ -88,4 +88,18 @@ public class HomeController {
         return "welcome";
     }
 
+    @GetMapping("/find-id")
+    public String findId(HttpServletRequest request, Model model){
+
+        loginService.loginCheck(request, model);
+
+        return "find_id";
+    }
+    @GetMapping("/find-pw")
+    public String findPw(HttpServletRequest request, Model model){
+
+        loginService.loginCheck(request, model);
+
+        return "find_pw";
+    }
 }
