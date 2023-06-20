@@ -250,7 +250,7 @@
   background-color: #00000007;
   border-top: 2px solid #0000004f;
   padding-top: 20px;
-  padding-bottom: 20px;
+  height: 230px;
   padding-left: 10px;
 }
 #review_summary h4{
@@ -260,16 +260,66 @@
   left: 5%;
   top: -120px;
 }
-#review_summary .review_summary_star{
-  display: inline-block;
+/* 만족도별 이미지 */
+.star_VH {
+  width: 100%;
+  height: 25px;
+  background-image: url(../img/star5.png);
+  background-repeat: no-repeat;
+  background-size: 100px 100%;
   position: relative;
-  top: -80px;
+  display: inline-block;
+  margin-left: 200px;
+  top: -100px;
+}
+.star_H {
+  width: 100%;
+  height: 25px;
+  background-image: url(../img/star4.png);
+  background-repeat: no-repeat;
+  background-size: 100px 100%;
+  position: relative;
+  display: inline-block;
+  margin-left: 200px;
+  top: -100px;
+}
+.star_M {
+  width: 100%;
+  height: 25px;
+  background-image: url(../img/star3.png);
+  background-repeat: no-repeat;
+  background-size: 100px 100%;
+  position: relative;
+  display: inline-block;
+  margin-left: 200px;
+  top: -100px;
+}
+.star_L {
+  width: 100%;
+  height: 25px;
+  background-image: url(../img/star2.png);
+  background-repeat: no-repeat;
+  background-size: 100px 100%;
+  position: relative;
+  display: inline-block;
+  margin-left: 200px;
+  top: -100px;
+}
+.star_VL {
+  width: 100%;
+  height: 25px;
+  background-image: url(../img/star1.png);
+  background-repeat: no-repeat;
+  background-size: 100px 100%;
+  position: relative;
+  display: inline-block;
+  margin-left: 200px;
+  top: -100px;
 }
 #review_summary .review_summary_date{
-  display: inline-block;
   position: relative;
-  left: -16%;
-  top: -50px;
+  left: 200px;
+  top: -97px;
 }
 #review_summary .review_summary_content{
   background-color: #fff;
@@ -277,8 +327,8 @@
   display: inline-block;
   width: 350px;
   position: relative;
-  left: -40px;
-  top: -30px;
+  left: 467px;
+  top: -184px;
 }
 #review_summary .review_summary_second{
   background-color: #00000007;
@@ -290,8 +340,7 @@
 /* pagination-START */
 .review-pagination{
   padding-top: 30px;
-  position: relative;
-  margin-left: 400px;
+  margin-left: 484px;
 }
 .pagination li a {
   margin: 10px;
@@ -299,15 +348,19 @@
   color: #333;
   background-color: #eeeeee;
 }
-.pagination li a:hover {
+.pagination li a.active {
   background-color: #fedf12;
   color: #333;
+  border-color: #eeeeee;
 }
 .page-item:first-child .page-link {
   border-radius: 100%;
 }
 .page-item:last-child .page-link {
   border-radius: 100%;
+}
+.page-item:hover {
+  cursor:pointer;
 }
 /* paginaton-END */
 /*상품 문의*/

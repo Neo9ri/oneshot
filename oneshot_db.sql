@@ -210,6 +210,7 @@ CREATE TABLE IF NOT EXISTS product_review -- 상품리뷰
 	review_satisfaction VARCHAR(10) NOT NULL CHECK (review_satisfaction IN('VH','H','M','L','VL')),  
     -- 리뷰 만족도 ('VH' : 아주만족(별 5개) , 'H' : 만족(별 4개) , 'M' : 보통(별 3개), 'L' : 불만족(별 2개), 'VL' : 아주불만족(별 1개)
     content TEXT NOT NULL, 	-- 리뷰 후기
+    date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 주문 날짜 및 시간
     img_exp1 TEXT,			-- 사용자 등록 이미지
     img_exp2 TEXT,			
     img_exp3 TEXT,

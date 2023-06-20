@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko"xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -129,7 +129,7 @@
             <form id="review_form" th:object="${review}"th:action="@{/item_detail/{productId}/review(productId=${product.id})}"  method="post" enctype="multipart/form-data">
                 <label for="satisfaction">만족도:</label>
                 <select id="satisfaction"  name="review_satisfaction">
-                    <option value="VH">아주 만족</option>
+                    <option value="VH">매우 만족</option>
                     <option value="H">만족</option>
                     <option value="M">보통</option>
                     <option value="L">불만족</option>
@@ -143,8 +143,6 @@
                 </div>
                 <label for="review_content">리뷰 내용:</label><br>
                 <textarea id="review_content" rows="5" placeholder="상품리뷰 내용을 적어주세요!!" name="content"></textarea>
-
-
                 <div class="item_review_submit">
                     <div class="thumbnail_container">
                         <label for="file_upload">
@@ -156,55 +154,48 @@
                     <button id="submit_button" type="submit">리뷰 등록</button>
                 </div>
             </form>
-            <div id="review_summary">
-         <!--       <div class="review_summary_first">
-                    <img src="../../static/img/product/thumbnail/1000000319_detail_025.jpg" alt="사용자 등록 이미지" width="160"
-                         height="180">
-                    <h4>홍길동</h4>
-                    <div class="review_summary_star">
-                    </div>
-                    <div class="review_summary_date">
-                        <p th:text="'상품 구입 날짜 ' + ${reviewDTO.purchase.date_created}"></p>
-                    </div>
-                    <div class="review_summary_content">
-                        <p>구매리뷰내용피가 아니더면 인간이 얼마나 쓸쓸하랴? 얼음에 싸인 만물은 얼음이 있을 뿐이다
-                            그들에게 생명을 불어 넣는 것은 따뜻한 봄바람이다 풀밭에 속잎나고 가지에 싹이 트고 꽃 피고 새
-                            우는 봄날의 천지는 얼마나 기쁘며 얼마나..........</p>
-                    </div>
-                </div>-->
-                <div class="review_summary_first" th:each="reviewDTO : ${reviewDTO}">
-                    <img th:src="@{${'/'+reviewDTO.img_exp1}}"  alt="사용자 등록 이미지" width="160" height="180">
-                    <h4 th:text="${reviewDTO.name}"></h4>
-                    <div class="review_summary_star"></div>
-                    <div class="review_summary_date">
-                        <p th:text="'상품 구입 날짜 ' + ${reviewDTO.date}"></p>
-                    </div>
-                    <div class="review_summary_content">
-                        <p th:text="${reviewDTO.content}"></p>
+            <section>
+                <div id="review_summary">
+                    <div class="review_summary_first" th:each="reviewDTO : ${reviewDTO}">
+                        <img th:src="@{${'/'+reviewDTO.img_exp1}}"  alt="사용자 등록 이미지" width="160" height="180">
+                        <h4 th:text="${reviewDTO.name}"></h4>
+                        <div th:class="${'star_'+ reviewDTO.review_satisfaction}"></div>
+                        <div class="review_summary_date">
+                            <p th:text="'상품 구입 날짜 ' + ${reviewDTO.date}"></p>
+                        </div>
+                        <div class="review_summary_content">
+                            <p th:text="${reviewDTO.content}"></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="review-pagination">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+                <div class="review-pagination">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination" th:data-product-id="${product.id}">
+                            <li th:if="${pagination.existPreviousLastPage}" class="page-item">
+                                <a class="page-link"
+                                   th:onclick="'updateList(' + ${pagination.previousLastPage} + ')'"
+                                   aria-label="Previous" >
+                                    <span>&laquo;</span>
+                                </a>
+                            </li>
+                            <li th:each="page : ${#numbers.sequence(pagination.firstPage,pagination.lastPage)}" class="page-item">
+                                <a class="page-link"
+                                   th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'"
+                                   th:onclick="'updateList(' + ${page} + ')'"
+                                   th:text="${page}"
+                                >1</a>
+                            </li>
+                            <li th:if="${pagination.existNextFirstPage}" class="page-item">
+                                <a class="page-link"
+                                   th:onclick="'updateList(' + ${pagination.nextFirstPage} + ')'"
+                                   aria-label="Next" >
+                                    <span>&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
         </div>
     </div>
     <div class="item_inquiry">
@@ -239,6 +230,7 @@
 <!-- footer : START -->
 <footer th:replace="~{/fragment/footer :: #footer}"></footer>
 <!-- footer : END -->
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
     function confirmOrder(event) {
         event.preventDefault(); // 폼의 기본 동작인 제출을 막습니다.
@@ -262,6 +254,19 @@
             document.getElementById("thumbnailPreview").src = "";
         }
 
+    }
+    function updateList(page) {
+        var id = $('.pagination').data('product-id');
+        var section = document.querySelector('#section');
+
+        $.ajax({
+            type: 'POST',
+            data: { page: page },
+            url: "/product/item_detail/" + id,
+        })
+        .done(function (result) {
+            $('section').replaceWith(result);
+        });
     }
 </script>
 <script src="/js/header.js"></script>
