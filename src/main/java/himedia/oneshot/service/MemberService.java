@@ -32,24 +32,19 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-	public String save(Member member) {
-		memberRepository.join(member);
-		return "회원 가입 완료!";
+	public Member save(Member member) {
+//		memberRepository.join(member);
+		return memberRepository.join(member);
 	}
-	
-	
 
+	
 	public int find(String login_id) {
 	    log.info("[service] find" + login_id);
 		return memberRepository.findByJoinId(login_id);
 	}	
+	
 
 
-	
-	
-	
-	
-	
 
     /**
      * 회원 목록 조회 기능
@@ -58,5 +53,7 @@ public class MemberService {
     public List<Member> makeMemberList(){
         return memberRepository.findAll();
     }
+
+
 
 }

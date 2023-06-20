@@ -10,9 +10,81 @@
   <link rel="stylesheet" href="../css/bootstrap.min.css" />
   <link rel="stylesheet" href="../css/main_style.css" />
   <link rel="stylesheet" href="../css/login.css" />
-  <!-- <script src="js/jquery-3.6.0.min.js"></script> -->
+  <script src="js/jquery-3.6.0.min.js"></script>
   <script src="https:code.jquery.com/jquery-3.4.1.js"></script>
-  <!-- <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script> -->
+  <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript">
+  
+/*   		function registerCheckFuntion(){
+			var login_id= ${'#login_id'}.val();
+		  	$.ajax({
+			  type:'Post',
+			  url:'./UserRegisterCheckServlet',
+		  	  data: {login_id : login_id}
+		  		success: funtioin(result){
+		  			if(result == 1) {
+		  				$('#checkMessage').html('사용할 수 있는 아이디입니다.')
+		  				$('#checkType').attr('class', 'model-content panel-success');		  				
+		  			}
+		  			else {
+		  				$('#checkMessage').html('사용할 수 옶는는 아이디입니다.')
+		  				$('#checkType').attr('class', 'model-content panel-success');
+		  			}
+		  			$('#chekModal').modal("show");
+		  		}
+		  }) 
+	} 
+	*/
+	
+	function openIdChk(){
+		
+		window.name = "parentForm";
+		window.open("IdCheckForm.html",
+			"chkForm", "width=500, height=300, resizable =no, scrollbars = no");	
+		
+	}
+	
+	function inputIdChk(){
+		document.userInfo.idDuplication.value="idUncheck";	
+		
+	}
+		
+  
+	
+	  
+   	function inputIdchk(){
+  		var joinForm = document.joinForm;
+  		var dbchekId = document.joinForm.dbCheckId;
+  		document.joinForm.idDuplication.value="idUncheck";
+  		dbChekId.desabled=false;
+  		dbChekId.style.opacity=1;
+  		dbChekId.style.cursor="opinter";
+  	} 
+	
+  
+   	function fn_joinMember(){
+  		
+  		var joinForm = document.joinForm;
+  		var name = joinForm.name.value;
+  		var login_id = joinForm.login_id.value;
+  		var pwd = joinForm.pwd.value;
+  	} 
+  	
+    //아이디 체크1
+    function fn_dbCheckId(){
+ 		  var joinForm = document.joinForm;
+ 		  var login_id = joinForm.login_id.value;
+ 		  if(login_id.length==0 || login_id==""){
+ 			  alert("아이디를 입력");
+ 			  joinForm.login_id.focus();
+ 		  }else { 
+ 		  window.open("${contextPath}/member/dbCheckId.do?user_id="+login_id,"","width=500, heigh=300"); 
+ 		  } 
+ }
+  
+  	</script>
   <style>
 	.id_ok{
 	color:#008000;
@@ -25,27 +97,8 @@
 	}
    </style>
    <script>
-  	 function checkId(){
-      var login_id = $('#login_id').val(); //id값이 "id"인 입력란의 값을 저장
-      $.ajax({
-        url:'./idCheck', //Controller에서 요청 받을 주소
-        type:'post', //POST 방식으로 전달
-        //dataType: 'json',
-        //contentType : 'application/json',
-        data:{login_id:login_id},
-        success:function(login_id){ //컨트롤러에서 넘어온 cnt값을 받는다 
-        	console.log(login_id);
-        
-            if(login_id==0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
-                $('#check01').html('<b style="font-size: 16px; color: blue"> 아이디 사용가능 </b>');
-            } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-             	$('#check01').html('<b style="font-size: 16px; color: red"> 아이디 사용 불가능 </b>');
-            }
-      
-        },
-    
-    	});
-	};
+   
+
 </script>
 </head>
 <body>
@@ -157,16 +210,20 @@
               <label for="InputId" class="form-label mt-4">아이디</label> &nbsp;<span id="check01"></span>
               <div class="input-img-group">
                 <span><img src="../img/join/name.png" alt=""></span>
-                <input type="text" class="form-control" id="login_id" name="login_id" onchange="checkId()">
+                <input type="text" id="login_id" name="login_id" maxlength="50" onkeydown="inputIdChk()"/>  
+                <input type="button"  value="중복확인" onclick="openIdChk()" >
+                <input type="hidden" name="idDuplication" value="idUncheck"/>
+                <!-- <input type="text" class="form-control" id="login_id" name="login_id" onchange="checkId()"> -->
                 <!-- <input type="text" class="form-control" id="login_id" name="login_id" oninput = "checkId()"> -->
-                <button class="duble-check-btn">중복확인</button> 
+                <!-- <button type="button" onclick="fn_dbCheckId()" name="dbCheckId" class="checkId">중복확인</button> -->
+   
               </div>
             </div>
             <div class="form-group">
               <label for="InputPassword" class="form-label mt-4">비밀번호</label>
               <div class="input-img-group">
                 <span><img src="../img/join/pw1.png" alt=""></span>
-                <input type="password" class="form-control" id="pw" name="pw" onchange="check_pw()">
+                <input type="password" class="form-control" id="pw" name="pw" onchange="check02_pw()">
               </div>
             </div>
             <div class="form-group">
@@ -287,6 +344,9 @@
   </footer>
   <!-- footer : END -->
   <script>
+  
+  
+
   //아이디 체크2
          function check01_id(){
             var login_id = document.getElementById('login_id').value;
@@ -382,7 +442,7 @@
     });
 
     // swiper
-   /*  var swiper = new Swiper(".mySwiper", {
+    var swiper = new Swiper(".mySwiper", {
       spaceBetween: 30,
       centeredSlides: true,
       autoplay: {
@@ -397,7 +457,7 @@
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
-    }); */
+    });
   </script>
 </body>
 

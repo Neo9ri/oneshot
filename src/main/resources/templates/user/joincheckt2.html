@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.orf" lang="ko" data-bs-theme="auto">
 
 <head>
   <meta charset="UTF-8" />
@@ -10,9 +10,9 @@
   <link rel="stylesheet" href="../css/bootstrap.min.css" />
   <link rel="stylesheet" href="../css/main_style.css" />
   <link rel="stylesheet" href="../css/login.css" />
-  <!-- <script src="js/jquery-3.6.0.min.js"></script> -->
+  <script src="js/jquery-3.6.0.min.js"></script>
   <script src="https:code.jquery.com/jquery-3.4.1.js"></script>
-  <!-- <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script> -->
+  <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
   <style>
 	.id_ok{
 	color:#008000;
@@ -25,25 +25,26 @@
 	}
    </style>
    <script>
-  	 function checkId(){
-      var login_id = $('#login_id').val(); //id값이 "id"인 입력란의 값을 저장
+  	function checkId(){
+      var id = $('#login_id').val(); //id값이 "id"인 입력란의 값을 저장
       $.ajax({
         url:'./idCheck', //Controller에서 요청 받을 주소
         type:'post', //POST 방식으로 전달
-        //dataType: 'json',
-        //contentType : 'application/json',
         data:{login_id:login_id},
         success:function(login_id){ //컨트롤러에서 넘어온 cnt값을 받는다 
-        	console.log(login_id);
-        
-            if(login_id==0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
-                $('#check01').html('<b style="font-size: 16px; color: blue"> 아이디 사용가능 </b>');
+            if(login_id.exists()){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
+                $('.id_ok').css("display","inline-block"); 
+                $('.id_already').css("display", "none");
             } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-             	$('#check01').html('<b style="font-size: 16px; color: red"> 아이디 사용 불가능 </b>');
+                $('.id_already').css("display","inline-block");
+                $('.id_ok').css("display", "none");
+                alert("아이디를 다시 입력해주세요");
+                $('#id').val('');
             }
-      
         },
-    
+        error:function(){
+            alert("에러입니다");
+        }
     	});
 	};
 </script>
@@ -159,7 +160,7 @@
                 <span><img src="../img/join/name.png" alt=""></span>
                 <input type="text" class="form-control" id="login_id" name="login_id" onchange="checkId()">
                 <!-- <input type="text" class="form-control" id="login_id" name="login_id" oninput = "checkId()"> -->
-                <button class="duble-check-btn">중복확인</button> 
+                <!-- <button class="duble-check-btn">중복확인</button> -->
               </div>
             </div>
             <div class="form-group">
@@ -382,7 +383,7 @@
     });
 
     // swiper
-   /*  var swiper = new Swiper(".mySwiper", {
+    var swiper = new Swiper(".mySwiper", {
       spaceBetween: 30,
       centeredSlides: true,
       autoplay: {
@@ -397,8 +398,9 @@
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
-    }); */
+    });
   </script>
 </body>
 
 </html>
+	

@@ -96,7 +96,6 @@ public class JdbcMemberRepository implements MemberRepository {
     		Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
     		log.info("key >> "+ key);
     		member.setId(key.longValue());
-    		
     		return member;
     }
  
@@ -119,12 +118,23 @@ public class JdbcMemberRepository implements MemberRepository {
         return memberList.stream().findAny();
     }
     
+//    @Override    
+//    public int findByJoinId(String login_id) {
+//    	log.info("나는 레포지토리" + login_id);
+//        String sql = "SELECT * FROM MEMBER WHERE login_id = ?;";
+//        List<Member> memberList = jdbcTemplate.query(sql, memberRowMapper(), login_id);       
+//        log.info("[POST] join 실행2" + memberList );
+//        return memberList.size();        
+//    }
+    
+    
     @Override    
     public int findByJoinId(String login_id) {
-    	log.info("나는 레포지토리");
-        String sql = "SELECT * FROM MEMBER WHERE login_id = '?';";
+    	log.info("나는 레포지토리" + login_id);
+        String sql = "SELECT * FROM MEMBER WHERE login_id = ?;";
         List<Member> memberList = jdbcTemplate.query(sql, memberRowMapper(), login_id);       
-        return memberList.size();
+        log.info("[POST] join 실행2" + memberList );
+        return memberList.size();      
     }
 
     /**

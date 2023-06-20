@@ -1,138 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.orf" lang="ko" data-bs-theme="auto">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>회원가입</title>
-  <link rel="icon" href="img/favicon-32x32.png" type="image/x-icon" />
-  <link rel="stylesheet" href="../css/bootstrap.min.css" />
-  <link rel="stylesheet" href="../css/main_style.css" />
-  <link rel="stylesheet" href="../css/login.css" />
-  <!-- <script src="js/jquery-3.6.0.min.js"></script> -->
-  <script src="https:code.jquery.com/jquery-3.4.1.js"></script>
-  <!-- <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script> -->
-  <style>
-	.id_ok{
-	color:#008000;
-	display: none;
-	}
-	
-	.id_already{
-	color:#6A82FB; 
-	display: none;
-	}
-   </style>
-   <script>
-  	 function checkId(){
-      var login_id = $('#login_id').val(); //id값이 "id"인 입력란의 값을 저장
-      $.ajax({
-        url:'./idCheck', //Controller에서 요청 받을 주소
-        type:'post', //POST 방식으로 전달
-        //dataType: 'json',
-        //contentType : 'application/json',
-        data:{login_id:login_id},
-        success:function(login_id){ //컨트롤러에서 넘어온 cnt값을 받는다 
-        	console.log(login_id);
-        
-            if(login_id==0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
-                $('#check01').html('<b style="font-size: 16px; color: blue"> 아이디 사용가능 </b>');
-            } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-             	$('#check01').html('<b style="font-size: 16px; color: red"> 아이디 사용 불가능 </b>');
-            }
-      
-        },
-    
-    	});
-	};
-</script>
 </head>
 <body>
   <!-- header : START -->
   <header>
-    <div class="center">
-      <div>
-        <h1>
-          <a href="/"><img src="/img/oneshot_logo.png" alt="원샷-우리술 한잔" />우리술
-            한 잔,</a>
-        </h1>
-        <form role="search" class="main_search">
-          <div class="row">
-            <input type="search" name="keyword" placeholder="상품명을 입력하세요." class="col form-control"
-              aria-label="Search" />
-            <button type="submit" class="col-1">
-              <img src="/img/search.png" alt="검색" />
-            </button>
-          </div>
-        </form>
-        <div class="util main">
-          <a href="/login">로그인</a>|
-          <a href="/join">회원가입</a>
-          <a href="cart.html"><img src="img/cart.png" alt="장바구니" /></a>
-        </div>
-        <div class="util mypage" style="display:none">
-          <div>홍길동님</div>|
-          <a href="#">로그아웃</a>
-          <a href="cart.html"><img src="img/cart.png" alt="장바구니" /></a>
-          <a href="mypage.html"><img src="img/util_user.png" alt="마이페이지" /></a>
-        </div>
-      </div>
-    </div>
-    <nav class="gnb">
-      <div class="gnbbar"></div>
-      <ul class="center">
-        <li><a href="">전통주 이야기</a></li>
-        <li>
-          <a href="">지역별 전통주</a>
-          <ul>
-            <li><a href="">전체 상품</a></li>
-            <li><a href="">서울, 경기, 인천권</a></li>
-            <li><a href="">강원, 세종권</a></li>
-            <li><a href="">충북, 충남, 제주도</a></li>
-            <li><a href="">전북, 전남, 경북, 경남</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="">주종별 전통주</a>
-          <ul>
-            <li><a href="">증류주</a></li>
-            <li><a href="">과실주</a></li>
-            <li><a href="">약주 / 청주</a></li>
-            <li><a href="">숙성 전통주</a></li>
-            <li><a href="">기타주</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="">가격별 전통주</a>
-          <ul>
-            <li><a href="">10,000원 이하 제품</a></li>
-            <li><a href="">20,000원 이하 제품</a></li>
-            <li><a href="">30,000원 이하 제품</a></li>
-            <li><a href="">40,000원 이하 제품</a></li>
-            <li><a href="">50,000원 이하 제품</a></li>
-            <li><a href="">50,000원 이상 제품</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
   </header>
-  <!-- header : END -->
-  <!-- mainbanner : START -->
-  <!-- Swiper -->
-  <!-- <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide"><a href="#"></a></div>
-      <div class="swiper-slide"><a href="#"></a></div>
-      <div class="swiper-slide"><a href="#"></a></div>
-    </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
-  </div> -->
-  <!-- mainbanner : END -->
-  <!-- container : START -->
-
   <body>
     <div class="main_container_join">
       <section class="bg-light join-section">
@@ -142,7 +16,7 @@
               <span class="text-dark h4">회원가입</span>
             </a>
           </div>
-          <form action="join" method="post"> 
+          <form action="idcheck" method="post"> 
             <div class="form-group">
               <label class="form-label mt-4 join-agree-label">[필수]원샷 이용약관 <input type="checkbox" /></label>
               <div class="join-agree-box">
@@ -159,7 +33,11 @@
                 <span><img src="../img/join/name.png" alt=""></span>
                 <input type="text" class="form-control" id="login_id" name="login_id" onchange="checkId()">
                 <!-- <input type="text" class="form-control" id="login_id" name="login_id" oninput = "checkId()"> -->
-                <button class="duble-check-btn">중복확인</button> 
+                <!-- <button class="duble-check-btn">중복확인</button> -->
+                <h3 th:text="${member.getlogin_id()}"></h3>
+                
+                
+                
               </div>
             </div>
             <div class="form-group">
@@ -229,61 +107,37 @@
             </div>
       </section>
      </div>
-  </body>
-  <!-- <div class="btm_banner_wrap">
-      <div class="btm_banner">
-        <p>원샷과 함께<br>우리술을 즐겨보세요.</p>
-      </div>
-    </div> -->
+     
 
-  <!-- footer : START -->
+<body class="text-center">
+
+<!-- START : container -->
+		<div class="container" style="max-width: 600px">
+		<div class="py-5 text-center">
+	
+		<h3 th:text="${member.getlogin_id()}"></h3>
+		<h3>님 회원가입을 환영합니다.</h3>
+		
+	</div>
+		<ul class="nav nav-pills flex-column mb-auto">
+			<li>
+               <a href="/list/daily" class="nav-link link-body-emphasis">
+                  <svg class="bi pe-none me-2" width="30" height="30">
+                     <use xlink:href="#speedometer2" />
+                  </svg>
+                   메인 페이지로
+               </a>
+            </li>
+         </ul>
+	</body>     
+     
+     
+     
+     
+  </body>
+
   <footer>
-    <div class="center">
-      <div class="left_wrap">
-        <p class="btm_logo"><img src="img/oneshot_logo_bw.png" alt="원샷 - 우리술 한잔,"></p>
-        <div class="text_wrap">
-          <p>원샷 - 우리술 한잔,</p>
-          <address>서울시 서대문구 연세로 8-1</address>
-          <nav>
-            <ul>
-              <li><a href="">전통주 이야기</a></li>
-              <li><a href="">지역별 전통주</a></li>
-              <li><a href="">주종별 전통주</a></li>
-              <li><a href="">가격별 전통주</a></li>
-            </ul>
-          </nav>
-          <div class="info">
-            <p>대표 : 홍길동</p>
-            <p>사업자 등록번호 : 100-11-111111</p>
-            <p>개인정보관리자 : 홍길동</p>
-          </div>
-          <div class="contact_info">
-            <p>대표번호 : 02-1234-1234</p>
-            <p>메일 : oneshot@oneshot.com</p>
-          </div>
-          <div>Copyrights&copy; oneshot All Rights Reserved.</div>
-        </div>
-      </div>
-      <div class="cs">
-        <dl>
-          <dt>CS CENTER</dt>
-          <dd>070-1234-1234</dd>
-          <dd>평일 : 09:00 ~ 18:00<br>
-            점심 시간 : 12:00 ~ 13:00<br>
-            주말 밋 공휴일 제외
-          </dd>
-        </dl>
-      </div>
-      <div class="social">
-        <h4>SOCIAL MEDIA</h4>
-        <p>Follow @oneshot</p>
-        <ul>
-          <li><a href="#"><img src="img/instagram_footer.svg" alt="인스타그램"></a></li>
-          <li><a href="#"><img src="img/youtube_footer.svg" alt="유투브"></a></li>
-          <li><a href="#"><img src="img/facebook_footer.svg" alt="페이스북"></a></li>
-        </ul>
-      </div>
-    </div>
+
   </footer>
   <!-- footer : END -->
   <script>
@@ -382,7 +236,7 @@
     });
 
     // swiper
-   /*  var swiper = new Swiper(".mySwiper", {
+    var swiper = new Swiper(".mySwiper", {
       spaceBetween: 30,
       centeredSlides: true,
       autoplay: {
@@ -397,8 +251,9 @@
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
-    }); */
+    });
   </script>
 </body>
 
 </html>
+	
