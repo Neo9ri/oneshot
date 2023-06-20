@@ -14,18 +14,18 @@
   <script src="https:code.jquery.com/jquery-3.4.1.js"></script>
   <!-- <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script> -->
   <style>
-	.id_ok{
-	color:#008000;
-	display: none;
-	}
-	
-	.id_already{
-	color:#6A82FB; 
-	display: none;
-	}
+   .id_ok{
+   color:#008000;
+   display: none;
+   }
+   
+   .id_already{
+   color:#6A82FB; 
+   display: none;
+   }
    </style>
    <script>
-  	 function checkId(){
+      function checkId(){
       var login_id = $('#login_id').val(); //id값이 "id"인 입력란의 값을 저장
       $.ajax({
         url:'./idCheck', //Controller에서 요청 받을 주소
@@ -34,18 +34,22 @@
         //contentType : 'application/json',
         data:{login_id:login_id},
         success:function(login_id){ //컨트롤러에서 넘어온 cnt값을 받는다 
-        	console.log(login_id);
+           console.log(login_id);
         
             if(login_id==0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
-                $('#check01').html('<b style="font-size: 16px; color: blue"> 아이디 사용가능 </b>');
+             /*    $('#check01').html('<b style="font-size: 16px; color: blue"> 아이디 사용가능 </b>'); */
+                document.getElementById('check01').innerHTML='아이디 사용가능'
+                document.getElementById('check01').style.color='blue';
             } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-             	$('#check01').html('<b style="font-size: 16px; color: red"> 아이디 사용 불가능 </b>');
+    /*             $('#check01').html('<b style="font-size: 16px; color: red"> 아이디 사용 불가능 </b>'); */
+                document.getElementById('check01').innerHTML='아이디 사용 불가능';
+                document.getElementById('check01').style.color='red';
             }
       
         },
     
-    	});
-	};
+       });
+   };
 </script>
 </head>
 <body>
@@ -159,7 +163,7 @@
                 <span><img src="../img/join/name.png" alt=""></span>
                 <input type="text" class="form-control" id="login_id" name="login_id" onchange="checkId()">
                 <!-- <input type="text" class="form-control" id="login_id" name="login_id" oninput = "checkId()"> -->
-                <button class="duble-check-btn">중복확인</button> 
+                <!-- <button class="duble-check-btn">중복확인</button>  -->
               </div>
             </div>
             <div class="form-group">
@@ -176,12 +180,12 @@
                 <input type="password" class="form-control" id="pw2" name="pw2" onchange="check02_pw()">
               </div>
             </div>
-      	  <div class="form-group">
-	           <label for="InputEmail1" class="form-label mt-4">본인 확인용 이메일</label>
-	           <div class="input-img-group">
-	             <span><img src="../img/join/email.png" alt=""></span>
-	             <input type="email" class="form-control" id="email" name="email">
-	            </div>
+           <div class="form-group">
+              <label for="InputEmail1" class="form-label mt-4">본인 확인용 이메일</label>
+              <div class="input-img-group">
+                <span><img src="../img/join/email.png" alt=""></span>
+                <input type="email" class="form-control" id="email" name="email">
+               </div>
            </div>        
            <div class="form-group">
              <label for="InputName" class="form-label mt-4">이름</label>
@@ -194,7 +198,7 @@
                <label for="InputNumber" class="form-label mt-4">주민번호</label>
                <div class="input-img-group">
                  <span><img src="../img/join/card.png" alt=""></span>
-                 <input type="text" class="form-control" id="id_card_number" name="id_card_number">
+                 <input type="text" class="form-control" id="id_card_number" name="id_card_number" oninput="idcardautoHyphen(this)" maxlength="14">
                 </div>
              </div>        
                <div class="form-group">
@@ -288,7 +292,7 @@
   <!-- footer : END -->
   <script>
   //아이디 체크2
-         function check01_id(){
+         function check01_idt(){
             var login_id = document.getElementById('login_id').value;
             var SC = ["!","@","#","$","%"];
             var check01_SC = 0;
@@ -299,7 +303,7 @@
             }
             for(var i=0;i<SC.length;i++){
                 if(login_id.indexOf(SC[i]) != -1){
-                	check01_SC = 1;
+                   check01_SC = 1;
                 }
             }
             if(check01_SC == 0){
@@ -331,7 +335,7 @@
             }
             for(var i=0;i<SC.length;i++){
                 if(pw.indexOf(SC[i]) != -1){
-                	check02_SC = 1;
+                   check02_SC = 1;
                 }
             }
             if(check02_SC == 0){
@@ -349,6 +353,14 @@
                 }
             }
         }
+  
+  
+   //주민번호 하이픈 추가
+        const idcardautoHyphen = (target) => {
+         target.value = target.value
+           .replace(/[^0-9]/g, '')
+          .replace(/^(\d{0,6})(\d{0,7})$/g, "$1-$2").replace(/(\-{1,2})$/g, "");
+        }
 
   
   //전화번호 하이픈 추가
@@ -364,7 +376,7 @@
         .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
       }
 
-		
+      
  
   
     const gnbbar = document.querySelector(".gnbbar");
