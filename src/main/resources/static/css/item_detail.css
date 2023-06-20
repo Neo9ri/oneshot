@@ -160,6 +160,9 @@
 .item_review{
   padding: 30px;
 }
+#review_form{
+  margin-left: 130px;
+}
 .item_review h3{
   font-size: 20px;
   font-weight: 700;
@@ -168,7 +171,12 @@
 .item_review #satisfaction{
   display: block;
   position: relative;
-  left: 10%;
+  width: 900px;
+  border: 1px solid #0000004f;
+}
+.item_review #purchaseDate{
+  display: block;
+  position: relative;
   width: 900px;
   border: 1px solid #0000004f;
 }
@@ -180,7 +188,6 @@
   position: relative;
   width: 900px;
   height: 200px;
-  left: 10%;
   border: 1px solid #0000004f;
   border-bottom:0 ;
   border-top-left-radius: 5px;
@@ -188,32 +195,36 @@
 }
 .item_review_submit{
   position: relative;
-  left: 10%;
   border: 1px solid #0000004f;
   border-bottom-left-radius:5px ;
   border-bottom-right-radius:5px ;
   width: 900px;
   height: 90px;
-  line-height: 45px;
+  display: flex; /* 추가: 내부 요소들을 가로로 정렬하기 위해 flexbox 사용 */
+  align-items: center; /* 추가: 내부 요소들을 수직 중앙 정렬 */
+  justify-content: space-between; /* 추가: 내부 요소들을 좌우로 정렬 */
   padding: 10px;
 }
-.item_review_preview_img{
-  display: inline-block;
-  
+.thumbnail_container {
+  display: flex; /* 추가: 아이콘, 파일 업로드 버튼, 썸네일 이미지를 가로로 정렬 */
+  align-items: center; /* 추가: 아이콘, 파일 업로드 버튼, 썸네일 이미지를 수직 중앙 정렬 */
 }
+
+.item_review_submit #thumbnailPreview{
+  display: none;
+  margin-right: 10px; /* 추가: 썸네일 이미지와 버튼 사이의 간격을 조절 */ 
+}
+
 .item_review_submit #submit_button{
-  position: relative;
-  left: 60%;
   background-color: #fedf12;
   size: 20px;
   font-weight: 500;
   width: 90px;
+  height: 50px;
   border: 0px;
   border-radius: 5px;
 }
 .item_review_submit #submit_button:hover{
-  position: relative;
-  left: 60%;
   background-color: #fedf12;
   size: 20px;
   font-weight: 500;
@@ -222,6 +233,7 @@
   border-radius: 5px;
   transform: scale(1.1);
 }
+
 /* 파일 찾기 */
 #file_upload {
   display: none; /* 파일 선택 버튼을 숨김 */
@@ -229,7 +241,7 @@
 /* 상품 리뷰 */
 #review_summary{
   position: relative;
-  left: 10%;
+  margin-left:130px;
   width: 900px;
   padding-top: 50px;
   border-bottom: 2px solid #0000004f;
@@ -346,37 +358,3 @@ button.inquiry_button{
 }
 
 
-
-
-
-
-
-
-
-/* #preview {
-  display: inline-block;
-  position: relative;
-  left: 12%; */
-  /* display: flex;
-  flex-wrap: wrap;
-  gap: 10px; */
-/* } */
-/* js연관 css */
-/* .preview-image {
-  width: 60px;
-  height: 60px;
-}
-.preview-image img {
-  max-width: 100%;
-  max-height: 100%;
-}
-#submit-button {
-  margin-top: 10px;
-}
-#review_summary {
-  margin-top: 20px;
-}
-#review-image {
-  max-width: 200px;
-  max-height: 200px;
-} */
