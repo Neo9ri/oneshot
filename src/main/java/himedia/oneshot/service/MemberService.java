@@ -1,24 +1,13 @@
 package himedia.oneshot.service;
 
-
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import himedia.oneshot.entity.Member;
 import himedia.oneshot.repository.MemberRepository;
-
-import himedia.oneshot.dto.LoginDTO;
 import himedia.oneshot.dto.MemberDTO;
-import himedia.oneshot.entity.Member;
-import himedia.oneshot.repository.MemberRepository;
-import himedia.oneshot.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 
@@ -72,4 +61,15 @@ public class MemberService {
         memberRepository.edit(member);
     }
 
+    public Boolean changePassword(HttpServletRequest request, String originalPassword, String newPassword){
+        MemberDTO loginData = (MemberDTO) request.getSession().getAttribute("user");
+        long id = loginData.getId();
+        Optional<Member> member = memberRepository.findById(id);
+        if (member.get().getPw().equals(originalPassword)){
+            memberRepository.changePassword(id, newPassword);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

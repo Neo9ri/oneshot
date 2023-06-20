@@ -6,15 +6,18 @@ import himedia.oneshot.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
+
+    public List<Product> findBy(String local, String kind, int priceFrom, int priceTo){
+        List<Product> result = productRepository.findBy(local, kind, priceFrom, priceTo);
+        Collections.reverse(result);
+        return result;
+    }
 
     public Optional<Product> findById(Long id){
         return productRepository.findById(id);

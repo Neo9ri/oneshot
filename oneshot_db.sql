@@ -186,10 +186,6 @@ values
 ('7월 휴무 공지(여름휴가)', '7월 26일부터 28일은 원샷팀 여름휴가 기간으로 배송,문의 업무가 중단됩니다.'),
 ('배송관련 안내드립니다.','주문 폭주로 배송이 지연되고 있습니다. ');
 
-select * from product where id=1;
-select img_thumb from product where id =2;
-
-
 SELECT * FROM product;
 SELECT * FROM cart;
 SELECT * FROM member;
@@ -223,7 +219,7 @@ SELECT pd.*, p.name
 FROM purchase_detail pd
 JOIN product p ON pd.product_id = p.id;
 
-DROP TABLE IF EXISTS product_review, cart, purchase_detail, purchase, product, inquiry, member; -- 테이블 전체 삭제
+DROP TABLE IF EXISTS notice, product_review, cart, purchase_detail, purchase, product, inquiry, member; -- 테이블 전체 삭제
 
 CREATE TABLE IF NOT EXISTS product_review -- 상품리뷰
 (	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, -- 상품리뷰 고유 번호(PK)

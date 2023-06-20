@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>지역별 전통주</title>
+  <link rel="icon" href="/img/favicon-32x32.png" type="image/x-icon" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/main_style.css" />
+  <link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+  <div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
+  <!-- header : START -->
+  <header th:replace="~{/fragment/defaultHeader :: #header}"></header>
+  <!-- header : END -->
+  <!-- product_banner : START -->
+  <div class="product_banner">
+    <p class="center">
+      <span>지역별 전통주</span>
+      <span>원샷이 엄선한 우리술을 만나보세요!</span>
+    </p>
+  </div>
+  <!-- product_banner : END -->
+  <!-- container : START -->
+  <section id="section" class="product_container">
+    <h2 class="title center">지역별 전통주</h2>
+    <nav class="product">
+      <ul>
+        <li class="btn" th:class="${region == 'all'}? 'btn on' : 'btn'"><a href="region.html" th:href="@{/region/all}">전체보기</a></li>
+        <li class="btn" th:class="${region == 'SGI'}? 'btn on' : 'btn'"><a href="region.html" th:href="@{/region/SKI}">서울,경기,인천권</a></li>
+        <li class="btn" th:class="${region == 'GS'}? 'btn on' : 'btn'"><a href="region.html" th:href="@{/region/KS}">강원,세종권</a></li>
+        <li class="btn" th:class="${region == 'CJ'}? 'btn on' : 'btn'"><a href="region.html" th:href="@{/region/CJ}">충북,충남,제주도</a></li>
+        <li class="btn" th:class="${region == 'JG'}? 'btn on' : 'btn'"><a href="region.html" th:href="@{/region/JK}">전북,전남,경북,경남</a></li>
+      </ul>
+    </nav>
+    <ul class="product_list center" >
+      <li th:each="product: ${products}">
+        <div class="item_cont" >
+          <div class="item_photo_box" >
+            <a href="item_detail.html" th:href="@{/product/item_detail/{id}(id=${product.id})}"><img th:src="|/${product.img_thumb}|"></a>
+          </div>
+          <div class="item_info_cont">
+            <div class="item_title_box">
+              <a href="item_detail.html" th:href="@{/product/item_detail/{id}(id=${product.id})}">
+                <span class="item_title" th:text="${product.name}" ></span>
+              </a>
+            </div>
+            <div class="item_price_box">
+              <span th:text="${product.price+'원'}"></span>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="d-flex justify-content-center py-5">
+      <nav aria-label="">
+        <ul class="pagination">
+          <li th:if="${pagination.existPreviousLastPage}" class="page-item">
+            <a class="page-link"
+               th:onclick="updateList([[${pagination.previousLastPage}]])"
+               aria-label="Previous">
+              <span>&laquo;</span>
+            </a>
+          </li>
+          <li th:each="page : ${#numbers.sequence(pagination.firstPage,pagination.lastPage)}" class="page-item">
+            <a class="page-link"
+               th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'"
+               th:onclick="updateList([[${page}]])"
+               th:text="${page}"
+               th:page="${page}">1</a>
+          </li>
+          <li th:if="${pagination.existNextFirstPage}" class="page-item">
+            <a class="page-link"
+               th:onclick="updateList([[${pagination.nextFirstPage}]])"
+               aria-label="Next">
+              <span>&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+  <!-- container : END -->
+  <!-- footer : START -->
+  <footer th:replace="~{/fragment/footer :: #footer}"></footer>
+  <!-- footer : END -->
+  <script src="/js/header.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script>
+    var url = '/region/'+ '[[${region}]]';
+    console.log(url);
+    function updateList(page) {
+        $.ajax({
+          type: 'POST',
+          data: {page: page},
+          url: url,
+        })
+        .done(function (result) {
+          $('section').replaceWith(result);
+        });
+    }
+  </script>
+</body>
+
+</html>

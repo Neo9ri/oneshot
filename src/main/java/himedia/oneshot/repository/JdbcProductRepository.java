@@ -58,6 +58,24 @@ public class JdbcProductRepository implements ProductRepository{
         member.setId(rs.getLong("id"));
         return member;
     };
+
+    @Override
+    public List<Product> findBy(String local, String kind, int priceFrom, int priceTo) {
+        if (!local.isBlank()){
+            String sql = "SELECT * FROM product WHERE type_local LIKE ? AND status LIKE 'T'";
+            return jdbcTemplate.query(sql, productRowMapper, local);
+        } else if (!kind.isBlank()){
+            String sql = "SELECT * FROM product WHERE type_kind LIKE ? AND status LIKE 'T'";
+            return jdbcTemplate.query(sql, productRowMapper, kind);
+        } else if(priceTo!=0){
+            String sql = "SELECT * FROM product WHERE price BETWEEN ? AND ? AND status LIKE 'T'";
+            return jdbcTemplate.query(sql,productRowMapper, priceFrom, priceTo);
+        } else{
+            String sql = "SELECT * FROM product WHERE status LIKE 'T'";
+            return jdbcTemplate.query(sql, productRowMapper);
+        }
+    }
+
     @Override
     public Optional<Product> findById(Long id) {
         String sql = "select * from product where id = ?";

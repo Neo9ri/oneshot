@@ -20,6 +20,8 @@ public interface MemberRepository {
     Optional<Member> findById(long id);
     Optional<Member> findByLoginId(String loginId);
     List<Member> findAll();
+    void changePassword(long id, String password);
+    Optional<Member> findLoginId(String name, String email, String birthday);
     int findByJoinId(String login_id); 
-    
+
 }

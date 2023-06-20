@@ -73,4 +73,28 @@ public class JdbcMemberRepositoryTest {
         String phoneNumber = memberRepository.findById(2).get().getPhone_number();
         assertThat(phoneNumber).isEqualTo("010-1111-1234");
     }
+
+    @Test
+    void 비밀번호변경(){
+        // given
+            String password = "member12345";
+            long id = 2;
+        // when
+            memberRepository.changePassword(2, password);
+            Optional<Member> result = memberRepository.findById(2);
+        //then
+            assertThat(result.get().getPw()).isEqualTo(password);
+    }
+
+    @Test
+    void 아이디찾기(){
+        // given
+            String name = "홍길동";
+            String email = "member01@def.com";
+            String birthday = "123456";
+        // when
+            Optional<Member> result = memberRepository.findLoginId(name, email, birthday);
+        // then
+            assertThat(result.get().getLogin_id()).isEqualTo("member01");
+    }
 }
