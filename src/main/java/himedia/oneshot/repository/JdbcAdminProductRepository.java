@@ -26,16 +26,17 @@ public class JdbcAdminProductRepository implements AdminProductRepository {
 
         Map<String, Object> parameter= new HashMap<>();
         parameter.put("name", product.getName());
+        parameter.put("status", "T");
         parameter.put("quantity", product.getQuantity());
         parameter.put("type_local", product.getType_local());
         parameter.put("type_kind", product.getType_kind());
         parameter.put("creator", product.getCreator());
         parameter.put("alcohol", product.getAlcohol());
+        parameter.put("volume", product.getVolume());
         parameter.put("price", product.getPrice());
         parameter.put("img_thumb", product.getImg_thumb());
         parameter.put("img_exp1", product.getImg_exp1());
         parameter.put("img_exp2", product.getImg_exp2());
-        parameter.put("img_exp3", product.getImg_exp3());
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameter));
         product.setId(key.longValue());
@@ -44,7 +45,7 @@ public class JdbcAdminProductRepository implements AdminProductRepository {
 
     @Override
     public Product updateProduct(Long id, Product updatedProduct) {
-        String query="update product set name=?,quantity=?,type_local=?,type_kind=?,creator=?,alcohol=?,price=?,img_thumb=?,img_exp1=?,img_exp2=?,img_exp3=? where id=?";
+        String query="update product set name=?,quantity=?,type_local=?,type_kind=?,creator=?,alcohol=?,volume=?,price=?,img_thumb=?,img_exp1=?,img_exp2=? where id=?";
         jdbcTemplate.update(query,
                 updatedProduct.getName(),
                 updatedProduct.getQuantity(),
@@ -52,24 +53,48 @@ public class JdbcAdminProductRepository implements AdminProductRepository {
                 updatedProduct.getType_kind(),
                 updatedProduct.getCreator(),
                 updatedProduct.getAlcohol(),
+                updatedProduct.getVolume(),
                 updatedProduct.getPrice(),
                 updatedProduct.getImg_thumb(),
                 updatedProduct.getImg_exp1(),
                 updatedProduct.getImg_exp2(),
-                updatedProduct.getImg_exp3(),
                 id);
                 return jdbcProductRepository.findById(id).get();
     }
 
     @Override
-    public void deleteProduct(Long id) {
-        String query= "delete from product where id=?";
-        jdbcTemplate.update(query,id);
+    public Product updateProductStatus(Long id, String status) {
+        String query= "update product set status=? where id=?";
+        jdbcTemplate.update(query,status,id);
+        return jdbcProductRepository.findById(id).get();
     }
 
     public Optional<Product> findById(Long id){
         return jdbcProductRepository.findById(id);
     }
 
-    public List<Product> findAll(){ return jdbcProductRepository.findAll(); }
+    @Override
+    public List<Product> findAllAdmin() {
+        String query = "select * from product order by id desc";
+        return jdbcTemplate.query(query, (rs, rowNum) -> {
+            Product product = new Product();
+
+            product.setId(rs.getLong("id"));
+            product.setStatus(rs.getString("status"));
+            product.setName(rs.getString("name"));
+            product.setQuantity(rs.getInt("quantity"));
+            product.setType_local(rs.getString("type_local"));
+            product.setType_kind(rs.getString("type_kind"));
+            product.setCreator(rs.getString("creator"));
+            product.setAlcohol(rs.getFloat("alcohol"));
+            product.setVolume(rs.getInt("volume"));
+            product.setPrice(rs.getInt("price"));
+            product.setImg_thumb(rs.getString("img_thumb"));
+            product.setImg_exp1(rs.getString("img_exp1"));
+            product.setImg_exp2(rs.getString("img_exp2"));
+
+            return product;
+        });
+
+    }
 }

@@ -102,19 +102,31 @@ public class JdbcMemberRepository implements MemberRepository {
     
 
     @Override
-    public Member edit(Member member) {
-        return null;
+    public void edit(Member member) {
+        String sql = "UPDATE member SET email=?, phone_number=?, address=? WHERE id=?";
+        int result =jdbcTemplate.update(sql,
+                member.getEmail(),
+                member.getPhone_number(),
+                member.getAddress(),
+                member.getId());
+//        return memberDTO;
     }
 
     @Override
     public void ban(int memberId) {
-
     }
 
     @Override
-    public Optional<Member> findByLoginId(String login_id) {
-        String sql = "SELECT * FROM MEMBER WHERE login_id = '?';";
-        List<Member> memberList = jdbcTemplate.query(sql, memberRowMapper(), login_id);       
+    public Optional<Member> findById(long id) {
+        String sql = "SELECT * FROM member WHERE id = ?;";
+        List<Member> member = jdbcTemplate.query(sql, memberRowMapper(), id);
+        return member.stream().findAny();
+    }
+
+    @Override
+    public Optional<Member> findByLoginId(String loginId) {
+        String sql = "SELECT * FROM member WHERE login_id = ?;";
+        List<Member> memberList = jdbcTemplate.query(sql, memberRowMapper(), loginId);
         return memberList.stream().findAny();
     }
     

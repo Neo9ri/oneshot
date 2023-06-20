@@ -1,8 +1,10 @@
 package himedia.oneshot.controller;
 
 import himedia.oneshot.dto.LoginDTO;
+import himedia.oneshot.entity.Notice;
 import himedia.oneshot.entity.Product;
 import himedia.oneshot.service.LoginService;
+import himedia.oneshot.service.NoticeService;
 import himedia.oneshot.service.Pagination;
 import himedia.oneshot.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ import java.util.List;
 public class HomeController {
     private final LoginService loginService;
     private final ProductService productService;
+    private final NoticeService noticeService;
     private final Pagination pagination;
 
     @GetMapping("/")
@@ -34,14 +37,18 @@ public class HomeController {
         List<Product> products = productService.findAll();
         Collections.reverse(products);
         pagination.makePagination(model, products,"products", 12, 1, "pagination");
+        //공지사항
+        List<Notice> notices = noticeService.findAll();
+        pagination.makePagination(model, notices,"notices", 4, 1, "pagination");
+
         return "index";
     }
-
     @GetMapping("/story")
-    public String storyPage(){
-        return "story.html";
-    }
+    public String storyPage(HttpServletRequest request, Model model){
+        loginService.loginCheck(request, model);
 
+        return "story";
+    }
     @GetMapping("/login")
     public String login(HttpServletRequest request, Model model){
         loginService.loginCheck(request, model);
@@ -60,33 +67,39 @@ public class HomeController {
     }
 
     @PostMapping("/login")
-    public String loginCheck(HttpServletRequest request, @ModelAttribute LoginDTO loginData, Model model) {
+    @ResponseBody
+    public LoginDTO loginCheck(HttpServletRequest request, @ModelAttribute LoginDTO loginData, Model model) {
         loginService.loginCheck(request, model, loginData);
         LoginDTO loginResult = (LoginDTO) model.getAttribute("user");
-
-        if (loginResult.getLoginSuccess())
-            if (loginResult.getAuth().equals("M")){
-                log.info("관리자 접속");
-                return "redirect:/member-list";
-            }
-            else if(loginResult.getAuth().equals("A")){
-                log.info("일반 회원 접속");
-                return "redirect:/";
-            } else {
-                log.info("차단 회원 접속");
-                return "redirect:/";
-            }
-        else{
-            log.info("로그인 실패");
-            return "redirect:/login";
-        }
+        return loginResult;
     }
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request){
         request.getSession().invalidate();
-        log.info("로그아웃");
         return "redirect:/";
     }
 
+    @GetMapping("/welcome")
+    public String joinCompleted(HttpServletRequest request, Model model){
+
+        loginService.loginCheck(request, model);
+
+        return "welcome";
+    }
+
+    @GetMapping("/find-id")
+    public String findId(HttpServletRequest request, Model model){
+
+        loginService.loginCheck(request, model);
+
+        return "find_id";
+    }
+    @GetMapping("/find-pw")
+    public String findPw(HttpServletRequest request, Model model){
+
+        loginService.loginCheck(request, model);
+
+        return "find_pw";
+    }
 }

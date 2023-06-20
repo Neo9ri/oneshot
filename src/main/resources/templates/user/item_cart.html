@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,36 +39,20 @@
             <td class="cart_tbody_info"th:text="${product.name}"></td>
             <td class="cart_tbody_price"th:text="${product.price}"></td>
             <td class="cart_tbody_quantity">
-              <form method="post" th:action="@{/user/item_cart/update/-1}">
-                <button class="quantity_sub_btn" th:name="id" th:value="${product.productId}">-</button>
-              </form>
-              <input type="text" readonly="readonly" th:value="${product.quantity}"/>
-              <form method="post" th:action="@{/user/item_cart/update/1}">
-                <button class="quantity_add_btn" th:name="id" th:value="${product.productId}">+</button>
+              <form class="count_box" th:action="@{/user/item_cart/update/{id}(id=${product.productId})}" method="post">
+                <button class="quantity_sub_btn" type="button" onclick="decreaseQuantity(this)">-</button>
+                <input type="text" class="quantity-input" th:name="quantity" readonly="readonly" th:value="${product.quantity}" />
+                <button class="quantity_add_btn" type="button" onclick="increaseQuantity(this)">+</button>
+                <button class="quantity_submit" type="submit">적용</button>
               </form>
             </td>
             <td class="cart_tbody_btn">
-              <form method="post" th:action="@{/user/item_cart/delete}">
+              <form method="post" th:action="@{/user/item_cart/delete/{id}(id=${product.productId})}">
                 <button type="submit" th:name="id" th:value="${product.productId}">삭제</button>
               </form>
             </td>
           </tr>
         </tbody>
-        <!-- <tbody>
-          <tr>
-            <td class="cart_tbody_img"><img src="../img/product/thumbnail/1000000319_detail_025.jpg" alt="" width="200px" height="200px"></td>
-            <td class="cart_tbody_info">아리랑주조 겨울소주 45도 375ml 증류식소주</td>
-            <td class="cart_tbody_price">26,000원</td>
-            <td class="cart_tbody_quantity">
-              <button class="quantity_sub_btn">-</button>
-              <input type="text" value="0" readonly="readonly"/>
-              <button class="quantity_add_btn">+</button>
-            </td>
-            <td class="cart_tbody_btn">
-              <button>삭제</button>
-            </td>
-          </tr>
-        </tbody> -->
       </table>
     </div>
     <div class="item_cart_delivery">
@@ -142,7 +126,7 @@
   </footer>
   <!-- footer : END -->
   <script>
-    function confirmOrder(event) {
+  function confirmOrder(event) {
     event.preventDefault(); // 폼의 기본 동작인 제출을 막습니다.
 
     // 장바구니 상품 수량을 확인합니다.
@@ -161,7 +145,24 @@
       document.getElementById('orderForm').submit(); // 폼을 제출하여 주문 처리를 진행합니다.
     }
   }
-
+  // 상품 수량 감소 버튼
+  function decreaseQuantity(button) {
+    const quantityInput = button.parentNode.querySelector('.quantity-input');
+    let currentQuantity = parseInt(quantityInput.value);
+    if (currentQuantity > 1) {
+      currentQuantity--;
+      quantityInput.value = currentQuantity;
+    }
+  }
+  // 상품 수량 증가버튼
+  function increaseQuantity(button) {
+    const quantityInput = button.parentNode.querySelector('.quantity-input');
+    let currentQuantity = parseInt(quantityInput.value);
+    if (currentQuantity < 10) {
+      currentQuantity++;
+      quantityInput.value = currentQuantity;
+    }
+  }
   </script>
   <script src="/js/header.js"></script>
 </body>

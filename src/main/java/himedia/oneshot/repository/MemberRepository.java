@@ -15,8 +15,9 @@ import java.util.Optional;
 public interface MemberRepository {
 
     Member join(Member member);
-    Member edit(Member member);
+    void edit(Member member);
     void ban(int loginId);
+    Optional<Member> findById(long id);
     Optional<Member> findByLoginId(String loginId);
     List<Member> findAll();
     int findByJoinId(String login_id); 

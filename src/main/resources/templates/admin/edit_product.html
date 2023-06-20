@@ -14,37 +14,7 @@
 <body>
 <div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
   <!-- header : START -->
-  <header>
-    <div class="center">
-      <div>
-        <h1>
-          <a href="/"><img src="/img/oneshot_logo.png" alt="원샷-우리술 한잔" />우리술
-            한 잔,</a>
-        </h1>
-        <form role="search" class="main_search">
-          <div class="row">
-            <input type="search" _name="keyword" placeholder="상품명을 입력하세요." class="col form-control"
-              aria-label="Search" />
-            <button type="submit" class="col-1">
-              <img src="/img/search.png" alt="검색" />
-            </button>
-          </div>
-        </form>
-        <div class="util">
-          <div>관리자님</div>|
-          <a href="#">로그아웃</a>
-          <a href="mypage.html"><img src="/img/util_user.png" alt="마이페이지" /></a>
-        </div>
-      </div>
-    </div>
-    <nav class="gnb">
-      <ul class="center">
-        <li><a href="/member_list">회원관리</a></li>
-        <li><a href="/product-list">상품관리</a></li>
-        <li><a href="/inquiry/delivery">고객 문의관리</a></li>
-      </ul>
-    </nav>
-  </header>
+<header th:replace="~{/fragment/adminHeader :: #header}"></header>
   <!-- header : END -->
   <!-- container : START -->
   <section id="productEditor" class="center">
@@ -57,8 +27,8 @@
       <div id="productEditorLeft" class="col-4 text-center">
         <img th:src="@{'/' + ${product.img_thumb}}" id="thumbnailPreview" alt="상품 이미지 미리보기">
         <div>
-          <!-- <label for="thumbnail"> 상품 이미지 첨부하기</label> -->
-          <input type="file" id="thumbnail" name="thumb" onchange="showThumbnail(this);" required>
+          <label for="thumbnail" class="blind">상품 이미지 첨부하기</label>
+          <input type="file" id="thumbnail" name="thumb" onchange="showThumbnail(this);" class="blind">
           <div class="btn btn_ylw thumbnail-btn" onclick="onClickThumbnailUpload();">상품 이미지 첨부하기</div>
         </div>
       </div>
@@ -92,19 +62,30 @@
                  name="name" th:value="${product.name}" required>
         </div>
         <div class="row">
-          <label for="price" class="col-6 col_name align-self-center">가격</label>
-          <input class="col form-control" type="text" placeholder="0" id="price" name="price"
-                 th:value="${product.price}" required>
-          <div class="col-1 align-self-center">원</div>
-        </div>
-        <div class="row">
           <label for="alcohol" class="col-6 col_name align-self-center">도수</label>
-          <input id="alcohol" name="alcohol" class="col form-control" type="text"
+          <input id="alcohol" name="alcohol" class="col form-control" type="number"
+                 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                  th:value="${product.alcohol}" required>
           <div class="col-1 align-self-center">도</div>
         </div>
-        <label for="quantity" class="blind">수량</label>
-        <input id="quantity" type="text" name="quantity" value="1" class="blind">
+        <div class="row">
+          <label for="volume" class="col-6 co">용량</label>
+          <input id="volume" type="number" name="volume" class="col form-control" required
+                 th:value="${product.volume}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+          <div class="col-1 align-self-center">ml</div>
+        </div>
+        <div class="row">
+          <label for="price" class="col-6 col_name align-self-center">가격</label>
+          <input id="price" name="price" class="col form-control" type="number"  th:value="${product.price}" required
+                 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+          <div class="col-1 align-self-center">원</div>
+        </div>
+        <div class="row">
+          <label for="quantity" class="col-6 co">수량</label>
+          <input id="quantity" type="number" name="quantity"  th:value="${product.quantity}" class="col form-control" required
+                 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+          <div class="col-1 align-self-center">병</div>
+        </div>
         <div id="productEditorRightWhiteSpace"></div>
       </div>
       <div class="col"></div>
@@ -113,13 +94,12 @@
         <hr>
         <div class="col-2"></div>
         <div class="col-8">
-          <label for="exp" class="exp-title">상품 설명</label>
-          <input type="file" id="exp" name="exp" multiple onchange="showMultipleExp(this);">
+          <label for="exp" class="exp_title">상품 설명</label>
+          <input type="file" id="exp" name="exp" multiple onchange="showMultipleExp(this);" class="blind">
           <div class="btn btn_ylw" onclick="onClickExpUpload();">상품 설명 이미지 첨부하기</div>
           <div id="multipleExpPreview">
-            <img  th:src="@{'/' + ${product.img_exp1}}"  alt="상품 설명 미리보기">
-            <img  th:src="@{'/' + ${product.img_exp2}}"  alt="상품 설명 미리보기">
-            <img  th:src="@{'/' + ${product.img_exp3}}"  alt="상품 설명 미리보기">
+            <img  th:src="@{'/' + ${product.img_exp1}}"  alt="상품 설명 미리보기" id="exp1" class="exp">
+            <img  th:src="@{'/' + ${product.img_exp2}}"  alt="상품 설명 미리보기" id="exp2" th:class="${product.img_exp2} == null ? blind : exp" >
           </div>
           <hr>
           <div class="row justify-content-end">
@@ -134,56 +114,10 @@
   </section>
   <!-- container : END -->
   <!-- footer : START -->
-  <footer>
-    <div class="center">
-      <div class="left_wrap">
-        <p class="btm_logo"><img src="/img/oneshot_logo_bw.png" alt="원샷 - 우리술 한잔,"></p>
-        <div class="text_wrap">
-          <p>원샷 - 우리술 한잔,</p>
-          <address>서울시 서대문구 연세로 8-1</address>
-          <nav>
-            <ul>
-              <li><a href="">전통주 이야기</a></li>
-              <li><a href="">지역별 전통주</a></li>
-              <li><a href="">주종별 전통주</a></li>
-              <li><a href="">가격별 전통주</a></li>
-            </ul>
-          </nav>
-          <div class="info">
-            <p>대표 : 홍길동</p>
-            <p>사업자 등록번호 : 100-11-111111</p>
-            <p>개인정보관리자 : 홍길동</p>
-          </div>
-          <div class="contact_info">
-            <p>대표번호 : 02-1234-1234</p>
-            <p>메일 : oneshot@oneshot.com</p>
-          </div>
-          <div>Copyrights&copy; oneshot All Rights Reserved.</div>
-        </div>
-      </div>
-      <div class="cs">
-        <dl>
-          <dt>CS CENTER</dt>
-          <dd>070-1234-1234</dd>
-          <dd>평일 : 09:00 ~ 18:00<br>
-            점심 시간 : 12:00 ~ 13:00<br>
-            주말 밋 공휴일 제외
-          </dd>
-        </dl>
-      </div>
-      <div class="social">
-        <h4>SOCIAL MEDIA</h4>
-        <p>Follow @oneshot</p>
-        <ul>
-          <li><a href="#"><img src="/img/instagram_footer.svg" alt="인스타그램"></a></li>
-          <li><a href="#"><img src="/img/youtube_footer.svg" alt="유투브"></a></li>
-          <li><a href="#"><img src="/img/facebook_footer.svg" alt="페이스북"></a></li>
-        </ul>
-      </div>
-    </div>
-  </footer>
+<footer th:replace="~{/fragment/footer :: #footer}">
+</footer>
   <!-- footer : END -->
-  <script src="/js/admin_product.js"></script>
+<script src="/js/admin_product.js"></script>
 <script src="/js/header.js"></script>
 </body>
 

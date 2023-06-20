@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="ko" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마이페이지</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>   
-    <link rel="icon" href="../img/favicon-32x32.png" type="image/x-icon" />
-    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../css/main_style.css" />
-    <link rel="stylesheet" href="../css/mypage.css"/>
+    <link rel="icon" href="../img/favicon-32x32.png" type="image/x-icon" th:href="@{/img/favicon-32x32.png}" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="../css/main_style.css" th:href="@{/css/main_style.css}"/>
+    <link rel="stylesheet" href="../css/mypage.css" th:href="@{/css/mypage.css}"/>
 </head>
 <body>
     <!-- order Modal -->
@@ -20,7 +19,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                <h1 class="modal-title fs-5" id="order_modal_head_title">문의 내역</h1>
+                <h1 class="modal-title fs-5" id="order_modal_head_title">주문 내역</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -43,25 +42,27 @@
         </div>
     </div>
     <!--inquiry Modal-->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div th:each="inquiry : ${inquiryList}" class="modal fade" th:id="|inquiry${inquiry.id}|" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog inquiry">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">문의 내역</h1>
+                    <h1 class="modal-title fs-5" th:id="|inquiry${inquiry.id}|">문의 내역</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">제목</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="제목" disabled readonly>
+                        <label for="title" class="form-label">제목</label>
+                        <input class="form-control" id="title" th:value="${inquiry.title}" disabled>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">문의 내용</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled readonly></textarea>
+                        <label for="content" class="form-label">문의 내용</label>
+                        <pre class="form-control" id="content" rows="3" th:text="${inquiry.content}" disabled></pre>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">답변</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" disabled readonly></textarea>
+                        <label for="answer" class="form-label">답변</label>
+                        <pre class="form-control" id="answer" rows="3"
+                                  th:utext="${inquiry.answer != null ? inquiry.answer : '아직 답변등록이 되지 않았습니다. <br> 빠른 시일내에 답변 드리도록 하겠습니다.<br>- 원샷, 우리술 한잔-'}" disabled>
+                        </pre>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -72,143 +73,65 @@
     </div>
     <div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
     <!-- header 시작 -->
-    <header>
-        <div class="center">
-          <div>
-            <h1>
-              <a href="/"
-                ><img src="../img/oneshot_logo.png" alt="원샷-우리술 한잔" />우리술
-                한 잔,</a
-              >
-            </h1>
-            <form role="search" class="main_search">
-              <div class="row">
-                <input
-                  type="search"
-                  name="keyword"
-                  placeholder="상품명을 입력하세요."
-                  class="col form-control"
-                  aria-label="Search"
-                />
-                <button type="submit" class="col-1">
-                  <img src="../img/search.png" alt="검색" />
-                </button>
-              </div>
-            </form>
-            <div class="util main">
-              <a href="login.html">로그인</a>|
-              <a href="join.html">회원가입</a>
-              <a href="cart.html"><img src="../img/cart.png" alt="장바구니" /></a>
-            </div>
-            <div class="util mypage"  style="display:none" >
-              <div>홍길동님</div>|
-              <a href="#">로그아웃</a>
-              <a href="cart.html"><img src="../img/cart.png" alt="장바구니" /></a>
-              <a href="mypage.html"><img src="../img/user.png" alt="마이페이지" /></a>
-            </div>
-          </div>
-        </div>
-        <nav class="gnb">
-          <div class="gnbbar"></div>
-          <ul class="center">
-            <li><a href="">전통주 이야기</a></li>
-            <li>
-              <a href="">지역별 전통주</a>
-              <ul>
-                <li><a href="">전체 상품</a></li>
-                <li><a href="">서울, 경기, 인천권</a></li>
-                <li><a href="">강원, 세종권</a></li>
-                <li><a href="">충북, 충남, 제주도</a></li>
-                <li><a href="">전북, 전남, 경북, 경남</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="">주종별 전통주</a>
-              <!-- <div class="gnbbar"></div> -->
-              <ul>
-                <li><a href="">증류주</a></li>
-                <li><a href="">과실주</a></li>
-                <li><a href="">약주 / 청주</a></li>
-                <li><a href="">숙성 전통주</a></li>
-                <li><a href="">기타주</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="">가격별 전통주</a>
-              <!-- <div class="gnbbar"></div> -->
-              <ul>
-                <li><a href="">10,000원 이하 제품</a></li>
-                <li><a href="">20,000원 이하 제품</a></li>
-                <li><a href="">30,000원 이하 제품</a></li>
-                <li><a href="">40,000원 이하 제품</a></li>
-                <li><a href="">50,000원 이하 제품</a></li>
-                <li><a href="">50,000원 이상 제품</a></li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </header>
+    <header th:replace="~{/fragment/defaultHeader :: #header}">
+    </header>
     <!-- header 종료 -->
     <!-- mypage 시작 -->
     <div class="mypage_container">
-        <h1>마이 원샷</h1>
-        <div class="mypage_user">
-            <div class="mypage_user_icon">
-                유저 아이콘 이미지
+        <h3>마이 원샷</h3>
+        <div class="mypage">
+            <div class="mypage_user">
+                <div class="mypage_user_icon">
+                    유저 아이콘 이미지
+                </div>
+                <div class="mypage_user_info">
+                    <h4 th:text="${profile.name}">홍길동</h4>
+                    <div>
+                        <p th:text="${profile.email}">hong123@naver.com</p>
+                    </div>
+                    <div>
+                        <a href="#">비밀번호 변경</a>
+                    </div>
+                    <div>
+                        <a href="#inquiry">문의 내역</a>
+                    </div>
+                </div>
             </div>
-            <div class="mypage_user_text">
-                <h3>홍길동</h3>
-                <div>
-                    <p>hong123@naver.com</p>
-                </div>
-                <div>
-                    <a href="#">비밀번호 변경</a>
-                </div>
-                <div>
-                    <a href="#">문의 내역</a>
-                </div>
-            </div>
-        </div>
-        <div class="mypage_user_interface">
-            <table>
-                <tr>
-                    <td class="user_icon_img">유저 아이콘 이미지</td>
-                    <td class="user_content">홍길동</td>
-                </tr>
-                <tr>
-                    <td class="phone_icon_img">
-                        <span>
-                            전화 아이콘 이미지
-                        </span>
-                    </td>
-                    <td class="user_content">010-1111-1111</td>
-                </tr>
-                <tr>
-                    <td class="email_icon_img">
-                        <span>이메일 아이콘 이미지</span>
-                    </td>
-                    <td class="user_content">hong123@naver.com</td>
-                </tr>
-                <tr>
-                    <td class="home_icon_img">
-                        <sapn>
-                            집 주소 아이콘 이미지
-                        </sapn>
-                    </td>
-                    <td class="user_content_last">서울특별시 강남구 신사동</td>
-                </tr>
-            </table>
-            <div class="mypage_button">
-                <button class="mypage_add_button">수정하기</button>
-                <div class="mypage_button_hidden">
-                    <button class="mypage_cancle_button">취소</button>
-                    <button class="mypage_check_button">확인</button>
-                </div>
+            <div class="mypage_user_interface">
+                <form th:action="@{/user/mypage}" th:method="post">
+                    <div class="mypage_user_interface_bg">
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text mypage_icon user_icon_img" id="addon-wrapping1"></span>
+                            <input type="text" class="form-control" name="name" value="홍길동" th:value="${profile.name}" aria-label="name" aria-describedby="addon-wrapping1" readonly disabled>
+                        </div>
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text mypage_icon phone_icon_img" id="addon-wrapping2"></span>
+                            <input id="phoneNumber" type="text" class="form-control" name="phoneNumber" value="010-1111-1111" th:value="${profile.phoneNumber}" aria-label="phone_number" aria-describedby="addon-wrapping2" disabled>
+                        </div>
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text mypage_icon email_icon_img" id="addon-wrapping3"></span>
+                            <input id="email" type="text" class="form-control" name="email" value="hong123@naver.com" th:value="${profile.email}" aria-label="email" aria-describedby="addon-wrapping3" disabled>
+                        </div>
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text mypage_icon home_icon_img" id="addon-wrapping4"></span>
+                            <input id="address" type="text" class="form-control" name="address" value="서울특별시 강남구 신사동" th:value="${profile.address}" aria-label="address" aria-describedby="addon-wrapping4" disabled>
+                        </div>
+                    </div>
+                    <div class="mypage_button">
+                        <div class="row">
+                            <button id="btnEdit" class="mypage_edit_button offset-md-6" type="button" onclick="activateForm()">수정하기</button>
+                        </div>
+                        <div id="btnInterfaceBottom" class="mypage_button_hidden row">
+                            <button id="btnCancel" class="mypage_cancle_button col-6" type="button" th:onclick="|location.href='@{/user/mypage}'|">취소</button>
+                            <button id="btnConfirm" class="mypage_check_button col-6" type="submit">확인</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         <hr>
-        <div class="mypage_order_search">
-            <h2>주문/배송 조회</h2>
+        <div id="purchase" class="mypage_search">
+            <h4 class="title">주문/배송 조회</h4>
             <table>
                 <thead>
                     <tr>
@@ -229,7 +152,7 @@
                         <td th:text="${purchase.status}"></td>
                         <td>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn_order_primary" data-bs-toggle="modal" data-bs-target="#order_modal" th:data-purchase-id="${purchase.id}">
+                            <button type="button" class="btn btn_primary" data-bs-toggle="modal" data-bs-target="#order_modal" th:data-purchase-id="${purchase.id}">
                                 내용보기
                             </button>
                         </td>
@@ -248,21 +171,21 @@
         <div class="d-flex justify-content-center py-5">
             <nav aria-label="">
                 <ul class="pagination">
-                    <li th:if="${pagination.existPreviousLastPage}" class="page-item">
-                        <a href="#" class="page-link" th:href="@{mypage(page=${pagination.previousLastPage})} + ${'#table'}">&lt;</a>
+                    <li th:if="${paginationPurchase.existPreviousLastPage}" class="page-item">
+                        <a href="#" class="page-link" th:href="@{mypage(page=${paginationPurchase.previousLastPage})} + ${'#purchase'}">&lt;</a>
                     </li>
-                    <li th:each="page : ${#numbers.sequence(pagination.firstPage,pagination.lastPage)}">
-                        <a class="page-link" th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'" href="#" th:href="@{mypage(page=${page})} + ${'#table'}" th:text="${page}">1</a>
+                    <li th:each="page : ${#numbers.sequence(paginationPurchase.firstPage,paginationPurchase.lastPage)}">
+                        <a class="page-link" th:class="${page == paginationPurchase.requestPage}? 'page-link active': 'page-link'" href="#" th:href="@{mypage(pageOfPurchase=${page})} + ${'#purchase'}" th:text="${page}">1</a>
                     </li>
-                    <li th:if="${pagination.existNextFirstPage}" class="page-item">
-                        <a href="#" class="page-link" th:href="@{mypage(page=${pagination.nextFirstPage})} + ${'#table'}" >&gt;</a>
+                    <li th:if="${paginationPurchase.existNextFirstPage}" class="page-item">
+                        <a href="#" class="page-link" th:href="@{mypage(page=${paginationPurchase.nextFirstPage})} + ${'#purchase'}" >&gt;</a>
                     </li>
                 </ul>
             </nav>
         </div>
         <hr>
-        <div class="mypage_inquiry_search">
-            <h2>문의 내역</h2>
+        <div id="inquiry" class="mypage_search">
+            <h4 class="title"> 문의 내역</h4>
             <table>
                 <thead>
                     <tr>
@@ -270,116 +193,46 @@
                         <th>문의 날짜</th>
                         <th>문의 종류</th>
                         <th>제목</th>
-                        <th>상태</th>
                         <th>내용보기</th>
+                        <th>답변일</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>2023-05-31</td>
-                        <td>배송문의</td>
-                        <td>안동소주 배송날짜...</td>
-                        <td>답변완료</td>
+                    <tr th:each="inquiry : ${inquiryList}">
+                        <td th:text="${inquiry.id}">1</td>
+                        <td th:text="${inquiry.date_inquired}">2023-05-31</td>
+                        <td th:text="${inquiry.type} == 'P' ? '상품문의' :'배송문의'">배송문의</td>
+                        <td th:text="${inquiry.title}" >안동소주 배송날짜...</td>
                         <td>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn_primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            <button type="button" class="btn btn_primary" data-bs-toggle="modal" th:data-bs-target="|#inquiry${inquiry.id}|">
                                 내용보기
                             </button>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>2023-05-27</td>
-                        <td>상품 문의</td>
-                        <td>안동소주 박스 길이...</td>
-                        <td>답변대기</td>
-                        <td>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn_primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                내용보기
-                            </button>
-                        </td>
+                        <td th:text="${inquiry.date_replied !=null ? inquiry.date_replied : '미등록'}">답변일</td>
                     </tr>
                 </tbody>
             </table>
-            <div class="mypage_inquiry_pageMove">
-                <ul>
-                    <li>
-                        <a href="#">&lt;</a>
+        </div>
+        <div class="d-flex justify-content-center py-5">
+            <nav aria-label="">
+                <ul class="pagination">
+                    <li th:if="${paginationInquiry.existPreviousLastPage}" class="page-item">
+                        <a href="#" class="page-link" th:href="@{mypage(page=${paginationInquiry.previousLastPage})} + ${'#inquiry'}">&lt;</a>
                     </li>
-                    <li>
-                        <a href="#">1</a>
+                    <li th:each="page : ${#numbers.sequence(paginationInquiry.firstPage,paginationInquiry.lastPage)}">
+                        <a class="page-link" th:class="${page == paginationInquiry.requestPage}? 'page-link active': 'page-link'" href="#" th:href="@{mypage(pageOfInquiry=${page})} + ${'#inquiry'}" th:text="${page}">1</a>
                     </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#">4</a>
-                    </li>
-                    <li>
-                        <a href="#">5</a>
-                    </li>
-                    <li>
-                        <a href="#">&gt;</a>
+                    <li th:if="${paginationInquiry.existNextFirstPage}" class="page-item">
+                        <a href="#" class="page-link" th:href="@{mypage(page=${paginationInquiry.nextFirstPage})} + ${'#inquiry'}" >&gt;</a>
                     </li>
                 </ul>
-            </div>
+            </nav>
         </div>
-        <hr>
     </div>
     <!-- mypage 종료 -->
     <!-- footer : START -->
-    <footer>
-        <div class="center">
-            <div class="left_wrap">
-                <p class="btm_logo"><img src="../img/oneshot_logo_bw.png" alt="원샷 - 우리술 한잔,"></p>
-                <div class="text_wrap">
-                    <p>원샷 - 우리술 한잔,</p>
-                    <address>서울시 서대문구 연세로 8-1</address>
-                    <nav>
-                        <ul>
-                            <li><a href="">전통주 이야기</a></li>
-                            <li><a href="">지역별 전통주</a></li>
-                            <li><a href="">주종별 전통주</a></li>
-                            <li><a href="">가격별 전통주</a></li>
-                        </ul>
-                    </nav>
-                    <div class="info">
-                        <p>대표 : 홍길동</p>
-                        <p>사업자 등록번호 : 100-11-111111</p>
-                        <p>개인정보관리자 : 홍길동</p>
-                    </div>
-                    <div class="contact_info">
-                        <p>대표번호 : 02-1234-1234</p>
-                        <p>메일 : oneshot@oneshot.com</p>
-                    </div>
-                    <div>Copyrights&copy; oneshot All Rights Reserved.</div>
-                </div>
-            </div>
-            <div class="cs">
-                <dl>
-                    <dt>CS CENTER</dt>
-                    <dd>070-1234-1234</dd>
-                    <dd>평일 : 09:00 ~ 18:00<br>
-                        점심 시간 : 12:00 ~ 13:00<br>
-                        주말 밋 공휴일 제외
-                    </dd>
-                </dl>
-            </div>
-            <div class="social">
-                <h4>SOCIAL MEDIA</h4>
-                <p>Follow @oneshot</p>
-                <ul>
-                    <li><a href="#"><img src="../img/instagram_footer.svg" alt="인스타그램"></a></li>
-                    <li><a href="#"><img src="../img/youtube_footer.svg" alt="유투브"></a></li>
-                    <li><a href="#"><img src="../img/facebook_footer.svg" alt="페이스북"></a></li>
-                </ul>
-            </div>
-        </div>
+    <footer th:replace="~{/fragment/footer :: #footer}">
     </footer>
     <!-- footer : END -->
     <script>
@@ -424,5 +277,6 @@
     });
     </script>
     <script src="/js/header.js"></script>
+    <script src="/js/mypage.js"></script>
 </body>
 </html>

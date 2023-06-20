@@ -29,8 +29,8 @@
       <div class="util mypage" th:if="${user.loginSuccess}">
         <div th:text="|${user.name} 님|">홍길동님</div>|
         <a href="#" th:href="@{/logout}">로그아웃</a>
-        <a href="user/item_cart.html" th:href="@{/user/item_cart/{memberId}(memberId=${user.id})}"><img th:src="@{/img/cart.png}" alt="장바구니"/></a>
-        <a href="mypage.html"><img th:src="@{/img/util_user.png}" alt="마이페이지" /></a>
+        <a href="item_cart.html" th:href="@{/user/item_cart}"><img th:src="@{/img/cart.png}" alt="장바구니" /></a>
+        <a href="mypage.html" th:href="@{/user/mypage}"><img th:src="@{/img/util_user.png}" alt="마이페이지" /></a>
       </div>
     </div>
   </div>
