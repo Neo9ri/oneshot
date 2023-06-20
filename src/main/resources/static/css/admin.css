@@ -219,9 +219,9 @@ img#thumbnailPreview {
   padding-bottom: 20px;
 }
 
-#productEditor input[type=file] {
+/*#productEditor input[type=file] {
   display: none;
-}
+}*/
 
 #productEditorRight .col-name {
   font-size: 15px;
