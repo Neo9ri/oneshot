@@ -26,9 +26,4 @@ public class Member {
     private Date date_created;      //회원가입 날짜
     
 	public Member() {}
-	
-	
-    
-
-
 }

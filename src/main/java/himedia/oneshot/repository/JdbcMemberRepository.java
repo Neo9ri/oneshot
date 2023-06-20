@@ -61,7 +61,6 @@ public class JdbcMemberRepository implements MemberRepository {
                 Member member = new Member();
                 member.setId(rs.getLong("id"));
                 member.setLogin_id(rs.getString("login_id"));               
-                member.setPw(rs.getString("pw"));              
                 member.setEmail(rs.getString("email"));
                 member.setName(rs.getString("name"));
                 member.setPhone_number(rs.getString("phone_number"));
@@ -128,17 +127,7 @@ public class JdbcMemberRepository implements MemberRepository {
         List<Member> members = jdbcTemplate.query(sql, memberRowMapper(), loginId);
         return members.stream().findAny();
     }
-    
-//    @Override    
-//    public int findByJoinId(String login_id) {
-//    	log.info("나는 레포지토리" + login_id);
-//        String sql = "SELECT * FROM MEMBER WHERE login_id = ?;";
-//        List<Member> memberList = jdbcTemplate.query(sql, memberRowMapper(), login_id);       
-//        log.info("[POST] join 실행2" + memberList );
-//        return memberList.size();        
-//    }
-    
-    
+
     @Override    
     public int findByJoinId(String login_id) {
     	log.info("나는 레포지토리" + login_id);
