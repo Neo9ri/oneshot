@@ -68,8 +68,11 @@ public class JdbcProductRepository implements ProductRepository{
             String sql = "SELECT * FROM product WHERE type_kind LIKE ? AND status LIKE 'T'";
             return jdbcTemplate.query(sql, productRowMapper, kind);
         } else if(priceTo!=0){
-            String sql = "SELECT * FROM product WHERE price BETWEEN ? AND ? AND status LIKE 'T'";
+            String sql = "SELECT * FROM product WHERE price >= ? AND price <= ? AND status LIKE 'T'";
             return jdbcTemplate.query(sql,productRowMapper, priceFrom, priceTo);
+        } else if (priceFrom!=0 && priceTo==0){
+            String sql = "SELECT * FROM product WHERE price >= ? AND status LIKE 'T'";
+            return jdbcTemplate.query(sql,productRowMapper, priceFrom);
         } else{
             String sql = "SELECT * FROM product WHERE status LIKE 'T'";
             return jdbcTemplate.query(sql, productRowMapper);

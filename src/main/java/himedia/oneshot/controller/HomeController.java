@@ -151,7 +151,7 @@ public class HomeController {
     @GetMapping("/kind/spirits")
     public String spriits(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
         loginService.loginCheck(request, model);
-        List<Product> products = productService.findBy("", "증류주", 0, 0 );
+        List<Product> products = productService.findBy("", "증류주", 0, 0);
         model.addAttribute("kind", "spirits");
         pagination.makePagination(model, products, "products", 12, page, "pagination");
 
@@ -160,7 +160,7 @@ public class HomeController {
     @PostMapping("/kind/spirits")
     public String spriitsAjax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
         loginService.loginCheck(request, model);
-        List<Product> products = productService.findBy("", "증류주", 0, 0 );
+        List<Product> products = productService.findBy("", "증류주", 0, 0);
         model.addAttribute("kind", "spirits");
         pagination.makePagination(model, products, "products", 12, page, "pagination");
 
@@ -169,8 +169,8 @@ public class HomeController {
     @GetMapping("/kind/fruit-wine")
     public String fruitWine(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
         loginService.loginCheck(request, model);
-        List<Product> products = productService.findBy("", "과실주", 0, 0 );
-        model.addAttribute("kind", "fruitWine");
+        List<Product> products = productService.findBy("", "과실주", 0, 0);
+        model.addAttribute("kind", "fruit-wine");
         pagination.makePagination(model, products, "products", 12, page, "pagination");
 
         return "/product/kind";
@@ -178,8 +178,8 @@ public class HomeController {
     @PostMapping("/kind/fruit-wine")
     public String fruitWineAjax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
         loginService.loginCheck(request, model);
-        List<Product> products = productService.findBy("", "과실주", 0, 0 );
-        model.addAttribute("kind", "fruitWine");
+        List<Product> products = productService.findBy("", "과실주", 0, 0);
+        model.addAttribute("kind", "fruit-wine");
         pagination.makePagination(model, products, "products", 12, page, "pagination");
 
         return "/product/kind :: section";
@@ -187,8 +187,8 @@ public class HomeController {
     @GetMapping("/kind/rice-wheat-wine")
     public String riceWheatWine(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
         loginService.loginCheck(request, model);
-        List<Product> products = productService.findBy("", "약주/청주", 0, 0 );
-        model.addAttribute("kind", "riceWheatWine");
+        List<Product> products = productService.findBy("", "약주/청주", 0, 0);
+        model.addAttribute("kind", "rice-wheat-wine");
         pagination.makePagination(model, products, "products", 12, page, "pagination");
 
         return "/product/kind";
@@ -196,10 +196,154 @@ public class HomeController {
     @PostMapping("/kind/rice-wheat-wine")
     public String riceWheatWineAjax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
         loginService.loginCheck(request, model);
-        List<Product> products = productService.findBy("", "약주/청주", 0, 0 );
-        model.addAttribute("kind", "riceWheatWine");
+        List<Product> products = productService.findBy("", "약주/청주", 0, 0);
+        model.addAttribute("kind", "rice-wheat-wine");
         pagination.makePagination(model, products, "products", 12, page, "pagination");
 
         return "/product/kind :: section";
+    }
+    @GetMapping("/kind/makgeoli")
+    public String makgeoli(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
+        loginService.loginCheck(request, model);
+        List<Product> products = productService.findBy("", "막걸리", 0, 0);
+        model.addAttribute("kind", "makgeoli");
+        pagination.makePagination(model, products, "products", 12, page, "pagination");
+
+        return "/product/kind";
+    }
+    @PostMapping("/kind/makgeoli")
+    public String makgeoliAjax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
+        loginService.loginCheck(request, model);
+        List<Product> products = productService.findBy("", "막걸리", 0, 0);
+        model.addAttribute("kind", "makgeoli");
+        pagination.makePagination(model, products, "products", 12, page, "pagination");
+
+        return "/product/kind :: section";
+    }
+    @GetMapping("/kind/etc")
+    public String etc(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
+        loginService.loginCheck(request, model);
+        List<Product> products = productService.findBy("", "막걸리", 0, 0);
+        model.addAttribute("kind", "etc");
+        pagination.makePagination(model, products, "products", 12, page, "pagination");
+
+        return "/product/kind";
+    }
+    @PostMapping("/kind/etc")
+    public String etcAjax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
+        loginService.loginCheck(request, model);
+        List<Product> products = productService.findBy("", "막걸리", 0, 0);
+        model.addAttribute("kind", "etc");
+        pagination.makePagination(model, products, "products", 12, page, "pagination");
+
+        return "/product/kind :: section";
+    }
+    @GetMapping("/price/u10")
+    public String u10(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
+        loginService.loginCheck(request, model);
+        List<Product> products = productService.findBy("", "", 0, 9999);
+        model.addAttribute("price", "u10");
+        pagination.makePagination(model, products, "products", 12, page, "pagination");
+
+        return "/product/price";
+    }
+    @PostMapping("/price/u10")
+    public String u10Ajax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
+        loginService.loginCheck(request, model);
+        List<Product> products = productService.findBy("", "", 0, 9999);
+        model.addAttribute("price", "u10");
+        pagination.makePagination(model, products, "products", 12, page, "pagination");
+
+        return "/product/price :: section";
+    }
+    @GetMapping("/price/u20")
+    public String u20(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
+        loginService.loginCheck(request, model);
+        List<Product> products = productService.findBy("", "", 10000, 19999);
+        model.addAttribute("price", "u20");
+        pagination.makePagination(model, products, "products", 12, page, "pagination");
+
+        return "/product/price";
+    }
+    @PostMapping("/price/u20")
+    public String u20Ajax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
+        loginService.loginCheck(request, model);
+        List<Product> products = productService.findBy("", "", 10000, 19999);
+        model.addAttribute("price", "u20");
+        pagination.makePagination(model, products, "products", 12, page, "pagination");
+
+        return "/product/price :: section";
+    }
+    @GetMapping("/price/u30")
+    public String u30(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
+        loginService.loginCheck(request, model);
+        List<Product> products = productService.findBy("", "", 20000, 29999);
+        model.addAttribute("price", "u30");
+        pagination.makePagination(model, products, "products", 12, page, "pagination");
+
+        return "/product/price";
+    }
+    @PostMapping("/price/u30")
+    public String u30Ajax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
+        loginService.loginCheck(request, model);
+        List<Product> products = productService.findBy("", "", 20000, 29999);
+        model.addAttribute("price", "u30");
+        pagination.makePagination(model, products, "products", 12, page, "pagination");
+
+        return "/product/price :: section";
+    }
+    @GetMapping("/price/u40")
+    public String u40(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
+        loginService.loginCheck(request, model);
+        List<Product> products = productService.findBy("", "", 30000, 39999);
+        model.addAttribute("price", "u40");
+        pagination.makePagination(model, products, "products", 12, page, "pagination");
+
+        return "/product/price";
+    }
+    @PostMapping("/price/u40")
+    public String u40Ajax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
+        loginService.loginCheck(request, model);
+        List<Product> products = productService.findBy("", "", 30000, 39999);
+        model.addAttribute("price", "u40");
+        pagination.makePagination(model, products, "products", 12, page, "pagination");
+
+        return "/product/price :: section";
+    }
+    @GetMapping("/price/u50")
+    public String u50(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
+        loginService.loginCheck(request, model);
+        List<Product> products = productService.findBy("", "", 40000, 49999);
+        model.addAttribute("price", "u50");
+        pagination.makePagination(model, products, "products", 12, page, "pagination");
+
+        return "/product/price";
+    }
+    @PostMapping("/price/u50")
+    public String u50Ajax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
+        loginService.loginCheck(request, model);
+        List<Product> products = productService.findBy("", "", 40000, 49999);
+        model.addAttribute("price", "u50");
+        pagination.makePagination(model, products, "products", 12, page, "pagination");
+
+        return "/product/price :: section";
+    }
+    @GetMapping("/price/o50")
+    public String o50(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
+        loginService.loginCheck(request, model);
+        List<Product> products = productService.findBy("", "", 50000, 0);
+        model.addAttribute("price", "o50");
+        pagination.makePagination(model, products, "products", 12, page, "pagination");
+
+        return "/product/price";
+    }
+    @PostMapping("/price/o50")
+    public String o50Ajax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
+        loginService.loginCheck(request, model);
+        List<Product> products = productService.findBy("", "", 50000, 0);
+        model.addAttribute("price", "o50");
+        pagination.makePagination(model, products, "products", 12, page, "pagination");
+
+        return "/product/price :: section";
     }
 }

@@ -57,7 +57,7 @@
       </li>
     </ul>
     <div class="d-flex justify-content-center py-5">
-      <nav aria-label="">
+      <nav aria-label="pagination">
         <ul class="pagination">
           <li th:if="${pagination.existPreviousLastPage}" class="page-item">
             <a class="page-link"
@@ -92,7 +92,6 @@
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script>
     var url = '/region/'+ '[[${region}]]';
-    console.log(url);
     function updateList(page) {
         $.ajax({
           type: 'POST',
