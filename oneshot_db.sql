@@ -229,15 +229,40 @@ CREATE TABLE IF NOT EXISTS product_review -- 상품리뷰
 (	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, -- 상품리뷰 고유 번호(PK)
 	member_id BIGINT UNSIGNED NOT NULL,				-- 회원 고유 번호
 	product_id BIGINT UNSIGNED NOT NULL,			-- 상품 고유 번호
-    purchase_id BIGINT UNSIGNED NOT NULL,			-- 통합 주문 목록 고유 번호
-    review_satisfaction VARCHAR(10) NOT NULL CHECK (review_satisfaction IN('VH','H','M','L','VL')),  
+	review_satisfaction VARCHAR(10) NOT NULL CHECK (review_satisfaction IN('VH','H','M','L','VL')),  
     -- 리뷰 만족도 ('VH' : 아주만족(별 5개) , 'H' : 만족(별 4개) , 'M' : 보통(별 3개), 'L' : 불만족(별 2개), 'VL' : 아주불만족(별 1개)
     content TEXT NOT NULL, 	-- 리뷰 후기
     img_exp1 TEXT,			-- 사용자 등록 이미지
     img_exp2 TEXT,			
     img_exp3 TEXT,
     FOREIGN KEY(member_id) REFERENCES member(id), -- 외래키 지정 member id
-    FOREIGN KEY(product_id) REFERENCES product(id), -- 외래키 지정 product id
-    FOREIGN KEY(purchase_id) REFERENCES purchase(id) -- 외래키 지정 purchase id
+    FOREIGN KEY(product_id) REFERENCES product(id) -- 외래키 지정 product id
 );
+
+SELECT p.date_created
+FROM purchase p
+JOIN purchase_detail pd ON p.id = pd.purchase_id
+WHERE pd.product_id = 31 AND pd.member_id = 2;
+
+SELECT p.id
+FROM purchase p
+JOIN purchase_detail pd on p.id  = pd.purchase_id
+WHERE pd.product_id= 31 AND pd.member_id = 2;
+
+
+truncate table product_review;
+
+SELECT pr.*, p.date_created, m.name 
+FROM product_review pr 
+JOIN purchase_detail pd ON pr.member_id = pd.member_id AND pr.product_id = pd.product_id 
+JOIN purchase p ON pd.purchase_id = p.id 
+JOIN member m ON pr.member_id = m.id 
+WHERE pr.product_id = 25;
+
+select p.date_created from purchase p 
+join purchase_detail pd on p.id = pd.purchase_id 
+where pd.product_id =25 and pd.member_id = 2;
+
+SELECT * FROM purchase;
+SELECT * FROM purchase_detail;
 select * from product_review;

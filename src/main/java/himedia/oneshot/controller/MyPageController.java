@@ -51,6 +51,7 @@ public class MyPageController {
         model.addAttribute("profile", profile);
 
         List<Purchase> purchaseList = purchaseService.showPurchase(memberId);
+
         pagination.makePagination(model, purchaseList,"purchaseList", 4, pageOfPurchase, "paginationPurchase");
 
         List<Inquiry> inquiryList = inquiryService.findListByInquirerId(memberId);

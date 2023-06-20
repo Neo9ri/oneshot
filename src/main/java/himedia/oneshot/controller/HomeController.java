@@ -67,32 +67,16 @@ public class HomeController {
     }
 
     @PostMapping("/login")
-    public String loginCheck(HttpServletRequest request, @ModelAttribute LoginDTO loginData, Model model) {
+    @ResponseBody
+    public LoginDTO loginCheck(HttpServletRequest request, @ModelAttribute LoginDTO loginData, Model model) {
         loginService.loginCheck(request, model, loginData);
         LoginDTO loginResult = (LoginDTO) model.getAttribute("user");
-
-        if (loginResult.getLoginSuccess())
-            if (loginResult.getAuth().equals("M")){
-                log.info("관리자 접속");
-                return "redirect:/member-list";
-            }
-            else if(loginResult.getAuth().equals("A")){
-                log.info("일반 회원 접속");
-                return "redirect:/";
-            } else {
-                log.info("차단 회원 접속");
-                return "redirect:/";
-            }
-        else{
-            log.info("로그인 실패");
-            return "redirect:/login";
-        }
+        return loginResult;
     }
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request){
         request.getSession().invalidate();
-        log.info("로그아웃");
         return "redirect:/";
     }
 
