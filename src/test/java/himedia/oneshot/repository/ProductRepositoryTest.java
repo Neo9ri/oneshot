@@ -107,4 +107,32 @@ class ProductRepositoryTest {
 
     }
 
+    @Test
+    void 조건별상품리스트(){
+        // given
+        String local = "전북, 전남, 경북, 경남";
+        String kind = "숙성 전통주";
+        int priceFrom = 0;
+        int priceTo = 9999;
+        int expectedResultOne = 25;
+        int expectedResultTwo = 1;
+        int expectedResultThree = 18;
+        int expectedResultFour = 53;
+
+
+        // when
+        List<Product> resultOne = productRepository.findBy(local, "", priceFrom, 9999);
+        List<Product> resultTwo = productRepository.findBy("", kind, priceFrom, priceTo);
+        List<Product> resultThree = productRepository.findBy("", "", priceFrom, priceTo);
+        List<Product> resultFour = productRepository.findBy("", "", 0, 0);
+
+
+        // then
+        assertThat(resultOne.size()).isEqualTo(expectedResultOne);
+        assertThat(resultTwo.size()).isEqualTo(expectedResultTwo);
+        assertThat(resultThree.size()).isEqualTo(expectedResultThree);
+        assertThat(resultFour.size()).isEqualTo(expectedResultFour);
+
+    }
+
 }

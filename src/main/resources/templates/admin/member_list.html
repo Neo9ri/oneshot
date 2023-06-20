@@ -73,8 +73,7 @@
             <a class="page-link"
                     th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'"
                     th:onclick="updateList([[${page}]])"
-                    th:text="${page}"
-                    th:page="${page}">1</a>
+                    th:text="${page}">1</a>
           </li>
           <li th:if="${pagination.existNextFirstPage}" class="page-item">
             <a class="page-link"
@@ -91,11 +90,10 @@
   <!-- footer : START -->
   <footer th:replace="~{/fragment/footer :: #footer}"></footer>
   <!-- footer : END -->
-<script src="js/header.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script>
+  <script src="js/header.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script>
     function updateList(page) {
-        var section = document.querySelector('#section');
         $.ajax({
           type: 'POST',
           data: {page: page},

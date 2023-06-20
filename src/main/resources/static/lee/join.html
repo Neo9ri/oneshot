@@ -98,8 +98,6 @@
   <!-- container : START -->
 
   <body>
-
-
     <div class="main_container_join">
       <section class="bg-light join-section">
         <div class="join-container">
@@ -117,118 +115,87 @@
                 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리.의무 및 책임사항을 규정함을 목적으로 합니다.
                 ※「PC통신, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다.」
                 <br />
-
-
               </div>
             </div>
-
             <div class="form-group">
               <label for="InputId" class="form-label mt-4">아이디</label>
               <div class="input-img-group">
                 <span><img src="../img/join/name.png" alt=""></span>
-                <input type="text" class="form-control" id="Id">
+                <input type="text" class="form-control" id="login_id" name="login_id">
                 <button class="duble-check-btn">중복확인</button>
               </div>
             </div>
-
-            <!-- <div class="form-group has-success">
-              <label class="form-label mt-4" for="inputValid">비밀번호</label>
-              <div class="input-img-group">
-                <span><img src="./img/name.png" alt=""></span>
-                <input type="password" class="form-control is-valid" id="inputValid">
-                <div class="valid-feedback"></div>
-              </div> -->
-
 
             <div class="form-group">
               <label for="InputPassword" class="form-label mt-4">비밀번호</label>
               <div class="input-img-group">
                 <!-- <span><img src="./img/pw1.png" alt=""></span> -->
                 <span><img src="../img/join/pw1.png" alt=""></span>
-                <input type="password" class="form-control" id="Password">
+                <input type="password" class="form-control" id="pw" name="pw">
               </div>
             </div>
-
-            <!-- <div class="form-group has-danger">
-              <label class="form-label mt-4" for="inputInvalid">비밀번호 재확인</label>
-              <input type="password" class="form-control is-invalid" id="inputInvalid">
-              <div class="invalid-feedback">비밀번호가 일치하지 않습니다</div>
-            </div> -->
-
-
             <div class="form-group">
               <label for="InputPassword2" class="form-label mt-4">비밀번호 재확인</label>
               <div class="input-img-group">
                 <span><img src="../img/join/pw2.png" alt=""></span>
-                <input type="password" class="form-control" id="Password2">
+                <input type="password" class="form-control" id="pw2">
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="InputEmail1" class="form-label mt-4">본인 확인용 이메일</label>
-              <div class="input-img-group">
-                <span><img src="../img/join/email.png" alt=""></span>
-                <input type="email" class="form-control" id="Email">
-              </div>
-
-              <div class="form-group">
-                <label for="InputName" class="form-label mt-4">이름</label>
-                <div class="input-img-group">
-                  <span><img src="../img/join/name.png" alt=""></span>
-                  <input type="text" class="form-control" id="Name">
-                </div>
-
-                <div class="form-group">
-                  <label for="InputNumber" class="form-label mt-4">주민번호</label>
-                  <div class="input-img-group">
-                    <span><img src="../img/join/card.png" alt=""></span>
-                    <input type="text" class="form-control" id="Number">
-                  </div>
-
-
-                  <div class="form-group">
-                    <label for="InputPhone" class="form-label mt-4">휴대전화번호</label>
-                    <div class="input-img-group">
-                      <span><img src="../img/join/phone.png" alt=""></span>
-                      <input type="text" class="form-control" id="Phone">
-                    </div>
-
-
-                    <div class="form-group">
-                      <label for="InputAddress" class="form-label mt-4">주소</label>
-                      <div class="input-img-group">
-                        <span><img src="../img/join/card.png" alt=""></span>
-                        <input type="text" class="form-control" id="Addres">
-                      </div>
-
-
-                      <div class="form-group">
-                        <label for="InputGender" class="form-label mt-4">성별</label>
-                        <div class="input-img-group">
-                          <span><img src="../img/join/gender.png" alt=""></span>
-                          <select class="form-select" id="Gender">
-                            <option>남자</option>
-                            <option>여자</option>
-                          </select>
-                        </div>
-
-
-                        <div class="btn-group">
-                          <button class="btn btn-primary btn-lg" type="submit">취소</button>
-                          <button class="btn btn-primary btn-lg" type="submit">가입하기</button>
-                        </div>
-
+			<div class="form-group">
+			  <label for="InputEmail1" class="form-label mt-4">본인 확인용 이메일</label>
+			  <div class="input-img-group">
+			    <span><img src="../img/join/email.png" alt=""></span>
+			    <input type="email" class="form-control" id="email" name="email">
+			  </div>
+			
+			  <div class="form-group">
+			    <label for="InputName" class="form-label mt-4">이름</label>
+			    <div class="input-img-group">
+			      <span><img src="../img/join/name.png" alt=""></span>
+			      <input type="text" class="form-control" id="name" name="name">
+			    </div>
+			
+			    <div class="form-group">
+			      <label for="InputNumber" class="form-label mt-4">주민번호</label>
+			      <div class="input-img-group">
+			        <span><img src="../img/join/card.png" alt=""></span>
+			        <input type="text" class="form-control" id="id_card_number" name="id_card_number">
+			      </div>
+			
+			
+			      <div class="form-group">
+			        <label for="InputPhone" class="form-label mt-4">휴대전화번호</label>
+			        <div class="input-img-group">
+			          <span><img src="../img/join/phone.png" alt=""></span>
+			          <input type="text" class="form-control" id="phone_number" name="phone_number">
+			        </div>
+			
+			
+	  	          <div class="form-group">
+			          <label for="InputAddress" class="form-label mt-4">주소</label>
+			          <div class="input-img-group">
+			            <span><img src="../img/join/card.png" alt=""></span>
+			            <input type="text" class="form-control" id="address" name="address">
+			          </div>
+			
+			      <div class="form-group">
+			            <label for="InputGender" class="form-label mt-4">성별</label>
+			            <div class="input-img-group">
+			              <span><img src="../img/join/gender.png" alt=""></span>
+			              <select class="form-select" id="gender" name="gender">
+			                <option>남자</option>
+			                <option>여자</option>
+			              </select>
+			           </div>
+	
+		            <div class="btn-group">
+			              <button class="btn btn-primary btn-lg" type="submit">취소</button>
+			              <button class="btn btn-primary btn-lg" type="submit">가입하기</button>
+	   	            </div>
           </form>
         </div>
       </section>
-
-
-
-
-
-
-
-
   </body>
   <!-- <div class="btm_banner_wrap">
       <div class="btm_banner">

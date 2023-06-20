@@ -26,6 +26,7 @@ public class JdbcAdminProductRepository implements AdminProductRepository {
 
         Map<String, Object> parameter= new HashMap<>();
         parameter.put("name", product.getName());
+        parameter.put("status", "T");
         parameter.put("quantity", product.getQuantity());
         parameter.put("type_local", product.getType_local());
         parameter.put("type_kind", product.getType_kind());
@@ -39,13 +40,12 @@ public class JdbcAdminProductRepository implements AdminProductRepository {
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameter));
         product.setId(key.longValue());
-        product.setStatus("T");
         return product;
     }
 
     @Override
     public Product updateProduct(Long id, Product updatedProduct) {
-        String query="update product set name=?,quantity=?,type_local=?,type_kind=?,creator=?,alcohol=?,volume=?,price=?,img_thumb=?,img_exp1=?,img_exp2=?,img_exp3=? where id=?";
+        String query="update product set name=?,quantity=?,type_local=?,type_kind=?,creator=?,alcohol=?,volume=?,price=?,img_thumb=?,img_exp1=?,img_exp2=? where id=?";
         jdbcTemplate.update(query,
                 updatedProduct.getName(),
                 updatedProduct.getQuantity(),
@@ -75,7 +75,7 @@ public class JdbcAdminProductRepository implements AdminProductRepository {
 
     @Override
     public List<Product> findAllAdmin() {
-        String query = "select * from product";
+        String query = "select * from product order by id desc";
         return jdbcTemplate.query(query, (rs, rowNum) -> {
             Product product = new Product();
 

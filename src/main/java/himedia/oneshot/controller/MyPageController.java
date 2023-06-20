@@ -81,7 +81,18 @@ public class MyPageController {
     @ResponseBody
     public List<PurchaseDetail> showPurchaseDetailModal(@RequestParam("purchaseId") Long purchaseId) {
         // purchaseId를 기반으로 구매 정보를 조회하고 필요한 처리를 수행합니다.
-        List<PurchaseDetail> purchaseDetailList = purchaseService.showPurchaseDetail(purchaseId);
-        return purchaseDetailList;
+        return purchaseService.showPurchaseDetail(purchaseId);
+    }
+
+    @GetMapping("/user/mypage/password")
+    public String changePwForm(){
+        return null;
+    }
+
+    @PostMapping("/user/mypage/password")
+    public String ChangePw(HttpServletRequest request, Model model, @RequestParam String originalPassword, @RequestParam String newPassword){
+        loginService.loginCheck(request, model);
+        memberService.changePassword(request, originalPassword, newPassword);
+        return "redirect:/user/mypage";
     }
 }

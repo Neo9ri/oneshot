@@ -1,6 +1,7 @@
 package himedia.oneshot.service;
 
 import himedia.oneshot.dto.LoginDTO;
+import himedia.oneshot.dto.MemberDTO;
 import himedia.oneshot.entity.Member;
 import himedia.oneshot.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -34,13 +35,11 @@ public class LoginService {
         if (session.getAttribute("user")!=null){
             LoginDTO loginUser = (LoginDTO) session.getAttribute("user");
             model.addAttribute("user", loginUser);
-//            log.info("로그인 성공 여부 >> " + loginUser.getLoginSuccess());
         }
         else {
             LoginDTO loginUser = new LoginDTO();
             model.addAttribute("user", loginUser);
             session.setAttribute("user", loginUser);
-//            log.info("비로그인 유저");
         }
     }
 
@@ -58,9 +57,21 @@ public class LoginService {
         }
         request.getSession().setAttribute("user", loginResult);
         model.addAttribute("user", loginResult);
-//        log.info("로그인 성공 >> " + loginResult.getLoginSuccess());
     }
 
+    public MemberDTO findLoginId(MemberDTO info){
+        String name = info.getName();
+        String email = info.getEmail();
+        String birthday = info.getIdCardNumber();
+        MemberDTO member = new MemberDTO();
+        Optional<Member> result = memberRepository.findLoginId(name, email, birthday);
+        result.ifPresent(value -> member.setLoginId(value.getLogin_id()));
+        return member;
+    }
+    public MemberDTO findPassword(MemberDTO info){
+
+        return null;
+    }
 
 //    /**
 //     * 로그인 기능 테스트 확인용입니다.
