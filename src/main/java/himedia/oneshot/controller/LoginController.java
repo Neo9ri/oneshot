@@ -78,8 +78,10 @@ public class LoginController {
     }
 
     @PostMapping("/find-pw")
-    public String findPwResult(){
-
+    public String findPwResult(HttpServletRequest request, Model model, MemberDTO info){
+        loginService.loginCheck(request, model);
+        MemberDTO result = loginService.findPassword(info);
+        
         return null;
     }
 }

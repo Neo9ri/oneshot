@@ -161,4 +161,12 @@ public class JdbcMemberRepository implements MemberRepository {
         List<Member> members = jdbcTemplate.query(sql, memberRowMapper(), name, email, birthday);
         return members.stream().findAny();
     }
+
+    @Override
+    public Optional<Member> findPassword(String loginId, String name, String birthday, String email) {
+        String sql = "SELECT * FROM member WHERE login_Id LIKE ? AND name LIKE ? AND id_card_number LIKE ? AND email LIKE ?";
+        birthday = birthday +'%';
+        List<Member> members = jdbcTemplate.query(sql, memberRowMapper(), loginId, name, birthday, email);
+        return members.stream().findAny();
+    }
 }

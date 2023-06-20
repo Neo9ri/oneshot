@@ -14,9 +14,9 @@
 </head>
 
 <body>
-<div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
+  <div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
   <!-- header-START -->
-<header th:replace="~{/fragment/defaultHeader :: #header}"></header>
+  <header th:replace="~{/fragment/defaultHeader :: #header}"></header>
   <!-- header-END -->
   <!-- container-START  -->
     <section class="center find_container">
@@ -34,8 +34,8 @@
           <input type="text" id="name" class="form-control py-2 col" placeholder="이름" name="name">
         </div>
         <div class="row my-5">
-          <label for="dob" class="col-3">생년월일</label>
-          <input type="text"  maxlength="6" class="form-control py-2 col" id="dob" name="dob"
+          <label for="idCardNumber" class="col-3">생년월일</label>
+          <input type="text"  maxlength="6" class="form-control py-2 col" id="idCardNumber" name="idCardNumber"
                  placeholder="생년월일6자리" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
         </div>
         <div class="row my-5">
@@ -48,8 +48,7 @@
     </section>
   <!-- container-END -->
   <!-- footer-START -->
-  <footer th:replace="~{/fragment/footer :: #footer}">
-  </footer>
+  <footer th:replace="~{/fragment/footer :: #footer}"></footer>
   <!-- footer-END -->
   <script src="js/header.js"></script>
 </body>

@@ -69,8 +69,14 @@ public class LoginService {
         return member;
     }
     public MemberDTO findPassword(MemberDTO info){
-
-        return null;
+        String loginId = info.getLoginId();
+        String name = info.getName();
+        String birthday = info.getIdCardNumber();
+        String email = info.getEmail();
+        Optional<Member> result = memberRepository.findPassword(loginId, name, birthday, email);
+        MemberDTO member = new MemberDTO();
+        result.ifPresent(value -> member.setId(value.getId()));
+        return member;
     }
 
 //    /**

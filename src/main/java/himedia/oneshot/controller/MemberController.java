@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import himedia.oneshot.service.LoginService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,21 +24,24 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
+@RequiredArgsConstructor
 public class MemberController {
 
-   @Autowired
-   MemberService meberService;
+   private final MemberService memberService;
+   private final LoginService loginService;
 
    // 로그인 페이지 접속
    @GetMapping("/user/login")
-   public String login() {
+   public String login(HttpServletRequest request, Model model) {
+      loginService.loginCheck(request, model);
       log.info("[GET] login");
       return "/user/login";
    }
 
    // 회원가입 페이지 접속
    @GetMapping("/join")
-   public String join() {
+   public String join(HttpServletRequest request, Model model) {
+      loginService.loginCheck(request, model);
       return "/user/join";
    }
 
@@ -62,7 +67,7 @@ public class MemberController {
    public String join(@ModelAttribute Member member) {
       log.info("[POST] join 실행");
       try {
-         meberService.save(member);
+         memberService.save(member);
          return "1";
       } catch (Exception e) {
          return "0";
@@ -128,7 +133,7 @@ public class MemberController {
    @PostMapping("/idCheck")
    public int joincheck(String login_id) {
       log.info("[POST] idCheck 실행 전 :" + login_id);
-      int result = meberService.find(login_id);
+      int result = memberService.find(login_id);
       log.info("[POST] idCheck 실행 후 :" + result);
       return result;
    }
