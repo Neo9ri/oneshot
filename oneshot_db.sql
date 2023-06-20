@@ -25,12 +25,11 @@ CREATE TABLE IF NOT EXISTS product -- 상품 목록
     type_kind VARCHAR(10), -- 주종
     creator VARCHAR(20), -- 제조사
     alcohol FLOAT, -- 도수
-    volume INT UNSIGNED, -- ML
+	volume INT UNSIGNED, -- ML
 	price INT UNSIGNED NOT NULL, -- 상품 가격
     img_thumb TEXT, -- 상품 썸네일 이미지 파일 경로
-    img_exp1 TEXT, -- 상품 상세 내용 이미지 파일 경로 (기존: img_context -변경-> img_exp1~3)
-    img_exp2 TEXT,
-    img_exp3 TEXT
+    img_exp1 TEXT, -- 상품 상세 내용 이미지 파일 경로 (기존: img_context -변경-> img_exp1~2)
+    img_exp2 TEXT
 );
 
 CREATE TABLE IF NOT EXISTS inquiry -- 문의 목록
@@ -112,7 +111,7 @@ FROM
 LIMIT 100;
 
 INSERT INTO product
-(name, quantity,type_local, type_kind, creator, alcohol, price, img_thumb, img_exp1, img_exp2, img_exp3)
+(name, quantity,type_local, type_kind, creator, alcohol, volume, price, img_thumb, img_exp1, img_exp2)
 values
 ('운암', 1,'전북, 전남, 경북, 경남', '증류주', '맑은 내일', 32, 375, 12900, 'img/product/thumbnail/운암.jpg', 'img/product/explanation/운암_exp01.jpg', 'img/product/explanation/운암_exp02.jpg'),
 ('용25', 1,'강원, 세종권', '증류주', '두루양조', 25, 375, 12000, 'img/product/thumbnail/용25.jpg', 'img/product/explanation/용25_exp01.jpg', 'img/product/explanation/용25_exp02.jpg'),
@@ -198,7 +197,6 @@ select * from purchase_detail where purchase_id = 2;
 SELECT pd.*, p.name FROM purchase_detail pd INNER JOIN product p ON pd.product_id = p.id WHERE pd.purchase_id = 2;
 update product set status='F' where id=1;
 select * from product where name like '%암' and status like 'T';
-
 SELECT pd.*, p.name
 FROM purchase_detail pd
 JOIN product p ON pd.product_id = p.id;
@@ -209,25 +207,40 @@ CREATE TABLE IF NOT EXISTS product_review -- 상품리뷰
 (	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, -- 상품리뷰 고유 번호(PK)
 	member_id BIGINT UNSIGNED NOT NULL,				-- 회원 고유 번호
 	product_id BIGINT UNSIGNED NOT NULL,			-- 상품 고유 번호
-    purchase_id BIGINT UNSIGNED NOT NULL,			-- 통합 주문 목록 고유 번호
-    review_satisfaction VARCHAR(10) NOT NULL CHECK (review_satisfaction IN('VH','H','M','L','VL')),  
+	review_satisfaction VARCHAR(10) NOT NULL CHECK (review_satisfaction IN('VH','H','M','L','VL')),  
     -- 리뷰 만족도 ('VH' : 아주만족(별 5개) , 'H' : 만족(별 4개) , 'M' : 보통(별 3개), 'L' : 불만족(별 2개), 'VL' : 아주불만족(별 1개)
     content TEXT NOT NULL, 	-- 리뷰 후기
     img_exp1 TEXT,			-- 사용자 등록 이미지
     img_exp2 TEXT,			
     img_exp3 TEXT,
     FOREIGN KEY(member_id) REFERENCES member(id), -- 외래키 지정 member id
-    FOREIGN KEY(product_id) REFERENCES product(id), -- 외래키 지정 product id
-    FOREIGN KEY(purchase_id) REFERENCES purchase(id) -- 외래키 지정 purchase id
+    FOREIGN KEY(product_id) REFERENCES product(id) -- 외래키 지정 product id
 );
 
-insert into product_review (member_id,product_id,purchase_id,review_satisfaction,content,img_exp1,img_exp2,img_exp3)
-value(2,2,2,'VH','너무좋아요','img.url','img.url','img.url');
+SELECT p.date_created
+FROM purchase p
+JOIN purchase_detail pd ON p.id = pd.purchase_id
+WHERE pd.product_id = 31 AND pd.member_id = 2;
 
-SELECT pr.*, m.login_id AS member_login_id, p.date_created AS purchase_date
-FROM product_review pr
-JOIN member m ON pr.member_id = m.id
-JOIN purchase p ON pr.purchase_id = p.id
-WHERE pr.product_id = 2;
+SELECT p.id
+FROM purchase p
+JOIN purchase_detail pd on p.id  = pd.purchase_id
+WHERE pd.product_id= 31 AND pd.member_id = 2;
 
+
+truncate table product_review;
+
+SELECT pr.*, p.date_created, m.name 
+FROM product_review pr 
+JOIN purchase_detail pd ON pr.member_id = pd.member_id AND pr.product_id = pd.product_id 
+JOIN purchase p ON pd.purchase_id = p.id 
+JOIN member m ON pr.member_id = m.id 
+WHERE pr.product_id = 25;
+
+select p.date_created from purchase p 
+join purchase_detail pd on p.id = pd.purchase_id 
+where pd.product_id =25 and pd.member_id = 2;
+
+SELECT * FROM purchase;
+SELECT * FROM purchase_detail;
 select * from product_review;
