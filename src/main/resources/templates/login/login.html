@@ -22,7 +22,7 @@
 <!-- container-START  -->
 <section class="center login_container">
   <h3 class="title">로그인</h3>
-  <form class="login_form" th:method="post" th:action="@{/login}">
+  <form id="loginForm" class="login_form" th:method="post" th:action="@{/login}">
     <div class="login_box row pb-3">
       <div class="col">
         <label for="loginId" class="blind">아이디</label>
@@ -30,7 +30,7 @@
         <label for="pw" class="blind">비밀번호</label>
         <input type="password" class="form-control py-2" placeholder="비밀번호" id="pw" name="pw">
       </div>
-      <button class="btn login btn-lg col-3" type="submit">로그인</button>
+      <button class="btn login btn-lg col-3" type="button" th:onclick="login()">로그인</button>
     </div>
     <div class="find_group row my-3 px-3 justify-content-between">
       <button class="btn col-6 py-3" id="findId" type="button" onclick="location.href='/find-id' ">아이디 찾기</button>
@@ -45,5 +45,7 @@
 </footer>
 <!-- footer-END -->
 <script src="js/header.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="js/login.js"></script>
 </body>
 </html>

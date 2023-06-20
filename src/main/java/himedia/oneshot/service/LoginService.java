@@ -65,14 +65,13 @@ public class LoginService {
         String birthday = info.getIdCardNumber();
         MemberDTO member = new MemberDTO();
         Optional<Member> result = memberRepository.findLoginId(name, email, birthday);
-        if(result.isPresent())
-            member.setLoginId(result.get().getLogin_id());
+        result.ifPresent(value -> member.setLoginId(value.getLogin_id()));
         return member;
     }
     public MemberDTO findPassword(MemberDTO info){
 
+        return null;
     }
-
 
 //    /**
 //     * 로그인 기능 테스트 확인용입니다.

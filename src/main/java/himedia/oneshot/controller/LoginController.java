@@ -34,7 +34,7 @@ public class LoginController {
             }
         }
         log.info("비로그인 유저");
-        return  "login";
+        return  "/login/login";
     }
 
     @PostMapping("/login")
@@ -58,7 +58,7 @@ public class LoginController {
         if (loginUser.getLoginSuccess())
             return "redirect:/";
 
-        return null;
+        return "/login/find_id";
     }
 
     @PostMapping("/find-id")
@@ -77,7 +77,7 @@ public class LoginController {
         if (loginUser.getLoginSuccess())
             return "redirect:/";
 
-        return null;
+        return "/login/find_pw";
     }
 
     @PostMapping("/find-pw")

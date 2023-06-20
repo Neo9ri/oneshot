@@ -58,7 +58,7 @@ section.product_container ul.pagination {
 section.product_container ul.pagination li a {
   color: #2b1807;
   border-radius: 50%;
-  background-color: #eee;
+/*  background-color: #eee;*/
   border: none;
 }
 /* pagination-START */
