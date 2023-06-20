@@ -113,6 +113,34 @@ LIMIT 100;
 INSERT INTO product
 (name, quantity,type_local, type_kind, creator, alcohol, volume, price, img_thumb, img_exp1, img_exp2)
 values
+<<<<<<< HEAD
+('대대포',1,'전북, 전남, 경북,경남','막걸리', '죽향도가',6,600,3600,'img/product/막걸리thumbnail/대대포.jpg','img/product/막걸리exp/대대포_exp01.jpg','img/product/막걸리exp/대대포_exp02.jpg'),
+('호랑이 생막걸리',1,'서울, 경기, 인천권','막걸리', '배도가',6,750,3300,'img/product/막걸리thumbnail/호랑이_생막걸리.jpg','img/product/막걸리exp/호랑이_생막걸리_exp01.jpg','img/product/막걸리exp/호랑이_생막걸리_exp02.jpg'),
+('금정산성',1,'전북, 전남, 경북,경남','막걸리', '(유)금정산성토산주',8,750,3320,'img/product/막걸리thumbnail/금정산성.jpg','img/product/막걸리exp/금정산성_exp01.jpg','img/product/막걸리exp/금정산성_exp02.jpg'),
+('옛날 생동동주',1,'전북, 전남, 경북,경남','막걸리', '남도탁주',6,750,2500,'img/product/막걸리thumbnail/옛날_생동동주.jpg','img/product/막걸리exp/옛날_생동동주_exp01.jpg','img/product/막걸리exp/옛날_생동동주_exp02.jpg'),
+('붉은원숭이',1,'서울, 경기, 인천권','막걸리', '술샘',10.8,375,8550,'img/product/막걸리thumbnail/붉은원숭이.jpg','img/product/막걸리exp/붉은원숭이_exp01.jpg','img/product/막걸리exp/붉은원숭이_exp02.jpg'),
+('오미자 생막걸리',1,'전북, 전남, 경북,경남','막걸리', '문경주조',6.5,750,2800,'img/product/막걸리thumbnail/오미자_생막걸리.jpg','img/product/막걸리exp/오미자_생막걸리_exp01.jpg','img/product/막걸리exp/오미자_생막걸리_exp02.jpg'),
+('강냉이 생막걸리',1,'충북, 충남, 제주도','막걸리', '용두산조은술',6,1000,2560,'img/product/막걸리thumbnail/강냉이_생막걸리.jpg','img/product/막걸리exp/강냉이_생막걸리_exp01.jpg','img/product/막걸리exp/강냉이_생막걸리_exp02.jpg'),
+('선운산의 아침 복분자 막걸리',1,'전북, 전남, 경북,경남','막걸리', '국순당고창명주',6,750,4270,'img/product/막걸리thumbnail/선운산의_아침_복분자_막걸리.jpg','img/product/막걸리exp/선운산의_아침_복분자_막걸리_exp01.jpg','img/product/막걸리exp/선운산의_아침_복분자_막걸리_exp02.jpg'),
+('해창막걸리',1,'전북, 전남, 경북,경남','막걸리', '해창주조',9,900,10800,'img/product/막걸리thumbnail/해창막걸리.jpg','img/product/막걸리exp/해창막걸리_exp01.jpg','img/product/막걸리exp/해창막걸리_exp02.jpg'),
+('삼양춘 생막걸리',1,'서울, 경기, 인천권','막걸리', '송도향',12.5,500,12160,'img/product/막걸리thumbnail/삼양춘_생막걸리.jpg','img/product/막걸리exp/삼양춘_생막걸리_exp01.jpg','img/product/막걸리exp/삼양춘_생막걸리_exp02.jpg'),
+('얼떨결에 민트',1,'강원, 세종권','막걸리', '동강주조',6,935,8550,'img/product/막걸리thumbnail/얼떨결에_민트.jpg','img/product/막걸리exp/얼떨결에_민트_exp01.jpg','img/product/막걸리exp/얼떨결에_민트_exp02.jpg'),
+('악양생막걸리',1,'전북, 전남, 경북,경남','막걸리', '악양주조',6,750,3320,'img/product/막걸리thumbnail/악양생막걸리.jpg','img/product/막걸리exp/악양생막걸리_exp01.jpg','img/product/막걸리exp/악양생막걸리_exp02.jpg'),
+('희양산 생막걸리',1,'전북, 전남, 경북,경남','막걸리', '두술도가',9,650,7600,'img/product/막걸리thumbnail/희양산_생막걸리.jpg','img/product/막걸리exp/희양산_생막걸리_exp01.jpg','img/product/막걸리exp/희양산_생막걸리_exp02.jpg'),
+('부자막걸리',1,'서울, 경기, 인천권','막걸리', '배혜정도가',10,375,4900,'img/product/막걸리thumbnail/부자막걸리.jpg','img/product/막걸리exp/부자막걸리_exp01.jpg','img/product/막걸리exp/부자막걸리_exp02.jpg'),
+('골목막걸리 프리미엄',1,'충북, 충남, 제주도','막걸리', '주로(주)',12,350,8070,'img/product/막걸리thumbnail/골목막걸리_프리미엄.jpg','img/product/막걸리exp/골목막걸리_프리미엄_exp01.jpg','img/product/막걸리exp/골목막걸리_프리미엄_exp02.jpg'),
+('연꽃담은술',1,'서울, 경기, 인천권','막걸리', '한통술 이노베이션(주)',8,850,12000,'img/product/막걸리thumbnail/연꽃담은술.jpg','img/product/막걸리exp/연꽃담은술_exp01.jpg','img/product/막걸리exp/연꽃담은술_exp02.jpg'),
+('지란지교',1,'전북, 전남, 경북,경남','막걸리', '지란지교',12,500,17100,'img/product/막걸리thumbnail/지란지교.jpg','img/product/막걸리exp/지란지교_exp01.jpg','img/product/막걸리exp/지란지교_exp02.jpg'),
+('종천생막걸리',1,'충북, 충남, 제주도','막걸리', '종천주조',6,750,2370,'img/product/막걸리thumbnail/종천생막걸리.jpg','img/product/막걸리exp/종천생막걸리_exp01.jpg','img/product/막걸리exp/종천생막걸리_exp02.jpg'),
+
+
+
+
+('운암', 1,'전북, 전남, 경북, 경남', '증류주', '맑은 내일', 32, 375, 12900, 'img/product/thumbnail/운암.jpg', 'img/product/explanation/운암_exp01.jpg', 'img/product/explanation/운암_exp02.jpg'),
+('용25', 1,'강원, 세종권', '증류주', '두루양조', 25, 375, 12000, 'img/product/thumbnail/용25.jpg', 'img/product/explanation/용25_exp01.jpg', 'img/product/explanation/용25_exp02.jpg'),
+('월고해', 1,'전북, 전남, 경북, 경남', '증류주', '인산 농장', 42, 375, 104500, 'img/product/thumbnail/월고해.jpg', 'img/product/explanation/월고해_exp01.jpg', 'img/product/explanation/월고해_exp02.jpg'),
+=======
+>>>>>>> master
 ('항아리숙성 주향이오', 1,'전북, 전남, 경북, 경남', '숙성 전통주', '담을술공방', 25, 375, 15300, 'img/product/thumbnail/항아리숙성_주향이오.jpg', 'img/product/explanation/항아리숙성_주향이오.jpg', NULL),
 ('천사의 선물', 1,'전북, 전남, 경북, 경남', '과실주', '내변산', 17, 375, 9500, 'img/product/thumbnail/천사의_선물.jpg', 'img/product/explanation/천사의_선물_exp01.jpg', 'img/product/explanation/천사의_선물_exp02.jpg'),
 ('복분자 와인', 1,'전북, 전남, 경북, 경남', '과실주', '참주가', 11, 375, 2850, 'img/product/thumbnail/복분자_와인.jpg',  'img/product/explanation/복분자_와인_exp01.jpg', 'img/product/explanation/복분자_와인_exp02.jpg'),
@@ -228,6 +256,7 @@ CREATE TABLE IF NOT EXISTS product_review -- 상품리뷰
 	review_satisfaction VARCHAR(10) NOT NULL CHECK (review_satisfaction IN('VH','H','M','L','VL')),  
     -- 리뷰 만족도 ('VH' : 아주만족(별 5개) , 'H' : 만족(별 4개) , 'M' : 보통(별 3개), 'L' : 불만족(별 2개), 'VL' : 아주불만족(별 1개)
     content TEXT NOT NULL, 	-- 리뷰 후기
+    date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 주문 날짜 및 시간
     img_exp1 TEXT,			-- 사용자 등록 이미지
     img_exp2 TEXT,			
     img_exp3 TEXT,

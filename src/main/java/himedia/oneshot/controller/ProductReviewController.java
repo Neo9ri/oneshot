@@ -16,7 +16,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -30,6 +32,7 @@ public class ProductReviewController {
     public String saveReview(@ModelAttribute("review") ProductReview productReview,
                              @PathVariable("productId") Long productId,
                              @RequestParam("thumbnailImages") MultipartFile[] thumbImgFiles,
+                             @RequestParam("purchaseDate") String purchaseDate, // 선택한 구매 날짜
                              HttpServletRequest request, Model model,
                              RedirectAttributes redirectAttributes) throws Exception {
         loginService.loginCheck(request, model);
@@ -43,6 +46,11 @@ public class ProductReviewController {
         }
         productReview.setProduct_id(productId);
         productReview.setMember_id(memberId);
+
+        // 선택한 구매 날짜를 ProductReview 객체의 date 필드에 설정
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date parsedDate = dateFormat.parse(purchaseDate);
+        productReview.setDate(parsedDate);
 
         reviewService.saveReview(productReview, thumbImgFiles);
         redirectAttributes.addAttribute("id",productId);

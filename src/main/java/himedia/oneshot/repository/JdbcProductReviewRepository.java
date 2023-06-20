@@ -30,6 +30,7 @@ public class JdbcProductReviewRepository implements ProductReviewRepository{
         review.setProduct_id(rs.getLong("product_id"));
         review.setReview_satisfaction(rs.getString("review_satisfaction"));
         review.setContent(rs.getString("content"));
+        review.setDate(rs.getDate("date"));
         review.setImg_exp1(rs.getString("img_exp1"));
         review.setImg_exp2(rs.getString("img_exp2"));
         review.setImg_exp3(rs.getString("img_exp3"));
@@ -64,6 +65,7 @@ public class JdbcProductReviewRepository implements ProductReviewRepository{
         parameter.put("product_id",productReview.getProduct_id());
         parameter.put("review_satisfaction", productReview.getReview_satisfaction());
         parameter.put("content",productReview.getContent());
+        parameter.put("date",productReview.getDate());
         parameter.put("img_exp1",productReview.getImg_exp1());
         parameter.put("img_exp2",productReview.getImg_exp2());
         parameter.put("img_exp3",productReview.getImg_exp3());
@@ -75,10 +77,8 @@ public class JdbcProductReviewRepository implements ProductReviewRepository{
 
     @Override
     public List<ProductReviewDTO> showReview(Long productId) {
-        String sql = "SELECT pr.*, p.date_created, m.name " +
+        String sql = "SELECT pr.*, m.name " +
                 "FROM product_review pr " +
-                "JOIN purchase_detail pd ON pr.member_id = pd.member_id AND pr.product_id = pd.product_id " +
-                "JOIN purchase p ON pd.purchase_id = p.id " +
                 "JOIN member m ON pr.member_id = m.id " +
                 "WHERE pr.product_id = ?";
 
@@ -86,17 +86,15 @@ public class JdbcProductReviewRepository implements ProductReviewRepository{
             Member member = new Member();
             member.setName(rs.getString("name"));
 
-            Purchase purchase = new Purchase();
-            purchase.setDate_created(rs.getDate("date_created"));
-
             ProductReview review = new ProductReview();
             review.setReview_satisfaction(rs.getString("review_satisfaction"));
             review.setContent(rs.getString("content"));
+            review.setDate(rs.getDate("date"));
             review.setImg_exp1(rs.getString("img_exp1"));
             review.setImg_exp2(rs.getString("img_exp2"));
             review.setImg_exp3(rs.getString("img_exp3"));
 
-            return new ProductReviewDTO(member,purchase, review);
+            return new ProductReviewDTO(member, review);
         }, productId);
     }
 
@@ -122,7 +120,7 @@ public class JdbcProductReviewRepository implements ProductReviewRepository{
                 "join purchase_detail pd on p.id = pd.purchase_id "+
                 "where pd.product_id = ? and pd.member_id = ?";
         List<Purchase> purchaseDateList = jdbcTemplate.query(sql, purchaseRowMapper, productId, memberId);
-        log.info("Purchase Dates: {}", purchaseDateList);
+
         return purchaseDateList;
     }
 }
