@@ -27,7 +27,7 @@ public class JdbcProductRepository implements ProductRepository{
         product.setStatus(rs.getString("status"));
         product.setName(rs.getString("name"));
         product.setQuantity(rs.getInt("quantity"));
-        product.setType_local(rs.getString("type_local"));
+        product.setType_region(rs.getString("type_region"));
         product.setType_kind(rs.getString("type_kind"));
         product.setCreator(rs.getString("creator"));
         product.setAlcohol(rs.getFloat("alcohol"));
@@ -60,16 +60,19 @@ public class JdbcProductRepository implements ProductRepository{
     };
 
     @Override
-    public List<Product> findBy(String local, String kind, int priceFrom, int priceTo) {
-        if (!local.isBlank()){
-            String sql = "SELECT * FROM product WHERE type_local LIKE ? AND status LIKE 'T'";
-            return jdbcTemplate.query(sql, productRowMapper, local);
+    public List<Product> findBy(String region, String kind, int priceFrom, int priceTo) {
+        if (!region.isBlank()){
+            String sql = "SELECT * FROM product WHERE type_region LIKE ? AND status LIKE 'T'";
+            return jdbcTemplate.query(sql, productRowMapper, region);
         } else if (!kind.isBlank()){
             String sql = "SELECT * FROM product WHERE type_kind LIKE ? AND status LIKE 'T'";
             return jdbcTemplate.query(sql, productRowMapper, kind);
         } else if(priceTo!=0){
-            String sql = "SELECT * FROM product WHERE price BETWEEN ? AND ? AND status LIKE 'T'";
+            String sql = "SELECT * FROM product WHERE price >= ? AND price <= ? AND status LIKE 'T'";
             return jdbcTemplate.query(sql,productRowMapper, priceFrom, priceTo);
+        } else if (priceFrom!=0 && priceTo==0){
+            String sql = "SELECT * FROM product WHERE price >= ? AND status LIKE 'T'";
+            return jdbcTemplate.query(sql,productRowMapper, priceFrom);
         } else{
             String sql = "SELECT * FROM product WHERE status LIKE 'T'";
             return jdbcTemplate.query(sql, productRowMapper);
