@@ -10,20 +10,9 @@
   <link rel="stylesheet" href="../css/bootstrap.min.css" />
   <link rel="stylesheet" href="../css/main_style.css" />
   <link rel="stylesheet" href="../css/login.css" />
-  <!-- <script src="js/jquery-3.6.0.min.js"></script> -->
   <script src="https:code.jquery.com/jquery-3.4.1.js"></script>
-  <!-- <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script> -->
-  <style>
-   .id_ok{
-   color:#008000;
-   display: none;
-   }
-   
-   .id_already{
-   color:#6A82FB; 
-   display: none;
-   }
-   </style>
+
+
    <script>
       function checkId(){
       var login_id = $('#login_id').val(); //id값이 "id"인 입력란의 값을 저장
@@ -34,14 +23,11 @@
         //contentType : 'application/json',
         data:{login_id:login_id},
         success:function(login_id){ //컨트롤러에서 넘어온 cnt값을 받는다 
-           console.log(login_id);
-        
+           console.log(login_id);      
             if(login_id==0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
-             /*    $('#check01').html('<b style="font-size: 16px; color: blue"> 아이디 사용가능 </b>'); */
                 document.getElementById('check01').innerHTML='아이디 사용가능'
                 document.getElementById('check01').style.color='blue';
             } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-    /*             $('#check01').html('<b style="font-size: 16px; color: red"> 아이디 사용 불가능 </b>'); */
                 document.getElementById('check01').innerHTML='아이디 사용 불가능';
                 document.getElementById('check01').style.color='red';
             }
@@ -198,7 +184,8 @@
                <label for="InputNumber" class="form-label mt-4">주민번호</label>
                <div class="input-img-group">
                  <span><img src="../img/join/card.png" alt=""></span>
-                 <input type="text" class="form-control" id="id_card_number" name="id_card_number" oninput="idcardautoHyphen(this)" maxlength="14">
+                 <input type="text" class="form-control" id="id_card_number1" name="id_card_number" oninput="idcardautoHyphen" maxlength="6"> &nbsp;_&nbsp;
+                 <input type="password" class="form-control" id="id_card_number2" name="id_card_number2" oninput="idcardautoHyphen" maxlength="7">
                 </div>
              </div>        
                <div class="form-group">
@@ -356,6 +343,8 @@
   
   
    //주민번호 하이픈 추가
+   		const id_card_number = id_card_number1.conact(id_card_number2) 	 
+   
         const idcardautoHyphen = (target) => {
          target.value = target.value
            .replace(/[^0-9]/g, '')
