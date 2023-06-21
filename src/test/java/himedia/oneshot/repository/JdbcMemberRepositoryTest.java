@@ -91,10 +91,23 @@ public class JdbcMemberRepositoryTest {
         // given
             String name = "홍길동";
             String email = "member01@def.com";
-            String birthday = "123456";
+            String birthday = "800101";
         // when
             Optional<Member> result = memberRepository.findLoginId(name, email, birthday);
         // then
             assertThat(result.get().getLogin_id()).isEqualTo("member01");
+    }
+
+    @Test
+    void 비밀번호찾기(){
+        // given
+            String loginId = "member01";
+            String name = "홍길동";
+            String birthday = "800101";
+            String email = "member01@def.com";
+        // when
+            Optional<Member> result = memberRepository.findPassword(loginId, name, birthday, email);
+        // then
+            assertThat(result.get().getId()).isEqualTo(2);
     }
 }
