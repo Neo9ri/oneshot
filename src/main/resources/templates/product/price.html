@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>주종별 전통주</title>
+  <title>가격별 전통주</title>
   <link rel="icon" href="/img/favicon-32x32.png" type="image/x-icon" />
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
   <link rel="stylesheet" href="/css/main_style.css" />
@@ -20,21 +20,22 @@
   <!-- product_banner : START -->
   <div class="product_banner">
     <p class="center">
-      <span>주종별 전통주</span>
+      <span>가격별 전통주</span>
       <span>원샷이 엄선한 우리술을 만나보세요!</span>
     </p>
   </div>
   <!-- product_banner : END -->
   <!-- container : START -->
   <section class="product_container">
-    <h2 class="title center">주종별 전통주</h2>
+    <h2 class="title center">가격별 전통주</h2>
     <nav class="product">
-      <ul>
-        <li class="btn" th:class="${kind == 'spirits'}? 'btn on' : 'btn'"><a href="kind.html" th:href="@{/kind/spirits}">증류주</a></li>
-        <li class="btn" th:class="${kind == 'fruitWine'}? 'btn on' : 'btn'"><a href="kind.html" th:href="@{/kind/fruit-wine}">과실주</a></li>
-        <li class="btn" th:class="${kind == 'riceWheatWine'}? 'btn on' : 'btn'"><a href="kind.html" th:href="@{/kind/rice-wheat-wine}">약주 / 청주</a></li>
-        <li class="btn" th:class="${kind == 'makgeoli'}? 'btn on' : 'btn'"><a href="kind.html" th:href="@{/kind/makgeoli}">막걸리</a></li>
-        <li class="btn" th:class="${kind == 'etc'}? 'btn on' : 'btn'"><a href="kind.html" th:href="@{/kind/etc}">기타주</a></li>
+      <ul class="price">
+        <li class="btn" th:class="${price == 'u10'}? 'btn on' : 'btn'"><a href="price.html" th:href="@{/price/u10}">10,000원이하</a></li>
+        <li class="btn" th:class="${price == 'u20'}? 'btn on' : 'btn'"><a href="price_20000.html" th:href="@{/price/u20}">20,000원이하</a></li>
+        <li class="btn" th:class="${price == 'u30'}? 'btn on' : 'btn'"><a href="price_30000.html" th:href="@{/price/u30}">30,000원이하</a></li>
+        <li class="btn" th:class="${price == 'u40'}? 'btn on' : 'btn'"><a href="price_40000.html" th:href="@{/price/u40}">40,000원이하</a></li>
+        <li class="btn" th:class="${price == 'u50'}? 'btn on' : 'btn'"><a href="price_50000.html" th:href="@{/price/u50}">50,000원이하</a></li>
+        <li class="btn" th:class="${price == 'o50'}? 'btn on' : 'btn'"><a href="price_50000_more.html" th:href="@{/price/o50}">50,000원이상</a></li>
       </ul>
     </nav>
     <ul class="product_list center" >
@@ -90,7 +91,7 @@
   <script src="/js/header.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script>
-    var url = '/kind/'+ '[[${kind}]]';
+    var url = '/price/'+ '[[${price}]]';
     function updateList(page) {
         $.ajax({
           type: 'POST',
