@@ -52,7 +52,7 @@ section.product_container nav.product li.on {
 }
 section.product_container ul.pagination {
   margin: 80px auto 200px;
-  width: 300px;
+/*  width: 300px;*/
   justify-content: space-between;
 }
 section.product_container ul.pagination li a {

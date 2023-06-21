@@ -31,10 +31,10 @@
     <nav class="product">
       <ul>
         <li class="btn" th:class="${region == 'all'}? 'btn on' : 'btn'"><a href="region.html" th:href="@{/region/all}">전체보기</a></li>
-        <li class="btn" th:class="${region == 'SGI'}? 'btn on' : 'btn'"><a href="region.html" th:href="@{/region/SKI}">서울,경기,인천권</a></li>
-        <li class="btn" th:class="${region == 'GS'}? 'btn on' : 'btn'"><a href="region.html" th:href="@{/region/KS}">강원,세종권</a></li>
+        <li class="btn" th:class="${region == 'SGI'}? 'btn on' : 'btn'"><a href="region.html" th:href="@{/region/SGI}">서울,경기,인천권</a></li>
+        <li class="btn" th:class="${region == 'GS'}? 'btn on' : 'btn'"><a href="region.html" th:href="@{/region/GS}">강원,세종권</a></li>
         <li class="btn" th:class="${region == 'CJ'}? 'btn on' : 'btn'"><a href="region.html" th:href="@{/region/CJ}">충북,충남,제주도</a></li>
-        <li class="btn" th:class="${region == 'JG'}? 'btn on' : 'btn'"><a href="region.html" th:href="@{/region/JK}">전북,전남,경북,경남</a></li>
+        <li class="btn" th:class="${region == 'JG'}? 'btn on' : 'btn'"><a href="region.html" th:href="@{/region/JG}">전북,전남,경북,경남</a></li>
       </ul>
     </nav>
     <ul class="product_list center" >
@@ -57,7 +57,7 @@
       </li>
     </ul>
     <div class="d-flex justify-content-center py-5">
-      <nav aria-label="">
+      <nav aria-label="pagination">
         <ul class="pagination">
           <li th:if="${pagination.existPreviousLastPage}" class="page-item">
             <a class="page-link"
@@ -92,7 +92,6 @@
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script>
     var url = '/region/'+ '[[${region}]]';
-    console.log(url);
     function updateList(page) {
         $.ajax({
           type: 'POST',

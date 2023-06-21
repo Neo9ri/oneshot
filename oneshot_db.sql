@@ -2,6 +2,20 @@ CREATE DATABASE IF NOT EXISTS oneshot;
 
 USE oneshot;
 
+select @@autocommit; -- 자동 커밋 설정 확인
+set autocommit = true; -- 자동 커밋 설정
+
+DROP TABLE IF EXISTS notice, product_review, cart, purchase_detail, purchase, product, inquiry, member; -- 테이블 전체 삭제
+
+SELECT * FROM member;
+SELECT * FROM product;
+SELECT * FROM cart;
+SELECT * FROM member;
+SELECT * FROM inquiry;
+SELECT * FROM purchase;
+SELECT * FROM purchase_detail;
+SELECT * FROM notice;
+
 CREATE TABLE IF NOT EXISTS member -- 회원 목록
 (	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, -- 회원 고유 번호(PK)
     login_id VARCHAR(20) NOT NULL UNIQUE, -- 로그인 아이디
@@ -82,6 +96,21 @@ CREATE TABLE IF NOT EXISTS notice -- 공지사항
     content TEXT NOT NULL -- 문의 내용
 );
 
+CREATE TABLE IF NOT EXISTS product_review -- 상품리뷰
+(	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, -- 상품리뷰 고유 번호(PK)
+	member_id BIGINT UNSIGNED NOT NULL,				-- 회원 고유 번호
+	product_id BIGINT UNSIGNED NOT NULL,			-- 상품 고유 번호
+	review_satisfaction VARCHAR(10) NOT NULL CHECK (review_satisfaction IN('VH','H','M','L','VL')),  
+    -- 리뷰 만족도 ('VH' : 아주만족(별 5개) , 'H' : 만족(별 4개) , 'M' : 보통(별 3개), 'L' : 불만족(별 2개), 'VL' : 아주불만족(별 1개)
+    content TEXT NOT NULL, 	-- 리뷰 후기
+    date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 주문 날짜 및 시간
+    img_exp1 TEXT,			-- 사용자 등록 이미지
+    img_exp2 TEXT,			
+    img_exp3 TEXT,
+    FOREIGN KEY(member_id) REFERENCES member(id), -- 외래키 지정 member id
+    FOREIGN KEY(product_id) REFERENCES product(id) -- 외래키 지정 product id
+);
+
 INSERT INTO member -- 관리자, 유저 생성
 (login_id, pw, email, name, phone_number, id_card_number, address, gender, authority)
 values
@@ -131,7 +160,6 @@ values
 ('연꽃담은술',1,'서울, 경기, 인천권','막걸리', '한통술 이노베이션(주)',8,850,12000,'img/product/thumbnail/연꽃담은술.jpg','img/product/explanation/연꽃담은술_exp01.jpg','img/product/explanation/연꽃담은술_exp02.jpg'),
 ('지란지교',1,'전북, 전남, 경북, 경남','막걸리', '지란지교',12,500,17100,'img/product/thumbnail/지란지교.jpg','img/product/explanation/지란지교_exp01.jpg','img/product/explanation/지란지교_exp02.jpg'),
 ('종천생막걸리',1,'충북, 충남, 제주도','막걸리', '종천주조',6,750,2370,'img/product/thumbnail/종천생막걸리.jpg','img/product/explanation/종천생막걸리_exp01.jpg','img/product/explanation/종천생막걸리_exp02.jpg'),
-('운암', 1,'전북, 전남, 경북, 경남', '증류주', '맑은 내일', 32, 375, 12900, 'img/product/thumbnail/운암.jpg', 'img/product/explanation/운암_exp01.jpg', 'img/product/explanation/운암_exp02.jpg'),
 ('용25', 1,'강원, 세종권', '증류주', '두루양조', 25, 375, 12000, 'img/product/thumbnail/용25.jpg', 'img/product/explanation/용25_exp01.jpg', 'img/product/explanation/용25_exp02.jpg'),
 ('월고해', 1,'전북, 전남, 경북, 경남', '증류주', '인산 농장', 42, 375, 104500, 'img/product/thumbnail/월고해.jpg', 'img/product/explanation/월고해_exp01.jpg', 'img/product/explanation/월고해_exp02.jpg'),
 ('항아리숙성 주향이오', 1,'전북, 전남, 경북, 경남', '기타주', '담을술공방', 25, 375, 15300, 'img/product/thumbnail/항아리숙성_주향이오.jpg', 'img/product/explanation/항아리숙성_주향이오.jpg', NULL),
@@ -164,10 +192,8 @@ values
 ('캔와인 애플 스위트와인', 10,'충북, 충남, 제주도', '과실주', '블루와인컴퍼니', 10, 330, 9900, 'img/product/thumbnail/캔와인_애플_스위트와인1.jpg', 'img/product/explanation/캔와인_애플_스위트와인2.jpg', 'img/product/explanation/캔와인_애플_스위트와인3.jpg'),
 ('운암24도', 10,'전북, 전남, 경북, 경남', '증류주', '맑은 내일', 24, 375, 7900, 'img/product/thumbnail/운암24.jpg', 'img/product/explanation/운암24_exp01.jpg', 'img/product/explanation/운암24_exp02.jpg'),
 ('운암32도', 10,'전북, 전남, 경북, 경남', '증류주', '맑은 내일', 32, 375, 12900, 'img/product/thumbnail/운암32.jpg', 'img/product/explanation/운암32_exp01.jpg', 'img/product/explanation/운암32_exp02.jpg'),
-('용25도', 10,'강원, 세종권', '증류주', '두루양조', 25, 375, 12000, 'img/product/thumbnail/용25.jpg', 'img/product/explanation/용25_exp01.jpg', 'img/product/explanation/용25_exp02.jpg'),
 ('용41도', 10,'강원, 세종권', '증류주', '두루양조', 41, 375, 22000, 'img/product/thumbnail/용41.jpg', 'img/product/explanation/용41_exp01.jpg', 'img/product/explanation/용41_exp02.jpg'),
 ('강릉소주', 10,'강원, 세종권', '증류주', '우리소주조합', 25, 360, 6500, 'img/product/thumbnail/강릉소주.jpg', 'img/product/explanation/강릉소주_exp01.jpg', 'img/product/explanation/강릉소주_exp02.jpg'),
-('월고해', 10,'전북, 전남, 경북, 경남', '증류주', '인산 농장', 42, 375, 104500, 'img/product/thumbnail/월고해.jpg', 'img/product/explanation/월고해_exp01.jpg', 'img/product/explanation/월고해_exp02.jpg'),
 ('토끼소주 가넷', 10,'충북, 충남, 제주도', '증류주', '토끼소주', 46, 750, 120000, 'img/product/thumbnail/토끼소주가넷.jpg', 'img/product/explanation/토끼소주가넷_exp01.jpg', 'img/product/explanation/토끼소주가넷_exp02.jpg'),
 ('아삭17도', 10,'전북, 전남, 경북, 경남', '증류주', '착한농부', 17, 360, 5600, 'img/product/thumbnail/아삭17.jpg', 'img/product/explanation/아삭17_exp01.jpg', 'img/product/explanation/아삭17_exp02.jpg'),
 ('아삭골드17도', 10,'전북, 전남, 경북, 경남', '증류주', '착한농부', 17, 360, 8500, 'img/product/thumbnail/아삭골드17.jpg', 'img/product/explanation/아삭골드17_exp01.jpg', 'img/product/explanation/아삭골드17_exp02.jpg'),
@@ -198,22 +224,11 @@ values
 ('D', 12, 2, '배송 문의 드립니다.','상품 손상없도록 배송 잘 부탁 드립니다.'),
 ('D', 8, 3, '배송은 퀵으로 받을 수 있나요?.','빨리받고 싶은데 퀵으로 받을 수 있나요?.');
 
-update inquiry set answer="답변드립니다." where id=1;    
-update inquiry set answer="답변드립니다." where id=5;    
-
 INSERT INTO NOTICE
 (title, content)
 values
 ('7월 휴무 공지(여름휴가)', '7월 26일부터 28일은 원샷팀 여름휴가 기간으로 배송,문의 업무가 중단됩니다.'),
 ('배송관련 안내드립니다.','주문 폭주로 배송이 지연되고 있습니다. ');
-
-SELECT * FROM product;
-SELECT * FROM cart;
-SELECT * FROM member;
-SELECT * FROM inquiry;
-SELECT * FROM purchase;
-SELECT * FROM purchase_detail;
-SELECT * FROM notice;
 
 insert into cart(member_id,product_id,quantity) values(2,4,1);
 insert into cart(member_id,product_id,quantity) values(2,5,1);
@@ -224,8 +239,7 @@ select quantity from cart where product_id = 1;
 
 update cart set quantity = 1 where product_id = 1;
 
-select @@autocommit; -- 자동 커밋 설정 확인
-set autocommit = true; -- 자동 커밋 설정
+
 
 truncate table cart;
 truncate table purchase_detail;
@@ -240,23 +254,6 @@ SELECT pd.*, p.name
 FROM purchase_detail pd
 JOIN product p ON pd.product_id = p.id;
 
-DROP TABLE IF EXISTS notice, product_review, cart, purchase_detail, purchase, product, inquiry, member; -- 테이블 전체 삭제
-
-CREATE TABLE IF NOT EXISTS product_review -- 상품리뷰
-(	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, -- 상품리뷰 고유 번호(PK)
-	member_id BIGINT UNSIGNED NOT NULL,				-- 회원 고유 번호
-	product_id BIGINT UNSIGNED NOT NULL,			-- 상품 고유 번호
-	review_satisfaction VARCHAR(10) NOT NULL CHECK (review_satisfaction IN('VH','H','M','L','VL')),  
-    -- 리뷰 만족도 ('VH' : 아주만족(별 5개) , 'H' : 만족(별 4개) , 'M' : 보통(별 3개), 'L' : 불만족(별 2개), 'VL' : 아주불만족(별 1개)
-    content TEXT NOT NULL, 	-- 리뷰 후기
-    date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 주문 날짜 및 시간
-    img_exp1 TEXT,			-- 사용자 등록 이미지
-    img_exp2 TEXT,			
-    img_exp3 TEXT,
-    FOREIGN KEY(member_id) REFERENCES member(id), -- 외래키 지정 member id
-    FOREIGN KEY(product_id) REFERENCES product(id) -- 외래키 지정 product id
-);
-
 SELECT p.date_created
 FROM purchase p
 JOIN purchase_detail pd ON p.id = pd.purchase_id
@@ -266,7 +263,6 @@ SELECT p.id
 FROM purchase p
 JOIN purchase_detail pd on p.id  = pd.purchase_id
 WHERE pd.product_id= 31 AND pd.member_id = 2;
-
 
 truncate table product_review;
 
