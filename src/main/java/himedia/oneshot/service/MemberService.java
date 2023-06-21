@@ -89,4 +89,10 @@ public class MemberService {
             return false;
         }
     }
+
+    public void changeAuth(MemberDTO memberDTO){
+        long id = memberDTO.getId();
+        String authority = memberDTO.getAuthority().equals("A")? "B" : "A";
+        memberRepository.changeAuth(id, authority);
+    }
 }
