@@ -73,7 +73,9 @@ public class MemberService {
         }
     }
 
-    public void changeAuth(MemberDTO member){
-
+    public void changeAuth(MemberDTO memberDTO){
+        long id = memberDTO.getId();
+        String authority = memberDTO.getAuthority().equals("A")? "B" : "A";
+        memberRepository.changeAuth(id, authority);
     }
 }

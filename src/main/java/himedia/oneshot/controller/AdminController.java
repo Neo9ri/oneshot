@@ -78,7 +78,8 @@ public class AdminController {
             return "redirect:/";
         }
         log.info("post 정보 >> " + member.getAuthority());
-//        memberService.changeAuth(member);
+
+        memberService.changeAuth(member);
 
         List<Member> members = memberService.makeMemberList();
         pagination.makePagination(model, members, "members", 10, page, "pagination");

@@ -55,11 +55,11 @@
               <button th:if="${member.authority} == 'A'"
                       th:class="'btn btn_ylw'"
                       type="button"
-                      th:onclick="|changeAuthority(${member.id}, B, ${pagination.requestPage})|"> 차단 </button>
+                      th:onclick="changeAuthority([[${member.id}]], [[${member.authority}]], [[${pagination.requestPage}]])"> 차단 </button>
               <button th:if="${member.authority} == 'B'"
                       th:class="'btn btn_default'"
                       type="button"
-                      th:onclick="changeAuthority([[${member.id}]], 1, [[${pagination.requestPage}]])"> 해제 </button>
+                      th:onclick="changeAuthority([[${member.id}]], [[${member.authority}]], [[${pagination.requestPage}]])"> 해제 </button>
             </td>
           </tr>
         </tbody>
@@ -94,7 +94,7 @@
   </section>
   <!-- container : END -->
   <!-- footer : START -->
-  <footer th:replace="~{/fragment/footer :: #footer}"></footer>
+  <footer th:replace="~{fragment/footer :: #footer}"></footer>
   <!-- footer : END -->
 <script src="js/header.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -111,22 +111,22 @@
     }
 
     function changeAuthority(id, authority, page){
-      console.log(id);
-      console.log(authority);
-      console.log(page);
-       $.ajax({
-          type: 'POST',
-          data: {id : id,
-                 authority: authority,
-                 page: page},
-          url: "/member-list/change-auth",
-       })
-       .done(function (result) {
-          $('section').replaceWith(result);
-       })
-       .fail(function(){
-          console.log('ajax 통신 실패');
-       });
+       let check = confirm("회원 상태를 변경하시겠습니까?");
+       if (check == true){
+           $.ajax({
+                    type: 'POST',
+                    data: {id : id,
+                           authority: authority,
+                           page: page},
+                    url: "/member-list/change-auth",
+           })
+           .done(function (result) {
+              $('section').replaceWith(result);
+           })
+           .fail(function(){
+              console.log('ajax 통신 실패');
+           });
+       }
     }
   </script>
 </body>
