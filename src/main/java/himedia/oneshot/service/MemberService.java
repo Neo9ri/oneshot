@@ -72,4 +72,8 @@ public class MemberService {
             return false;
         }
     }
+
+    public void changeAuth(MemberDTO member){
+
+    }
 }
