@@ -24,7 +24,7 @@ public class AdminProductController {
     private final AdminProductService adminProductService;
     private final LoginService loginService;
 
-    private final List<String> typeLocal = List.of(
+    private final List<String> typeRegion = List.of(
             "서울, 경기, 인천권",
             "강원, 세종권",
             "충북, 충남, 제주도",
@@ -104,7 +104,7 @@ public class AdminProductController {
         // 관리자 여부 확인 --END
         Product product = adminProductService.findById(id).get();
         model.addAttribute("product",product);
-        model.addAttribute("typeLocal", typeLocal);
+        model.addAttribute("typeRegion", typeRegion);
         model.addAttribute("typeKind", typeKind);
         model.addAttribute("selectedTypeKind", product.getType_kind());
 

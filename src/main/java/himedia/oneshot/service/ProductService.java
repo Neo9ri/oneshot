@@ -13,8 +13,8 @@ import java.util.*;
 public class ProductService {
     private final ProductRepository productRepository;
 
-    public List<Product> findBy(String local, String kind, int priceFrom, int priceTo){
-        List<Product> result = productRepository.findBy(local, kind, priceFrom, priceTo);
+    public List<Product> findBy(String region, String kind, int priceFrom, int priceTo){
+        List<Product> result = productRepository.findBy(region, kind, priceFrom, priceTo);
         Collections.reverse(result);
         return result;
     }
