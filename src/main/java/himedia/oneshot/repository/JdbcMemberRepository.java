@@ -24,7 +24,7 @@ public class JdbcMemberRepository implements MemberRepository {
     private final JdbcTemplate jdbcTemplate;
                                            
     public JdbcMemberRepository(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public RowMapper<Member> memberRowMapper(){

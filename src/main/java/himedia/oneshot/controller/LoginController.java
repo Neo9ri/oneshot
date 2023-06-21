@@ -7,10 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 public class LoginController {
     private final LoginService loginService;
 
-    @GetMapping("/login")
+    @GetMapping("login")
     public String login(HttpServletRequest request, Model model){
         loginService.loginCheck(request, model);
         LoginDTO user = (LoginDTO) request.getSession().getAttribute("user");
@@ -31,23 +28,23 @@ public class LoginController {
                 return "redirect:/member-list";
             }
         }
-        return  "/login/login";
+        return  "login/login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("login")
     @ResponseBody
     public LoginDTO loginCheck(HttpServletRequest request, @ModelAttribute LoginDTO loginData, Model model) {
         loginService.loginCheck(request, model, loginData);
         return (LoginDTO) model.getAttribute("user");
     }
 
-    @GetMapping("/logout")
+    @GetMapping("logout")
     public String logout(HttpServletRequest request){
         request.getSession().invalidate();
         return "redirect:/";
     }
 
-    @GetMapping("/find-id")
+    @GetMapping("find-id")
     public String findId(HttpServletRequest request, Model model){
         loginService.loginCheck(request, model);
 
@@ -55,10 +52,10 @@ public class LoginController {
         if (loginUser.getLoginSuccess())
             return "redirect:/";
 
-        return "/login/find_id";
+        return "login/find_id";
     }
 
-    @PostMapping("/find-id")
+    @PostMapping("find-id")
     public String findIdResult(HttpServletRequest request, Model model, @ModelAttribute MemberDTO info){
         loginService.loginCheck(request, model);
         MemberDTO result = loginService.findLoginId(info);
@@ -66,7 +63,7 @@ public class LoginController {
         return null;
     }
 
-    @GetMapping("/find-pw")
+    @GetMapping("find-pw")
     public String findPw(HttpServletRequest request, Model model){
         loginService.loginCheck(request, model);
 
@@ -74,10 +71,10 @@ public class LoginController {
         if (loginUser.getLoginSuccess())
             return "redirect:/";
 
-        return "/login/find_pw";
+        return "login/find_pw";
     }
 
-    @PostMapping("/find-pw")
+    @PostMapping("find-pw")
     public String findPwResult(){
 
         return null;

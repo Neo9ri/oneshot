@@ -2,6 +2,7 @@ package himedia.oneshot.entity;
 
 import lombok.Data;
 import lombok.Generated;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
@@ -11,6 +12,7 @@ import java.util.Date;
  * DB에 존재하지 않는 필드를 가질 수 없습니다.
  */
 @Data
+@NoArgsConstructor
 // 회원 목록
 public class Member {
     private Long id;                //회원 고유 번호
@@ -25,5 +27,4 @@ public class Member {
     private String authority;       //회원상태
     private Date date_created;      //회원가입 날짜
     
-	public Member() {}
 }

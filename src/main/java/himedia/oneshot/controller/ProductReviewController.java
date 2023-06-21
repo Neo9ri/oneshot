@@ -28,7 +28,7 @@ public class ProductReviewController {
     private final ProductReviewService reviewService;
     private final LoginService loginService;
 
-    @PostMapping("/item_detail/{productId}/review")
+    @PostMapping("item_detail/{productId}/review")
     public String saveReview(@ModelAttribute("review") ProductReview productReview,
                              @PathVariable("productId") Long productId,
                              @RequestParam("thumbnailImages") MultipartFile[] thumbImgFiles,
