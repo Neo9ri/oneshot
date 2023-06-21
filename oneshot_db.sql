@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS product -- 상품 목록
 	status CHAR(1) DEFAULT 'T' CHECK (status IN ('T', 'F')),-- 상품 판매 가능 상태
 	name VARCHAR(30) NOT NULL, -- 이름
     quantity SMALLINT UNSIGNED NOT NULL,
-    type_local VARCHAR(20), -- 지역
+    type_region VARCHAR(20), -- 지역
     type_kind VARCHAR(10), -- 주종
     creator VARCHAR(20), -- 제조사
     alcohol FLOAT, -- 도수
@@ -111,7 +111,7 @@ FROM
 LIMIT 100;
 
 INSERT INTO product
-(name, quantity,type_local, type_kind, creator, alcohol, volume, price, img_thumb, img_exp1, img_exp2)
+(name, quantity, type_region, type_kind, creator, alcohol, volume, price, img_thumb, img_exp1, img_exp2)
 values
 ('대대포',1,'전북, 전남, 경북, 경남','막걸리', '죽향도가',6,600,3600,'img/product/thumbnail/대대포.jpg','img/product/explanation/대대포_exp01.jpg','img/product/explanation/대대포_exp02.jpg'),
 ('호랑이 생막걸리',1,'서울, 경기, 인천권','막걸리', '배도가',6,750,3300,'img/product/thumbnail/호랑이_생막걸리.jpg','img/product/explanation/호랑이_생막걸리_exp01.jpg','img/product/explanation/호랑이_생막걸리_exp02.jpg'),
@@ -131,9 +131,6 @@ values
 ('연꽃담은술',1,'서울, 경기, 인천권','막걸리', '한통술 이노베이션(주)',8,850,12000,'img/product/thumbnail/연꽃담은술.jpg','img/product/explanation/연꽃담은술_exp01.jpg','img/product/explanation/연꽃담은술_exp02.jpg'),
 ('지란지교',1,'전북, 전남, 경북, 경남','막걸리', '지란지교',12,500,17100,'img/product/thumbnail/지란지교.jpg','img/product/explanation/지란지교_exp01.jpg','img/product/explanation/지란지교_exp02.jpg'),
 ('종천생막걸리',1,'충북, 충남, 제주도','막걸리', '종천주조',6,750,2370,'img/product/thumbnail/종천생막걸리.jpg','img/product/explanation/종천생막걸리_exp01.jpg','img/product/explanation/종천생막걸리_exp02.jpg'),
-('운암', 1,'전북, 전남, 경북, 경남', '증류주', '맑은 내일', 32, 375, 12900, 'img/product/thumbnail/운암.jpg', 'img/product/explanation/운암_exp01.jpg', 'img/product/explanation/운암_exp02.jpg'),
-('용25', 1,'강원, 세종권', '증류주', '두루양조', 25, 375, 12000, 'img/product/thumbnail/용25.jpg', 'img/product/explanation/용25_exp01.jpg', 'img/product/explanation/용25_exp02.jpg'),
-('월고해', 1,'전북, 전남, 경북, 경남', '증류주', '인산 농장', 42, 375, 104500, 'img/product/thumbnail/월고해.jpg', 'img/product/explanation/월고해_exp01.jpg', 'img/product/explanation/월고해_exp02.jpg'),
 ('항아리숙성 주향이오', 1,'전북, 전남, 경북, 경남', '기타주', '담을술공방', 25, 375, 15300, 'img/product/thumbnail/항아리숙성_주향이오.jpg', 'img/product/explanation/항아리숙성_주향이오.jpg', NULL),
 ('천사의 선물', 1,'전북, 전남, 경북, 경남', '과실주', '내변산', 17, 375, 9500, 'img/product/thumbnail/천사의_선물.jpg', 'img/product/explanation/천사의_선물_exp01.jpg', 'img/product/explanation/천사의_선물_exp02.jpg'),
 ('복분자 와인', 1,'전북, 전남, 경북, 경남', '과실주', '참주가', 11, 375, 2850, 'img/product/thumbnail/복분자_와인.jpg',  'img/product/explanation/복분자_와인_exp01.jpg', 'img/product/explanation/복분자_와인_exp02.jpg'),
@@ -186,7 +183,10 @@ values
 ('금설35도', 10,'충북, 충남, 제주도', '증류주', '금산인삼주', 35, 375, 35000, 'img/product/thumbnail/금설35.jpg', 'img/product/explanation/금설35_exp01.jpg', 'img/product/explanation/금설35_exp02.jpg'),
 ('선비보드카', 10,'충북, 충남, 제주도', '증류주', '토끼소주', 40, 750, 61000, 'img/product/thumbnail/선비보드카.jpg', 'img/product/explanation/선비보드카_exp01.jpg', 'img/product/explanation/선비보드카_exp02.jpg'),
 ('퍼플진', 10,'서울, 경기, 인천권', '증류주', '술샘', 36.5, 500, 39000, 'img/product/thumbnail/퍼플진.jpg', 'img/product/explanation/퍼플진_exp01.jpg', 'img/product/explanation/퍼플진_exp02.jpg'),
-('민속주안동소주', 10,'전북, 전남, 경북, 경남', '증류주', '민속주안동소주', 45, 400, 29000, 'img/product/thumbnail/민속주안동소주.jpg', 'img/product/explanation/민속주안동소주_exp01.jpg', 'img/product/explanation/민속주안동소주_exp02.jpg');
+('민속주안동소주', 10,'전북, 전남, 경북, 경남', '증류주', '민속주안동소주', 45, 400, 29000, 'img/product/thumbnail/민속주안동소주.jpg', 'img/product/explanation/민속주안동소주_exp01.jpg', 'img/product/explanation/민속주안동소주_exp02.jpg'),
+('토끼소주골드', 10,'충북, 충남, 제주도', '증류주', '토끼소주', 45, 375, 55000, 'img/product/thumbnail/토끼소주골드.jpg', 'img/product/explanation/토끼소주골드_exp01.jpg', 'img/product/explanation/토끼소주골드_exp02.jpg'),
+('백제소주', 10,'전북, 전남, 경북, 경남', '증류주', '내변산', 25, 375, 19000, 'img/product/thumbnail/백제소주.jpg', 'img/product/explanation/백제소주_exp01.jpg', 'img/product/explanation/백제소주_exp02.jpg'),
+('짝꿍막걸리', 10,'서울, 경기, 인천권', '막걸리', '한강주조', 8, 620, 4950, 'img/product/thumbnail/짝꿍막걸리.jpg', 'img/product/explanation/짝꿍막걸리_exp01.jpg', 'img/product/explanation/짝꿍막걸리_exp02.jpg');
 
 INSERT INTO inquiry
 (type, product_id, inquirer_id, title, content)

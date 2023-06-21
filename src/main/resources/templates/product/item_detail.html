@@ -47,7 +47,7 @@
             </tr>
             <tr>
                 <td>원산지</td>
-                <td>국내산</td>
+                <td th:text="${prodcut.type_region}">국내산</td>
             </tr>
         </table>
         <form method="post" th:action="@{/addCart}" id="orderForm">
