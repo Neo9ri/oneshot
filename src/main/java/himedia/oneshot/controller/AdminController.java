@@ -1,6 +1,7 @@
 package himedia.oneshot.controller;
 
 import himedia.oneshot.dto.LoginDTO;
+import himedia.oneshot.dto.MemberDTO;
 import himedia.oneshot.entity.Inquiry;
 import himedia.oneshot.entity.Notice;
 import himedia.oneshot.entity.Product;
@@ -40,7 +41,6 @@ public class AdminController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe) {
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
         // 관리자 여부 확인 --END
@@ -53,7 +53,6 @@ public class AdminController {
 
     @PostMapping("/member-list")
     public String memberListAjax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
-        log.info("[POST] member-list");
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
         try {
@@ -61,19 +60,34 @@ public class AdminController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe) {
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
-        // 목록 구현 -- START
         List<Member> members = memberService.makeMemberList();
         pagination.makePagination(model, members, "members", 10, page, "pagination");
-        // 목록 구현 -- END
+        return "/admin/member_list :: section";
+    }
+    @PostMapping("/member-list/change-auth")
+    public String changeAuthority(HttpServletRequest request, Model model, @ModelAttribute MemberDTO member, @RequestParam(required = false) Integer page) {
+        loginService.loginCheck(request, model);
+        LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
+        try {
+            if (!loginUser.getAuth().equals("M")) {
+                return "redirect:/";
+            }
+        } catch (NullPointerException npe) {
+            return "redirect:/";
+        }
+        log.info("post 정보 >> " + member.getAuthority());
+
+        memberService.changeAuth(member);
+
+        List<Member> members = memberService.makeMemberList();
+        pagination.makePagination(model, members, "members", 10, page, "pagination");
         return "/admin/member_list :: section";
     }
 
     @GetMapping("/product-list")
     public String productList(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
-        // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
         try {
@@ -84,17 +98,13 @@ public class AdminController {
             log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
-        // 관리자 여부 확인 --END
-        // 목록 구현 -- START
         List<Product> products = adminProductService.findAllAdmin();
         pagination.makePagination(model, products, "products", 10, page, "pagination");
-        // 목록 구현 -- END
         return "/admin/item_list";
     }
 
     @PostMapping("/product-list")
     public String productListAjax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
-        // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
         try {
@@ -105,18 +115,14 @@ public class AdminController {
             log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
-        // 관리자 여부 확인 --END
-        // 목록 구현 -- START
         List<Product> products = adminProductService.findAllAdmin();
         pagination.makePagination(model, products, "products", 10, page, "pagination");
-        // 목록 구현 -- END
         return "/admin/item_list :: section";
     }
 
     //     문의
     @GetMapping("/inquiry/delivery")
     public String inquiryDelivery(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
-        // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
         try {
@@ -127,17 +133,15 @@ public class AdminController {
             log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
-        // 관리자 여부 확인 --END
-        // 목록 구현 -- START
+
         List<Inquiry> deliveries = inquiryService.findListByType("D");
         pagination.makePagination(model, deliveries, "deliveries", 10, page, "pagination");
-        // 목록 구현 -- END
+
         return "/admin/inquiry_delivery";
     }
 
     @PostMapping("/inquiry/delivery")
     public String inquiryDeliveryAjax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
-        // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
         try {
@@ -148,17 +152,15 @@ public class AdminController {
             log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
-        // 관리자 여부 확인 --END
-        // 목록 구현 -- START
+
         List<Inquiry> deliveries = inquiryService.findListByType("D");
         pagination.makePagination(model, deliveries, "deliveries", 10, page, "pagination");
-        // 목록 구현 -- END
+
         return "/admin/inquiry_delivery :: section";
     }
 
     @GetMapping("/inquiry/product")
     public String inquiryProduct(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
-        // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
         try {
@@ -169,17 +171,15 @@ public class AdminController {
             log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
-        // 관리자 여부 확인 --END
-        // 목록 구현 -- START
+
         List<Inquiry> products = inquiryService.findListByType("P");
         pagination.makePagination(model, products, "products", 10, page, "pagination");
-        // 목록 구현 -- END
+
         return "/admin/inquiry_product";
     }
 
     @GetMapping("/inquiry/{id}/reply")
     public String reply(HttpServletRequest request, @PathVariable("id") Long id, Model model) {
-        // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
         try {
@@ -190,7 +190,7 @@ public class AdminController {
             log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
-        // 관리자 여부 확인 --END
+
         Inquiry inquiry = inquiryService.findById(id).get();
         model.addAttribute("inquiry", inquiry);
         return "/admin/inquiry_reply";
@@ -199,7 +199,6 @@ public class AdminController {
     @PostMapping("/inquiry/{id}/reply")
     public String reply(HttpServletRequest request, Model model, @PathVariable("id") Long id,
                         @RequestParam("answer") String answer, @RequestParam("type") String type) {
-        // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
         try {
@@ -210,7 +209,7 @@ public class AdminController {
             log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
-        // 관리자 여부 확인 --END
+
         inquiryService.replyInquiry(id, answer);
         if (type.equals("P")) {
             return "redirect:/inquiry/product";
@@ -242,7 +241,6 @@ public class AdminController {
     }
     @GetMapping("/notice")
     public String noticeList(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
-        // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
         try {
@@ -253,17 +251,15 @@ public class AdminController {
             log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
-        // 관리자 여부 확인 --END
-        // 목록 구현 -- START
+
         List<Notice> notices = noticeService.findAll();
         pagination.makePagination(model, notices, "notices", 10, page, "pagination");
-        // 목록 구현 -- END
+
         return "/admin/notice_list";
     }
 
     @PostMapping("/notice")
     public String noticeListAjax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
-        // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
         try {
@@ -274,18 +270,15 @@ public class AdminController {
             log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
-        // 관리자 여부 확인 --END
-        // 목록 구현 -- START
+
         List<Notice> notices = noticeService.findAll();
         pagination.makePagination(model, notices, "notices", 10, page, "pagination");
-        // 목록 구현 -- END
+
         return "/admin/notice_list :: section";
     }
 
     @GetMapping("/notice/add")
     public String addNotice(HttpServletRequest request, Model model){
-
-        // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
         try {
@@ -296,9 +289,9 @@ public class AdminController {
             log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
-        // 관리자 여부 확인 --END
         Notice notice = new Notice();
         model.addAttribute("notice",notice);
+
         return "/admin/notice_add";
     }
 
@@ -306,7 +299,6 @@ public class AdminController {
     public String addNotice(HttpServletRequest request, Model model,
                              @ModelAttribute Notice notice,
                              RedirectAttributes redirectAttributes) {
-        // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
         try {
@@ -317,7 +309,7 @@ public class AdminController {
             log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
-        // 관리자 여부 확인 --END
+
         try {
             noticeService.saveNotice(notice);
         } catch (Exception e) {
@@ -332,7 +324,6 @@ public class AdminController {
     @GetMapping("/notice/{id}/edit")
     public String editNotice(HttpServletRequest request,
                               @PathVariable(name = "id") Long id, Model model){
-        // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
         try {
@@ -343,7 +334,7 @@ public class AdminController {
             log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
-        // 관리자 여부 확인 --END
+
         Notice notice = noticeService.findById(id).get();
         model.addAttribute("notice",notice);
 
@@ -354,7 +345,7 @@ public class AdminController {
     public String editNotice(HttpServletRequest request,
                               @PathVariable(name = "id") Long id, Model model, @ModelAttribute Notice notice,
                              @RequestParam("title") String title, @RequestParam("content") String content){
-        // 관리자 여부 확인 -- START
+
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
         try {
@@ -365,7 +356,7 @@ public class AdminController {
             log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
-        // 관리자 여부 확인 --END
+
         noticeService.updateNotice(id, title,content );
 
         return "redirect:/notice";
@@ -374,7 +365,6 @@ public class AdminController {
     @PostMapping("/notice/{id}/delete")
     public String updateProductStatus(HttpServletRequest request, Model model,
                                       @PathVariable("id") Long id) {
-        // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
         try {
@@ -385,7 +375,7 @@ public class AdminController {
             log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
-        // 관리자 여부 확인 --END
+
         noticeService.deleteNotice(id);
         return "redirect:/notice";
     }
