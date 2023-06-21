@@ -15,7 +15,7 @@
 <body>
   <div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
   <!-- header : START -->
-  <header th:replace="~{/fragment/defaultHeader :: #header}"></header>
+  <header th:replace="~{fragment/defaultHeader :: #header}"></header>
   <!-- header : END -->
   <!-- product_banner : START -->
   <div class="product_banner">
@@ -30,11 +30,11 @@
     <h2 class="title center">주종별 전통주</h2>
     <nav class="product">
       <ul>
-        <li class="btn" th:class="${kind == 'spirits'}? 'btn on' : 'btn'"><a href="kind.html">증류주</a></li>
-        <li class="btn" th:class="${kind == 'fruitWine'}? 'btn on' : 'btn'"><a href="kind.html">과실주</a></li>
-        <li class="btn" th:class="${kind == 'riceWheatWine'}? 'btn on' : 'btn'"><a href="kind.html">약주 / 청주</a></li>
-        <li class="btn" th:class="${kind == 'all'}? 'btn on' : 'btn'"><a href="kind.html">숙성 전통주</a></li>
-        <li class="btn" th:class="${kind == 'all'}? 'btn on' : 'btn'"><a href="kind.html">기타주</a></li>
+        <li class="btn" th:class="${kind == 'spirits'}? 'btn on' : 'btn'"><a href="kind.html" th:href="@{/kind/spirits}">증류주</a></li>
+        <li class="btn" th:class="${kind == 'fruitWine'}? 'btn on' : 'btn'"><a href="kind.html" th:href="@{/kind/fruit-wine}">과실주</a></li>
+        <li class="btn" th:class="${kind == 'riceWheatWine'}? 'btn on' : 'btn'"><a href="kind.html" th:href="@{/kind/rice-wheat-wine}">약주 / 청주</a></li>
+        <li class="btn" th:class="${kind == 'makgeoli'}? 'btn on' : 'btn'"><a href="kind.html" th:href="@{/kind/makgeoli}">막걸리</a></li>
+        <li class="btn" th:class="${kind == 'etc'}? 'btn on' : 'btn'"><a href="kind.html" th:href="@{/kind/etc}">기타주</a></li>
       </ul>
     </nav>
     <ul class="product_list center" >
@@ -57,7 +57,7 @@
       </li>
     </ul>
     <div class="d-flex justify-content-center py-5">
-      <nav aria-label="">
+      <nav aria-label="pagination">
         <ul class="pagination">
           <li th:if="${pagination.existPreviousLastPage}" class="page-item">
             <a class="page-link"
@@ -70,8 +70,7 @@
             <a class="page-link"
                th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'"
                th:onclick="updateList([[${page}]])"
-               th:text="${page}"
-               th:page="${page}">1</a>
+               th:text="${page}">1</a>
           </li>
           <li th:if="${pagination.existNextFirstPage}" class="page-item">
             <a class="page-link"
@@ -86,13 +85,12 @@
   </section>
   <!-- container : END -->
   <!-- footer : START -->
-  <footer th:replace="~{/fragment/footer :: #footer}"></footer>
+  <footer th:replace="~{fragment/footer :: #footer}"></footer>
   <!-- footer : END -->
   <script src="/js/header.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script>
     var url = '/kind/'+ '[[${kind}]]';
-    console.log(url);
     function updateList(page) {
         $.ajax({
           type: 'POST',

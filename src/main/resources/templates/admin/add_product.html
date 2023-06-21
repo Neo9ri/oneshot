@@ -35,8 +35,8 @@
         </div>
         <div id="productEditorRight" class="col-4">
             <div class="row">
-                <label for="type_local" class="col col_name align-self-center">지역 카테고리</label>
-                <select id="type_local" name="type_local" class="col form-select" required>
+                <label for="type_region" class="col col_name align-self-center">지역 카테고리</label>
+                <select id="type_region" name="type_region" class="col form-select" required>
                     <option selected>지역 카테고리 선택</option>
                     <option value="서울, 경기, 인천권">서울/경기/인천</option>
                     <option value="강원, 세종권">강원/세종</option>
@@ -116,8 +116,7 @@
 </section>
 <!-- container : END -->
 <!-- footer : START -->
-<footer th:replace="~{/fragment/footer :: #footer}">
-</footer>
+<footer th:replace="~{fragment/footer :: #footer}"></footer>
 <!-- footer : END -->
 <script src="/js/admin_product.js"></script>
 <script src="/js/header.js"></script>

@@ -83,23 +83,65 @@
     text-align:center;
     line-height:2;
 }
-.find_container .find_form label{
+.find_container .find_form label,{
     font-size:20px;
-    font-weight:700px;
+    font-weight:700;
     line-height: 2;
     text-align: center;
 }
-.find_container .find_form button.find{
+.find_container .find_form button.find, #reset_pw button.reset{
     background-color:#773300;
     position:relative;
-    left: calc(50% - 73px);
     color:#fff;
 }
-.find_container .find_form button.find.pw{
+.find_container .find_form button.find{
+    left: calc(50% - 73px);
+}
+.find_container .find_form button.find.pw,{
     left:calc(50% - 113px)
-    }
+}
 
 /* find-form ONLY -END*/
+/*found-id ONLY - START*/
+.find_container div.found_id, #reset_pw{
+width:600px;
+height:400px;
+padding:50px;
+margin: 0 auto;
+background-color:#feef8888;
+}
+.find_container div.found_id>p{
+text-align:center;
+width:300px;
+margin:50px auto;
+font-size:30px;
+}
+.find_container div.found_id div.button_group{
+margin: 50px 0;
+}
+.find_container div.found_id div.button_group button{
+background-color:#773300;
+color: #fff;
+}
+/*found-id ONLY - END*/
+/*reset-pw ONLY - START*/
+ #reset_pw button.reset{
+    left:calc(50% - 83px);
+    margin-top:20px;
+ }
+  #reset_pw label{
+  font-weight:700;
+  font-size:18px;
+  line-height:42px;
+  text-align:center;
+  }
+  #reset_pw span{
+    display: block;
+    width:200px;
+    margin:20px 0 0 170px;
+    }
+
+/*reset-pw ONLY - END*/
 
 
 /* 회원가입 */

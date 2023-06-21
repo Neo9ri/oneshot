@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>지역별 전통주</title>
+  <title>가격별 전통주</title>
   <link rel="icon" href="/img/favicon-32x32.png" type="image/x-icon" />
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
   <link rel="stylesheet" href="/css/main_style.css" />
@@ -20,21 +20,22 @@
   <!-- product_banner : START -->
   <div class="product_banner">
     <p class="center">
-      <span>지역별 전통주</span>
+      <span>가격별 전통주</span>
       <span>원샷이 엄선한 우리술을 만나보세요!</span>
     </p>
   </div>
   <!-- product_banner : END -->
   <!-- container : START -->
-  <section id="section" class="product_container">
-    <h2 class="title center">지역별 전통주</h2>
+  <section class="product_container">
+    <h2 class="title center">가격별 전통주</h2>
     <nav class="product">
-      <ul>
-        <li class="btn" th:class="${region == 'all'}? 'btn on' : 'btn'"><a href="region.html" th:href="@{/region/all}">전체보기</a></li>
-        <li class="btn" th:class="${region == 'SGI'}? 'btn on' : 'btn'"><a href="region.html" th:href="@{/region/SGI}">서울,경기,인천권</a></li>
-        <li class="btn" th:class="${region == 'GS'}? 'btn on' : 'btn'"><a href="region.html" th:href="@{/region/GS}">강원,세종권</a></li>
-        <li class="btn" th:class="${region == 'CJ'}? 'btn on' : 'btn'"><a href="region.html" th:href="@{/region/CJ}">충북,충남,제주도</a></li>
-        <li class="btn" th:class="${region == 'JG'}? 'btn on' : 'btn'"><a href="region.html" th:href="@{/region/JG}">전북,전남,경북,경남</a></li>
+      <ul class="price">
+        <li class="btn" th:class="${price == 'u10'}? 'btn on' : 'btn'"><a href="price.html" th:href="@{/price/u10}">10,000원이하</a></li>
+        <li class="btn" th:class="${price == 'u20'}? 'btn on' : 'btn'"><a href="price_20000.html" th:href="@{/price/u20}">20,000원이하</a></li>
+        <li class="btn" th:class="${price == 'u30'}? 'btn on' : 'btn'"><a href="price_30000.html" th:href="@{/price/u30}">30,000원이하</a></li>
+        <li class="btn" th:class="${price == 'u40'}? 'btn on' : 'btn'"><a href="price_40000.html" th:href="@{/price/u40}">40,000원이하</a></li>
+        <li class="btn" th:class="${price == 'u50'}? 'btn on' : 'btn'"><a href="price_50000.html" th:href="@{/price/u50}">50,000원이하</a></li>
+        <li class="btn" th:class="${price == 'o50'}? 'btn on' : 'btn'"><a href="price_50000_more.html" th:href="@{/price/o50}">50,000원이상</a></li>
       </ul>
     </nav>
     <ul class="product_list center" >
@@ -70,8 +71,7 @@
             <a class="page-link"
                th:class="${page == pagination.requestPage}? 'page-link active': 'page-link'"
                th:onclick="updateList([[${page}]])"
-               th:text="${page}"
-               th:page="${page}">1</a>
+               th:text="${page}">1</a>
           </li>
           <li th:if="${pagination.existNextFirstPage}" class="page-item">
             <a class="page-link"
@@ -91,7 +91,7 @@
   <script src="/js/header.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script>
-    var url = '/region/'+ '[[${region}]]';
+    var url = '/price/'+ '[[${price}]]';
     function updateList(page) {
         $.ajax({
           type: 'POST',

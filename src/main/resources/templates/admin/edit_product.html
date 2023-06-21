@@ -34,12 +34,12 @@
       </div>
       <div id="productEditorRight" class="col-4">
         <div class="row">
-          <label for="type_local" class="col col_name align-self-center">지역 카테고리</label>
-          <select id="type_local" name="type_local" class="col form-select" required>
-            <option th:each="local : ${typeLocal}"
-            th:value="${local}"
-            th:text="${local}"
-            th:selected="${local eq product.type_local}"></option>
+          <label for="type_region" class="col col_name align-self-center">지역 카테고리</label>
+          <select id="type_region" name="type_region" class="col form-select" required>
+            <option th:each="region : ${typeRegion}"
+            th:value="${region}"
+            th:text="${region}"
+            th:selected="${region eq product.type_region}"></option>
           </select>
         </div>
         <div class="row">
@@ -114,8 +114,7 @@
   </section>
   <!-- container : END -->
   <!-- footer : START -->
-<footer th:replace="~{/fragment/footer :: #footer}">
-</footer>
+<footer th:replace="~{fragment/footer :: #footer}"></footer>
   <!-- footer : END -->
 <script src="/js/admin_product.js"></script>
 <script src="/js/header.js"></script>

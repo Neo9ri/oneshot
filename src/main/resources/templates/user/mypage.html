@@ -73,8 +73,7 @@
     </div>
     <div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
     <!-- header 시작 -->
-    <header th:replace="~{/fragment/defaultHeader :: #header}">
-    </header>
+    <header th:replace="~{fragment/defaultHeader :: #header}"></header>
     <!-- header 종료 -->
     <!-- mypage 시작 -->
     <div class="mypage_container">
@@ -90,7 +89,7 @@
                         <p th:text="${profile.email}">hong123@naver.com</p>
                     </div>
                     <div>
-                        <a href="#">비밀번호 변경</a>
+                        <a href="/reset-pw">비밀번호 변경</a>
                     </div>
                     <div>
                         <a href="#inquiry">문의 내역</a>
@@ -232,8 +231,7 @@
     </div>
     <!-- mypage 종료 -->
     <!-- footer : START -->
-    <footer th:replace="~{/fragment/footer :: #footer}">
-    </footer>
+    <footer th:replace="~{fragment/footer :: #footer}"></footer>
     <!-- footer : END -->
     <script>
    $(document).ready(function() {

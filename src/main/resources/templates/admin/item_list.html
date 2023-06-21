@@ -44,7 +44,7 @@
       <tbody th:unless="${#lists.isEmpty(products)}">
       <tr th:each="product : ${products}">
         <td th:text="${product.id}">101</td>
-        <td th:text="${product.type_local}">전라북도, 경상도권</td>
+        <td th:text="${product.type_region}">전라북도, 경상도권</td>
         <td th:text="${product.type_kind}">증류주</td>
         <td th:text="${product.creator}">안동 소주 일품</td>
         <td th:text="${product.name}">안동 소주</td>
@@ -92,7 +92,7 @@
 </section>
 <!-- container : END -->
 <!-- footer : START -->
-<footer th:replace="~{/fragment/footer :: #footer}"></footer>
+<footer th:replace="~{fragment/footer :: #footer}"></footer>
 <!-- footer : END -->
 <script src="js/header.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>

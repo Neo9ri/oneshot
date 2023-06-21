@@ -25,15 +25,12 @@ public class LoginController {
         loginService.loginCheck(request, model);
         LoginDTO user = (LoginDTO) request.getSession().getAttribute("user");
         if (user.getLoginSuccess()){
-            if (user.getAuth().equals("A")){
-                log.info("로그인한 유저");
+            if (user.getAuth().equals("A")) {
                 return "redirect:/";
             } else {
-                log.info("관리자");
                 return "redirect:/member-list";
             }
         }
-        log.info("비로그인 유저");
         return  "/login/login";
     }
 
@@ -81,8 +78,10 @@ public class LoginController {
     }
 
     @PostMapping("/find-pw")
-    public String findPwResult(){
-
+    public String findPwResult(HttpServletRequest request, Model model, MemberDTO info){
+        loginService.loginCheck(request, model);
+        MemberDTO result = loginService.findPassword(info);
+        
         return null;
     }
 }

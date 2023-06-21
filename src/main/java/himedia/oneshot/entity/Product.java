@@ -11,7 +11,7 @@ public class Product {
     private String status;        //상품 이름
     private String name;        //상품 이름
     private int quantity;       //상품수량
-    private String type_local;   //지역
+    private String type_region;   //지역
     private String type_kind;    //주종
     private String creator;     //제조사
     private float alcohol;      // 도수
@@ -20,10 +20,10 @@ public class Product {
     private String img_thumb;    //상품 썸네일 이미지 파일 경로
     private String img_exp1;     //상품 상세 내용 이미지 파일 경로1
     private String img_exp2;     //상품 상세 내용 이미지 파일 경로2
-    public Product(String name, int quantity,String type_local,String type_kind, String creator, float alcohol, int volume, int price, String img_thumb, String img_exp1) {
+    public Product(String name, int quantity,String type_region,String type_kind, String creator, float alcohol, int volume, int price, String img_thumb, String img_exp1) {
         this.name = name;
         this.quantity = quantity;
-        this.type_local = type_local;
+        this.type_region = type_region;
         this.type_kind = type_kind;
         this.creator = creator;
         this.alcohol = alcohol;

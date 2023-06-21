@@ -111,10 +111,6 @@ public class JdbcMemberRepository implements MemberRepository {
     }
 
     @Override
-    public void ban(int memberId) {
-    }
-
-    @Override
     public Optional<Member> findById(long id) {
         String sql = "SELECT * FROM member WHERE id = ?;";
         List<Member> member = jdbcTemplate.query(sql, memberRowMapper(), id);
@@ -155,10 +151,24 @@ public class JdbcMemberRepository implements MemberRepository {
     }
 
     @Override
+    public void changeAuth(long id, String authority) {
+        String sql = "UPDATE member SET authority= ? WHERE id = ?";
+        jdbcTemplate.update(sql, authority, id);
+    }
+
+    @Override
     public Optional<Member> findLoginId(String name, String email, String birthday) {
         String sql = "SELECT * FROM member WHERE name LIKE ? AND email LIKE ? AND id_card_number LIKE ?";
         birthday = birthday +'%';
         List<Member> members = jdbcTemplate.query(sql, memberRowMapper(), name, email, birthday);
+        return members.stream().findAny();
+    }
+
+    @Override
+    public Optional<Member> findPassword(String loginId, String name, String birthday, String email) {
+        String sql = "SELECT * FROM member WHERE login_Id LIKE ? AND name LIKE ? AND id_card_number LIKE ? AND email LIKE ?";
+        birthday = birthday +'%';
+        List<Member> members = jdbcTemplate.query(sql, memberRowMapper(), loginId, name, birthday, email);
         return members.stream().findAny();
     }
 }

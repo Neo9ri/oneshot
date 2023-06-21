@@ -9,7 +9,7 @@
   <div class="center">
     <div>
       <h1>
-        <a href="/"><img src="/img/oneshot_logo.png" alt="원샷-우리술 한잔" />우리술
+        <a href="/"><img src="img/oneshot_logo.png" alt="원샷-우리술 한잔" />우리술
           한 잔,</a>
       </h1>
       <form role="search" class="main_search" th:action="@{/search}">
@@ -17,7 +17,7 @@
           <input type="search" name="keyword" placeholder="상품명을 입력하세요." class="col form-control"
                  aria-label="Search" />
           <button type="submit" class="col-1">
-            <img src="/img/search.png" alt="검색" />
+            <img src="img/search.png" alt="검색" />
           </button>
         </div>
       </form>
@@ -52,21 +52,21 @@
         <a href="product/kind.html" th:href="@{/kind/spirits}">주종별 전통주</a>
         <ul>
           <li><a href="product/kind.html" th:href="@{/kind/spirits}">증류주</a></li>
-          <li><a href="product/kind.html">과실주</a></li>
-          <li><a href="product/kind.html">약주 / 청주</a></li>
-          <li><a href="product/kind.html">숙성 전통주</a></li>
-          <li><a href="product/kind.html">기타주</a></li>
+          <li><a href="product/kind.html" th:href="@{/kind/fruit-wine}">과실주</a></li>
+          <li><a href="product/kind.html" th:href="@{/kind/rice-wheat-wine}">약주 / 청주</a></li>
+          <li><a href="product/kind.html" th:href="@{/kind/makgeoli}">막걸리</a></li>
+          <li><a href="product/kind.html" th:href="@{/kind/etc}">기타주</a></li>
         </ul>
       </li>
       <li>
-        <a href="product/price_10000.html">가격별 전통주</a>
+        <a href="product/price_10000.html" th:href="@{/price/u10}">가격별 전통주</a>
         <ul>
-          <li><a href="product/price_10000.html">10,000원 이하 제품</a></li>
-          <li><a href="product/price_20000.html">20,000원 이하 제품</a></li>
-          <li><a href="product/price_30000.html">30,000원 이하 제품</a></li>
-          <li><a href="product/price_40000.html">40,000원 이하 제품</a></li>
-          <li><a href="product/price_50000.html">50,000원 이하 제품</a></li>
-          <li><a href="product/price_50000_more.html">50,000원 이상 제품</a></li>
+          <li><a href="product/price_10000.html" th:href="@{/price/u10}">10,000원 이하 제품</a></li>
+          <li><a href="product/price_20000.html" th:href="@{/price/u20}">20,000원 이하 제품</a></li>
+          <li><a href="product/price_30000.html"th:href="@{/price/u30}">30,000원 이하 제품</a></li>
+          <li><a href="product/price_40000.html" th:href="@{/price/u40}">40,000원 이하 제품</a></li>
+          <li><a href="product/price_50000.html" th:href="@{/price/u50}">50,000원 이하 제품</a></li>
+          <li><a href="product/price_50000_more.html" th:href="@{/price/o50}">50,000원 이상 제품</a></li>
         </ul>
       </li>
     </ul>
