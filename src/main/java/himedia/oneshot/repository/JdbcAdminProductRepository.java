@@ -28,7 +28,7 @@ public class JdbcAdminProductRepository implements AdminProductRepository {
         parameter.put("name", product.getName());
         parameter.put("status", "T");
         parameter.put("quantity", product.getQuantity());
-        parameter.put("type_local", product.getType_local());
+        parameter.put("type_region", product.getType_region());
         parameter.put("type_kind", product.getType_kind());
         parameter.put("creator", product.getCreator());
         parameter.put("alcohol", product.getAlcohol());
@@ -45,11 +45,11 @@ public class JdbcAdminProductRepository implements AdminProductRepository {
 
     @Override
     public Product updateProduct(Long id, Product updatedProduct) {
-        String query="update product set name=?,quantity=?,type_local=?,type_kind=?,creator=?,alcohol=?,volume=?,price=?,img_thumb=?,img_exp1=?,img_exp2=? where id=?";
+        String query="update product set name=?,quantity=?,type_region=?,type_kind=?,creator=?,alcohol=?,volume=?,price=?,img_thumb=?,img_exp1=?,img_exp2=? where id=?";
         jdbcTemplate.update(query,
                 updatedProduct.getName(),
                 updatedProduct.getQuantity(),
-                updatedProduct.getType_local(),
+                updatedProduct.getType_region(),
                 updatedProduct.getType_kind(),
                 updatedProduct.getCreator(),
                 updatedProduct.getAlcohol(),
@@ -83,7 +83,7 @@ public class JdbcAdminProductRepository implements AdminProductRepository {
             product.setStatus(rs.getString("status"));
             product.setName(rs.getString("name"));
             product.setQuantity(rs.getInt("quantity"));
-            product.setType_local(rs.getString("type_local"));
+            product.setType_region(rs.getString("type_region"));
             product.setType_kind(rs.getString("type_kind"));
             product.setCreator(rs.getString("creator"));
             product.setAlcohol(rs.getFloat("alcohol"));
