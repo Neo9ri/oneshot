@@ -4,7 +4,9 @@ import himedia.oneshot.dto.LoginDTO;
 import himedia.oneshot.dto.MemberDTO;
 import himedia.oneshot.entity.Member;
 import himedia.oneshot.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 

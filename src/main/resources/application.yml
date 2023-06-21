@@ -10,7 +10,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: > # '>' : ??? ??, line 10 : DB ??, line 11 : DB ??? ?? DB ?? 
-      jdbc:mysql://localhost:3306/oneshot?
+      jdbc:mysql://localhost:3306/oneshot?useSSL=false&serverTimezone=Asia/Seoul
       createDatabaseIfNotExist=true
       &userUnicode=true
       &characterEncoding=UTF-8
@@ -24,6 +24,7 @@ spring:
       enabled: false
   thymeleaf:
     cache: false
+    prefix: classpath:/templates/
 
 
 

@@ -32,7 +32,7 @@ public class ProductController {
     private final ProductReviewService reviewService;
 
     //[상품 목록]
-    @GetMapping("/product/item_detail/{id}")
+    @GetMapping("product/item_detail/{id}")
     public String detailPage(HttpServletRequest request, @PathVariable("id") Long id
             , Model model,@RequestParam(required = false) Integer page){
         // 로그인 확인 절차
@@ -61,9 +61,9 @@ public class ProductController {
         List<ProductReviewDTO> reviewDTOS = reviewService.showReview(id);
         pagination.makePagination(model,reviewDTOS,"reviewDTO",2,page,"pagination");
 //        model.addAttribute("reviewDTO",reviewDTOS);
-        return  "/product/item_detail";
+        return  "product/item_detail";
     }
-    @PostMapping("/product/item_detail/{id}")
+    @PostMapping("product/item_detail/{id}")
     public String detailPageAjax(HttpServletRequest request, @PathVariable("id") Long id
             , Model model,@RequestParam(required = false) Integer page){
         // 로그인 확인 절차
@@ -92,11 +92,11 @@ public class ProductController {
         List<ProductReviewDTO> reviewDTOS = reviewService.showReview(id);
         pagination.makePagination(model,reviewDTOS,"reviewDTO",2,page,"pagination");
 //        model.addAttribute("reviewDTO",reviewDTOS);
-        return  "/product/item_detail::section";
+        return  "product/item_detail::section";
     }
 
     //[장바구니에 담기]
-    @PostMapping("/addCart")
+    @PostMapping("addCart")
     public String addToCart(HttpServletRequest request, @RequestParam("id") Long id,
                             RedirectAttributes redirectAttributes,Model model){
         // 로그인 확인 절차
@@ -116,7 +116,7 @@ public class ProductController {
     }
 
     //[장바구니 확인]
-    @GetMapping("/user/item_cart")
+    @GetMapping("user/item_cart")
     public String showCart(HttpServletRequest request, Model model){
         // 로그인 확인 절차
         loginService.loginCheck(request, model);
@@ -137,7 +137,7 @@ public class ProductController {
     }
 
     //[장바구니 수량]
-    @PostMapping("/user/item_cart/update/{id}")
+    @PostMapping("user/item_cart/update/{id}")
     public String updateCartProductQuantity(HttpServletRequest request ,
                                             @PathVariable("id") Long id,
                                             @RequestParam("quantity") int quantity,
@@ -150,7 +150,7 @@ public class ProductController {
     }
 
     //[장바구니 상품 삭제]
-    @PostMapping("/user/item_cart/delete/{id}")
+    @PostMapping("user/item_cart/delete/{id}")
     public String deleteCartProduct(HttpServletRequest request,
                                     @PathVariable("id") Long id,
                                     RedirectAttributes redirectAttributes,
@@ -161,7 +161,7 @@ public class ProductController {
         return "redirect:/user/item_cart";
     }
     //[장바구니 주문]
-    @PostMapping("/user/item_cart/order")
+    @PostMapping("user/item_cart/order")
     public String submitOrder(HttpServletRequest request,RedirectAttributes redirectAttributes){
         // 장바구니에 담긴 상품 정보 추가
         HttpSession session = request.getSession();
@@ -178,21 +178,21 @@ public class ProductController {
         return "redirect:/";
     }
 
-    @GetMapping("/search")
+    @GetMapping("search")
     public String search(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page, @RequestParam String keyword) {
         loginService.loginCheck(request, model);
         List<Product> products = productService.findByName(keyword);
         pagination.makePagination(model, products, "products", 8, page, "pagination");
         model.addAttribute("keyword", keyword);
-        return "/product/search";
+        return "product/search";
     }
 
-    @PostMapping("/search")
+    @PostMapping("search")
     public String searchMore(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page, @RequestParam String keyword) {
         loginService.loginCheck(request, model);
         List<Product> products = productService.findByName(keyword);
         pagination.makePagination(model, products, "products", 8, page, "pagination");
         model.addAttribute("keyword", keyword);
-        return "/product/search :: section";
+        return "product/search :: section";
     }
 }

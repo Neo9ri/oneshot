@@ -33,7 +33,7 @@ public class AdminProductController {
 
     private final List<String> typeKind = List.of("증류주", "과실주","약주/청주","숙성 전통주","기타");
 
-    @GetMapping("/product/add")
+    @GetMapping("product/add")
     public String addProduct(HttpServletRequest request, Model model) {
         // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
@@ -49,10 +49,10 @@ public class AdminProductController {
         // 관리자 여부 확인 --END
         Product product = new Product();
         model.addAttribute("product", product);
-        return "/admin/add_product";
+        return "admin/add_product";
     }
 
-    @PostMapping("/product/add")
+    @PostMapping("product/add")
     public String addProduct(HttpServletRequest request, Model model,
                              @ModelAttribute Product product,
                              @RequestParam("thumb") MultipartFile file,
@@ -87,7 +87,7 @@ public class AdminProductController {
 
 
 
-    @GetMapping("/product/{id}/edit")
+    @GetMapping("product/{id}/edit")
     public String editProduct(HttpServletRequest request,
                               @PathVariable(name = "id") Long id, Model model) throws IOException {
         // 관리자 여부 확인 -- START
@@ -108,11 +108,11 @@ public class AdminProductController {
         model.addAttribute("typeKind", typeKind);
         model.addAttribute("selectedTypeKind", product.getType_kind());
 
-        return "/admin/edit_product";
+        return "admin/edit_product";
     }
 
 
-    @PostMapping("/product/{id}/edit")
+    @PostMapping("product/{id}/edit")
     public String editProduct(HttpServletRequest request,
                               Model model, @PathVariable("id") Long id,
                               @ModelAttribute Product updatedProduct,
@@ -144,7 +144,7 @@ public class AdminProductController {
     }
 
 
-    @PostMapping("/product/{id}/update")
+    @PostMapping("product/{id}/update")
     public String updateProductStatus(HttpServletRequest request, Model model,
                                       @PathVariable("id") Long id, String status) {
         // 관리자 여부 확인 -- START

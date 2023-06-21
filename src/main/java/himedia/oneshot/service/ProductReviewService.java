@@ -5,6 +5,7 @@ import himedia.oneshot.entity.ProductReview;
 import himedia.oneshot.entity.Purchase;
 import himedia.oneshot.repository.ProductReviewRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,8 +25,9 @@ public class ProductReviewService {
             String imgName = img.getOriginalFilename();
             thumbImgNames.add(imgName);
         }
-        String thumbPath = System.getProperty("user.dir")+
-                "/src/main/resources/static/img/product_review/";
+//        String thumbPath = System.getProperty("user.dir")+
+//                "/src/main/resources/static/img/product_review/";
+        String thumbPath = new ClassPathResource("static/img/product_review").getPath();
 
         for(int i = 0; i < thumbImgFile.length; i++){
             if(i < thumbImgNames.size() && !thumbImgNames.get(i).isEmpty()){

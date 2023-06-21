@@ -73,7 +73,7 @@
     </div>
     <div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
     <!-- header 시작 -->
-    <header th:replace="~{/fragment/defaultHeader :: #header}">
+    <header th:replace="~{fragment/defaultHeader :: #header}">
     </header>
     <!-- header 종료 -->
     <!-- mypage 시작 -->
@@ -157,14 +157,6 @@
                             </button>
                         </td>
                     </tr>
-<!--                    <tr>-->
-<!--                        <td>2</td>-->
-<!--                        <td>170723-521507-11</td>-->
-<!--                        <td>2023-05-27</td>-->
-<!--                        <td>46,000/3000</td>-->
-<!--                        <td>49,000</td>-->
-<!--                        <td>배송준비</td>-->
-<!--                    </tr>-->
                 </tbody>
             </table>
         </div>
@@ -232,14 +224,14 @@
     </div>
     <!-- mypage 종료 -->
     <!-- footer : START -->
-    <footer th:replace="~{/fragment/footer :: #footer}">
+    <footer th:replace="~{fragment/footer :: #footer}">
     </footer>
     <!-- footer : END -->
     <script>
    $(document).ready(function() {
-      $('.btn_order_primary').click(function() {
+      $('.btn_primary').click(function() {
         var purchaseId = $(this).data('purchase-id');
-
+        console.log(purchaseId);
         $.ajax({
           type: 'POST',
           url: '/purchaseDetail',
