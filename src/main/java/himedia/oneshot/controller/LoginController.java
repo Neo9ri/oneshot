@@ -89,4 +89,11 @@ public class LoginController {
 
         return "/login/found_id";
     }
+
+    @GetMapping("/reset-pw")
+    public String resetPw(HttpServletRequest request, Model model) {
+        loginService.loginCheck(request, model);
+
+        return "/login/reset_pw";
+    }
 }
