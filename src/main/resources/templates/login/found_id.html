@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>아이디찾기</title>
+  <link rel="icon" href="/img/favicon-32x32.png" type="image/x-icon" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/main_style.css" />
+  <link rel="stylesheet" href="/css/login.css" />
+
+</head>
+
+<body>
+<div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
+  <!-- header-START -->
+<header th:replace="~{/fragment/defaultHeader :: #header}"></header>
+  <!-- header-END -->
+  <!-- container-START  -->
+    <section class="center find_container">
+      <h3 class="title">고객님의 원샷 아이디</h3>
+      <div class="found_id" >
+        <p>고객님의 아이디는<br> <span>{}</span>입니다.</p>
+        <hr>
+       <div class="row d-flex justify-content-around button_group">
+       <button class="btn btn-lg col-4" type="button" onclick="location.href='/login'">로그인하기</button>
+       <button class="btn btn-lg col-4" type="button" onclick="location.href='/find-pw'" >비밀번호찾기</button>
+       </div>
+      </div>
+    </section>
+  <!-- container-END -->
+  <!-- footer-START -->
+  <footer th:replace="~{/fragment/footer :: #footer}">
+  </footer>
+  <!-- footer-END -->
+  <script src="js/header.js"></script>
+</body>
+</html>

@@ -100,6 +100,28 @@
     }
 
 /* find-form ONLY -END*/
+/*found-id ONLY - START*/
+.find_container div.found_id{
+width:600px;
+height:400px;
+padding:50px;
+margin: 0 auto;
+background-color:#feef8888;
+}
+.find_container div.found_id>p{
+text-align:center;
+width:300px;
+margin:50px auto;
+font-size:30px;
+}
+.find_container div.found_id div.button_group{
+margin: 50px 0;
+}
+.find_container div.found_id div.button_group button{
+background-color:#773300;
+color: #fff;
+}
+/*found-id ONLY - END*/
 
 
 /* 회원가입 */

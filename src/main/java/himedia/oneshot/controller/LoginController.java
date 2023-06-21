@@ -21,17 +21,17 @@ public class LoginController {
     private final LoginService loginService;
 
     @GetMapping("/login")
-    public String login(HttpServletRequest request, Model model){
+    public String login(HttpServletRequest request, Model model) {
         loginService.loginCheck(request, model);
         LoginDTO user = (LoginDTO) request.getSession().getAttribute("user");
-        if (user.getLoginSuccess()){
+        if (user.getLoginSuccess()) {
             if (user.getAuth().equals("A")) {
                 return "redirect:/";
             } else {
                 return "redirect:/member-list";
             }
         }
-        return  "/login/login";
+        return "/login/login";
     }
 
     @PostMapping("/login")
@@ -42,13 +42,13 @@ public class LoginController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request){
+    public String logout(HttpServletRequest request) {
         request.getSession().invalidate();
         return "redirect:/";
     }
 
     @GetMapping("/find-id")
-    public String findId(HttpServletRequest request, Model model){
+    public String findId(HttpServletRequest request, Model model) {
         loginService.loginCheck(request, model);
 
         LoginDTO loginUser = (LoginDTO) request.getSession().getAttribute("user");
@@ -59,7 +59,7 @@ public class LoginController {
     }
 
     @PostMapping("/find-id")
-    public String findIdResult(HttpServletRequest request, Model model, @ModelAttribute MemberDTO info){
+    public String findIdResult(HttpServletRequest request, Model model, @ModelAttribute MemberDTO info) {
         loginService.loginCheck(request, model);
         MemberDTO result = loginService.findLoginId(info);
         model.addAttribute(result);
@@ -67,7 +67,7 @@ public class LoginController {
     }
 
     @GetMapping("/find-pw")
-    public String findPw(HttpServletRequest request, Model model){
+    public String findPw(HttpServletRequest request, Model model) {
         loginService.loginCheck(request, model);
 
         LoginDTO loginUser = (LoginDTO) request.getSession().getAttribute("user");
@@ -78,8 +78,15 @@ public class LoginController {
     }
 
     @PostMapping("/find-pw")
-    public String findPwResult(){
+    public String findPwResult() {
 
         return null;
+    }
+
+    @GetMapping("/found-id")
+    public String foundId(HttpServletRequest request, Model model) {
+        loginService.loginCheck(request, model);
+
+        return "/login/found_id";
     }
 }
