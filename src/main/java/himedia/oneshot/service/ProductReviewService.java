@@ -5,11 +5,15 @@ import himedia.oneshot.entity.ProductReview;
 import himedia.oneshot.entity.Purchase;
 import himedia.oneshot.repository.ProductReviewRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,9 +29,8 @@ public class ProductReviewService {
             String imgName = img.getOriginalFilename();
             thumbImgNames.add(imgName);
         }
-//        String thumbPath = System.getProperty("user.dir")+
-//                "/src/main/resources/static/img/product_review/";
-        String thumbPath = new ClassPathResource("static/img/product_review").getPath();
+        String thumbPath = System.getProperty("user.dir")+
+                "/src/main/resources/static/img/product_review/";
 
         for(int i = 0; i < thumbImgFile.length; i++){
             if(i < thumbImgNames.size() && !thumbImgNames.get(i).isEmpty()){
@@ -35,11 +38,11 @@ public class ProductReviewService {
                 thumbImgFile[i].transferTo(thumbSaveFile);
             }
         }
-        productReview.setImg_exp1("img/product_review/"+thumbImgNames.get(0));
+        productReview.setImg_exp1("/img/product_review/"+thumbImgNames.get(0));
         if(thumbImgNames.size() > 1 && !thumbImgNames.get(1).isEmpty()){
-            productReview.setImg_exp2("img/product_review/"+thumbImgNames.get(1));
+            productReview.setImg_exp2("/img/product_review/"+thumbImgNames.get(1));
         }else if (thumbImgNames.size() > 2 && !thumbImgNames.get(2).isEmpty()){
-            productReview.setImg_exp3("img/product_review/"+thumbImgNames.get(2));
+            productReview.setImg_exp3("/img/product_review/"+thumbImgNames.get(2));
         }
         return reviewRepository.saveReview(productReview);
     }
