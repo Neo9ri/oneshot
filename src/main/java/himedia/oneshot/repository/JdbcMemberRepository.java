@@ -87,8 +87,7 @@ public class JdbcMemberRepository implements MemberRepository {
     		parameters.put("email", member.getEmail());
     		parameters.put("name", member.getName());
     		parameters.put("phone_number", member.getPhone_number());
-    		//parameters.put("id_card_number", member.getId_card_number());
-            parameters.put("id_card_number", member.getId_card_number() + member.getId_card_number2());
+    		parameters.put("id_card_number", member.getId_card_number());
     		parameters.put("address", member.getAddress());
     		parameters.put("gender", member.getGender());		
 			parameters.put("authority", "A");

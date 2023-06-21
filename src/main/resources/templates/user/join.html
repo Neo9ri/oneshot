@@ -107,21 +107,6 @@
       </ul>
     </nav>
   </header>
-  <!-- header : END -->
-  <!-- mainbanner : START -->
-  <!-- Swiper -->
-  <!-- <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide"><a href="#"></a></div>
-      <div class="swiper-slide"><a href="#"></a></div>
-      <div class="swiper-slide"><a href="#"></a></div>
-    </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
-  </div> -->
-  <!-- mainbanner : END -->
-  <!-- container : START -->
 
   <body>
     <div class="main_container_join">
@@ -147,7 +132,7 @@
               <label for="InputId" class="form-label mt-4">아이디</label> &nbsp;<span id="check01"></span>
               <div class="input-img-group">
                 <span><img src="../img/join/name.png" alt=""></span>
-                <input type="text" class="form-control" id="login_id" name="login_id" onchange="checkId()">
+                <input type="text" class="form-control" id="loginId" name="loginId" onchange="checkId()">
                 <!-- <input type="text" class="form-control" id="login_id" name="login_id" oninput = "checkId()"> -->
                 <!-- <button class="duble-check-btn">중복확인</button>  -->
               </div>
@@ -184,15 +169,15 @@
                <label for="InputNumber" class="form-label mt-4">주민번호</label>
                <div class="input-img-group">
                  <span><img src="../img/join/card.png" alt=""></span>
-                 <input type="text" class="form-control" id="id_card_number1" name="id_card_number" oninput="idcardautoHyphen" maxlength="6"> &nbsp;_&nbsp;
-                 <input type="password" class="form-control" id="id_card_number2" name="id_card_number2" oninput="idcardautoHyphen" maxlength="7">
+                 <input type="text" class="form-control" id="idCardNumber1" name="idCardNumber1"  maxlength="6"> &nbsp;_&nbsp;
+                 <input type="password" class="form-control" id="idCardNumber2" name="idCardNumber2"  maxlength="7">
                 </div>
              </div>        
                <div class="form-group">
                  <label for="InputPhone" class="form-label mt-4">휴대전화번호</label>
                  <div class="input-img-group">
                    <span><img src="../img/join/phone.png" alt=""></span>
-                   <input type="text" class="form-control" id="phone_number" name="phone_number" oninput="autoHyphen(this)"  maxlength="13">
+                   <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" oninput="autoHyphen(this)"  maxlength="13">
                  </div>
                </div>      
                <div class="form-group">
@@ -221,13 +206,8 @@
       </section>
      </div>
   </body>
-  <!-- <div class="btm_banner_wrap">
-      <div class="btm_banner">
-        <p>원샷과 함께<br>우리술을 즐겨보세요.</p>
-      </div>
-    </div> -->
 
-  <!-- footer : START -->
+
   <footer>
     <div class="center">
       <div class="left_wrap">
@@ -278,36 +258,6 @@
   </footer>
   <!-- footer : END -->
   <script>
-  //아이디 체크2
-         function check01_idt(){
-            var login_id = document.getElementById('login_id').value;
-            var SC = ["!","@","#","$","%"];
-            var check01_SC = 0;
- 
-            if(login_id.length < 6 || login_id.length>16){
-                window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
-                document.getElementById('pw').value='';
-            }
-            for(var i=0;i<SC.length;i++){
-                if(login_id.indexOf(SC[i]) != -1){
-                   check01_SC = 1;
-                }
-            }
-            if(check01_SC == 0){
-                window.alert('!,@,#,$,% 의 특수문자가 들어가 있지 않습니다.')
-                document.getElementById('pw').value='';
-            }
-            if(document.getElementById('login_id').value !='' && document.getElementById('pw').value!=''){
-                if(document.getElementById('login_id').value==document.getElementById('pw').value){
-                    document.getElementById('check01').innerHTML='사용가능'
-                    document.getElementById('check01').style.color='blue';
-                }
-                else{
-                    document.getElementById('check01').innerHTML='사용중';
-                    document.getElementById('check01').style.color='red';
-                }
-            }
-        } 
 
  
   //비밀번호 체크
@@ -341,17 +291,7 @@
             }
         }
   
-  
-   //주민번호 하이픈 추가
-   		const id_card_number = id_card_number1.conact(id_card_number2) 	 
-   
-        const idcardautoHyphen = (target) => {
-         target.value = target.value
-           .replace(/[^0-9]/g, '')
-          .replace(/^(\d{0,6})(\d{0,7})$/g, "$1-$2").replace(/(\-{1,2})$/g, "");
-        }
-
-  
+    
   //전화번호 하이픈 추가
       const autoHyphen = (target) => {
        target.value = target.value
@@ -382,23 +322,7 @@
       }
     });
 
-    // swiper
-   /*  var swiper = new Swiper(".mySwiper", {
-      spaceBetween: 30,
-      centeredSlides: true,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    }); */
+
   </script>
 </body>
 

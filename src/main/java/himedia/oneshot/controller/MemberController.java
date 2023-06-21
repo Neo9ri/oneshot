@@ -1,22 +1,14 @@
 package himedia.oneshot.controller;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import himedia.oneshot.entity.Member;
-import himedia.oneshot.entity.Product;
+import himedia.oneshot.dto.MemberDTO;
 import himedia.oneshot.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -59,7 +51,7 @@ public class MemberController {
 
    // 회원가입 진행
    @PostMapping("/join")
-   public String join(@ModelAttribute Member member) {
+   public String join(@ModelAttribute MemberDTO member) {
       log.info("[POST] join 실행");
       try {
          meberService.save(member);

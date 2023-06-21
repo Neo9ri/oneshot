@@ -20,8 +20,25 @@ import java.util.Optional;
 public class MemberService {
     private final MemberRepository memberRepository;
 
-	public Member save(Member member) {
-//		memberRepository.join(member);
+	public Member save(MemberDTO memberDTO) {
+	    
+		log.info("[MemberService]  실행");
+		
+		Member member = new Member();
+		member.setLogin_id(memberDTO.getLoginId());
+		member.setPw(memberDTO.getPw());
+		member.setEmail(memberDTO.getEmail());
+		member.setName(memberDTO.getName());
+ 		log.info("MemberService2 >> "+member);
+		member.setId_card_number(memberDTO.getIdCardNumber1().concat(memberDTO.getIdCardNumber2()));
+		member.setPhone_number(memberDTO.getPhoneNumber());
+		member.setAddress(memberDTO.getAddress());
+		member.setGender(memberDTO.getGender());
+		
+		log.info("[MemberService]  실행2");
+		
+ 		log.info("MemberService3 >> "+member);
+		
 		return memberRepository.join(member);
 	}
 
