@@ -44,7 +44,7 @@ public class MemberController {
          memberService.save(member);
          return "redirect:/welcome";
       } catch (Exception e) {
-         return "0";
+         return "redirect:/join-failure";
       }
    }
 
@@ -60,5 +60,12 @@ public class MemberController {
       loginService.loginCheck(request, model);
 
       return "/login/welcome";
+   }
+   
+   @GetMapping("/join-failure")
+   public String failured(HttpServletRequest request, Model model){
+      loginService.loginCheck(request, model);
+
+      return "/login/join_failure";
    }
 }
