@@ -98,6 +98,7 @@ public class ProductController {
     //[장바구니에 담기]
     @PostMapping("/addCart")
     public String addToCart(HttpServletRequest request, @RequestParam("id") Long id,
+                            @RequestParam("stock") int stock,
                             RedirectAttributes redirectAttributes,Model model){
         // 로그인 확인 절차
         loginService.loginCheck(request, model);
@@ -111,6 +112,7 @@ public class ProductController {
         }
 
         productService.addCart(id,memberId);
+//        model.addAttribute("stock",stock);
         redirectAttributes.addAttribute("id",id);
         return "redirect:/product/item_detail/{id}";
     }
@@ -131,6 +133,7 @@ public class ProductController {
 
         List<CartDTO> cartProducts = productService.showCart(memberId);
         int totalPrice = productService.cartTotalPrice(memberId);
+
         model.addAttribute("cartProducts",cartProducts);
         model.addAttribute("totalPrice",totalPrice+3000+"원");
         return "user/item_cart";
@@ -144,6 +147,8 @@ public class ProductController {
                                             Model model,
                                             RedirectAttributes redirectAttributes){
         loginService.loginCheck(request,model);
+        int currentStock = productService.findById(id).get().getStock();
+        log.info("재고 >>{}",currentStock);
 
         productService.updateProductQuantity(quantity,id);
         return "redirect:/user/item_cart";
@@ -174,6 +179,7 @@ public class ProductController {
         }
 
         List<Map<String, Object>> cartItems = productService.getCartItems(memberId);
+
         purchaseService.placeOrder(memberId,cartItems);
         return "redirect:/";
     }

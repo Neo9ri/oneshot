@@ -71,4 +71,7 @@ public class ProductService {
 
         return totalPrice;
     }
+    public int getProductStock(Long id){
+        return productRepository.getProductStock(id);
+    }
 }

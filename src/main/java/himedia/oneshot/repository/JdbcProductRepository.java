@@ -26,7 +26,7 @@ public class JdbcProductRepository implements ProductRepository{
         product.setId(rs.getLong("id"));
         product.setStatus(rs.getString("status"));
         product.setName(rs.getString("name"));
-        product.setQuantity(rs.getInt("quantity"));
+        product.setStock(rs.getInt("stock"));
         product.setType_region(rs.getString("type_region"));
         product.setType_kind(rs.getString("type_kind"));
         product.setCreator(rs.getString("creator"));
@@ -154,16 +154,17 @@ public class JdbcProductRepository implements ProductRepository{
         // 상품 수량 조회
         String selectSql = "select quantity from cart where product_id = ?";
         Integer currentQuantity = jdbcTemplate.queryForObject(selectSql, Integer.class, id);
-
+        int currentStock = findById(id).get().getStock();
         // 수량 증감 후의 새로운 수량 계산
         int newQuantity = quantity;
-
-        // 새로운 수량이 0 이상인 경우에만 업데이트 수행
-        if (newQuantity >= 0) {
-            // 상품 수량 업데이트
-            String updateSql = "update cart set quantity = ? where product_id = ?";
-            jdbcTemplate.update(updateSql, newQuantity, id);
+        if(currentStock > (newQuantity)){
+            if (newQuantity >= 0) {
+                // 상품 수량 업데이트
+                String updateSql = "update cart set quantity = ? where product_id = ?";
+                jdbcTemplate.update(updateSql, newQuantity, id);
+            }
         }
+        // 새로운 수량이 0 이상인 경우에만 업데이트 수행
     }
 
     @Override
@@ -184,5 +185,12 @@ public class JdbcProductRepository implements ProductRepository{
         List<Map<String, Object>> cartItems = jdbcTemplate.queryForList(cartItemsSql, memberId);
         return cartItems;
     }
+
+    @Override
+    public Integer getProductStock(Long id){
+        String query = "select stock from product where product_id = ?";
+        return jdbcTemplate.queryForObject(query, Integer.class, id);
+    }
+
 }
 

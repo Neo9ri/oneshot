@@ -50,6 +50,7 @@
         </table>
         <form method="post" th:action="@{/addCart}" id="orderForm">
             <input type="hidden" name="id" th:value="${product.id}"/>
+            <input type="hidden" name="stock" th:value="${product.stock}"/>
             <button type="submit" class="btn btn_primary" onclick="confirmOrder(event)">장바구니</button>
         </form>
     </div>

@@ -5,7 +5,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>장바구니</title>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
 
   <link rel="icon" href="../img/favicon-32x32.png" type="image/x-icon" th:href="@{/img/favicon-32x32.png}" />
@@ -15,6 +14,7 @@
 </head>
 
 <body>
+<div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
   <!-- Header 시작 -->
   <header th:replace="~{fragment/defaultHeader :: #header}"></header>
   <!-- header 종료 -->
@@ -25,6 +25,7 @@
       <table>
         <thead>
           <tr>
+            <th class="blind">수량</th>
             <th class="cart_thead_img">이미지</th>
             <th class="cart_thead_info" >상품정보</th>
             <th class="cart_thead_price" >판매가</th>
@@ -33,23 +34,25 @@
           </tr>
         </thead>
         <tbody>
-          <tr th:each="product:${cartProducts}">
-            <td class="cart_tbody_img"><img src="../img/product/thumbnail/1000000319_detail_025.jpg" th:src="@{${'/'+product.imgThumb}}" alt="" width="200px" height="200px"></td>
-            <td class="cart_tbody_info"th:text="${product.name}"></td>
-            <td class="cart_tbody_price"th:text="${product.price}"></td>
-            <td class="cart_tbody_quantity">
-              <form class="count_box" th:action="@{/user/item_cart/update/{id}(id=${product.productId})}" method="post">
-                <button class="quantity_sub_btn" type="button" onclick="decreaseQuantity(this)">-</button>
-                <input type="text" class="quantity-input" th:name="quantity" readonly="readonly" th:value="${product.quantity}" />
-                <button class="quantity_add_btn" type="button" onclick="increaseQuantity(this)">+</button>
-                <button class="quantity_submit" type="submit">적용</button>
-              </form>
-            </td>
-            <td class="cart_tbody_btn">
-              <form method="post" th:action="@{/user/item_cart/delete/{id}(id=${product.productId})}">
-                <button type="submit" th:name="id" th:value="${product.productId}">삭제</button>
-              </form>
-            </td>
+        <tr th:each="product:${cartProducts}">
+<!--          <td class="blind" id="stock" th:text="${product.stock}"></td>-->
+          <td class="cart_tbody_img"><img src="../img/product/thumbnail/1000000319_detail_025.jpg" th:src="@{${'/'+product.imgThumb}}" alt="" width="200px" height="200px"></td>
+          <td class="cart_tbody_info" th:text="${product.name}"></td>
+          <td class="cart_tbody_price" th:text="${product.price}"></td>
+          <td class="cart_tbody_quantity">
+            <input type="hidden" id="stock" th:value="${product.stock}">
+            <form class="count_box" th:action="@{/user/item_cart/update/{id}(id=${product.productId})}" method="post">
+              <button class="quantity_sub_btn" type="button" onclick="decreaseQuantity(this)">-</button>
+              <input type="text" class="quantity-input" th:name="quantity" readonly="readonly" th:value="${product.quantity}" />
+              <button class="quantity_add_btn" type="button" onclick="increaseQuantity(this)">+</button>
+              <button class="quantity_submit" type="submit">적용</button>
+            </form>
+          </td>
+          <td class="cart_tbody_btn">
+            <form method="post" th:action="@{/user/item_cart/delete/{id}(id=${product.productId})}">
+              <button type="submit" th:name="id" th:value="${product.productId}">삭제</button>
+            </form>
+          </td>
           </tr>
         </tbody>
       </table>
@@ -75,56 +78,9 @@
   </div>
   <!-- 장바구니 종료 -->
   <!-- footer : START -->
-  <footer>
-    <div class="center">
-      <div class="left_wrap">
-        <p class="btm_logo"><img src="../img/oneshot_logo_bw.png" th:src="@{/img/oneshot_logo_bw.png}" alt="원샷 - 우리술 한잔,"></p>
-        <div class="text_wrap">
-          <p>원샷 - 우리술 한잔,</p>
-          <address>서울시 서대문구 연세로 8-1</address>
-          <nav>
-            <ul>
-              <li><a href="">전통주 이야기</a></li>
-              <li><a href="">지역별 전통주</a></li>
-              <li><a href="">주종별 전통주</a></li>
-              <li><a href="">가격별 전통주</a></li>
-            </ul>
-          </nav>
-          <div class="info">
-            <p>대표 : 홍길동</p>
-            <p>사업자 등록번호 : 100-11-111111</p>
-            <p>개인정보관리자 : 홍길동</p>
-          </div>
-          <div class="contact_info">
-            <p>대표번호 : 02-1234-1234</p>
-            <p>메일 : oneshot@oneshot.com</p>
-          </div>
-          <div>Copyrights&copy; oneshot All Rights Reserved.</div>
-        </div>
-      </div>
-      <div class="cs">
-        <dl>
-          <dt>CS CENTER</dt>
-          <dd>070-1234-1234</dd>
-          <dd>평일 : 09:00 ~ 18:00<br>
-            점심 시간 : 12:00 ~ 13:00<br>
-            주말 밋 공휴일 제외
-          </dd>
-        </dl>
-      </div>
-      <div class="social">
-        <h4>SOCIAL MEDIA</h4>
-        <p>Follow @oneshot</p>
-        <ul>
-          <li><a href="#"><img src="../img/instagram_footer.svg" th:src="@{/img/instagram_footer.svg}"  alt="인스타그램"></a></li>
-          <li><a href="#"><img src="../img/youtube_footer.svg" th:src="@{/img/youtube_footer.svg}" alt="유투브"></a></li>
-          <li><a href="#"><img src="../img/facebook_footer.svg" th:src="@{/img/facebook_footer.svg}"  alt="페이스북"></a></li>
-        </ul>
-      </div>
-    </div>
-  </footer>
+  <footer th:replace="~{fragment/footer :: #footer}"></footer>
   <!-- footer : END -->
-  <script>
+  <script th:inline="javascript">
   function confirmOrder(event) {
     event.preventDefault(); // 폼의 기본 동작인 제출을 막습니다.
 
@@ -145,7 +101,7 @@
     }
   }
   // 상품 수량 감소 버튼
-  function decreaseQuantity(button) {
+  function decreaseQuantity(button,stock) {
     const quantityInput = button.parentNode.querySelector('.quantity-input');
     let currentQuantity = parseInt(quantityInput.value);
     if (currentQuantity > 1) {
@@ -155,11 +111,18 @@
   }
   // 상품 수량 증가버튼
   function increaseQuantity(button) {
+    const currentStock = button.parentNode.parentNode.querySelector('.blind#stock').textContent;
+    console.log(currentStock);
     const quantityInput = button.parentNode.querySelector('.quantity-input');
     let currentQuantity = parseInt(quantityInput.value);
-    if (currentQuantity < 10) {
-      currentQuantity++;
-      quantityInput.value = currentQuantity;
+    console.log(currentStock);
+    if(currentStock >= currentQuantity){
+       if (currentQuantity < 10) {
+        currentQuantity++;
+        quantityInput.value = currentQuantity;
+      }else{
+        alert('재고가 주문량보다 적습니다.');
+      }
     }
   }
   </script>
