@@ -10,7 +10,6 @@ DROP TABLE IF EXISTS notice, product_review, cart, purchase_detail, purchase, pr
 SELECT * FROM member;
 SELECT * FROM product;
 SELECT * FROM cart;
-SELECT * FROM member;
 SELECT * FROM inquiry;
 SELECT * FROM purchase;
 SELECT * FROM purchase_detail;
