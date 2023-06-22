@@ -54,4 +54,11 @@ public class MemberController {
       log.info("controller", login_id);
       return memberService.find(login_id);
    }
+
+   @GetMapping("/welcome")
+   public String joinCompleted(HttpServletRequest request, Model model){
+      loginService.loginCheck(request, model);
+
+      return "/login/welcome";
+   }
 }

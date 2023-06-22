@@ -89,7 +89,7 @@
                         <p th:text="${profile.email}">hong123@naver.com</p>
                     </div>
                     <div>
-                        <a href="/reset-pw">비밀번호 변경</a>
+                        <a th:href="@{mypage/password}">비밀번호 변경</a>
                     </div>
                     <div>
                         <a href="#inquiry">문의 내역</a>
@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div class="mypage_user_interface">
-                <form th:action="@{/user/mypage}" th:method="post">
+                <form th:action="@{user/mypage}" th:method="post">
                     <div class="mypage_user_interface_bg">
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text mypage_icon user_icon_img" id="addon-wrapping1"></span>

@@ -10,17 +10,18 @@ import java.util.Date;
  */
 @Data
 public class MemberDTO {
-    private long id;                //회원 고유 번호
-    private String loginId;        //로그인 아이디
-    private String pw;              //비밀번호
-    private String email;           //이메일
-    private String name;            //이름
-    private String phoneNumber;    //전화번호
+    private long id;              //회원 고유 번호
+    private String loginId;       //로그인 아이디
+    private String originalPw;
+    private String pw;            //비밀번호
+    private String email;         //이메일
+    private String name;          //이름
+    private String phoneNumber;   //전화번호
     private String idCardNumber;  //주민등록번호
     private String idCardNumber1;  //주민등록번호 앞자리
     private String idCardNumber2;  //주민등록번호 뒷자리
-    private String address;         //주소
-    private String gender;          //성별
-    private String authority;       //회원상태
+    private String address;        //주소
+    private String gender;         //성별
+    private String authority;      //회원상태
     private Date dateCreated;      //회원가입 날짜
 }

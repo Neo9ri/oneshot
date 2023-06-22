@@ -145,9 +145,10 @@ public class JdbcMemberRepository implements MemberRepository {
     }
 
     @Override
-    public void changePassword(long id, String password) {
+    public Boolean changePassword(long id, String password) {
         String sql = "UPDATE member SET pw= ? WHERE id=?";
-        jdbcTemplate.update(sql, password, id);
+        int result = jdbcTemplate.update(sql, password, id);
+        return result == 1;
     }
 
     @Override

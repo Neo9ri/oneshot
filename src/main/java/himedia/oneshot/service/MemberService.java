@@ -1,6 +1,8 @@
 package himedia.oneshot.service;
 
 import java.util.List;
+
+import himedia.oneshot.dto.LoginDTO;
 import org.springframework.stereotype.Service;
 import himedia.oneshot.entity.Member;
 import himedia.oneshot.repository.MemberRepository;
@@ -64,9 +66,11 @@ public class MemberService {
         memberRepository.edit(member);
     }
 
-    public Boolean changePassword(HttpServletRequest request, String originalPassword, String newPassword){
-        MemberDTO loginData = (MemberDTO) request.getSession().getAttribute("user");
+    public Boolean changePassword(HttpServletRequest request, MemberDTO info){
+        LoginDTO loginData = (LoginDTO) request.getSession().getAttribute("user");
         long id = loginData.getId();
+        String originalPassword = info.getOriginalPw();
+        String newPassword = info.getPw();
         Optional<Member> member = memberRepository.findById(id);
         if (member.get().getPw().equals(originalPassword)){
             memberRepository.changePassword(id, newPassword);
@@ -80,5 +84,11 @@ public class MemberService {
         long id = memberDTO.getId();
         String authority = memberDTO.getAuthority().equals("A")? "B" : "A";
         memberRepository.changeAuth(id, authority);
+    }
+
+    public Boolean resetPassword(HttpServletRequest request, MemberDTO memberDTO){
+        long id = (long)request.getSession().getAttribute("foundId");
+        String pw = memberDTO.getPw();
+        return memberRepository.changePassword(id, pw);
     }
 }
