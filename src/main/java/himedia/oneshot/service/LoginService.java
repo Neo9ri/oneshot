@@ -29,17 +29,19 @@ public class LoginService {
      * @param model 로그인 정보를 컨트롤러에서 넘겨주기 위한 모델 타입
      * @see LoginDTO
      */
-    public void loginCheck(HttpServletRequest request, Model model){
+    public Boolean loginCheck(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
 
         if (session.getAttribute("user")!=null){
             LoginDTO loginUser = (LoginDTO) session.getAttribute("user");
             model.addAttribute("user", loginUser);
+            return loginUser.getLoginSuccess();
         }
         else {
             LoginDTO loginUser = new LoginDTO();
             model.addAttribute("user", loginUser);
             session.setAttribute("user", loginUser);
+            return false;
         }
     }
 

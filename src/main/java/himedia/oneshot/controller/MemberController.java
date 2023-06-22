@@ -73,4 +73,11 @@ public class MemberController {
       log.info("[POST] idCheck 실행 후 :" + result);
       return result;
    }
+
+   @GetMapping("/welcome")
+   public String joinCompleted(HttpServletRequest request, Model model){
+      loginService.loginCheck(request, model);
+
+      return "/login/welcome";
+   }
 }

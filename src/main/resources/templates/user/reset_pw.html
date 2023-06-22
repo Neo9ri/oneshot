@@ -21,7 +21,11 @@
   <!-- container-START  -->
   <section class="center find_container">
     <h3 class="title">비밀번호 재설정</h3>
-    <form id="reset_pw" method="post" th:action="@{reset-pw}">
+    <form id="reset_pw" method="post" th:action="@{password}">
+      <div class="row my-5">
+        <label for="originalPw" class="col-4">기존 비밀번호</label>
+        <input type="password" id="originalPw" class="form-control py-2 col" placeholder="새로운 비밀번호" name="originalPw" required>
+      </div>
       <div class="row my-5">
         <label for="newPw" class="col-4">새로운 비밀번호</label>
         <input type="password" id="newPw" class="form-control py-2 col" placeholder="새로운 비밀번호" name="pw" required>

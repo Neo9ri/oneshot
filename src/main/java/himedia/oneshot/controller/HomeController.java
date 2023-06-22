@@ -40,17 +40,10 @@ public class HomeController {
         return "index";
     }
     @GetMapping("/story")
-    public String storyPage(HttpServletRequest request, Model model){
+    public String storyPage(HttpServletRequest request, Model model) {
         loginService.loginCheck(request, model);
 
         return "story";
-    }
-
-    @GetMapping("/welcome")
-    public String joinCompleted(HttpServletRequest request, Model model){
-        loginService.loginCheck(request, model);
-
-        return "/login/welcome";
     }
 
     @GetMapping("/region/all")
