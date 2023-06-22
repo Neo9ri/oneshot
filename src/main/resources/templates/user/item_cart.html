@@ -25,7 +25,6 @@
       <table>
         <thead>
           <tr>
-            <th class="blind">수량</th>
             <th class="cart_thead_img">이미지</th>
             <th class="cart_thead_info" >상품정보</th>
             <th class="cart_thead_price" >판매가</th>
@@ -35,14 +34,13 @@
         </thead>
         <tbody>
         <tr th:each="product:${cartProducts}">
-<!--          <td class="blind" id="stock" th:text="${product.stock}"></td>-->
           <td class="cart_tbody_img"><img src="../img/product/thumbnail/1000000319_detail_025.jpg" th:src="@{${'/'+product.imgThumb}}" alt="" width="200px" height="200px"></td>
           <td class="cart_tbody_info" th:text="${product.name}"></td>
           <td class="cart_tbody_price" th:text="${product.price}"></td>
           <td class="cart_tbody_quantity">
-            <input type="hidden" id="stock" th:value="${product.stock}">
             <form class="count_box" th:action="@{/user/item_cart/update/{id}(id=${product.productId})}" method="post">
-              <button class="quantity_sub_btn" type="button" onclick="decreaseQuantity(this)">-</button>
+                <input type="hidden" class="stock" th:value="${product.stock}">
+                <button class="quantity_sub_btn" type="button" onclick="decreaseQuantity(this)">-</button>
               <input type="text" class="quantity-input" th:name="quantity" readonly="readonly" th:value="${product.quantity}" />
               <button class="quantity_add_btn" type="button" onclick="increaseQuantity(this)">+</button>
               <button class="quantity_submit" type="submit">적용</button>
@@ -50,7 +48,7 @@
           </td>
           <td class="cart_tbody_btn">
             <form method="post" th:action="@{/user/item_cart/delete/{id}(id=${product.productId})}">
-              <button type="submit" th:name="id" th:value="${product.productId}">삭제</button>
+              <button type="submit" th:name="id" th:value="${product.productId}" onsubmit="return confirm(상품을 삭제하시겠습니까?);">삭제</button>
             </form>
           </td>
           </tr>
@@ -80,7 +78,8 @@
   <!-- footer : START -->
   <footer th:replace="~{fragment/footer :: #footer}"></footer>
   <!-- footer : END -->
-  <script th:inline="javascript">
+  <script src="/js/header.js"></script>
+<script th:inline="javascript">
   function confirmOrder(event) {
     event.preventDefault(); // 폼의 기본 동작인 제출을 막습니다.
 
@@ -111,22 +110,19 @@
   }
   // 상품 수량 증가버튼
   function increaseQuantity(button) {
-    const currentStock = button.parentNode.parentNode.querySelector('.blind#stock').textContent;
+    const currentStock = parseInt(button.parentNode.querySelector('.stock').value);
     console.log(currentStock);
     const quantityInput = button.parentNode.querySelector('.quantity-input');
     let currentQuantity = parseInt(quantityInput.value);
-    console.log(currentStock);
-    if(currentStock >= currentQuantity){
-       if (currentQuantity < 10) {
+    if(currentStock > currentQuantity){
         currentQuantity++;
         quantityInput.value = currentQuantity;
-      }else{
-        alert('재고가 주문량보다 적습니다.');
+      }else if(currentStock == currentQuantity){
+        quantityInput.value = currentQuantity;
+        alert('재고가 부족하여 수량을 추가할 수 없습니다.');
       }
     }
-  }
+  
   </script>
-  <script src="/js/header.js"></script>
 </body>
-
 </html>

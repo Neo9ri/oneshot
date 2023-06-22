@@ -71,7 +71,7 @@ public class ProductService {
 
         return totalPrice;
     }
-    public int getProductStock(Long id){
-        return productRepository.getProductStock(id);
+    public boolean checkProductInCart(Long id){
+        return productRepository.checkProductInCart(id);
     }
 }

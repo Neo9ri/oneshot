@@ -56,10 +56,23 @@ public class JdbcPurchaseRepository implements PurchaseRepository{
             return ps;
         }, keyHolder);
 
+        // 2. product 테이블에 cart quantity만큼 stock에서 제외
+        String updateStock = "UPDATE product" +
+                "SET stock = stock - (SELECT quantity FROM cart WHERE product_id = ?),"+
+                "status = CASE WHEN stock - (SELECT quantity FROM cart WHERE product_id = ?) <=0 THEN 'F' ELSE status END"+
+                "WHERE product_id = ?";
+        for (Map<String, Object> cartItem : cartItems) {
+            BigInteger productIdBigInt = (BigInteger) cartItem.get("product_id");
+            Long productId = productIdBigInt.longValue();
+//            int quantity = (int) cartItem.get("quantity");
+
+            jdbcTemplate.update(updateStock,productId,productId);
+        }
+
         // 새로 생성된 주문의 ID를 가져옴
         Long purchaseId = keyHolder.getKey().longValue();
 
-        // 2. purchase_detail 테이블에 주문 상세 내역 저장
+        // 3. purchase_detail 테이블에 주문 상세 내역 저장
         String purchaseDetailInsertSql = "insert into purchase_detail (purchase_id, member_id, product_id, price, quantity) VALUES (?, ?, ?, ?, ?)";
         for (Map<String, Object> cartItem : cartItems) {
             BigInteger productIdBigInt = (BigInteger) cartItem.get("product_id");
@@ -69,6 +82,7 @@ public class JdbcPurchaseRepository implements PurchaseRepository{
 
             jdbcTemplate.update(purchaseDetailInsertSql, purchaseId, memberId, productId, price, quantity);
         }
+
         // 3. 장바구니에서 해당 회원의 상품 삭제
         productRepository.truncateTableCart(memberId);
     }

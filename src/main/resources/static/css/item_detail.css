@@ -72,7 +72,7 @@
   border: 0px;
   color: #2b1807;
   width: 500px;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 /*상품 밑 베너 */
 .item_detail_banner{
@@ -407,7 +407,10 @@ button.inquiry_button{
   width: 120px;
   height: 50px;
   right: 0 ;
-
+}
+button.inquiry_button:hover{
+    background-color: #fedf12;
+    transform: scale(1.1);
 }
 
 

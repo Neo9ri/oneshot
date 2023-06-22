@@ -20,5 +20,5 @@ public interface ProductRepository {
     void truncateTableCart(Long memberId);
     void deleteCartItem(Long id);
     List<Map<String, Object>> getCartItems(Long memberId);
-    Integer getProductStock(Long id);
+    Boolean checkProductInCart(Long id);
 }

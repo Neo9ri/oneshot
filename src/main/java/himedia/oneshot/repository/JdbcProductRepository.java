@@ -157,7 +157,7 @@ public class JdbcProductRepository implements ProductRepository{
         int currentStock = findById(id).get().getStock();
         // 수량 증감 후의 새로운 수량 계산
         int newQuantity = quantity;
-        if(currentStock > (newQuantity)){
+        if(currentStock >= newQuantity){
             if (newQuantity >= 0) {
                 // 상품 수량 업데이트
                 String updateSql = "update cart set quantity = ? where product_id = ?";
@@ -187,9 +187,10 @@ public class JdbcProductRepository implements ProductRepository{
     }
 
     @Override
-    public Integer getProductStock(Long id){
-        String query = "select stock from product where product_id = ?";
-        return jdbcTemplate.queryForObject(query, Integer.class, id);
+    public Boolean checkProductInCart(Long id) {
+        String query= "select * from cart where product_id = ?";
+        List<Cart> isProductInCart = jdbcTemplate.query(query,cartRowMapper, id);
+        return isProductInCart.stream().findAny().isPresent();
     }
 
 }
