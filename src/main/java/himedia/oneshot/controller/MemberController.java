@@ -29,7 +29,6 @@ public class MemberController {
    @GetMapping("/user/login")
    public String login(HttpServletRequest request, Model model) {
       loginService.loginCheck(request, model);
-      log.info("[GET] login");
       return "/user/login";
    }
 
@@ -39,10 +38,8 @@ public class MemberController {
       return "/user/join";
    }
 
-   // 회원가입 진행
    @PostMapping("/join")
    public String join(@ModelAttribute MemberDTO member) {
-      log.info("[POST] join 실행");
       try {
          memberService.save(member);
          return "redirect:/welcome";
@@ -51,22 +48,9 @@ public class MemberController {
       }
    }
 
-   // 아이디 체크
-   @GetMapping("/test" )
-   public String dataTest3(@ModelAttribute("login_id") String login_id, Model model) {
-	  
-	   model.addAttribute("login_id", login_id);
-      
-	   return "user/test";
-   }
-
-   // 아이디 중복체크
    @ResponseBody
    @PostMapping("/idCheck")
-   public int joincheck(String login_id) {
-      log.info("[POST] idCheck 실행 전 :" + login_id);
-      int result = memberService.find(login_id);
-      log.info("[POST] idCheck 실행 후 :" + result);
-      return result;
+   public int joincheck(String login_id) {  
+      return memberService.find(login_id);
    }
 }

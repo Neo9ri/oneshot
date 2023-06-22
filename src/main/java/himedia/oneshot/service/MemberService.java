@@ -20,36 +20,22 @@ import java.util.Optional;
 public class MemberService {
     private final MemberRepository memberRepository;
 
-	public Member save(MemberDTO memberDTO) {
-	    
-		log.info("[MemberService]  실행");
-		
+	public Member save(MemberDTO memberDTO) {   
 		Member member = new Member();
 		member.setLogin_id(memberDTO.getLoginId());
 		member.setPw(memberDTO.getPw());
 		member.setEmail(memberDTO.getEmail());
 		member.setName(memberDTO.getName());
- 		log.info("MemberService2 >> "+member);
 		member.setId_card_number(memberDTO.getIdCardNumber1().concat(memberDTO.getIdCardNumber2()));
 		member.setPhone_number(memberDTO.getPhoneNumber());
 		member.setAddress(memberDTO.getAddress());
-		member.setGender(memberDTO.getGender());
-		
-		log.info("[MemberService]  실행2");
-		
- 		log.info("MemberService3 >> "+member);
-		
+		member.setGender(memberDTO.getGender());		
 		return memberRepository.join(member);
 	}
 
-	
 	public int find(String login_id) {
-	    log.info("[service] find" + login_id);
 		return memberRepository.findByJoinId(login_id);
 	}	
-	
-
-
 
     /**
      * 회원 목록 조회 기능
