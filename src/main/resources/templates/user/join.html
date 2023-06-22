@@ -8,9 +8,10 @@
   <title>회원가입</title>
   <link rel="icon" href="img/favicon-32x32.png" type="image/x-icon" />
   <link rel="stylesheet" href="../css/bootstrap.min.css" />
-  <link rel="stylesheet" href="../css/main_style.css" />
+  <link rel="stylesheet" href="../css/main_style.css" /> 
   <link rel="stylesheet" href="../css/login.css" />
   <script src="https:code.jquery.com/jquery-3.4.1.js"></script>
+
 </head>
 <body>
   <!-- header : START -->
@@ -23,7 +24,7 @@
               <span class="text-dark h4">회원가입</span>
             </a>
           </div>
-          <form action="join" method="post"> 
+          <form id="joinForm" action="join" method="post"> 
             <div class="form-group">
               <label class="form-label mt-4 join-agree-label">[필수]원샷 이용약관 <input type="checkbox" /></label>
               <div class="join-agree-box">
@@ -38,59 +39,58 @@
               <label for="InputId" class="form-label mt-4">아이디</label> &nbsp;<span id="check01"></span>
               <div class="input-img-group">
                 <span><img src="../img/join/name.png" alt=""></span>
-                <input type="text" class="form-control" id="loginId" name="loginId" onchange="checkId()">
+                <input type="text" class="form-control" id="loginId" name="loginId" onchange="checkId()" >
               </div>
             </div>
             <div class="form-group">
               <label for="InputPassword" class="form-label mt-4">비밀번호</label>
               <div class="input-img-group">
                 <span><img src="../img/join/pw1.png" alt=""></span>
-                <input type="password" class="form-control" id="pw" name="pw" onchange="check_pw()">
-              </div>
+                <input type="password" class="form-control" id="pw" name="pw" onchange="check_pw()" >
             </div>
             <div class="form-group">
               <label for="InputPassword2" class="form-label mt-4">비밀번호 재확인</label> &nbsp;<span id="check02"></span>
               <div class="input-img-group">
                 <span><img src="../img/join/pw2.png" alt=""></span>
-                <input type="password" class="form-control" id="pw2" name="pw2" onchange="check02_pw()">
+                <input type="password" class="form-control" id="pw2" name="pw2" onchange="check02_pw()" >
               </div>
             </div>
            <div class="form-group">
               <label for="InputEmail1" class="form-label mt-4">본인 확인용 이메일</label>
               <div class="input-img-group">
                 <span><img src="../img/join/email.png" alt=""></span>
-                <input type="email" class="form-control" id="email" name="email">
+                <input type="email" class="form-control" id="email" name="email" >
                </div>
            </div>        
            <div class="form-group">
              <label for="InputName" class="form-label mt-4">이름</label>
              <div class="input-img-group">
                <span><img src="../img/join/name.png" alt=""></span>
-               <input type="text" class="form-control" id="name" name="name">
+               <input type="text" class="form-control" id="name" name="name" >
               </div>
            </div>       
              <div class="form-group">
                <label for="InputNumber" class="form-label mt-4">주민번호</label>
                <div class="input-img-group">
                  <span><img src="../img/join/card.png" alt=""></span>
-                 <input type="text" class="form-control" id="idCardNumber1" name="idCardNumber1"  maxlength="6"> &nbsp;_&nbsp;
-                 <input type="password" class="form-control" id="idCardNumber2" name="idCardNumber2"  maxlength="7">
+                 <input type="text" class="form-control" id="idCardNumber1" name="idCardNumber1"  maxlength="6" > &nbsp;_&nbsp;
+                 <input type="password" class="form-control" id="idCardNumber2" name="idCardNumber2"  maxlength="7" >
                 </div>
              </div>        
                <div class="form-group">
                  <label for="InputPhone" class="form-label mt-4">휴대전화번호</label>
                  <div class="input-img-group">
                    <span><img src="../img/join/phone.png" alt=""></span>
-                   <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" oninput="autoHyphen(this)"  maxlength="13">
+                   <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" oninput="autoHyphen(this)"  maxlength="13" >
                  </div>
                </div>      
                <div class="form-group">
                    <label for="InputAddress" class="form-label mt-4">주소</label>
                    <div class="input-img-group">
                      <span><img src="../img/join/card.png" alt=""></span>
-                     <input type="text" class="form-control" id="address" name="address">
+                     <input type="text" class="form-control" id="address" name="address" >
                     </div>
-               </div>        
+               </div>     
                <div class="form-group">
                      <label for="InputGender" class="form-label mt-4">성별</label>
                      <div class="input-img-group">
@@ -103,7 +103,8 @@
                </div>
                <div class="btn-group">
                    <button class="btn btn-primary btn-lg" type="reset">취소</button>
-                   <button class="btn btn-primary btn-lg" type="submit">가입하기</button>
+                   <button class="btn btn-primary btn-lg" id='target_btn' type="submit" value='버튼'>가입하기</button>
+
                 </div>
              </form>
             </div>
@@ -112,29 +113,44 @@
   <footer th:replace="~{fragment/footer :: #footer}"></footer>
   <script>
   
-  // 아이디 중복체크
-  function checkId(){
-  var login_id = $('#login_id').val(); //id값이 "id"인 입력란의 값을 저장
-  $.ajax({
-    url:'./idCheck', //Controller에서 요청 받을 주소
-    type:'post', //POST 방식으로 전달
-    //dataType: 'json',
-    //contentType : 'application/json',
-    data:{login_id:login_id},
-    success:function(login_id){ //컨트롤러에서 넘어온 cnt값을 받는다 
-       console.log(login_id);      
-        if(login_id==0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
-            document.getElementById('check01').innerHTML='아이디 사용가능'
-            document.getElementById('check01').style.color='blue';
-        } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-            document.getElementById('check01').innerHTML='아이디 사용 불가능';
-            document.getElementById('check01').style.color='red';
-        }
+  //Enter 차단
+  $(window).ready(function() {
+	  $("#joinForm").on("keypress", function (event) {
+	      var keyPressed = event.keyCode || event.which;
+	      if (keyPressed === 13) {
+	          event.preventDefault();
+	      }
+	  });
+	  });
   
-    },
-
-   });
+  // 아이디 중복체크
+	function checkId(){
+		var login_id = $('#loginId').val(); //id값이 "id"인 입력란의 값을 저장
+  	    const target = document.getElementById('target_btn');	
+  	    var check01 = document.getElementById('check01');
+		$.ajax({
+ 		 url:'./idCheck', //Controller에서 요청 받을 주소
+ 		 type:'post', //POST 방식으로 전달
+  	   //dataType: 'json',
+	  //contentType : 'application/json',
+	  data:{login_id:login_id},
+	  success:function(login_id){ //컨트롤러에서 넘어온 cnt값을 받는다 
+	     console.log(login_id);      
+	      if(login_id==0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
+	    	  check01.innerHTML='아이디 사용가능'
+	          check01.style.color='blue';
+	    	  target.disabled = false;
+	          
+	          
+	      } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+	    	  check01.innerHTML='아이디 사용 불가능';
+	    	  check01.style.color='red';         
+	    	  target.disabled = true;
+      }
+  },
+ });
 };
+
   //비밀번호 체크
         function check02_pw(){
             var pw = document.getElementById('pw').value;

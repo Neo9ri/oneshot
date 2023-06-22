@@ -50,7 +50,8 @@ public class MemberController {
 
    @ResponseBody
    @PostMapping("/idCheck")
-   public int joincheck(String login_id) {  
+   public int joincheck(String login_id) {
+      log.info("controller", login_id);
       return memberService.find(login_id);
    }
 }

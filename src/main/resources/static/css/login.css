@@ -78,12 +78,13 @@
     position-relative;
     background-color:#feef8888;
 }
+
 .find_container .find_form p{
     font-size:20px;
     text-align:center;
     line-height:2;
 }
-.find_container .find_form label,{
+.find_container .find_form label{
     font-size:20px;
     font-weight:700;
     line-height: 2;
@@ -97,7 +98,7 @@
 .find_container .find_form button.find{
     left: calc(50% - 73px);
 }
-.find_container .find_form button.find.pw,{
+.find_container .find_form button.find.pw{
     left:calc(50% - 113px)
 }
 
@@ -183,7 +184,7 @@ color: #fff;
   width: 100%;
 }
 
-.join-section .btn_group {
+.join-section .join-btn-group {
   display: flex;
   margin-top: 50px;
   gap: 10px;
@@ -199,4 +200,17 @@ color: #fff;
 .join-container .btn {
   background-color: #fedf12;
   color: #000;
+}
+
+.join-btn-group {
+  padding-top: 20px;
+  width: 100%;
+  grid-column: 2 / span 2;
+  grid-row: 1 / span 2;
+  background-color: #fedf12;
+  color: #000;
+}
+
+.btn-group{
+ padding-top: 50px;	
 }
