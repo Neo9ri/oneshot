@@ -242,10 +242,7 @@ section.story_container .analysis{
   line-height: 2.5em;
   font-size: 18px;
 }
-section.story_container div#graph3{
-  width: 900px;
-  margin: 0 auto;
-}
+
 section.story_container div#graph3~p.analysis{
   margin-bottom: 200px;
 }

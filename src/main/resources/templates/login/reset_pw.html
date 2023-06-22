@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>비밀번호 재설정</title>
+  <link rel="icon" href="/img/favicon-32x32.png" type="image/x-icon" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/main_style.css" />
+  <link rel="stylesheet" href="/css/login.css" />
+
+</head>
+
+<body>
+  <div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
+  <!-- header-START -->
+  <header th:replace="~{fragment/defaultHeader :: #header}"></header>
+  <!-- header-END -->
+  <!-- container-START  -->
+  <section class="center find_container">
+    <h3 class="title">비밀번호 재설정</h3>
+    <form id="reset_pw" method="post">
+      <div class="row my-5">
+        <label for="newPw" class="col-4">새로운 비밀번호</label>
+        <input type="password" id="newPw" class="form-control py-2 col" placeholder="새로운 비밀번호" name="newPw" required>
+      </div>
+      <div class="row mt-5">
+        <label for="confirmNewPw" class="col-4">새로운 비밀번호 확인</label>
+        <input type="password" class="form-control py-2 col" id="confirmNewPw" name="confirmNewPw"
+          placeholder="새로운 비밀번호 확인" required>
+      </div>
+        <span id="confirmCheck" class="blind"></span>
+        <hr>
+      <button class="btn reset btn-lg col-4" type="submit" onsubmit="return confirm('확인을 누르시면 비밀번호 재설정이 완료됩니다.')">비밀번호
+        재설정</button>
+    </form>
+  </section>
+  <!-- container-END -->
+  <!-- footer-START -->
+  <footer th:replace="~{fragment/footer :: #footer}">
+  </footer>
+  <!-- footer-END -->
+  <script src="js/header.js"></script>
+</body>
+<script>
+    const newPwInput = document.getElementById('newPw');
+    const confirmNewPwInput = document.getElementById('confirmNewPw');
+    const confirmCheck = document.getElementById('confirmCheck');
+
+    confirmNewPwInput.addEventListener('input', function() {
+    const newPw = newPwInput.value;
+    const confirmNewPw = confirmNewPwInput.value;
+
+    if (newPw !== confirmNewPw) {
+      confirmCheck.innerText = '비밀번호가 일치하지 않습니다.';
+      confirmCheck.style.color = 'red';
+      confirmCheck.classList.remove('blind');
+    } else {
+      confirmCheck.innerText = '비밀번호가 서로 일치합니다.';
+      confirmCheck.classList.add('same');
+      confirmCheck.style.color = 'green';
+      confirmCheck.classList.remove('blind');
+    }
+  });
+    
+  </script>
+
+</html>
