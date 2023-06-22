@@ -125,14 +125,14 @@
   // 아이디 중복체크
 	function checkId(){
 		var login_id = $('#loginId').val(); //id값이 "id"인 입력란의 값을 저장
-  	    const target = document.getElementById('target_btn');	
-  	    var check01 = document.getElementById('check01');
-  	    var pw = document.getElementById('pw');
-  	    var pw2 = document.getElementById('pw2');
+	    const target = document.getElementById('target_btn');	
+	    var check01 = document.getElementById('check01');
+	    var pw = document.getElementById('pw');
+	    var pw2 = document.getElementById('pw2');
 		$.ajax({
- 		 url:'./idCheck', //Controller에서 요청 받을 주소
- 		 type:'post', //POST 방식으로 전달
-  	   //dataType: 'json',
+		 url:'./idCheck', //Controller에서 요청 받을 주소
+		 type:'post', //POST 방식으로 전달
+	   //dataType: 'json',
 	  //contentType : 'application/json',
 	  data:{login_id:login_id},
 	  success:function(login_id){ //컨트롤러에서 넘어온 cnt값을 받는다 
@@ -145,12 +145,17 @@
 	    	  check01.innerHTML='아이디 사용 불가능';
 	    	  check01.style.color='red';         
 	    	  target.disabled = true;	     
-      }
-  },
- });
+    }
+},
+});
 };
+
   //비밀번호 체크
         function check02_pw(){
+            const target = document.getElementById('target_btn');	
+            var pw = document.getElementById('pw');
+            var pw2 = document.getElementById('pw2');
+            
             var pw = document.getElementById('pw').value;
             var SC = ["!","@","#","$","%"];
             var check02_SC = 0;
@@ -171,10 +176,12 @@
                 if(document.getElementById('pw').value==document.getElementById('pw2').value){
                     document.getElementById('check02').innerHTML='비밀번호가 일치합니다.'
                     document.getElementById('check02').style.color='blue';
+          	        target.disabled = false;
                 }
                 else{
                     document.getElementById('check02').innerHTML='불일치';
                     document.getElementById('check02').style.color='red';
+              	    target.disabled = true; 
                 }
             }
         }
