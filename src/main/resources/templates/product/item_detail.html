@@ -37,7 +37,7 @@
             </tr>
             <tr>
                 <td>상품코드</td>
-                <td>100000813</td>
+                <td th:text="${product.id}">100000813</td>
             </tr>
             <tr>
                 <td>제조사</td>
@@ -51,8 +51,8 @@
         <span class="blind" id="existInCart" th:text="${isProductInCart}"></span>
         <form method="post" th:action="@{/addCart}" id="orderForm">
             <input type="hidden" name="id" th:value="${product.id}"/>
-            <input type="hidden" name="stock" th:value="${product.stock}"/>
-            <button type="submit" class="btn btn_primary my-4" onclick="confirmOrder(event)">장바구니</button>
+            <button th:if="${product.status == 'T'}" type="submit" class="btn btn_primary my-4" onclick="confirmOrder(event)">장바구니</button>
+            <button th:if="${product.status == 'F'}" type="button" class="btn btn_primary my-4" id="sold_out" disabled>품절</button>
         </form>
     </div>
     <div class="item_detail_banner">

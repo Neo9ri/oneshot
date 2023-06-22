@@ -57,16 +57,15 @@ public class JdbcPurchaseRepository implements PurchaseRepository{
         }, keyHolder);
 
         // 2. product 테이블에 cart quantity만큼 stock에서 제외
-        String updateStock = "UPDATE product" +
-                "SET stock = stock - (SELECT quantity FROM cart WHERE product_id = ?),"+
-                "status = CASE WHEN stock - (SELECT quantity FROM cart WHERE product_id = ?) <=0 THEN 'F' ELSE status END"+
-                "WHERE product_id = ?";
+        String updateStock = "UPDATE product "+
+            "SET stock = stock - (SELECT quantity FROM cart WHERE product_id = ?)," +
+            "status = CASE WHEN (stock - (SELECT quantity FROM cart WHERE product_id = ?)) <= 0 THEN 'F' ELSE status END "+
+            "WHERE id = ?";
         for (Map<String, Object> cartItem : cartItems) {
             BigInteger productIdBigInt = (BigInteger) cartItem.get("product_id");
             Long productId = productIdBigInt.longValue();
-//            int quantity = (int) cartItem.get("quantity");
 
-            jdbcTemplate.update(updateStock,productId,productId);
+            jdbcTemplate.update(updateStock,productId,productId,productId);
         }
 
         // 새로 생성된 주문의 ID를 가져옴

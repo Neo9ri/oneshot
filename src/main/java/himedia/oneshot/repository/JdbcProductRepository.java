@@ -62,19 +62,19 @@ public class JdbcProductRepository implements ProductRepository{
     @Override
     public List<Product> findBy(String region, String kind, int priceFrom, int priceTo) {
         if (!region.isBlank()){
-            String sql = "SELECT * FROM product WHERE type_region LIKE ? AND status LIKE 'T'";
+            String sql = "SELECT * FROM product WHERE type_region LIKE ?";
             return jdbcTemplate.query(sql, productRowMapper, region);
         } else if (!kind.isBlank()){
-            String sql = "SELECT * FROM product WHERE type_kind LIKE ? AND status LIKE 'T'";
+            String sql = "SELECT * FROM product WHERE type_kind LIKE ?";
             return jdbcTemplate.query(sql, productRowMapper, kind);
         } else if(priceTo!=0){
-            String sql = "SELECT * FROM product WHERE price >= ? AND price <= ? AND status LIKE 'T'";
+            String sql = "SELECT * FROM product WHERE price >= ? AND price <= ?";
             return jdbcTemplate.query(sql,productRowMapper, priceFrom, priceTo);
         } else if (priceFrom!=0 && priceTo==0){
-            String sql = "SELECT * FROM product WHERE price >= ? AND status LIKE 'T'";
+            String sql = "SELECT * FROM product WHERE price >= ?";
             return jdbcTemplate.query(sql,productRowMapper, priceFrom);
         } else{
-            String sql = "SELECT * FROM product WHERE status LIKE 'T'";
+            String sql = "SELECT * FROM product";
             return jdbcTemplate.query(sql, productRowMapper);
         }
     }
@@ -90,7 +90,7 @@ public class JdbcProductRepository implements ProductRepository{
 
     @Override
     public List<Product> findByName(String name) {
-        String sql = "SELECT * FROM product WHERE name LIKE ? AND status LIKE 'T'";
+        String sql = "SELECT * FROM product WHERE name LIKE ?";
         String searchName = "%" + name + "%";
         List<Product> result = jdbcTemplate.query(sql, productRowMapper, searchName);
         return result;
@@ -98,7 +98,7 @@ public class JdbcProductRepository implements ProductRepository{
 
     @Override
     public List<Product> findAll() {
-        String sql = "select * from product where status like 'T'";
+        String sql = "select * from product";
         List<Product> result = jdbcTemplate.query(sql, productRowMapper);
         return result;
     }

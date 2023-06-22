@@ -152,8 +152,6 @@ public class ProductController {
                                             Model model,
                                             RedirectAttributes redirectAttributes){
         loginService.loginCheck(request,model);
-        int currentStock = productService.findById(id).get().getStock();
-        log.info("재고 >>{}",currentStock);
 
         productService.updateProductQuantity(quantity,id);
         return "redirect:/user/item_cart";
