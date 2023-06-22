@@ -43,12 +43,13 @@ public class ProductController {
         if (user.getLoginSuccess()){
             memberId = user.getId();
         }else {
-            return "redirect:/";
+            return "redirect:/login";
         }
         // 상품상세 페이지
         Optional<Product> product = productService.findById(id);
+        boolean isProductInCart = productService.checkProductInCart(id);
         model.addAttribute("product",product.get());
-
+        model.addAttribute("isProductInCart",isProductInCart);
 
         List<Purchase> purchaseDate =reviewService.findByPurchaseDate(memberId,id);
         List<String> purchaseDates = new ArrayList<>();
@@ -98,7 +99,6 @@ public class ProductController {
     //[장바구니에 담기]
     @PostMapping("/addCart")
     public String addToCart(HttpServletRequest request, @RequestParam("id") Long id,
-                            @RequestParam("stock") int stock,
                             RedirectAttributes redirectAttributes,Model model){
         // 로그인 확인 절차
         loginService.loginCheck(request, model);
@@ -110,9 +110,14 @@ public class ProductController {
         } else {
             return "redirect:/";
         }
-
-        productService.addCart(id,memberId);
-//        model.addAttribute("stock",stock);
+        boolean isProductInCart = productService.checkProductInCart(id);
+        log.info("isProductInCart>>{}",isProductInCart);
+        if(isProductInCart){
+            redirectAttributes.addAttribute("id",id);
+            return "redirect:/product/item_detail/{id}";
+        } else {
+            productService.addCart(id,memberId);
+        }
         redirectAttributes.addAttribute("id",id);
         return "redirect:/product/item_detail/{id}";
     }
