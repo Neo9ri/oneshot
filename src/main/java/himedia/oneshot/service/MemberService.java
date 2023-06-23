@@ -1,6 +1,8 @@
 package himedia.oneshot.service;
 
 import java.util.List;
+
+import himedia.oneshot.dto.LoginDTO;
 import org.springframework.stereotype.Service;
 import himedia.oneshot.entity.Member;
 import himedia.oneshot.repository.MemberRepository;
@@ -20,19 +22,22 @@ import java.util.Optional;
 public class MemberService {
     private final MemberRepository memberRepository;
 
-	public Member save(Member member) {
-//		memberRepository.join(member);
+	public Member save(MemberDTO memberDTO) {   
+		Member member = new Member();
+		member.setLogin_id(memberDTO.getLoginId());
+		member.setPw(memberDTO.getPw());
+		member.setEmail(memberDTO.getEmail());
+		member.setName(memberDTO.getName());
+		member.setId_card_number(memberDTO.getIdCardNumber1().concat(memberDTO.getIdCardNumber2()));
+		member.setPhone_number(memberDTO.getPhoneNumber());
+		member.setAddress(memberDTO.getAddress());
+		member.setGender(memberDTO.getGender());		
 		return memberRepository.join(member);
 	}
 
-	
 	public int find(String login_id) {
-	    log.info("[service] find" + login_id);
 		return memberRepository.findByJoinId(login_id);
 	}	
-	
-
-
 
     /**
      * 회원 목록 조회 기능
@@ -61,9 +66,11 @@ public class MemberService {
         memberRepository.edit(member);
     }
 
-    public Boolean changePassword(HttpServletRequest request, String originalPassword, String newPassword){
-        MemberDTO loginData = (MemberDTO) request.getSession().getAttribute("user");
+    public Boolean changePassword(HttpServletRequest request, MemberDTO info){
+        LoginDTO loginData = (LoginDTO) request.getSession().getAttribute("user");
         long id = loginData.getId();
+        String originalPassword = info.getOriginalPw();
+        String newPassword = info.getPw();
         Optional<Member> member = memberRepository.findById(id);
         if (member.get().getPw().equals(originalPassword)){
             memberRepository.changePassword(id, newPassword);
@@ -71,5 +78,17 @@ public class MemberService {
         } else {
             return false;
         }
+    }
+
+    public void changeAuth(MemberDTO memberDTO){
+        long id = memberDTO.getId();
+        String authority = memberDTO.getAuthority().equals("A")? "B" : "A";
+        memberRepository.changeAuth(id, authority);
+    }
+
+    public Boolean resetPassword(HttpServletRequest request, MemberDTO memberDTO){
+        long id = (long)request.getSession().getAttribute("foundId");
+        String pw = memberDTO.getPw();
+        return memberRepository.changePassword(id, pw);
     }
 }

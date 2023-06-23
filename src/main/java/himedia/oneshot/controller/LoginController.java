@@ -3,6 +3,7 @@ package himedia.oneshot.controller;
 import himedia.oneshot.dto.LoginDTO;
 import himedia.oneshot.dto.MemberDTO;
 import himedia.oneshot.service.LoginService;
+import himedia.oneshot.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequiredArgsConstructor
 public class LoginController {
     private final LoginService loginService;
+    private final MemberService memberService;
 
     @GetMapping("login")
     public String login(HttpServletRequest request, Model model){
@@ -59,8 +61,8 @@ public class LoginController {
     public String findIdResult(HttpServletRequest request, Model model, @ModelAttribute MemberDTO info){
         loginService.loginCheck(request, model);
         MemberDTO result = loginService.findLoginId(info);
-        model.addAttribute(result);
-        return null;
+        model.addAttribute("member", result);
+        return "login/found_id";
     }
 
     @GetMapping("find-pw")
@@ -75,8 +77,22 @@ public class LoginController {
     }
 
     @PostMapping("find-pw")
-    public String findPwResult(){
+    public String findPwResult(HttpServletRequest request, Model model, MemberDTO info){
+        if (loginService.loginCheck(request, model)){
+            return "redirect:/";
+        }
+        MemberDTO result = loginService.findPassword(info);
+        request.getSession().setAttribute("foundId", result.getId());
+        return "login/reset_pw";
+    }
 
-        return null;
+    @PostMapping("reset-pw")
+    public String resetPw(HttpServletRequest request, Model model, MemberDTO info){
+        if (loginService.loginCheck(request, model))
+            return "redirect:/";
+        if(memberService.resetPassword(request, info))
+            return "login/change_pw_success";
+        else
+            return "login/change_pw_fail";
     }
 }

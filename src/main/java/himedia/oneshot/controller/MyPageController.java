@@ -31,15 +31,14 @@ public class MyPageController {
     private final MemberService memberService;
 
 
-    @GetMapping("/user/mypage")
+    @GetMapping("user/mypage")
     public String myPage(HttpServletRequest request,
                          @RequestParam(required = false) Integer pageOfPurchase,
                          @RequestParam(required = false) Integer pageOfInquiry,
                          Model model){
         loginService.loginCheck(request, model);
 
-        HttpSession session = request.getSession();
-        LoginDTO user = (LoginDTO) session.getAttribute(("user"));
+        LoginDTO user = (LoginDTO) request.getSession().getAttribute(("user"));
         long memberId;
         if (user.getLoginSuccess()){
             memberId = user.getId();
@@ -59,7 +58,7 @@ public class MyPageController {
         return "user/mypage";
     }
 
-    @PostMapping("/user/mypage")
+    @PostMapping("user/mypage")
     public String changeProfile(HttpServletRequest request,
                                 Model model,
                                 @ModelAttribute MemberDTO profile){
@@ -85,15 +84,21 @@ public class MyPageController {
         return purchaseService.showPurchaseDetail(purchaseId);
     }
 
-    @GetMapping("/user/mypage/password")
-    public String changePwForm(){
-        return null;
+    @GetMapping("user/mypage/password")
+    public String changePwForm(HttpServletRequest request, Model model){
+        loginService.loginCheck(request, model);
+        LoginDTO user = (LoginDTO) request.getSession().getAttribute(("user"));
+        if (!user.getLoginSuccess())
+            return "redirect:/";
+        return "user/reset_pw";
     }
 
-    @PostMapping("/user/mypage/password")
-    public String ChangePw(HttpServletRequest request, Model model, @RequestParam String originalPassword, @RequestParam String newPassword){
+    @PostMapping("user/mypage/password")
+    public String ChangePw(HttpServletRequest request, Model model, MemberDTO memberDTO){
         loginService.loginCheck(request, model);
-        memberService.changePassword(request, originalPassword, newPassword);
-        return "redirect:/user/mypage";
+        if(memberService.changePassword(request, memberDTO))
+            return "redirect:/user/mypage";
+        else
+            return "user/change_pw_fail";
     }
 }

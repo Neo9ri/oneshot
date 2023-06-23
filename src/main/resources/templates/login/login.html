@@ -16,8 +16,7 @@
 <body>
 <div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
 <!-- header-START -->
-<header th:replace="~{fragment/defaultHeader :: #header}">
-</header>
+<header th:replace="~{fragment/defaultHeader :: #header}"></header>
 <!-- header-END -->
 <!-- container-START  -->
 <section class="center login_container">
@@ -30,19 +29,18 @@
         <label for="pw" class="blind">비밀번호</label>
         <input type="password" class="form-control py-2" placeholder="비밀번호" id="pw" name="pw">
       </div>
-      <button class="btn login btn-lg col-3" type="button" th:onclick="login()">로그인</button>
+      <button class="btn login btn-lg col-3" type="submit" th:onclick="login()">로그인</button>
     </div>
     <div class="find_group row my-3 px-3 justify-content-between">
-      <button class="btn col-6 py-3" id="findId" type="button" onclick="location.href='/find-id' ">아이디 찾기</button>
-      <button class="btn col-6" id="findPw" type="button" onclick="location.href='/find-pw' ">패스워드 찾기</button>
+      <button class="btn col-6 py-3" id="findId" type="button" onclick="location.href='/find-id'">아이디 찾기</button>
+      <button class="btn col-6" id="findPw" type="button" onclick="location.href='/find-pw'">패스워드 찾기</button>
     </div>
-    <button class="btn py-3" id="join">회원가입</button>
+    <button id="join" class="btn py-3" type="button" onclick="location.href='/join'">회원가입</button>
   </form>
 </section>
 <!-- container-END -->
 <!-- footer-START -->
-<footer th:replace="~{fragment/footer :: #footer}">
-</footer>
+<footer th:replace="~{fragment/footer :: #footer}"></footer>
 <!-- footer-END -->
 <script src="js/header.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>

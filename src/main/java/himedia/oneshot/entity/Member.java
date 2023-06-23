@@ -26,5 +26,4 @@ public class Member {
     private String gender;          //성별
     private String authority;       //회원상태
     private Date date_created;      //회원가입 날짜
-    
 }

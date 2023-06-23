@@ -17,15 +17,14 @@
 <body>
   <div id="up" onclick="scrollToTop()"><span class="blind">스크롤 올리기</span></div>
   <!-- header : START -->
-  <header th:replace="~{fragment/defaultHeader :: #header}">
-  </header>
+  <header th:replace="~{fragment/defaultHeader :: #header}"></header>
   <!-- header : END -->
   <!-- mainbanner : START -->
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
-      <div class="swiper-slide"><a href="#"><span class="blind">토끼소주 골드</span></a></div>
-      <div class="swiper-slide"><a href="#"></a><span class="blind">백제소주 25도</span></div>
-      <div class="swiper-slide"><a href="#"><span class="blind">짝꿍막걸리</span></a></div>
+      <div class="swiper-slide"><a th:href="@{/product/item-detail/90}"><span class="blind">토끼소주 골드</span></a></div>
+      <div class="swiper-slide"><a th:href="@{/product/item-detail/91}"></a><span class="blind">백제소주 25도</span></div>
+      <div class="swiper-slide"><a th:href="@{/product/item-detail/92}"><span class="blind">짝꿍막걸리</span></a></div>
     </div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
@@ -39,11 +38,14 @@
       <li th:each="product: ${products}">
         <div class="item_cont" >
           <div class="item_photo_box" >
-            <a href="item_detail.html" th:href="@{/product/item_detail/{id}(id=${product.id})}"><img alt="" th:src="@{${'/'+product.img_thumb}}"></a>
+            <a href="item_detail.html" th:href="@{/product/item-detail/{id}(id=${product.id})}" class="position-relative">
+              <img th:alt="${product.name}" th:src="@{${'/'+product.img_thumb}}">
+              <img th:if="${product.status == 'F'}" alt="품절" src="/img/soldout.png" class="soldout position-absolute">
+            </a>
           </div>
           <div class="item_info_cont">
             <div class="item_title_box">
-              <a href="item_detail.html" th:href="@{/product/item_detail/{id}(id=${product.id})}">
+              <a href="item_detail.html" th:href="@{/product/item-detail/{id}(id=${product.id})}">
                 <span class="item_title" th:text="${product.name}" ></span>
               </a>
             </div>
@@ -101,8 +103,7 @@
   </section>
   <!-- container : END -->
   <!-- footer : START -->
-  <footer th:replace="~{fragment/footer :: #footer}">
-  </footer>
+  <footer th:replace="~{fragment/footer :: #footer}"></footer>
   <!-- footer : END -->
   <script src="js/header.js"></script>
 <script>

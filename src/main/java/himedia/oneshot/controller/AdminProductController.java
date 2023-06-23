@@ -27,14 +27,14 @@ public class AdminProductController {
     private final AdminProductService adminProductService;
     private final LoginService loginService;
 
-    private final List<String> typeLocal = List.of(
+    private final List<String> typeRegion = List.of(
             "서울, 경기, 인천권",
             "강원, 세종권",
             "충북, 충남, 제주도",
             "전북, 전남, 경북, 경남"
     );
 
-    private final List<String> typeKind = List.of("증류주", "과실주","약주/청주","숙성 전통주","기타");
+    private final List<String> typeKind = List.of("증류주", "과실주","약주/청주","막걸리","기타");
 
     @GetMapping("product/add")
     public String addProduct(HttpServletRequest request, Model model) {
@@ -46,7 +46,7 @@ public class AdminProductController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe){
-            log.info("비정상적 관리자 페이지 접근");
+
             return "redirect:/";
         }
         // 관리자 여부 확인 --END
@@ -69,21 +69,20 @@ public class AdminProductController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe){
-            log.info("비정상적 관리자 페이지 접근");
+
             return "redirect:/";
         }
         // 관리자 여부 확인 --END
 
         try {
-            log.info("save start");
+
             adminProductService.saveProduct(product, file, files);
-            log.info("save end");
+
         } catch (Exception e) {
             // 이미지 저장 중 오류가 발생한 경우 예외 처리
             redirectAttributes.addFlashAttribute("error", "이미지 저장 중 오류가 발생했습니다.");
             return "redirect:/product/add";
         }
-//        Thread.sleep(12000L);
         redirectAttributes.addAttribute("id", product.getId());
         return "redirect:/product/{id}/edit";
     }
@@ -101,13 +100,12 @@ public class AdminProductController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe){
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
         // 관리자 여부 확인 --END
         Product product = adminProductService.findById(id).get();
         model.addAttribute("product",product);
-        model.addAttribute("typeLocal", typeLocal);
+        model.addAttribute("typeRegion", typeRegion);
         model.addAttribute("typeKind", typeKind);
         model.addAttribute("selectedTypeKind", product.getType_kind());
 
@@ -130,7 +128,6 @@ public class AdminProductController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe){
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
         // 관리자 여부 확인 --END
@@ -141,7 +138,6 @@ public class AdminProductController {
             redirectAttributes.addFlashAttribute("error", "이미지 저장 중 오류가 발생했습니다.");
             return "redirect:/product/{id}/edit";
         }
-//        Thread.sleep(12000L);
         redirectAttributes.addAttribute("id", updatedProduct.getId());
         return "redirect:/product-list";
     }
@@ -158,7 +154,6 @@ public class AdminProductController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe){
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
         // 관리자 여부 확인 --END

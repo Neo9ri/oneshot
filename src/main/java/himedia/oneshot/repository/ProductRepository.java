@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface ProductRepository {
-    List<Product> findBy(String local, String kind, int priceFrom, int priceTo);
+    List<Product> findBy(String region, String kind, int priceFrom, int priceTo);
     Optional<Product> findById(Long id);
     List<Product> findByName(String name);
     List<Product> findAll();
@@ -20,4 +20,5 @@ public interface ProductRepository {
     void truncateTableCart(Long memberId);
     void deleteCartItem(Long id);
     List<Map<String, Object>> getCartItems(Long memberId);
+    Boolean checkProductInCart(Long id);
 }
