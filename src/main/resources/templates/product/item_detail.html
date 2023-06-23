@@ -125,9 +125,9 @@
     <div>
         <div class="item_review" id="item_review">
             <h3>상품후기</h3>
-            <form id="review_form" th:object="${review}"th:action="@{/item_detail/{productId}/review(productId=${product.id})}"  method="post" enctype="multipart/form-data">
+            <form id="review_form" th:object="${review}"th:action="@{/item-detail/{productId}/review(productId=${product.id})}"  method="post" enctype="multipart/form-data">
                 <label for="satisfaction">만족도:</label>
-                <select id="satisfaction"  name="review_satisfactionl" class="form-control">
+                <select id="satisfaction"  name="review_satisfaction" class="form-control" required>
                     <option value="VH">매우 만족</option>
                     <option value="H">만족</option>
                     <option value="M">보통</option>
@@ -136,18 +136,18 @@
                 </select>
                 <div>
                     <label for="purchaseDate">상품구매 날짜</label>
-                    <select id="purchaseDate"  name="purchaseDate" class="form-control">
+                    <select id="purchaseDate"  name="purchaseDate" class="form-control" required>
                         <option th:each="date : ${purchaseDates}" th:value="${date}" th:text="${date}"></option>
                     </select>
                 </div>
                 <label for="review_content">리뷰 내용:</label><br>
-                <textarea id="review_content" rows="5" placeholder="상품리뷰 내용을 적어주세요!!" name="content" class="form-control"></textarea>
+                <textarea id="review_content" rows="5" placeholder="상품리뷰 내용을 적어주세요!!" name="content" class="form-control" required></textarea>
                 <div class="item_review_submit">
                     <div class="thumbnail_container">
                         <label for="file_upload">
                             <img src="../img/camera.png" th:src="@{/img/camera.png}" alt="카메라 아이콘" width="60" height="60">
                         </label>
-                        <input id="file_upload" type="file" name="thumbnailImages" accept="image/*" multiple onchange="previewImages(this)" >
+                        <input id="file_upload" type="file" name="thumbnailImages" accept="image/*" multiple onchange="previewImages(this)" class="blind" required>
                         <img  id="thumbnailPreview" src=""  width="60px" height="60px"/>
                     </div>
                     <button id="submit_button" type="submit">리뷰 등록</button>
@@ -270,7 +270,7 @@
         $.ajax({
             type: 'POST',
             data: { page: page },
-            url: "/product/item_detail/" + id,
+            url: "/product/item-detail/" + id,
         })
         .done(function (result) {
             $('section').replaceWith(result);

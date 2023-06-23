@@ -33,7 +33,7 @@ public class AdminProductController {
 
     private final List<String> typeKind = List.of("증류주", "과실주","약주/청주","막걸리","기타");
 
-    @GetMapping("/product/add")
+    @GetMapping("product/add")
     public String addProduct(HttpServletRequest request, Model model) {
         // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
@@ -43,16 +43,16 @@ public class AdminProductController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe){
-            log.info("비정상적 관리자 페이지 접근");
+
             return "redirect:/";
         }
         // 관리자 여부 확인 --END
         Product product = new Product();
         model.addAttribute("product", product);
-        return "/admin/add_product";
+        return "admin/add_product";
     }
 
-    @PostMapping("/product/add")
+    @PostMapping("product/add")
     public String addProduct(HttpServletRequest request, Model model,
                              @ModelAttribute Product product,
                              @RequestParam("thumb") MultipartFile file,
@@ -66,28 +66,27 @@ public class AdminProductController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe){
-            log.info("비정상적 관리자 페이지 접근");
+
             return "redirect:/";
         }
         // 관리자 여부 확인 --END
 
         try {
-            log.info("save start");
+
             adminProductService.saveProduct(product, file, files);
-            log.info("save end");
+
         } catch (Exception e) {
             // 이미지 저장 중 오류가 발생한 경우 예외 처리
             redirectAttributes.addFlashAttribute("error", "이미지 저장 중 오류가 발생했습니다.");
             return "redirect:/product/add";
         }
-        Thread.sleep(15000L);
         redirectAttributes.addAttribute("id", product.getId());
         return "redirect:/product/{id}/edit";
     }
 
 
 
-    @GetMapping("/product/{id}/edit")
+    @GetMapping("product/{id}/edit")
     public String editProduct(HttpServletRequest request,
                               @PathVariable(name = "id") Long id, Model model) throws IOException {
         // 관리자 여부 확인 -- START
@@ -98,7 +97,6 @@ public class AdminProductController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe){
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
         // 관리자 여부 확인 --END
@@ -108,11 +106,11 @@ public class AdminProductController {
         model.addAttribute("typeKind", typeKind);
         model.addAttribute("selectedTypeKind", product.getType_kind());
 
-        return "/admin/edit_product";
+        return "admin/edit_product";
     }
 
 
-    @PostMapping("/product/{id}/edit")
+    @PostMapping("product/{id}/edit")
     public String editProduct(HttpServletRequest request,
                               Model model, @PathVariable("id") Long id,
                               @ModelAttribute Product updatedProduct,
@@ -127,7 +125,6 @@ public class AdminProductController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe){
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
         // 관리자 여부 확인 --END
@@ -138,13 +135,12 @@ public class AdminProductController {
             redirectAttributes.addFlashAttribute("error", "이미지 저장 중 오류가 발생했습니다.");
             return "redirect:/product/{id}/edit";
         }
-        Thread.sleep(12000L);
         redirectAttributes.addAttribute("id", updatedProduct.getId());
         return "redirect:/product-list";
     }
 
 
-    @PostMapping("/product/{id}/update")
+    @PostMapping("product/{id}/update")
     public String updateProductStatus(HttpServletRequest request, Model model,
                                       @PathVariable("id") Long id, String status) {
         // 관리자 여부 확인 -- START
@@ -155,7 +151,6 @@ public class AdminProductController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe){
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
         // 관리자 여부 확인 --END

@@ -240,10 +240,7 @@
   transform: scale(1.1);
 }
 
-/* 파일 찾기 */
-#file_upload {
-  display: none; /* 파일 선택 버튼을 숨김 */
-}
+
 /* 상품 리뷰 */
 #review_summary{
   position: relative;

@@ -41,14 +41,14 @@
       <li th:each="product: ${products}">
         <div class="item_cont" >
           <div class="item_photo_box" >
-            <a href="item_detail.html" th:href="@{/product/item_detail/{id}(id=${product.id})}" class="position-relative">
+            <a href="item_detail.html" th:href="@{/product/item-detail/{id}(id=${product.id})}" class="position-relative">
               <img th:alt="${product.name}" th:src="@{${'/'+product.img_thumb}}">
               <img th:if="${product.status == 'F'}" alt="품절" src="/img/soldout.png" class="soldout position-absolute">
             </a>
           </div>
           <div class="item_info_cont">
             <div class="item_title_box">
-              <a href="item_detail.html" th:href="@{/product/item_detail/{id}(id=${product.id})}">
+              <a href="item_detail.html" th:href="@{/product/item-detail/{id}(id=${product.id})}">
                 <span class="item_title" th:text="${product.name}" ></span>
               </a>
             </div>
