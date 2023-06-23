@@ -1,0 +1,56 @@
+/* 회원가입 */
+.join-section {
+  padding: 100px 0;
+}
+
+.join-container {
+  width: 700px;
+  margin: 50px auto 0;
+}
+
+.join-container .join-agree-label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.join-container .join-agree-box {
+  border: 1px solid #ddd;
+  padding: 20px;
+  height: 100px;
+  overflow-y: auto;
+}
+
+.join-container .input-img-group {
+  display: flex;
+}
+
+.join-container .input-img-group>span {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.join-container .input-img-group>span>img {
+  width: 100%;
+}
+
+.join-section .btn-group {
+  display: flex;
+  margin-top: 50px;
+  gap: 10px;
+}
+
+.join-container .duble-check-btn {
+  width: 100px;
+  margin-left: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.join-container .btn {
+  background-color: #fedf12;
+  color: #000;
+}
