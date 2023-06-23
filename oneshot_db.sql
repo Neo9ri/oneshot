@@ -10,11 +10,11 @@ DROP TABLE IF EXISTS notice, product_review, cart, purchase_detail, purchase, pr
 SELECT * FROM member;
 SELECT * FROM product;
 SELECT * FROM cart;
-SELECT * FROM member;
 SELECT * FROM inquiry;
 SELECT * FROM purchase;
 SELECT * FROM purchase_detail;
 SELECT * FROM notice;
+SELECT * FROM product_review;
 
 CREATE TABLE IF NOT EXISTS member -- 회원 목록
 (	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, -- 회원 고유 번호(PK)
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS product -- 상품 목록
 (	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, -- 상품 고유 번호(PK)
 	status CHAR(1) DEFAULT 'T' CHECK (status IN ('T', 'F')),-- 상품 판매 가능 상태
 	name VARCHAR(30) NOT NULL, -- 이름
-    quantity SMALLINT UNSIGNED NOT NULL,
+    stock SMALLINT NOT NULL DEFAULT 0, -- 재고
     type_region VARCHAR(20), -- 지역
     type_kind VARCHAR(10), -- 주종
     creator VARCHAR(20), -- 제조사
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS purchase_detail -- 주문 상세 내역
 CREATE TABLE IF NOT EXISTS cart -- 장바구니 목록
 (	member_id BIGINT UNSIGNED NOT NULL, -- 회원 고유 번호
 	product_id BIGINT UNSIGNED NOT NULL, -- 상품 고유 번호
-    quantity SMALLINT UNSIGNED NOT NULL, -- 장바구니 내 해당 상품 수량
+    quantity SMALLINT NOT NULL DEFAULT 0, -- 장바구니 내 해당 상품 수량
     FOREIGN KEY(member_id) REFERENCES member(id), -- 외래키 지정 시작
     FOREIGN KEY(product_id) REFERENCES product(id) -- 외래키 지정 종료
 );
@@ -140,7 +140,7 @@ FROM
 LIMIT 100;
 
 INSERT INTO product
-(name, quantity, type_region, type_kind, creator, alcohol, volume, price, img_thumb, img_exp1, img_exp2)
+(name, stock, type_region, type_kind, creator, alcohol, volume, price, img_thumb, img_exp1, img_exp2)
 values
 ('대대포',1,'전북, 전남, 경북, 경남','막걸리', '죽향도가',6,600,3600,'img/product/thumbnail/대대포.jpg','img/product/explanation/대대포_exp01.jpg','img/product/explanation/대대포_exp02.jpg'),
 ('호랑이 생막걸리',1,'서울, 경기, 인천권','막걸리', '배도가',6,750,3300,'img/product/thumbnail/호랑이_생막걸리.jpg','img/product/explanation/호랑이_생막걸리_exp01.jpg','img/product/explanation/호랑이_생막걸리_exp02.jpg'),
@@ -278,7 +278,3 @@ WHERE pr.product_id = 25;
 select p.date_created from purchase p 
 join purchase_detail pd on p.id = pd.purchase_id 
 where pd.product_id =25 and pd.member_id = 2;
-
-SELECT * FROM purchase;
-SELECT * FROM purchase_detail;
-select * from product_review;

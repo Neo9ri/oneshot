@@ -22,7 +22,7 @@
     <section class="center find_container">
       <h3 class="title">고객님의 원샷 아이디</h3>
       <div class="found_id" >
-        <p>고객님의 아이디는<br> <span>{}</span>입니다.</p>
+        <p>고객님의 아이디는<br> <span th:text="${member.loginId}"></span>입니다.</p>
         <hr>
        <div class="row d-flex justify-content-around button_group">
        <button class="btn btn-lg col-4" type="button" onclick="location.href='/login'">로그인하기</button>

@@ -21,7 +21,11 @@
   <!-- container-START  -->
   <section class="center find_container">
     <h3 class="title">비밀번호 재설정</h3>
-    <form id="reset_pw" method="post" th:action="@{reset-pw}">
+    <form id="reset_pw_mypage" method="post" th:action="@{password}">
+      <div class="row my-5">
+        <label for="originalPw" class="col-4">기존 비밀번호</label>
+        <input type="password" id="originalPw" class="form-control py-2 col" placeholder="새로운 비밀번호" name="originalPw" required>
+      </div>
       <div class="row my-5">
         <label for="newPw" class="col-4">새로운 비밀번호</label>
         <input type="password" id="newPw" class="form-control py-2 col" placeholder="새로운 비밀번호" name="pw" required>
@@ -33,14 +37,13 @@
       </div>
         <span id="confirmCheck" class="blind"></span>
         <hr>
-      <button class="btn reset btn-lg col-4" type="submit" onsubmit="return confirm('확인을 누르시면 비밀번호 재설정이 완료됩니다.')">비밀번호
+      <button class="btn reset btn-lg col-4 offset-md-4" type="submit" onsubmit="return confirm('확인을 누르시면 비밀번호 재설정이 완료됩니다.')">비밀번호
         재설정</button>
     </form>
   </section>
   <!-- container-END -->
   <!-- footer-START -->
-  <footer th:replace="~{fragment/footer :: #footer}">
-  </footer>
+  <footer th:replace="~{fragment/footer :: #footer}"></footer>
   <!-- footer-END -->
   <script src="js/header.js"></script>
 </body>
