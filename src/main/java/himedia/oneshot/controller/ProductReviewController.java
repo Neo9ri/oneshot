@@ -8,6 +8,7 @@ import himedia.oneshot.service.LoginService;
 import himedia.oneshot.service.ProductReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,4 +61,20 @@ public class ProductReviewController {
         return "redirect:/product/item_detail/{id}";
     }
 
+    @GetMapping(value = "/img/product_review/{name}", produces = MediaType.IMAGE_JPEG_VALUE)
+    @ResponseBody
+    public byte[] getImage(
+        @PathVariable String name
+    ){
+        final File file = new File("/home/ubuntu/oneshot/img/product_review",name);
+
+        byte[] bytes = new byte[(int) file.length()];
+
+        try (FileInputStream fis = new FileInputStream(file)) {
+            fis.read(bytes);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return bytes;
+    }
 }

@@ -4,6 +4,7 @@ import himedia.oneshot.entity.Product;
 import himedia.oneshot.repository.JdbcAdminProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
@@ -21,27 +22,39 @@ public class AdminProductService {
     private final JdbcAdminProductRepository adminProductRepository;
 
     private Product saveImage(Product product,MultipartFile thumbImgFile, MultipartFile[] expImgFiles) throws Exception{
-        String thumbImgName = thumbImgFile.getOriginalFilename();
-        log.info("이미지이름>>{}",thumbImgName);
+//        String thumbImgName = thumbImgFile.getOriginalFilename();
+        UUID thumbName = UUID.randomUUID();
+        UUID uuid = UUID.randomUUID();
+        String thumbImgName = thumbName + ".jpg";
+//        List<String> expImgNames = new ArrayList<>();
+//        for(MultipartFile img : expImgFiles){
+//            String imgName = img.getOriginalFilename();
+//            expImgNames.add(imgName);
+//        }
+
         List<String> expImgNames = new ArrayList<>();
         for(MultipartFile img : expImgFiles){
-            String imgName = img.getOriginalFilename();
+            String imgName = uuid + img.getOriginalFilename();
             expImgNames.add(imgName);
         }
-        String thumbPath = System.getProperty("user.dir") +
-                "/src/main/resources/static/img/product/thumbnail";
-        String expPath = System.getProperty("user.dir")+
-                "/src/main/resources/static/img/product/explanation";
+//        String thumbPath = System.getProperty("user.dir") +
+//                "/src/main/resources/static/img/product/thumbnail";
+
+        String thumbPath = new ClassPathResource("/img/product/thumbnail").getPath();
+
+//        String expPath = System.getProperty("user.dir")+
+//                "/src/main/resources/static/img/product/explanation";
+        String expPath = new ClassPathResource("/img/product/explanation").getPath();
+
         File thumbSaveFile = new File(thumbPath,thumbImgName);
         thumbImgFile.transferTo(thumbSaveFile);
-        log.info("썸네일 저장완료");
+
         for (int i = 0; i < expImgFiles.length; i++) {
             if (i < expImgNames.size() && !expImgNames.get(i).isEmpty()) {
                 File expSaveFile = new File(expPath, expImgNames.get(i));
                 expImgFiles[i].transferTo(expSaveFile);
             }
         }
-        log.info("설명저장완료");
         product.setImg_thumb("img/product/thumbnail/"+thumbImgName);
         product.setImg_exp1("img/product/explanation/"+expImgNames.get(0));
         if (expImgNames.size() > 1 && !expImgNames.get(1).isEmpty()) {
@@ -57,12 +70,10 @@ public class AdminProductService {
     }
     public void updateProduct(Long id,Product updatedProduct,MultipartFile thumbImgFile, MultipartFile[] expImgFiles) throws Exception {
         if ((thumbImgFile == null || thumbImgFile.isEmpty()) || (expImgFiles == null || expImgFiles.length == 0)) {
-            log.info("img null일 경우");
             Product existingProduct = adminProductRepository.findById(id).get();
             updatedProduct.setImg_thumb(existingProduct.getImg_thumb());
             updatedProduct.setImg_exp1(existingProduct.getImg_exp1());
             updatedProduct.setImg_exp2(existingProduct.getImg_exp2());
-            log.info("img 기존값으로 설정");
         }else {
             saveImage(updatedProduct,thumbImgFile,expImgFiles);
         }

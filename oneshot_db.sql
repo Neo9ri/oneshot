@@ -15,6 +15,9 @@ SELECT * FROM inquiry;
 SELECT * FROM purchase;
 SELECT * FROM purchase_detail;
 SELECT * FROM notice;
+select * from product_review;
+
+truncate table product_review;
 
 CREATE TABLE IF NOT EXISTS member -- 회원 목록
 (	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, -- 회원 고유 번호(PK)
