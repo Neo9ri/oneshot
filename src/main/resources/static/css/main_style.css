@@ -281,6 +281,9 @@ section[class$="container"] .item_cont .item_photo_box {
 section[class$="container"] .item_cont .item_photo_box img{
 width:248px
 }
+section[class$="container"] .item_cont .item_photo_box img.soldout{
+    left:0;
+}
 section[class$="container"] .item_info_cont {
   font-weight: 700;
   margin: 10px 0;
