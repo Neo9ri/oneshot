@@ -35,8 +35,8 @@
         </div>
         <div id="productEditorRight" class="col-4">
             <div class="row">
-                <label for="type_local" class="col col_name align-self-center">지역 카테고리</label>
-                <select id="type_local" name="type_local" class="col form-select" required>
+                <label for="type_region" class="col col_name align-self-center">지역 카테고리</label>
+                <select id="type_region" name="type_region" class="col form-select" required>
                     <option selected>지역 카테고리 선택</option>
                     <option value="서울, 경기, 인천권">서울/경기/인천</option>
                     <option value="강원, 세종권">강원/세종</option>
@@ -51,7 +51,7 @@
                     <option value="증류주">증류주</option>
                     <option value="과실주">과실주</option>
                     <option value="약주/청주">약주/청주</option>
-                    <option value="숙성 전통주">숙성 전통주</option>
+                    <option value="막걸리">막걸리</option>
                     <option value="기타">기타</option>
                 </select>
             </div>
@@ -84,8 +84,8 @@
                 <div class="col-1 align-self-center">원</div>
             </div>
             <div class="row">
-                <label for="quantity" class="col-6 co">수량</label>
-                <input id="quantity" type="text" name="quantity" class="col form-control" required placeholder="0"
+                <label for="stock" class="col-6 co">수량</label>
+                <input id="stock" type="text" name="stock" class="col form-control" required placeholder="0"
                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                 <div class="col-1 align-self-center">병</div>
             </div>
@@ -116,8 +116,7 @@
 </section>
 <!-- container : END -->
 <!-- footer : START -->
-<footer th:replace="~{fragment/footer :: #footer}">
-</footer>
+<footer th:replace="~{fragment/footer :: #footer}"></footer>
 <!-- footer : END -->
 <script src="/js/admin_product.js"></script>
 <script src="/js/header.js"></script>

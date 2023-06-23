@@ -32,7 +32,7 @@ public class ProductReviewController {
     private final ProductReviewService reviewService;
     private final LoginService loginService;
 
-    @PostMapping("item_detail/{productId}/review")
+    @PostMapping("item-detail/{productId}/review")
     public String saveReview(@ModelAttribute("review") ProductReview productReview,
                              @PathVariable("productId") Long productId,
                              @RequestParam("thumbnailImages") MultipartFile[] thumbImgFiles,
@@ -58,7 +58,7 @@ public class ProductReviewController {
 
         reviewService.saveReview(productReview, thumbImgFiles);
         redirectAttributes.addAttribute("id",productId);
-        return "redirect:/product/item_detail/{id}";
+        return "redirect:/product/item-detail/{id}";
     }
 
     @GetMapping(value = "/img/product_review/{name}", produces = MediaType.IMAGE_JPEG_VALUE)

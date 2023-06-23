@@ -93,7 +93,7 @@ public class JdbcMemberRepository implements MemberRepository {
 			parameters.put("authority", "A");
 			parameters.put("date_created", member.getDate_created());	
     		Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
-    		log.info("key >> "+ key);
+
     		member.setId(key.longValue());
     		return member;
     }
@@ -108,10 +108,6 @@ public class JdbcMemberRepository implements MemberRepository {
                 member.getPhone_number(),
                 member.getAddress(),
                 member.getId());
-    }
-
-    @Override
-    public void ban(int memberId) {
     }
 
     @Override
@@ -130,10 +126,10 @@ public class JdbcMemberRepository implements MemberRepository {
 
     @Override    
     public int findByJoinId(String login_id) {
-    	log.info("나는 레포지토리" + login_id);
+
         String sql = "SELECT * FROM MEMBER WHERE login_id = ?;";
         List<Member> memberList = jdbcTemplate.query(sql, memberRowMapper(), login_id);       
-        log.info("[POST] join 실행2" + memberList );
+
         return memberList.size();      
     }
 
@@ -149,9 +145,16 @@ public class JdbcMemberRepository implements MemberRepository {
     }
 
     @Override
-    public void changePassword(long id, String password) {
+    public Boolean changePassword(long id, String password) {
         String sql = "UPDATE member SET pw= ? WHERE id=?";
-        jdbcTemplate.update(sql, password, id);
+        int result = jdbcTemplate.update(sql, password, id);
+        return result == 1;
+    }
+
+    @Override
+    public void changeAuth(long id, String authority) {
+        String sql = "UPDATE member SET authority= ? WHERE id = ?";
+        jdbcTemplate.update(sql, authority, id);
     }
 
     @Override
@@ -159,6 +162,14 @@ public class JdbcMemberRepository implements MemberRepository {
         String sql = "SELECT * FROM member WHERE name LIKE ? AND email LIKE ? AND id_card_number LIKE ?";
         birthday = birthday +'%';
         List<Member> members = jdbcTemplate.query(sql, memberRowMapper(), name, email, birthday);
+        return members.stream().findAny();
+    }
+
+    @Override
+    public Optional<Member> findPassword(String loginId, String name, String birthday, String email) {
+        String sql = "SELECT * FROM member WHERE login_Id LIKE ? AND name LIKE ? AND id_card_number LIKE ? AND email LIKE ?";
+        birthday = birthday +'%';
+        List<Member> members = jdbcTemplate.query(sql, memberRowMapper(), loginId, name, birthday, email);
         return members.stream().findAny();
     }
 }

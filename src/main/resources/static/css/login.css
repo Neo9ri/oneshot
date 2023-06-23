@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* login -START */
 .login_container,.find_container {
   padding-bottom: 100px;
@@ -78,6 +79,7 @@
     position-relative;
     background-color:#feef8888;
 }
+
 .find_container .find_form p{
     font-size:20px;
     text-align:center;
@@ -85,50 +87,102 @@
 }
 .find_container .find_form label{
     font-size:20px;
-    font-weight:700px;
+    font-weight:700;
     line-height: 2;
     text-align: center;
 }
-.find_container .find_form button.find{
+.find_container .find_form button.find, #reset_pw button.reset, #reset_pw_mypage button.reset{
     background-color:#773300;
     position:relative;
-    left: calc(50% - 73px);
     color:#fff;
+}
+.find_container .find_form button.find{
+    left: calc(50% - 73px);
 }
 .find_container .find_form button.find.pw{
     left:calc(50% - 113px)
-    }
+}
 
 /* find-form ONLY -END*/
+/*found-id ONLY - START*/
+.find_container div.found_id, #reset_pw{
+    width:600px;
+    height:400px;
+    padding:50px;
+    margin: 0 auto;
+    background-color:#feef8888;
+}
+.find_container div.found_id>p{
+    text-align:center;
+    width:300px;
+    margin:50px auto;
+    font-size:30px;
+}
+.find_container div.found_id div.button_group{
+    margin: 50px 0;
+}
+.find_container div.found_id div.button_group button{
+    background-color:#773300;
+    color: #fff;
+}
+/*found-id ONLY - END*/
+/*reset-pw ONLY - START*/
+#reset_pw button.reset, #reset_pw_mypage.reset{
+    left:calc(50% - 83px);
+    margin-top:20px;
+}
+#reset_pw label, #reset_pw_mypage label{
+    font-weight:700;
+    font-size:18px;
+    line-height:42px;
+    text-align:center;
+}
+#reset_pw span, #reset_pw_mypage span{
+    display: block;
+    width:200px;
+    height:20px;
+    margin:20px 0 0 170px;
+}
 
+/*reset-pw ONLY - END*/
 
-/* 회원가입 */
-.join-section {
+/* mypage-reset-pw ONLY - START*/
+#reset_pw_mypage{
+width:600px;
+height:450px;
+padding:50px;
+margin: 0 auto;
+background-color:#feef8888;
+}
+/* mypage-reset-pw ONLY - START*/
+
+/* join - START */
+.join_section {
   padding: 100px 0;
 }
 
-.join-container {
+.join_container {
   width: 700px;
   margin: 50px auto 0;
 }
 
-.join-container .join-agree-label {
+.join_container .join-agree-label {
   display: flex;
   justify-content: space-between;
 }
 
-.join-container .join-agree-box {
+.join_container .join-agree-box {
   border: 1px solid #ddd;
   padding: 20px;
   height: 100px;
   overflow-y: auto;
 }
 
-.join-container .input-img-group {
+.join_container .input-img-group {
   display: flex;
 }
 
-.join-container .input-img-group>span {
+.join_container .input-img-group>span {
   display: block;
   width: 40px;
   height: 40px;
@@ -137,24 +191,25 @@
   align-items: center;
 }
 
-.join-container .input-img-group>span>img {
-  width: 100%;
+.join_container .input-img-group>span>img {
+  width: 37.203px;
 }
 
-.join-section .btn_group {
+.join_section .btn-group {
   display: flex;
   margin-top: 50px;
   gap: 10px;
 }
 
-.join-container .duble-check-btn {
+.join_container .duble-check-btn {
   width: 100px;
   margin-left: 10px;
   border-radius: 6px;
   border: 1px solid #ddd;
 }
 
-.join-container .btn {
+.join_container .btn {
   background-color: #fedf12;
   color: #000;
 }
+/*join - END*/

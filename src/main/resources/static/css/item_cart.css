@@ -81,6 +81,7 @@
   margin: 6px;
   font-weight: 500;
   border-radius: 5px;
+  transition: 0.3s;
 }
 .cart_tbody_quantity button:hover{
   border: 0;
@@ -101,6 +102,7 @@
   font-size: 18px;
   font-weight: 500;
   border-radius: 5px;
+  transition: 0.3s;
 }
 .cart_tbody_btn button:hover{
   border: 0;
@@ -165,14 +167,16 @@
   font-weight: 600;
   border-radius: 5px;
 }
-.item_cart_cancle_btn{
-  padding-right:150px;
+#item_cart_cancle_btn{
+  margin-right:150px;
+  transition: 0.3s;
 }
 #item_cart_cancle_btn:hover{
   transform: scale(1.1);
 }
 #item_cart_order_btn{
   background-color: #fedf12;
+  transition: 0.3s;
 }
 #item_cart_order_btn:hover{
   background-color: #fedf12;

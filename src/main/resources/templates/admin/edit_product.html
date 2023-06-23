@@ -34,12 +34,12 @@
       </div>
       <div id="productEditorRight" class="col-4">
         <div class="row">
-          <label for="type_local" class="col col_name align-self-center">지역 카테고리</label>
-          <select id="type_local" name="type_local" class="col form-select" required>
-            <option th:each="local : ${typeLocal}"
-            th:value="${local}"
-            th:text="${local}"
-            th:selected="${local eq product.type_local}"></option>
+          <label for="type_region" class="col col_name align-self-center">지역 카테고리</label>
+          <select id="type_region" name="type_region" class="col form-select" required>
+            <option th:each="region : ${typeRegion}"
+            th:value="${region}"
+            th:text="${region}"
+            th:selected="${region eq product.type_region}"></option>
           </select>
         </div>
         <div class="row">
@@ -81,8 +81,8 @@
           <div class="col-1 align-self-center">원</div>
         </div>
         <div class="row">
-          <label for="quantity" class="col-6 co">수량</label>
-          <input id="quantity" type="number" name="quantity"  th:value="${product.quantity}" class="col form-control" required
+          <label for="stock" class="col-6 co">수량</label>
+          <input id="stock" type="number" name="stock"  th:value="${product.stock}" class="col form-control" required
                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
           <div class="col-1 align-self-center">병</div>
         </div>
@@ -114,8 +114,7 @@
   </section>
   <!-- container : END -->
   <!-- footer : START -->
-<footer th:replace="~{fragment/footer :: #footer}">
-</footer>
+<footer th:replace="~{fragment/footer :: #footer}"></footer>
   <!-- footer : END -->
 <script src="/js/admin_product.js"></script>
 <script src="/js/header.js"></script>

@@ -5,8 +5,6 @@ import himedia.oneshot.repository.JdbcAdminProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -77,7 +75,7 @@ public class AdminProductService {
         }else {
             saveImage(updatedProduct,thumbImgFile,expImgFiles);
         }
-       adminProductRepository.updateProduct(id, updatedProduct);
+        adminProductRepository.updateProduct(id, updatedProduct);
     }
 
     public void updateProductStatus(Long id, String status){

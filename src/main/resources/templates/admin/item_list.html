@@ -44,12 +44,12 @@
       <tbody th:unless="${#lists.isEmpty(products)}">
       <tr th:each="product : ${products}">
         <td th:text="${product.id}">101</td>
-        <td th:text="${product.type_local}">전라북도, 경상도권</td>
+        <td th:text="${product.type_region}">전라북도, 경상도권</td>
         <td th:text="${product.type_kind}">증류주</td>
         <td th:text="${product.creator}">안동 소주 일품</td>
         <td th:text="${product.name}">안동 소주</td>
         <td th:text="${product.price}">15000</td>
-        <td th:text="${product.quantity}">10</td>
+        <td th:text="${product.stock}">10</td>
         <td>
           <button type="button" th:onclick="|location.href='@{/product/{productId}/edit(productId=${product.id})}'|" class="btn btn_default"> 수정 </button>
           <form th:action="@{/product/{productId}/update(productId=${product.id})}" method="post" class="update"

@@ -32,7 +32,7 @@ public class ProductController {
     private final ProductReviewService reviewService;
 
     //[상품 목록]
-    @GetMapping("product/item_detail/{id}")
+    @GetMapping("product/item-detail/{id}")
     public String detailPage(HttpServletRequest request, @PathVariable("id") Long id
             , Model model,@RequestParam(required = false) Integer page){
         // 로그인 확인 절차
@@ -43,12 +43,13 @@ public class ProductController {
         if (user.getLoginSuccess()){
             memberId = user.getId();
         }else {
-            return "redirect:/";
+            return "redirect:/login";
         }
         // 상품상세 페이지
         Optional<Product> product = productService.findById(id);
+        boolean isProductInCart = productService.checkProductInCart(id);
         model.addAttribute("product",product.get());
-
+        model.addAttribute("isProductInCart",isProductInCart);
 
         List<Purchase> purchaseDate =reviewService.findByPurchaseDate(memberId,id);
         List<String> purchaseDates = new ArrayList<>();
@@ -63,7 +64,7 @@ public class ProductController {
 //        model.addAttribute("reviewDTO",reviewDTOS);
         return  "product/item_detail";
     }
-    @PostMapping("product/item_detail/{id}")
+    @PostMapping("product/item-detail/{id}")
     public String detailPageAjax(HttpServletRequest request, @PathVariable("id") Long id
             , Model model,@RequestParam(required = false) Integer page){
         // 로그인 확인 절차
@@ -109,10 +110,16 @@ public class ProductController {
         } else {
             return "redirect:/";
         }
+        boolean isProductInCart = productService.checkProductInCart(id);
 
-        productService.addCart(id,memberId);
+        if(isProductInCart){
+            redirectAttributes.addAttribute("id",id);
+            return "redirect:/product/item-detail/{id}";
+        } else {
+            productService.addCart(id,memberId);
+        }
         redirectAttributes.addAttribute("id",id);
-        return "redirect:/product/item_detail/{id}";
+        return "redirect:/product/item-detail/{id}";
     }
 
     //[장바구니 확인]
@@ -131,6 +138,7 @@ public class ProductController {
 
         List<CartDTO> cartProducts = productService.showCart(memberId);
         int totalPrice = productService.cartTotalPrice(memberId);
+
         model.addAttribute("cartProducts",cartProducts);
         model.addAttribute("totalPrice",totalPrice+3000+"원");
         return "user/item_cart";
@@ -174,6 +182,7 @@ public class ProductController {
         }
 
         List<Map<String, Object>> cartItems = productService.getCartItems(memberId);
+
         purchaseService.placeOrder(memberId,cartItems);
         return "redirect:/";
     }
