@@ -71,4 +71,7 @@ public class ProductService {
 
         return totalPrice;
     }
+    public boolean checkProductInCart(Long id){
+        return productRepository.checkProductInCart(id);
+    }
 }

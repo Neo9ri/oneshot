@@ -37,7 +37,7 @@
             </tr>
             <tr>
                 <td>상품코드</td>
-                <td>100000813</td>
+                <td th:text="${product.id}">100000813</td>
             </tr>
             <tr>
                 <td>제조사</td>
@@ -48,9 +48,11 @@
                 <td th:text="${product.type_region}">국내산</td>
             </tr>
         </table>
+        <span class="blind" id="existInCart" th:text="${isProductInCart}"></span>
         <form method="post" th:action="@{/addCart}" id="orderForm">
             <input type="hidden" name="id" th:value="${product.id}"/>
-            <button type="submit" class="btn btn_primary" onclick="confirmOrder(event)">장바구니</button>
+            <button th:if="${product.status == 'T'}" type="submit" class="btn btn_primary my-4" onclick="confirmOrder(event)">장바구니</button>
+            <button th:if="${product.status == 'F'}" type="button" class="btn btn_primary my-4" id="sold_out" disabled>품절</button>
         </form>
     </div>
     <div class="item_detail_banner">
@@ -125,7 +127,7 @@
             <h3>상품후기</h3>
             <form id="review_form" th:object="${review}"th:action="@{/item_detail/{productId}/review(productId=${product.id})}"  method="post" enctype="multipart/form-data">
                 <label for="satisfaction">만족도:</label>
-                <select id="satisfaction"  name="review_satisfaction">
+                <select id="satisfaction"  name="review_satisfactionl" class="form-control">
                     <option value="VH">매우 만족</option>
                     <option value="H">만족</option>
                     <option value="M">보통</option>
@@ -134,19 +136,19 @@
                 </select>
                 <div>
                     <label for="purchaseDate">상품구매 날짜</label>
-                    <select id="purchaseDate"  name="purchaseDate">
+                    <select id="purchaseDate"  name="purchaseDate" class="form-control">
                         <option th:each="date : ${purchaseDates}" th:value="${date}" th:text="${date}"></option>
                     </select>
                 </div>
                 <label for="review_content">리뷰 내용:</label><br>
-                <textarea id="review_content" rows="5" placeholder="상품리뷰 내용을 적어주세요!!" name="content"></textarea>
+                <textarea id="review_content" rows="5" placeholder="상품리뷰 내용을 적어주세요!!" name="content" class="form-control"></textarea>
                 <div class="item_review_submit">
                     <div class="thumbnail_container">
                         <label for="file_upload">
                             <img src="../img/camera.png" th:src="@{/img/camera.png}" alt="카메라 아이콘" width="60" height="60">
                         </label>
                         <input id="file_upload" type="file" name="thumbnailImages" accept="image/*" multiple onchange="previewImages(this)" >
-                        <img  id="thumbnailPreview" src="" style="..." width="60px" height="60px"/>
+                        <img  id="thumbnailPreview" src=""  width="60px" height="60px"/>
                     </div>
                     <button id="submit_button" type="submit">리뷰 등록</button>
                 </div>
@@ -227,16 +229,25 @@
 <!-- footer : START -->
 <footer th:replace="~{fragment/footer :: #footer}"></footer>
 <!-- footer : END -->
+<script src="/js/header.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
+    const existInCart = JSON.parse(document.getElementById('existInCart').textContent);
+    console.log(existInCart);
     function confirmOrder(event) {
         event.preventDefault(); // 폼의 기본 동작인 제출을 막습니다.
 
         // 주문하기 버튼을 클릭하면 알림창이 표시됩니다.
+
+        
         if (confirm('상품을 주문하시겠습니까?')) {
             // 확인 버튼을 누르면 '상품이 장바구니에 담겼습니다' 알림창이 표시됩니다.
-            alert('상품이 장바구니에 담겼습니다.');
-            document.getElementById('orderForm').submit(); // 폼을 제출하여 주문 처리를 진행합니다.
+            if(existInCart == true) {
+                alert('장바구니에 이미 상품이 존재합니다.');
+            }else{
+                alert('상품이 장바구니에 담겼습니다.');
+                document.getElementById('orderForm').submit(); // 폼을 제출하여 주문 처리를 진행합니다.
+            }
         }
     }
     function previewImages(input){
@@ -266,7 +277,5 @@
         });
     }
 </script>
-<script src="/js/header.js"></script>
 </body>
-
 </html>
