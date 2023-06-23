@@ -8,70 +8,14 @@
   <title>회원가입</title>
   <link rel="icon" href="img/favicon-32x32.png" type="image/x-icon" />
   <link rel="stylesheet" href="../css/bootstrap.min.css" />
-  <link rel="stylesheet" href="../css/main_style.css" />
-  <link rel="stylesheet" href="../css/login.css" />
-  <!-- <script src="js/jquery-3.6.0.min.js"></script> -->
+  <link rel="stylesheet" href="../css/main_style.css" /> 
+  <link rel="stylesheet" href="../css/join.css" />
   <script src="https:code.jquery.com/jquery-3.4.1.js"></script>
-  <!-- <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script> -->
-  <style>
-   .id_ok{
-   color:#008000;
-   display: none;
-   }
-   
-   .id_already{
-   color:#6A82FB; 
-   display: none;
-   }
-   </style>
-   <script>
-      function checkId(){
-      var login_id = $('#login_id').val(); //id값이 "id"인 입력란의 값을 저장
-      $.ajax({
-        url:'./idCheck', //Controller에서 요청 받을 주소
-        type:'post', //POST 방식으로 전달
-        //dataType: 'json',
-        //contentType : 'application/json',
-        data:{login_id:login_id},
-        success:function(login_id){ //컨트롤러에서 넘어온 cnt값을 받는다 
-           console.log(login_id);
-        
-            if(login_id==0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
-             /*    $('#check01').html('<b style="font-size: 16px; color: blue"> 아이디 사용가능 </b>'); */
-                document.getElementById('check01').innerHTML='아이디 사용가능'
-                document.getElementById('check01').style.color='blue';
-            } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-    /*             $('#check01').html('<b style="font-size: 16px; color: red"> 아이디 사용 불가능 </b>'); */
-                document.getElementById('check01').innerHTML='아이디 사용 불가능';
-                document.getElementById('check01').style.color='red';
-            }
-      
-        },
-    
-       });
-   };
-</script>
+
 </head>
 <body>
   <!-- header : START -->
   <header th:replace="~{fragment/defaultHeader :: #header}"></header>
-  <!-- header : END -->
-  <!-- mainbanner : START -->
-  <!-- Swiper -->
-  <!-- <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide"><a href="#"></a></div>
-      <div class="swiper-slide"><a href="#"></a></div>
-      <div class="swiper-slide"><a href="#"></a></div>
-    </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
-  </div> -->
-  <!-- mainbanner : END -->
-  <!-- container : START -->
-
-  <body>
     <div class="main_container_join">
       <section class="bg-light join-section">
         <div class="join-container">
@@ -80,9 +24,9 @@
               <span class="text-dark h4">회원가입</span>
             </a>
           </div>
-          <form action="join" method="post"> 
+          <form id="joinForm" action="join" method="post"> 
             <div class="form-group">
-              <label class="form-label mt-4 join-agree-label">[필수]원샷 이용약관 <input type="checkbox" /></label>
+              <label class="form-label mt-4 join-agree-label">[필수]원샷 이용약관 <input type="checkbox" required/></label>
               <div class="join-agree-box">
                 제1조(목적)
                 이 약관은 회사(전자상거래 사업자)가 운영하는 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련
@@ -95,127 +39,127 @@
               <label for="InputId" class="form-label mt-4">아이디</label> &nbsp;<span id="check01"></span>
               <div class="input-img-group">
                 <span><img src="../img/join/name.png" alt=""></span>
-                <input type="text" class="form-control" id="login_id" name="login_id" onchange="checkId()">
-                <!-- <input type="text" class="form-control" id="login_id" name="login_id" oninput = "checkId()"> -->
-                <!-- <button class="duble-check-btn">중복확인</button>  -->
+                <input type="text" class="form-control" id="loginId" name="loginId" onchange="checkId()" required>
               </div>
             </div>
             <div class="form-group">
               <label for="InputPassword" class="form-label mt-4">비밀번호</label>
               <div class="input-img-group">
                 <span><img src="../img/join/pw1.png" alt=""></span>
-                <input type="password" class="form-control" id="pw" name="pw" onchange="check_pw()">
+                <input type="password" class="form-control" id="pw" name="pw" onchange="check_pw()" >
               </div>
             </div>
             <div class="form-group">
               <label for="InputPassword2" class="form-label mt-4">비밀번호 재확인</label> &nbsp;<span id="check02"></span>
               <div class="input-img-group">
                 <span><img src="../img/join/pw2.png" alt=""></span>
-                <input type="password" class="form-control" id="pw2" name="pw2" onchange="check02_pw()">
+                <input type="password" class="form-control" id="pw2" name="pw2" onchange="check02_pw()" required>
               </div>
             </div>
            <div class="form-group">
               <label for="InputEmail1" class="form-label mt-4">본인 확인용 이메일</label>
               <div class="input-img-group">
                 <span><img src="../img/join/email.png" alt=""></span>
-                <input type="email" class="form-control" id="email" name="email">
+                <input type="email" class="form-control" id="email" name="email" required>
                </div>
            </div>        
            <div class="form-group">
              <label for="InputName" class="form-label mt-4">이름</label>
              <div class="input-img-group">
                <span><img src="../img/join/name.png" alt=""></span>
-               <input type="text" class="form-control" id="name" name="name">
+               <input type="text" class="form-control" id="name" name="name" required>
               </div>
            </div>       
              <div class="form-group">
                <label for="InputNumber" class="form-label mt-4">주민번호</label>
                <div class="input-img-group">
                  <span><img src="../img/join/card.png" alt=""></span>
-                 <input type="text" class="form-control" id="id_card_number" name="id_card_number" oninput="idcardautoHyphen(this)" maxlength="14">
+                 <input type="text" class="form-control" id="idCardNumber1" name="idCardNumber1"  maxlength="6" required> &nbsp;_&nbsp;
+                 <input type="password" class="form-control" id="idCardNumber2" name="idCardNumber2"  maxlength="7" required>
                 </div>
              </div>        
                <div class="form-group">
                  <label for="InputPhone" class="form-label mt-4">휴대전화번호</label>
                  <div class="input-img-group">
                    <span><img src="../img/join/phone.png" alt=""></span>
-                   <input type="text" class="form-control" id="phone_number" name="phone_number" oninput="autoHyphen(this)"  maxlength="13">
+                   <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" oninput="autoHyphen(this)"  maxlength="13" required>
                  </div>
                </div>      
                <div class="form-group">
                    <label for="InputAddress" class="form-label mt-4">주소</label>
                    <div class="input-img-group">
                      <span><img src="../img/join/card.png" alt=""></span>
-                     <input type="text" class="form-control" id="address" name="address">
+                     <input type="text" class="form-control" id="address" name="address" required>
                     </div>
-               </div>        
+               </div>     
                <div class="form-group">
                      <label for="InputGender" class="form-label mt-4">성별</label>
                      <div class="input-img-group">
                        <span><img src="../img/join/gender.png" alt=""></span>
-                       <select class="form-select" id="gender" name="gender" >
+                       <select class="form-select" id="gender" name="gender" required>
                          <option value="M">남자</option>
                          <option value="F">여자</option>
                        </select>
                     </div>
                </div>
                <div class="btn-group">
-                   <button class="btn btn-primary btn-lg" type="reset">취소</button>
-                   <button class="btn btn-primary btn-lg" type="submit">가입하기</button>
+                   <button class="btn btn-lg join-btn" type="reset">취소</button>
+                   <button class="btn btn-lg join-btn" id='target_btn' type="submit" value='버튼'>가입하기</button>
                 </div>
              </form>
             </div>
       </section>
      </div>
-  </body>
-  <!-- <div class="btm_banner_wrap">
-      <div class="btm_banner">
-        <p>원샷과 함께<br>우리술을 즐겨보세요.</p>
-      </div>
-    </div> -->
-
-  <!-- footer : START -->
   <footer th:replace="~{fragment/footer :: #footer}"></footer>
-  <!-- footer : END -->
   <script>
-  //아이디 체크2
-         function check01_idt(){
-            var login_id = document.getElementById('login_id').value;
-            var SC = ["!","@","#","$","%"];
-            var check01_SC = 0;
- 
-            if(login_id.length < 6 || login_id.length>16){
-                window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
-                document.getElementById('pw').value='';
-            }
-            for(var i=0;i<SC.length;i++){
-                if(login_id.indexOf(SC[i]) != -1){
-                   check01_SC = 1;
-                }
-            }
-            if(check01_SC == 0){
-                window.alert('!,@,#,$,% 의 특수문자가 들어가 있지 않습니다.')
-                document.getElementById('pw').value='';
-            }
-            if(document.getElementById('login_id').value !='' && document.getElementById('pw').value!=''){
-                if(document.getElementById('login_id').value==document.getElementById('pw').value){
-                    document.getElementById('check01').innerHTML='사용가능'
-                    document.getElementById('check01').style.color='blue';
-                }
-                else{
-                    document.getElementById('check01').innerHTML='사용중';
-                    document.getElementById('check01').style.color='red';
-                }
-            }
-        } 
+  
+  //Enter 차단
+  $(window).ready(function() {
+	  $("#joinForm").on("keypress", function (event) {
+	      var keyPressed = event.keyCode || event.which;
+	      if (keyPressed === 13) {
+	          event.preventDefault();
+	      }
+	  });
+	  });
+  
+  // 아이디 중복체크
+	function checkId(){
+		var login_id = $('#loginId').val();     //id값이 "loginId"인 입력란의 값을 저장
+	    const target = document.getElementById('target_btn');	
+	    var check01 = document.getElementById('check01');
+	    var pw = document.getElementById('pw');
+	    var pw2 = document.getElementById('pw2');
+		$.ajax({
+		 url:'./idCheck',  //Controller에서 요청 받을 주소
+		 type:'post',      //POST 방식으로 전달
+	   //dataType: 'json',
+	  //contentType : 'application/json',
+	  data:{login_id:login_id},
+	  success:function(login_id){ //컨트롤러에서 넘어온 cnt값을 받는다 
+	     console.log(login_id);      
+	      if(login_id==0){ //cnt가 0인 경우 -> 사용 가능한 아이디 
+	    	  check01.innerHTML='아이디 사용가능'
+	          check01.style.color='blue';
+	    	  target.disabled = false;	   	 	          	          
+	      } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+	    	  check01.innerHTML='아이디 사용 불가능';
+	    	  check01.style.color='red';         
+	    	  target.disabled = true;	     
+    }
+},
+});
+};
 
- 
   //비밀번호 체크
         function check02_pw(){
+            const target = document.getElementById('target_btn');	
+            var pw = document.getElementById('pw');
+            var pw2 = document.getElementById('pw2');
+            
             var pw = document.getElementById('pw').value;
             var SC = ["!","@","#","$","%"];
             var check02_SC = 0;
- 
             if(pw.length < 6 || pw.length>20){
                 window.alert('비밀번호는 6글자 이상, 20글자 이하만 이용 가능합니다.');
                 document.getElementById('pw').value='';
@@ -233,70 +177,28 @@
                 if(document.getElementById('pw').value==document.getElementById('pw2').value){
                     document.getElementById('check02').innerHTML='비밀번호가 일치합니다.'
                     document.getElementById('check02').style.color='blue';
+          	        target.disabled = false;
                 }
                 else{
                     document.getElementById('check02').innerHTML='불일치';
                     document.getElementById('check02').style.color='red';
+              	    target.disabled = true; 
                 }
             }
         }
   
-  
-   //주민번호 하이픈 추가
-        const idcardautoHyphen = (target) => {
-         target.value = target.value
-           .replace(/[^0-9]/g, '')
-          .replace(/^(\d{0,6})(\d{0,7})$/g, "$1-$2").replace(/(\-{1,2})$/g, "");
-        }
-
-  
-  //전화번호 하이픈 추가
+   //전화번호 하이픈 추가
       const autoHyphen = (target) => {
        target.value = target.value
          .replace(/[^0-9]/g, '')
          .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
       }
-
       const autoHyphen2 = (target) => {
        target.value = target.value
          .replace(/[^0-9]/g, '')
         .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
       }
 
-      
- 
-  
-    const gnbbar = document.querySelector(".gnbbar");
-    const gnbmenu = document.querySelectorAll("nav.gnb>ul>li");
-    gnbmenu.forEach((v, index) => {
-      if (index !== 0) {
-        v.addEventListener("mouseover", (e) => {
-          gnbbar.style.display = "block";
-        });
-
-        v.addEventListener("mouseout", (e) => {
-          gnbbar.style.display = "none";
-        });
-      }
-    });
-
-    // swiper
-   /*  var swiper = new Swiper(".mySwiper", {
-      spaceBetween: 30,
-      centeredSlides: true,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    }); */
   </script>
 </body>
 
