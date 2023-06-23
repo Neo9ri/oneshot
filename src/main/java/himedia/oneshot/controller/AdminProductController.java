@@ -6,6 +6,7 @@ import himedia.oneshot.service.AdminProductService;
 import himedia.oneshot.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
 
@@ -80,7 +83,7 @@ public class AdminProductController {
             redirectAttributes.addFlashAttribute("error", "이미지 저장 중 오류가 발생했습니다.");
             return "redirect:/product/add";
         }
-        Thread.sleep(12000L);
+//        Thread.sleep(12000L);
         redirectAttributes.addAttribute("id", product.getId());
         return "redirect:/product/{id}/edit";
     }
@@ -138,7 +141,7 @@ public class AdminProductController {
             redirectAttributes.addFlashAttribute("error", "이미지 저장 중 오류가 발생했습니다.");
             return "redirect:/product/{id}/edit";
         }
-        Thread.sleep(12000L);
+//        Thread.sleep(12000L);
         redirectAttributes.addAttribute("id", updatedProduct.getId());
         return "redirect:/product-list";
     }
@@ -161,5 +164,39 @@ public class AdminProductController {
         // 관리자 여부 확인 --END
         adminProductService.updateProductStatus(id, status);
         return "redirect:/product-list";
+    }
+
+    @GetMapping(value = "/img/product/thumbnail/{name}", produces = MediaType.IMAGE_JPEG_VALUE)
+    @ResponseBody
+    public byte[] getThumbImage(
+            @PathVariable String name
+    ){
+        final File file = new File("/home/ubuntu/oneshot/img/product/thumbnail",name);
+
+        byte[] bytes = new byte[(int) file.length()];
+
+        try (FileInputStream fis = new FileInputStream(file)) {
+            fis.read(bytes);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return bytes;
+    }
+
+    @GetMapping(value = "/img/product/explanation/{name}", produces = MediaType.IMAGE_JPEG_VALUE)
+    @ResponseBody
+    public byte[] getExpImage(
+            @PathVariable String name
+    ){
+        final File file = new File("/home/ubuntu/oneshot/img/product/explanation",name);
+
+        byte[] bytes = new byte[(int) file.length()];
+
+        try (FileInputStream fis = new FileInputStream(file)) {
+            fis.read(bytes);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return bytes;
     }
 }

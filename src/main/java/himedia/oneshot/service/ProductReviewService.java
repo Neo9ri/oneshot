@@ -5,6 +5,7 @@ import himedia.oneshot.entity.ProductReview;
 import himedia.oneshot.entity.Purchase;
 import himedia.oneshot.repository.ProductReviewRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
@@ -16,21 +17,31 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ProductReviewService {
     private final ProductReviewRepository reviewRepository;
 
     public ProductReview saveReview(ProductReview productReview, MultipartFile[] thumbImgFile)throws Exception{
 
-        List<String> thumbImgNames = new ArrayList<>();
+        UUID uuid = UUID.randomUUID();
+/*        List<String> thumbImgNames = new ArrayList<>();
         for (MultipartFile img : thumbImgFile){
             String imgName = img.getOriginalFilename();
             thumbImgNames.add(imgName);
+        }*/
+        List<String> thumbImgNames = new ArrayList<>();
+        for (MultipartFile img : thumbImgFile){
+            String imgName = uuid + ".jpg";
+            thumbImgNames.add(imgName);
         }
-        String thumbPath = System.getProperty("user.dir")+
-                "/src/main/resources/static/img/product_review/";
+
+//        String thumbPath = System.getProperty("user.dir")+
+//                "/img/product_review/";
+        String thumbPath = new ClassPathResource("/img/product_review/").getPath();
 
         for(int i = 0; i < thumbImgFile.length; i++){
             if(i < thumbImgNames.size() && !thumbImgNames.get(i).isEmpty()){
@@ -38,11 +49,11 @@ public class ProductReviewService {
                 thumbImgFile[i].transferTo(thumbSaveFile);
             }
         }
-        productReview.setImg_exp1("/img/product_review/"+thumbImgNames.get(0));
+        productReview.setImg_exp1("img/product_review/"+thumbImgNames.get(0));
         if(thumbImgNames.size() > 1 && !thumbImgNames.get(1).isEmpty()){
-            productReview.setImg_exp2("/img/product_review/"+thumbImgNames.get(1));
+            productReview.setImg_exp2("img/product_review/"+thumbImgNames.get(1));
         }else if (thumbImgNames.size() > 2 && !thumbImgNames.get(2).isEmpty()){
-            productReview.setImg_exp3("/img/product_review/"+thumbImgNames.get(2));
+            productReview.setImg_exp3("img/product_review/"+thumbImgNames.get(2));
         }
         return reviewRepository.saveReview(productReview);
     }
