@@ -22,19 +22,22 @@ import java.util.Optional;
 public class MemberService {
     private final MemberRepository memberRepository;
 
-	public Member save(Member member) {
-//		memberRepository.join(member);
+	public Member save(MemberDTO memberDTO) {   
+		Member member = new Member();
+		member.setLogin_id(memberDTO.getLoginId());
+		member.setPw(memberDTO.getPw());
+		member.setEmail(memberDTO.getEmail());
+		member.setName(memberDTO.getName());
+		member.setId_card_number(memberDTO.getIdCardNumber1().concat(memberDTO.getIdCardNumber2()));
+		member.setPhone_number(memberDTO.getPhoneNumber());
+		member.setAddress(memberDTO.getAddress());
+		member.setGender(memberDTO.getGender());		
 		return memberRepository.join(member);
 	}
 
-	
 	public int find(String login_id) {
-	    log.info("[service] find" + login_id);
 		return memberRepository.findByJoinId(login_id);
 	}	
-	
-
-
 
     /**
      * 회원 목록 조회 기능
