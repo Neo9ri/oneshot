@@ -47,6 +47,7 @@
               <div class="input-img-group">
                 <span><img src="../img/join/pw1.png" alt=""></span>
                 <input type="password" class="form-control" id="pw" name="pw" onchange="check_pw()" >
+              </div>
             </div>
             <div class="form-group">
               <label for="InputPassword2" class="form-label mt-4">비밀번호 재확인</label> &nbsp;<span id="check02"></span>
@@ -124,20 +125,20 @@
   
   // 아이디 중복체크
 	function checkId(){
-		var login_id = $('#loginId').val(); //id값이 "id"인 입력란의 값을 저장
+		var login_id = $('#loginId').val();     //id값이 "loginId"인 입력란의 값을 저장
 	    const target = document.getElementById('target_btn');	
 	    var check01 = document.getElementById('check01');
 	    var pw = document.getElementById('pw');
 	    var pw2 = document.getElementById('pw2');
 		$.ajax({
-		 url:'./idCheck', //Controller에서 요청 받을 주소
-		 type:'post', //POST 방식으로 전달
+		 url:'./idCheck',  //Controller에서 요청 받을 주소
+		 type:'post',      //POST 방식으로 전달
 	   //dataType: 'json',
 	  //contentType : 'application/json',
 	  data:{login_id:login_id},
 	  success:function(login_id){ //컨트롤러에서 넘어온 cnt값을 받는다 
 	     console.log(login_id);      
-	      if(login_id==0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
+	      if(login_id==0){ //cnt가 0인 경우 -> 사용 가능한 아이디 
 	    	  check01.innerHTML='아이디 사용가능'
 	          check01.style.color='blue';
 	    	  target.disabled = false;	   	 	          	          
@@ -197,18 +198,7 @@
          .replace(/[^0-9]/g, '')
         .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
       }
-    const gnbbar = document.querySelector(".gnbbar");
-    const gnbmenu = document.querySelectorAll("nav.gnb>ul>li");
-    gnbmenu.forEach((v, index) => {
-      if (index !== 0) {
-        v.addEventListener("mouseover", (e) => {
-          gnbbar.style.display = "block";
-        });
-        v.addEventListener("mouseout", (e) => {
-          gnbbar.style.display = "none";
-        });
-      }
-    });
+
   </script>
 </body>
 
