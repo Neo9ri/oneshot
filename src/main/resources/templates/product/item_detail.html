@@ -29,7 +29,7 @@
         <table>
             <tr>
                 <td>판매가</td>
-                <td th:text="${product.price}"></td>
+                <td><span th:text="${product.price}"></span> 원</td>
             </tr>
             <tr>
                 <td>배송비</td>
@@ -56,8 +56,8 @@
         </form>
     </div>
     <div class="item_detail_banner">
-        <img src="../../static/img/product/explanation/11376a38a70dccafb16df553bc07afd3_68678.jpg" th:src="@{/img/product/explanation/11376a38a70dccafb16df553bc07afd3_68678.jpg}"alt=""/>
-        <img src="../../static/img/product/explanation/a9cd158c8073fc64f1dcfcb31360db4a_53228.jpg"th:src="@{/img/product/explanation/a9cd158c8073fc64f1dcfcb31360db4a_53228.jpg}" alt=""/>
+        <img th:src="@{/img/product/explanation/small_item_banner1.jpg}" alt="아삭&아삭골드"/>
+        <img th:src="@{/img/product/explanation/small_item_banner2.jpg}" alt="가평잣막걸리"/>
     </div>
     <div class="item_detail_nav">
         <ul class="nav">
