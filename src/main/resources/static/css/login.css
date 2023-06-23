@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* login -START */
 .login_container,.find_container {
   padding-bottom: 100px;
@@ -136,9 +137,10 @@
     line-height:42px;
     text-align:center;
 }
-#reset_pw span #reset_pw_mypage span{
+#reset_pw span, #reset_pw_mypage span{
     display: block;
     width:200px;
+    height:20px;
     margin:20px 0 0 170px;
 }
 
@@ -154,33 +156,33 @@ background-color:#feef8888;
 }
 /* mypage-reset-pw ONLY - START*/
 
-/* 회원가입 */
-.join-section {
+/* join - START */
+.join_section {
   padding: 100px 0;
 }
 
-.join-container {
+.join_container {
   width: 700px;
   margin: 50px auto 0;
 }
 
-.join-container .join-agree-label {
+.join_container .join-agree-label {
   display: flex;
   justify-content: space-between;
 }
 
-.join-container .join-agree-box {
+.join_container .join-agree-box {
   border: 1px solid #ddd;
   padding: 20px;
   height: 100px;
   overflow-y: auto;
 }
 
-.join-container .input-img-group {
+.join_container .input-img-group {
   display: flex;
 }
 
-.join-container .input-img-group>span {
+.join_container .input-img-group>span {
   display: block;
   width: 40px;
   height: 40px;
@@ -189,37 +191,25 @@ background-color:#feef8888;
   align-items: center;
 }
 
-.join-container .input-img-group>span>img {
-  width: 100%;
+.join_container .input-img-group>span>img {
+  width: 37.203px;
 }
 
-.join-section .join-btn-group {
+.join_section .btn-group {
   display: flex;
   margin-top: 50px;
   gap: 10px;
 }
 
-.join-container .duble-check-btn {
+.join_container .duble-check-btn {
   width: 100px;
   margin-left: 10px;
   border-radius: 6px;
   border: 1px solid #ddd;
 }
 
-.join-container .btn {
+.join_container .btn {
   background-color: #fedf12;
   color: #000;
 }
-
-.join-btn-group {
-  padding-top: 20px;
-  width: 100%;
-  grid-column: 2 / span 2;
-  grid-row: 1 / span 2;
-  background-color: #fedf12;
-  color: #000;
-}
-
-.btn-group{
- padding-top: 50px;	
-}
+/*join - END*/

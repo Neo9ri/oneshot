@@ -93,7 +93,7 @@ public class JdbcMemberRepository implements MemberRepository {
 			parameters.put("authority", "A");
 			parameters.put("date_created", member.getDate_created());	
     		Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
-    		log.info("key >> "+ key);
+
     		member.setId(key.longValue());
     		return member;
     }
@@ -126,10 +126,10 @@ public class JdbcMemberRepository implements MemberRepository {
 
     @Override    
     public int findByJoinId(String login_id) {
-    	log.info("나는 레포지토리" + login_id);
+
         String sql = "SELECT * FROM MEMBER WHERE login_id = ?;";
         List<Member> memberList = jdbcTemplate.query(sql, memberRowMapper(), login_id);       
-        log.info("[POST] join 실행2" + memberList );
+
         return memberList.size();      
     }
 

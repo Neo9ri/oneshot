@@ -30,11 +30,12 @@ CREATE TABLE IF NOT EXISTS member -- 회원 목록
 	date_created DATE DEFAULT (CURRENT_DATE) -- 회원가입 날짜 
 );
 
+
 CREATE TABLE IF NOT EXISTS product -- 상품 목록
 (	id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, -- 상품 고유 번호(PK)
 	status CHAR(1) DEFAULT 'T' CHECK (status IN ('T', 'F')),-- 상품 판매 가능 상태
 	name VARCHAR(30) NOT NULL, -- 이름
-    stock SMALLINT NOT NULL DEFAULT 0, -- 재고
+    stock SMALLINT UNSIGNED NOT NULL DEFAULT 0, -- 재고
     type_region VARCHAR(20), -- 지역
     type_kind VARCHAR(10), -- 주종
     creator VARCHAR(20), -- 제조사
@@ -83,7 +84,7 @@ CREATE TABLE IF NOT EXISTS purchase_detail -- 주문 상세 내역
 CREATE TABLE IF NOT EXISTS cart -- 장바구니 목록
 (	member_id BIGINT UNSIGNED NOT NULL, -- 회원 고유 번호
 	product_id BIGINT UNSIGNED NOT NULL, -- 상품 고유 번호
-    quantity SMALLINT NOT NULL DEFAULT 0, -- 장바구니 내 해당 상품 수량
+    quantity SMALLINT UNSIGNED NOT NULL, -- 장바구니 내 해당 상품 수량
     FOREIGN KEY(member_id) REFERENCES member(id), -- 외래키 지정 시작
     FOREIGN KEY(product_id) REFERENCES product(id) -- 외래키 지정 종료
 );
@@ -152,10 +153,10 @@ values
 ('선운산의 아침 복분자 막걸리',1,'전북, 전남, 경북, 경남','막걸리', '국순당고창명주',6,750,4270,'img/product/thumbnail/선운산의_아침_복분자_막걸리.jpg','img/product/explanation/선운산의_아침_복분자_막걸리_exp01.jpg','img/product/explanation/선운산의_아침_복분자_막걸리_exp02.jpg'),
 ('해창막걸리',1,'전북, 전남, 경북, 경남','막걸리', '해창주조',9,900,10800,'img/product/thumbnail/해창막걸리.jpg','img/product/explanation/해창막걸리_exp01.jpg','img/product/explanation/해창막걸리_exp02.jpg'),
 ('삼양춘 생막걸리',1,'서울, 경기, 인천권','막걸리', '송도향',12.5,500,12160,'img/product/thumbnail/삼양춘_생막걸리.jpg','img/product/explanation/삼양춘_생막걸리_exp01.jpg','img/product/explanation/삼양춘_생막걸리_exp02.jpg'),
-('얼떨결에 민트',1,'강원, 세종권','막걸리', '동강주조',6,935,8550,'img/product/thumbnail/얼떨결에_민트.jpg','img/product/explanation/얼떨결에_민트_exp01.jpg','img/product/explanation/얼떨결에_민트_exp02.jpg'),
-('악양생막걸리',1,'전북, 전남, 경북, 경남','막걸리', '악양주조',6,750,3320,'img/product/thumbnail/악양생막걸리.jpg','img/product/explanation/악양생막걸리_exp01.jpg','img/product/explanation/악양생막걸리_exp02.jpg'),
-('희양산 생막걸리',1,'전북, 전남, 경북, 경남','막걸리', '두술도가',9,650,7600,'img/product/thumbnail/희양산_생막걸리.jpg','img/product/explanation/희양산_생막걸리_exp01.jpg','img/product/explanation/희양산_생막걸리_exp02.jpg'),
-('부자막걸리',1,'서울, 경기, 인천권','막걸리', '배혜정도가',10,375,4900,'img/product/thumbnail/부자막걸리.jpg','img/product/explanation/부자막걸리_exp01.jpg','img/product/explanation/부자막걸리_exp02.jpg'),
+('막시모파인오크', 10,'전북, 전남, 경북, 경남', '증류주', '착한농부', 40, 200, 22800, 'img/product/thumbnail/막시모파인오크.jpg', 'img/product/explanation/막시모파인오크_exp01.jpg', 'img/product/explanation/막시모파인오크_exp02.jpg'),
+('제주낭만', 10,'충북, 충남, 제주도', '증류주', '제주바당', 40, 500, 47500, 'img/product/thumbnail/제주낭만.jpg', 'img/product/explanation/제주낭만_exp01.jpg', 'img/product/explanation/제주낭만_exp02.jpg'),
+('아치23', 10,'충북, 충남, 제주도', '증류주', '양촌감', 23, 375, 12000, 'img/product/thumbnail/아치23.jpg', 'img/product/explanation/아치23_exp01.jpg', 'img/product/explanation/아치23_exp02.jpg'),
+('왕율주40도', 10,'충북, 충남, 제주도', '증류주', '사곡양조', 40, 360, 17000, 'img/product/thumbnail/왕율주40.jpg', 'img/product/explanation/왕율주40_exp01.jpg', 'img/product/explanation/왕율주40_exp02.jpg'),
 ('골목막걸리 프리미엄',1,'충북, 충남, 제주도','막걸리', '주로(주)',12,350,8070,'img/product/thumbnail/골목막걸리_프리미엄.jpg','img/product/explanation/골목막걸리_프리미엄_exp01.jpg','img/product/explanation/골목막걸리_프리미엄_exp02.jpg'),
 ('연꽃담은술',1,'서울, 경기, 인천권','막걸리', '한통술 이노베이션(주)',8,850,12000,'img/product/thumbnail/연꽃담은술.jpg','img/product/explanation/연꽃담은술_exp01.jpg','img/product/explanation/연꽃담은술_exp02.jpg'),
 ('지란지교',1,'전북, 전남, 경북, 경남','막걸리', '지란지교',12,500,17100,'img/product/thumbnail/지란지교.jpg','img/product/explanation/지란지교_exp01.jpg','img/product/explanation/지란지교_exp02.jpg'),
@@ -171,6 +172,24 @@ values
 ('대나무술', 1,'전북, 전남, 경북, 경남', '약주/청주', '백운주가', 11, 375, 3800, 'img/product/thumbnail/대나무술.jpg', 'img/product/explanation/대나무술_exp01.jpg', NULL),
 ('우담청주', 1,'전북, 전남, 경북, 경남', '약주/청주', '참주가', 13, 375, 3990, 'img/product/thumbnail/우담청주.jpg', 'img/product/explanation/우담청주_exp01.jpg', 'img/product/explanation/우담청주_exp02.jpg'),
 ('초가 한청', 1,'강원, 세종권', '약주/청주', '초가', 15, 375, 19000, 'img/product/thumbnail/초가_한청.jpg', 'img/product/explanation/초가_한청_exp01.jpg', 'img/product/explanation/초가_한청_exp02.jpg'),
+('산삼주', 10,'전북, 전남, 경북, 경남', '약주/청주', '백운주', 13, 375, 3500, 'img/product/thumbnail/산삼주.jpg', 'img/product/explanation/산삼주_exp01.jpg', NULL),
+('설련주', 10,'전북, 전남, 경북, 경남', '약주/청주', '석전주가', 16, 750, 35000, 'img/product/thumbnail/설련주.jpg', 'img/product/explanation/설련주_exp01.jpg', NULL),
+('청명주', 10,'전북, 전남, 경북, 경남', '약주/청주', '한영석', 13.8, 375, 29500, 'img/product/thumbnail/청명주.jpg', 'img/product/explanation/청명주_exp01.jpg', NULL),
+('백련맑은술', 10,'충북, 충남, 제주도', '약주/청주', '신평양조', 12, 375, 9000, 'img/product/thumbnail/백련맑은술.jpg', 'img/product/explanation/백련맑은술_exp01.jpg', NULL),
+('우담', 10,'전북, 전남, 경북, 경남', '약주/청주', '참주가', 13, 800, 4500, 'img/product/thumbnail/우담.jpg', 'img/product/explanation/우담_exp01.jpg', NULL),
+('한산소곡주', 10,'충북, 충남, 제주도', '약주/청주', '우희열명인', 18, 1800, 39000, 'img/product/thumbnail/한산소곡주.jpg', 'img/product/explanation/한산소곡주_exp01.jpg', NULL),
+('이상헌약주', 10,'충북, 충남, 제주도', '약주/청주', '이가수불', 18, 500, 45000, 'img/product/thumbnail/이상헌약주.jpg', 'img/product/explanation/이상헌약주_exp01.jpg', NULL),
+('양파와인', 10,'전북, 전남, 경북, 경남', '약주/청주', '우포의아침', 12, 500, 10000, 'img/product/thumbnail/양파와인.jpg', 'img/product/explanation/양파와인_exp01.jpg', NULL),
+('맑은내일유자', 10,'전북, 전남, 경북, 경남', '약주/청주', '우포의아침', 7, 735, 18000, 'img/product/thumbnail/맑은내일유자.jpg', 'img/product/explanation/맑은내일유자_exp01.jpg', NULL),
+('하타', 10,'충북, 충남, 제주도', '약주/청주', '신탄진주조', 16, 500, 20000, 'img/product/thumbnail/하타.jpg', 'img/product/explanation/하타_exp01.jpg', NULL),
+('대덕주', 10,'충북, 충남, 제주도', '약주/청주', '신탄진주조', 16, 750, 20000, 'img/product/thumbnail/대덕주.jpg', 'img/product/explanation/대덕주_exp01.jpg', NULL),
+('미나리싱싱주', 10,'충북, 충남, 제주도', '약주/청주', '조은술세종', 14.5, 300, 5000, 'img/product/thumbnail/미나리싱싱주.jpg', 'img/product/explanation/미나리싱싱주_exp01.jpg', NULL),
+('명인솔송주', 10,'전북, 전남, 경북, 경남', '약주/청주', '명인솔송주', 13, 700, 18000, 'img/product/thumbnail/명인솔송주.jpg', 'img/product/explanation/명인솔송주_exp01.jpg', NULL),
+('조선주조사세트', 10,'전북, 전남, 경북, 경남', '약주/청주', '우호의아침', 14, 700, 15000, 'img/product/thumbnail/조선주조사세트.jpg', 'img/product/explanation/조선주조사세트_exp01.jpg', NULL),
+('달빛약주세트', 10,'전북, 전남, 경북, 경남', '약주/청주', '김포금쌀탁주영농조합', 13, 375, 35900, 'img/product/thumbnail/달빛약주세트.jpg', 'img/product/explanation/달빛약주세트_exp01.jpg', NULL),
+('운암1945', 10,'전북, 전남, 경북, 경남', '약주/청주', '우포의 아침', 12, 750, 3700, 'img/product/thumbnail/운암1945.jpg', 'img/product/explanation/운암1945_exp01.jpg', NULL),
+('문삼이공약주', 10,'강원, 세종권', '약주/청주', '마마스팜', 16, 500, 27000, 'img/product/thumbnail/문삼이공약주.jpg', 'img/product/explanation/문삼이공약주_exp01.jpg', NULL),
+('감자술', 10,'강원, 세종권', '약주/청주', '오대서주양조', 13, 400, 55000, 'img/product/thumbnail/감자술.jpg', 'img/product/explanation/감자술_exp01.jpg', NULL),
 ('빙탄복', 10,'전북, 전남, 경북, 경남', '과실주', '배상면주가', 7, 370, 5300, 'img/product/thumbnail/빙탄복1.jpg', 'img/product/explanation/빙탄복2.jpg', NULL),
 ('부안참뽕와인', 10,'전북, 전남, 경북, 경남', '과실주', '내변산', 13, 375, 11000, 'img/product/thumbnail/부안참뽕와인1.jpg', 'img/product/explanation/부안참뽕와인2.jpg', 'img/product/explanation/부안참뽕와인3.jpg'),
 ('피에스 애플 시드르스', 10,'충북, 충남, 제주도', '과실주', '시나브로와이너리', 5, 750, 39000, 'img/product/thumbnail/피에스_애플_시드르스1.jpg', 'img/product/explanation/피에스_애플_시드르스2.jpg', 'img/product/explanation/피에스_애플_시드르스3.jpg'),
@@ -185,9 +204,9 @@ values
 ('샤토미소 청포도 엠버 화이트와인', 10,'충북, 충남, 제주도', '과실주', '도란원', 12, 375, 23000, 'img/product/thumbnail/샤토미소_청포도_엠버_화이트와인1.jpg', 'img/product/explanation/샤토미소_청포도_엠버_화이트와인2.jpg', 'img/product/explanation/샤토미소_청포도_엠버_화이트와인3.jpg'),
 ('샤토미소 레인보우 스위트와인', 10,'충북, 충남, 제주도', '과실주', '도란원', 12, 375, 23000, 'img/product/thumbnail/샤토미소_레인보우_스위트와인1.jpg', 'img/product/explanation/샤토미소_레인보우_스위트와인2.jpg', 'img/product/explanation/샤토미소_레인보우_스위트와인3.jpg'),
 ('샤토미소 복숭아 스위트와인', 10,'충북, 충남, 제주도', '과실주', '도란원', 12, 375, 23000, 'img/product/thumbnail/샤토미소_복숭아_스위트와인1.jpg', 'img/product/explanation/샤토미소_복숭아_스위트와인2.jpg', 'img/product/explanation/샤토미소_복숭아_스위트와인3.jpg'),
-('사랑할때 사과과실주', 10,'충북, 충남, 제주도', '과실주', '중원양조', 12, 300, 4200, 'img/product/thumbnail/사랑할때_사과과실주1.jpg', 'img/product/explanation/사랑할때_사과과실주2.jpg', null),
-('무주구천동 머루와인', 10,'전북, 전남, 경북, 경남', '과실주', '덕유', 12, 750, 27000, 'img/product/thumbnail/무주구천동_머루와인1.jpg', 'img/product/explanation/무주구천동_머루와인2.jpg', 'img/product/explanation/무주구천동_머루와인3.jpg'),
-('달1614 스위트', 10,'전북, 전남, 경북, 경남', '과실주', '덕유', 12, 750, 35000, 'img/product/thumbnail/달1614_스위트1.jpg', 'img/product/explanation/달1614_스위트2.jpg', 'img/product/explanation/달1614_스위트3.jpg'),
+('막시모25도', 10,'전북, 전남, 경북, 경남', '증류주', '착한농부', 25, 360, 11400, 'img/product/thumbnail/막시모25.jpg', 'img/product/explanation/막시모25_exp01.jpg', 'img/product/explanation/막시모25_exp02.jpg'),
+('남한산성소주21도', 10,'서울, 경기, 인천권', '증류주', '남한산성소주', 21, 375, 12300, 'img/product/thumbnail/남한산성소주21.jpg', 'img/product/explanation/남한산성소주21_exp01.jpg', 'img/product/explanation/남한산성소주21_exp02.jpg'),
+('남한산성소주40도', 10,'서울, 경기, 인천권', '증류주', '남한산성소주', 40, 375, 24900, 'img/product/thumbnail/남한산성소주40.jpg', 'img/product/explanation/남한산성소주40_exp01.jpg', 'img/product/explanation/남한산성소주40_exp02.jpg'),
 ('캔와인 캠밸 스위트와인', 10,'충북, 충남, 제주도', '과실주', '블루와인컴퍼니', 10, 330, 9900, 'img/product/thumbnail/캔와인_캠벨_스위트와인1.jpg', 'img/product/explanation/캔와인_캠벨_스위트와인2.jpg', 'img/product/explanation/캔와인_캠벨_스위트와인3.jpg'),
 ('캔와인 애플 스위트와인', 10,'충북, 충남, 제주도', '과실주', '블루와인컴퍼니', 10, 330, 9900, 'img/product/thumbnail/캔와인_애플_스위트와인1.jpg', 'img/product/explanation/캔와인_애플_스위트와인2.jpg', 'img/product/explanation/캔와인_애플_스위트와인3.jpg'),
 ('운암24도', 10,'전북, 전남, 경북, 경남', '증류주', '맑은 내일', 24, 375, 7900, 'img/product/thumbnail/운암24.jpg', 'img/product/explanation/운암24_exp01.jpg', 'img/product/explanation/운암24_exp02.jpg'),
@@ -200,13 +219,13 @@ values
 ('경복궁소주20도', 10,'서울, 경기, 인천권', '증류주', '지비지스피리츠', 20, 350, 12250, 'img/product/thumbnail/경복궁소주20.jpg', 'img/product/explanation/경복궁소주20_exp01.jpg', 'img/product/explanation/경복궁소주20_exp02.jpg'),
 ('경복궁소주40도', 10,'서울, 경기, 인천권', '증류주', '지비지스피리츠', 40, 350, 28400, 'img/product/thumbnail/경복궁소주40.jpg', 'img/product/explanation/경복궁소주40_exp01.jpg', 'img/product/explanation/경복궁소주40_exp02.jpg'),
 ('우도국화주', 10,'전북, 전남, 경북, 경남', '증류주', '명품안동소주', 16.9, 375, 5700, 'img/product/thumbnail/우도국화주.jpg', 'img/product/explanation/우도국화주_exp01.jpg', 'img/product/explanation/우도국화주_exp02.jpg'),
-('막시모파인오크', 10,'전북, 전남, 경북, 경남', '증류주', '착한농부', 40, 200, 22800, 'img/product/thumbnail/막시모파인오크.jpg', 'img/product/explanation/막시모파인오크_exp01.jpg', 'img/product/explanation/막시모파인오크_exp02.jpg'),
-('막시모25도', 10,'전북, 전남, 경북, 경남', '증류주', '착한농부', 25, 360, 11400, 'img/product/thumbnail/막시모25.jpg', 'img/product/explanation/막시모25_exp01.jpg', 'img/product/explanation/막시모25_exp02.jpg'),
-('남한산성소주21도', 10,'서울, 경기, 인천권', '증류주', '남한산성소주', 21, 375, 12300, 'img/product/thumbnail/남한산성소주21.jpg', 'img/product/explanation/남한산성소주21_exp01.jpg', 'img/product/explanation/남한산성소주21_exp02.jpg'),
-('남한산성소주40도', 10,'서울, 경기, 인천권', '증류주', '남한산성소주', 40, 375, 24900, 'img/product/thumbnail/남한산성소주40.jpg', 'img/product/explanation/남한산성소주40_exp01.jpg', 'img/product/explanation/남한산성소주40_exp02.jpg'),
-('제주낭만', 10,'충북, 충남, 제주도', '증류주', '제주바당', 40, 500, 47500, 'img/product/thumbnail/제주낭만.jpg', 'img/product/explanation/제주낭만_exp01.jpg', 'img/product/explanation/제주낭만_exp02.jpg'),
-('아치23', 10,'충북, 충남, 제주도', '증류주', '양촌감', 23, 375, 12000, 'img/product/thumbnail/아치23.jpg', 'img/product/explanation/아치23_exp01.jpg', 'img/product/explanation/아치23_exp02.jpg'),
-('왕율주40도', 10,'충북, 충남, 제주도', '증류주', '사곡양조', 40, 360, 17000, 'img/product/thumbnail/왕율주40.jpg', 'img/product/explanation/왕율주40_exp01.jpg', 'img/product/explanation/왕율주40_exp02.jpg'),
+('얼떨결에 민트',1,'강원, 세종권','막걸리', '동강주조',6,935,8550,'img/product/thumbnail/얼떨결에_민트.jpg','img/product/explanation/얼떨결에_민트_exp01.jpg','img/product/explanation/얼떨결에_민트_exp02.jpg'),
+('악양생막걸리',1,'전북, 전남, 경북, 경남','막걸리', '악양주조',6,750,3320,'img/product/thumbnail/악양생막걸리.jpg','img/product/explanation/악양생막걸리_exp01.jpg','img/product/explanation/악양생막걸리_exp02.jpg'),
+('희양산 생막걸리',1,'전북, 전남, 경북, 경남','막걸리', '두술도가',9,650,7600,'img/product/thumbnail/희양산_생막걸리.jpg','img/product/explanation/희양산_생막걸리_exp01.jpg','img/product/explanation/희양산_생막걸리_exp02.jpg'),
+('부자막걸리',1,'서울, 경기, 인천권','막걸리', '배혜정도가',10,375,4900,'img/product/thumbnail/부자막걸리.jpg','img/product/explanation/부자막걸리_exp01.jpg','img/product/explanation/부자막걸리_exp02.jpg'),
+('사랑할때 사과과실주', 10,'충북, 충남, 제주도', '과실주', '중원양조', 12, 300, 4200, 'img/product/thumbnail/사랑할때_사과과실주1.jpg', 'img/product/explanation/사랑할때_사과과실주2.jpg', null),
+('무주구천동 머루와인', 10,'전북, 전남, 경북, 경남', '과실주', '덕유', 12, 750, 27000, 'img/product/thumbnail/무주구천동_머루와인1.jpg', 'img/product/explanation/무주구천동_머루와인2.jpg', 'img/product/explanation/무주구천동_머루와인3.jpg'),
+('달1614 스위트', 10,'전북, 전남, 경북, 경남', '과실주', '덕유', 12, 750, 35000, 'img/product/thumbnail/달1614_스위트1.jpg', 'img/product/explanation/달1614_스위트2.jpg', 'img/product/explanation/달1614_스위트3.jpg'),
 ('진안블랙보리40도', 10,'전북, 전남, 경북, 경남', '증류주', '태평주가', 40, 500, 29000, 'img/product/thumbnail/진안블랙보리40.jpg', 'img/product/explanation/진안블랙보리40_exp01.jpg', 'img/product/explanation/진안블랙보리40_exp02.jpg'),
 ('진안블랙보리18도', 10,'전북, 전남, 경북, 경남', '증류주', '태평주가', 18, 375, 7000, 'img/product/thumbnail/진안블랙보리18.jpg', 'img/product/explanation/진안블랙보리18_exp01.jpg', 'img/product/explanation/진안블랙보리18_exp02.jpg'),
 ('금설35도', 10,'충북, 충남, 제주도', '증류주', '금산인삼주', 35, 375, 35000, 'img/product/thumbnail/금설35.jpg', 'img/product/explanation/금설35_exp01.jpg', 'img/product/explanation/금설35_exp02.jpg'),
@@ -216,6 +235,7 @@ values
 ('토끼소주골드', 10,'충북, 충남, 제주도', '증류주', '토끼소주', 45, 375, 55000, 'img/product/thumbnail/토끼소주골드.jpg', 'img/product/explanation/토끼소주골드_exp01.jpg', 'img/product/explanation/토끼소주골드_exp02.jpg'),
 ('백제소주', 10,'전북, 전남, 경북, 경남', '증류주', '내변산', 25, 375, 19000, 'img/product/thumbnail/백제소주.jpg', 'img/product/explanation/백제소주_exp01.jpg', 'img/product/explanation/백제소주_exp02.jpg'),
 ('짝꿍막걸리', 10,'서울, 경기, 인천권', '막걸리', '한강주조', 8, 620, 4950, 'img/product/thumbnail/짝꿍막걸리.jpg', 'img/product/explanation/짝꿍막걸리_exp01.jpg', 'img/product/explanation/짝꿍막걸리_exp02.jpg');
+
 
 INSERT INTO inquiry
 (type, product_id, inquirer_id, title, content)
