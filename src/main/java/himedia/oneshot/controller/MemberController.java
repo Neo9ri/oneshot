@@ -24,19 +24,14 @@ public class MemberController {
    private final MemberService memberService;
    private final LoginService loginService;
 
-   @GetMapping("/user/login")
-   public String login(HttpServletRequest request, Model model) {
-      loginService.loginCheck(request, model);
-      return "/user/login";
-   }
 
-   @GetMapping("/join")
+   @GetMapping("join")
    public String join(HttpServletRequest request, Model model) {
       loginService.loginCheck(request, model);
-      return "/user/join";
+      return "login/join";
    }
 
-   @PostMapping("/join")
+   @PostMapping("join")
    public String join(@ModelAttribute MemberDTO member) {
       try {
          memberService.save(member);
@@ -47,23 +42,22 @@ public class MemberController {
    }
 
    @ResponseBody
-   @PostMapping("/idCheck")
-   public int joincheck(String login_id) {
-      log.info("controller", login_id);
+   @PostMapping("idCheck")
+   public int joinCheck(String login_id) {
       return memberService.find(login_id);
    }
 
-   @GetMapping("/welcome")
+   @GetMapping("welcome")
    public String joinCompleted(HttpServletRequest request, Model model){
       loginService.loginCheck(request, model);
 
-      return "/login/welcome";
+      return "login/welcome";
    }
    
-   @GetMapping("/join-failure")
+   @GetMapping("join-failure")
    public String failured(HttpServletRequest request, Model model){
       loginService.loginCheck(request, model);
 
-      return "/login/join_failure";
+      return "login/join_failure";
    }
 }

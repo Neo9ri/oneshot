@@ -31,7 +31,7 @@ public class AdminController {
     private final AdminProductService adminProductService;
     private final Pagination pagination;
 
-    @GetMapping("/member-list")
+    @GetMapping("member-list")
     public String memberList(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
         // 관리자 여부 확인 -- START
         loginService.loginCheck(request, model);
@@ -48,10 +48,10 @@ public class AdminController {
         List<Member> members = memberService.makeMemberList();
         pagination.makePagination(model, members, "members", 10, page, "pagination");
         // 목록 구현 -- END
-        return "/admin/member_list";
+        return "admin/member_list";
     }
 
-    @PostMapping("/member-list")
+    @PostMapping("member-list")
     public String memberListAjax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
@@ -64,9 +64,9 @@ public class AdminController {
         }
         List<Member> members = memberService.makeMemberList();
         pagination.makePagination(model, members, "members", 10, page, "pagination");
-        return "/admin/member_list :: section";
+        return "admin/member_list :: section";
     }
-    @PostMapping("/member-list/change-auth")
+    @PostMapping("member-list/change-auth")
     public String changeAuthority(HttpServletRequest request, Model model, @ModelAttribute MemberDTO member, @RequestParam(required = false) Integer page) {
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
@@ -77,16 +77,16 @@ public class AdminController {
         } catch (NullPointerException npe) {
             return "redirect:/";
         }
-        log.info("post 정보 >> " + member.getAuthority());
+
 
         memberService.changeAuth(member);
 
         List<Member> members = memberService.makeMemberList();
         pagination.makePagination(model, members, "members", 10, page, "pagination");
-        return "/admin/member_list :: section";
+        return "admin/member_list :: section";
     }
 
-    @GetMapping("/product-list")
+    @GetMapping("product-list")
     public String productList(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
@@ -95,15 +95,14 @@ public class AdminController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe) {
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
         List<Product> products = adminProductService.findAllAdmin();
         pagination.makePagination(model, products, "products", 10, page, "pagination");
-        return "/admin/item_list";
+        return "admin/item_list";
     }
 
-    @PostMapping("/product-list")
+    @PostMapping("product-list")
     public String productListAjax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
@@ -112,16 +111,15 @@ public class AdminController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe) {
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
         List<Product> products = adminProductService.findAllAdmin();
         pagination.makePagination(model, products, "products", 10, page, "pagination");
-        return "/admin/item_list :: section";
+        return "admin/item_list :: section";
     }
 
     //     문의
-    @GetMapping("/inquiry/delivery")
+    @GetMapping("inquiry/delivery")
     public String inquiryDelivery(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
@@ -130,17 +128,16 @@ public class AdminController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe) {
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
 
         List<Inquiry> deliveries = inquiryService.findListByType("D");
         pagination.makePagination(model, deliveries, "deliveries", 10, page, "pagination");
 
-        return "/admin/inquiry_delivery";
+        return "admin/inquiry_delivery";
     }
 
-    @PostMapping("/inquiry/delivery")
+    @PostMapping("inquiry/delivery")
     public String inquiryDeliveryAjax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
@@ -149,17 +146,16 @@ public class AdminController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe) {
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
 
         List<Inquiry> deliveries = inquiryService.findListByType("D");
         pagination.makePagination(model, deliveries, "deliveries", 10, page, "pagination");
 
-        return "/admin/inquiry_delivery :: section";
+        return "admin/inquiry_delivery :: section";
     }
 
-    @GetMapping("/inquiry/product")
+    @GetMapping("inquiry/product")
     public String inquiryProduct(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
@@ -168,17 +164,16 @@ public class AdminController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe) {
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
 
         List<Inquiry> products = inquiryService.findListByType("P");
         pagination.makePagination(model, products, "products", 10, page, "pagination");
 
-        return "/admin/inquiry_product";
+        return "admin/inquiry_product";
     }
 
-    @GetMapping("/inquiry/{id}/reply")
+    @GetMapping("inquiry/{id}/reply")
     public String reply(HttpServletRequest request, @PathVariable("id") Long id, Model model) {
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
@@ -187,16 +182,15 @@ public class AdminController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe) {
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
 
         Inquiry inquiry = inquiryService.findById(id).get();
         model.addAttribute("inquiry", inquiry);
-        return "/admin/inquiry_reply";
+        return "admin/inquiry_reply";
 
     }
-    @PostMapping("/inquiry/{id}/reply")
+    @PostMapping("inquiry/{id}/reply")
     public String reply(HttpServletRequest request, Model model, @PathVariable("id") Long id,
                         @RequestParam("answer") String answer, @RequestParam("type") String type) {
         loginService.loginCheck(request, model);
@@ -206,7 +200,6 @@ public class AdminController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe) {
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
 
@@ -216,7 +209,7 @@ public class AdminController {
         } else return "redirect:/inquiry/delivery";
     }
 
-    @PostMapping("/inquiry/add")
+    @PostMapping("inquiry/add")
     public String saveInquiry(HttpServletRequest request, Model model,
                               @ModelAttribute Inquiry inquiry, RedirectAttributes redirectAttributes) {
         loginService.loginCheck(request, model);
@@ -227,7 +220,7 @@ public class AdminController {
             memberId = user.getId();
         } else {
             redirectAttributes.addAttribute("productId",inquiry.getProduct_id());
-            return "redirect:/product/item_detail/{productId}";
+            return "redirect:/product/item-detail/{productId}";
         }
 
         try{
@@ -235,11 +228,11 @@ public class AdminController {
             inquiryService.saveInquiry(inquiry);
         }catch (Exception e){
             redirectAttributes.addAttribute("productId",inquiry.getProduct_id());
-            return "redirect:product/item_detail/{productId}";
+            return "redirect:product/item-detail/{productId}";
         }
         return "redirect:/user/mypage";
     }
-    @GetMapping("/notice")
+    @GetMapping("notice")
     public String noticeList(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
@@ -248,17 +241,16 @@ public class AdminController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe) {
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
 
         List<Notice> notices = noticeService.findAll();
         pagination.makePagination(model, notices, "notices", 10, page, "pagination");
 
-        return "/admin/notice_list";
+        return "admin/notice_list";
     }
 
-    @PostMapping("/notice")
+    @PostMapping("notice")
     public String noticeListAjax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page) {
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
@@ -267,17 +259,16 @@ public class AdminController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe) {
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
 
         List<Notice> notices = noticeService.findAll();
         pagination.makePagination(model, notices, "notices", 10, page, "pagination");
 
-        return "/admin/notice_list :: section";
+        return "admin/notice_list :: section";
     }
 
-    @GetMapping("/notice/add")
+    @GetMapping("notice/add")
     public String addNotice(HttpServletRequest request, Model model){
         loginService.loginCheck(request, model);
         LoginDTO loginUser = (LoginDTO) model.getAttribute("user");
@@ -286,16 +277,15 @@ public class AdminController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe) {
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
         Notice notice = new Notice();
         model.addAttribute("notice",notice);
 
-        return "/admin/notice_add";
+        return "admin/notice_add";
     }
 
-    @PostMapping("/notice/add")
+    @PostMapping("notice/add")
     public String addNotice(HttpServletRequest request, Model model,
                              @ModelAttribute Notice notice,
                              RedirectAttributes redirectAttributes) {
@@ -306,7 +296,6 @@ public class AdminController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe){
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
 
@@ -321,7 +310,7 @@ public class AdminController {
         return "redirect:/notice";
     }
 
-    @GetMapping("/notice/{id}/edit")
+    @GetMapping("notice/{id}/edit")
     public String editNotice(HttpServletRequest request,
                               @PathVariable(name = "id") Long id, Model model){
         loginService.loginCheck(request, model);
@@ -331,17 +320,16 @@ public class AdminController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe){
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
 
         Notice notice = noticeService.findById(id).get();
         model.addAttribute("notice",notice);
 
-        return "/admin/notice_edit";
+        return "admin/notice_edit";
     }
 
-    @PostMapping("/notice/{id}/edit")
+    @PostMapping("notice/{id}/edit")
     public String editNotice(HttpServletRequest request,
                               @PathVariable(name = "id") Long id, Model model, @ModelAttribute Notice notice,
                              @RequestParam("title") String title, @RequestParam("content") String content){
@@ -353,7 +341,6 @@ public class AdminController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe){
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
 
@@ -362,7 +349,7 @@ public class AdminController {
         return "redirect:/notice";
     }
 
-    @PostMapping("/notice/{id}/delete")
+    @PostMapping("notice/{id}/delete")
     public String updateProductStatus(HttpServletRequest request, Model model,
                                       @PathVariable("id") Long id) {
         loginService.loginCheck(request, model);
@@ -372,7 +359,6 @@ public class AdminController {
                 return "redirect:/";
             }
         } catch (NullPointerException npe){
-            log.info("비정상적 관리자 페이지 접근");
             return "redirect:/";
         }
 
