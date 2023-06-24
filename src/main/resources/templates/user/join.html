@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,7 +10,6 @@
   <link rel="stylesheet" href="../css/main_style.css" /> 
   <link rel="stylesheet" href="../css/join.css" />
   <script src="https:code.jquery.com/jquery-3.4.1.js"></script>
-
 </head>
 <body>
   <!-- header : START -->
@@ -74,15 +72,15 @@
                <label for="InputNumber" class="form-label mt-4">주민번호</label>
                <div class="input-img-group">
                  <span><img src="../img/join/card.png" alt=""></span>
-                 <input type="text" class="form-control" id="idCardNumber1" name="idCardNumber1"  maxlength="6" required> &nbsp;_&nbsp;
-                 <input type="password" class="form-control" id="idCardNumber2" name="idCardNumber2"  maxlength="7" required>
+                 <input type="text" class="form-control" id="idCardNumber1" name="idCardNumber1" minlength="6" maxlength="6" required> &nbsp;_&nbsp;
+                 <input type="password" class="form-control" id="idCardNumber2" name="idCardNumber2"  minlength="7" maxlength="7" required>
                 </div>
              </div>        
                <div class="form-group">
                  <label for="InputPhone" class="form-label mt-4">휴대전화번호</label>
                  <div class="input-img-group">
                    <span><img src="../img/join/phone.png" alt=""></span>
-                   <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" oninput="autoHyphen(this)"  maxlength="13" required>
+                   <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" oninput="autoHyphen(this)" minlength="12" maxlength="13" required>
                  </div>
                </div>      
                <div class="form-group">
@@ -111,9 +109,8 @@
       </section>
      </div>
   <footer th:replace="~{fragment/footer :: #footer}"></footer>
-  <script>
-  
-  //Enter 차단
+  <script>  
+  // Enter 차단
   $(window).ready(function() {
 	  $("#joinForm").on("keypress", function (event) {
 	      var keyPressed = event.keyCode || event.which;
@@ -121,42 +118,37 @@
 	          event.preventDefault();
 	      }
 	  });
-	  });
-  
+  });
   // 아이디 중복체크
 	function checkId(){
 		var login_id = $('#loginId').val();     //id값이 "loginId"인 입력란의 값을 저장
 	    const target = document.getElementById('target_btn');	
 	    var check01 = document.getElementById('check01');
-	    var pw = document.getElementById('pw');
-	    var pw2 = document.getElementById('pw2');
 		$.ajax({
 		 url:'./idCheck',  //Controller에서 요청 받을 주소
 		 type:'post',      //POST 방식으로 전달
 	   //dataType: 'json',
-	  //contentType : 'application/json',
+	   //contentType : 'application/json',
 	  data:{login_id:login_id},
 	  success:function(login_id){ //컨트롤러에서 넘어온 cnt값을 받는다 
 	     console.log(login_id);      
-	      if(login_id==0){ //cnt가 0인 경우 -> 사용 가능한 아이디 
+	      if(login_id==0){   // cnt가 0인 경우 -> 사용 가능한 아이디 
 	    	  check01.innerHTML='아이디 사용가능'
 	          check01.style.color='blue';
-	    	  target.disabled = false;	   	 	          	          
-	      } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+	    	  target.disabled = false;	 
+	      }else {            // cnt가 1일 경우 -> 이미 존재하는 아이디
 	    	  check01.innerHTML='아이디 사용 불가능';
 	    	  check01.style.color='red';         
 	    	  target.disabled = true;	     
-    }
-},
-});
-};
-
-  //비밀번호 체크
+    			}
+	 	  	},
+     });
+  };
+ // 비밀번호 체크
         function check02_pw(){
             const target = document.getElementById('target_btn');	
             var pw = document.getElementById('pw');
-            var pw2 = document.getElementById('pw2');
-            
+            var pw2 = document.getElementById('pw2');      
             var pw = document.getElementById('pw').value;
             var SC = ["!","@","#","$","%"];
             var check02_SC = 0;
@@ -185,9 +177,8 @@
               	    target.disabled = true; 
                 }
             }
-        }
-  
-   //전화번호 하이픈 추가
+        }  
+   // 전화번호 하이픈 추가
       const autoHyphen = (target) => {
        target.value = target.value
          .replace(/[^0-9]/g, '')
@@ -198,8 +189,6 @@
          .replace(/[^0-9]/g, '')
         .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
       }
-
   </script>
 </body>
-
 </html>

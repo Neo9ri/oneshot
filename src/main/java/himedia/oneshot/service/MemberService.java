@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
-
 /**
  * 회원의 정보와 관련된 기능들을 모아둔 서비스입니다.
  */
