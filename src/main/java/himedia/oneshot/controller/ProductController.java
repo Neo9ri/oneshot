@@ -62,7 +62,7 @@ public class ProductController {
         List<ProductReviewDTO> reviewDTOS = reviewService.showReview(id);
         pagination.makePagination(model,reviewDTOS,"reviewDTO",2,page,"pagination");
 //        model.addAttribute("reviewDTO",reviewDTOS);
-        return  "/product/item_detail";
+        return  "product/item_detail";
     }
     @PostMapping("product/item-detail/{id}")
     public String detailPageAjax(HttpServletRequest request, @PathVariable("id") Long id

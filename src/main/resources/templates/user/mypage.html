@@ -229,7 +229,7 @@
    $(document).ready(function() {
       $('.btn_primary').click(function() {
         var purchaseId = $(this).data('purchase-id');
-
+        console.log(purchaseId);
         $.ajax({
           type: 'POST',
           url: '/purchaseDetail',

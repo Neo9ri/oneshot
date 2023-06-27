@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>장바구니</title>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
+
+  <link rel="icon" href="../img/favicon-32x32.png" type="image/x-icon" th:href="@{/img/favicon-32x32.png}" />
+  <link rel="stylesheet" href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+  <link rel="stylesheet" href="../css/main_style.css" th:href="@{/css/main_style.css}"/>
+  <link rel="stylesheet" href="../css/item_cart.css" th:href="@{/css/item_cart.css}">
+</head>
+
+<body>
+  <!-- Header 시작 -->
+  <header th:replace="~{fragment/defaultHeader :: #header}">
+  </header>
+  <!-- header 종료 -->
+  <!-- 장바구니 시작 -->
+  <div class="item_cart_container">
+    <h1>장바구니</h1>
+    <div class="item_cart_table">
+      <table>
+        <thead>
+          <tr>
+            <th class="cart_thead_img">이미지</th>
+            <th class="cart_thead_info" >상품정보</th>
+            <th class="cart_thead_price" >판매가</th>
+            <th class="cart_thead_quantity">수량</th>
+            <th class="cart_thead_btn">선택</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="product:${cartProducts}">
+            <td class="cart_tbody_img"><img src="../img/product/thumbnail/1000000319_detail_025.jpg" th:src="@{${'/'+product.imgThumb}}" alt="" width="200px" height="200px"></td>
+            <td class="cart_tbody_info"th:text="${product.name}"></td>
+            <td class="cart_tbody_price"th:text="${product.price}"></td>
+            <td class="cart_tbody_quantity">
+<!--              <form method="post" th:action="@{/user/item_cart/update/-1}">
+                <button class="quantity_sub_btn" th:name="id" th:value="${product.productId}">-</button>
+              </form>
+              <input type="text" readonly="readonly" th:value="${product.quantity}"/>
+              <form method="post" th:action="@{/user/item_cart/update/1}">
+                <button class="quantity_add_btn" th:name="id" th:value="${product.productId}">+</button>
+              </form>-->
+              <form class="count_box">
+                <button class="quantity_sub_btn" type="button" onclick="decreaseQuantity(this)">-</button>
+                <input type="text" class="quantity-input" readonly="readonly" th:value="${product.quantity}" />
+                <button class="quantity_add_btn" type="button" onclick="increaseQuantity(this)">+</button>
+                <button class="quantity_submit" type="submit">적용</button>
+              </form>
+            </td>
+            <td class="cart_tbody_btn">
+              <form method="post" th:action="@{/user/item_cart/delete}">
+                <button type="submit" th:name="id" th:value="${product.productId}">삭제</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="item_cart_delivery">
+      <p>배송비</p>
+      <p>3000원</p>
+    </div>
+    <div class="item_cart_total_price">
+      <h3>총 결제금액</h3>
+      <p id="cartItemCount" th:text="${totalPrice}"></p>
+    </div>
+    <div class="item_cart_btn">
+      <form action="" method="post" th:action="@{/user/item_cart/order}" id="orderForm">
+        <div class="item_cart_cancle_btn">  
+          <button id="item_cart_cancle_btn" type="reset" th:onclick="location.href='/'">취소</button>
+        </div>
+        <div class="item_cart_order_btn">
+          <button id="item_cart_order_btn" type="submit" onclick="confirmOrder(event)">주문하기</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- 장바구니 종료 -->
+  <!-- footer : START -->
+  <footer>
+    <div class="center">
+      <div class="left_wrap">
+        <p class="btm_logo"><img src="../img/oneshot_logo_bw.png" th:src="@{/img/oneshot_logo_bw.png}" alt="원샷 - 우리술 한잔,"></p>
+        <div class="text_wrap">
+          <p>원샷 - 우리술 한잔,</p>
+          <address>서울시 서대문구 연세로 8-1</address>
+          <nav>
+            <ul>
+              <li><a href="">전통주 이야기</a></li>
+              <li><a href="">지역별 전통주</a></li>
+              <li><a href="">주종별 전통주</a></li>
+              <li><a href="">가격별 전통주</a></li>
+            </ul>
+          </nav>
+          <div class="info">
+            <p>대표 : 홍길동</p>
+            <p>사업자 등록번호 : 100-11-111111</p>
+            <p>개인정보관리자 : 홍길동</p>
+          </div>
+          <div class="contact_info">
+            <p>대표번호 : 02-1234-1234</p>
+            <p>메일 : oneshot@oneshot.com</p>
+          </div>
+          <div>Copyrights&copy; oneshot All Rights Reserved.</div>
+        </div>
+      </div>
+      <div class="cs">
+        <dl>
+          <dt>CS CENTER</dt>
+          <dd>070-1234-1234</dd>
+          <dd>평일 : 09:00 ~ 18:00<br>
+            점심 시간 : 12:00 ~ 13:00<br>
+            주말 밋 공휴일 제외
+          </dd>
+        </dl>
+      </div>
+      <div class="social">
+        <h4>SOCIAL MEDIA</h4>
+        <p>Follow @oneshot</p>
+        <ul>
+          <li><a href="#"><img src="../img/instagram_footer.svg" th:src="@{/img/instagram_footer.svg}"  alt="인스타그램"></a></li>
+          <li><a href="#"><img src="../img/youtube_footer.svg" th:src="@{/img/youtube_footer.svg}" alt="유투브"></a></li>
+          <li><a href="#"><img src="../img/facebook_footer.svg" th:src="@{/img/facebook_footer.svg}"  alt="페이스북"></a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <!-- footer : END -->
+  <script>
+  function confirmOrder(event) {
+    event.preventDefault(); // 폼의 기본 동작인 제출을 막습니다.
+
+    // 장바구니 상품 수량을 확인합니다.
+    var cartItemCount = parseInt(document.getElementById('cartItemCount').textContent);
+
+    // 장바구니가 비어있는 경우 메시지를 표시하고 주문을 처리하지 않습니다.
+    if (cartItemCount === 3000) {
+      alert('장바구니가 비어있습니다!');
+      return;
+    }
+
+    // 주문하기 버튼을 클릭하면 알림창이 표시됩니다.
+    if (confirm('상품을 구매하시겠습니까?')) {
+      // 확인 버튼을 누르면 '상품이 장바구니에 담겼습니다' 알림창이 표시됩니다.
+      alert('상품이 구매되었습니다.');
+      document.getElementById('orderForm').submit(); // 폼을 제출하여 주문 처리를 진행합니다.
+    }
+  }
+  // 상품 수량 감소 버튼
+  function decreaseQuantity(button) {
+    const quantityInput = button.parentNode.querySelector('.quantity-input');
+    let currentQuantity = parseInt(quantityInput.value);
+    if (currentQuantity > 1) {
+      currentQuantity--;
+      quantityInput.value = currentQuantity;
+    }
+  }
+  // 상품 수량 증가버튼
+  function increaseQuantity(button) {
+    const quantityInput = button.parentNode.querySelector('.quantity-input');
+    let currentQuantity = parseInt(quantityInput.value);
+    if (currentQuantity < 10) {
+      currentQuantity++;
+      quantityInput.value = currentQuantity;
+    }
+  }
+  </script>
+  <script src="/js/header.js"></script>
+</body>
+
+</html>

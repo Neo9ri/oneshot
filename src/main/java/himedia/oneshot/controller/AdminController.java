@@ -78,7 +78,6 @@ public class AdminController {
             return "redirect:/";
         }
 
-
         memberService.changeAuth(member);
 
         List<Member> members = memberService.makeMemberList();
@@ -133,7 +132,6 @@ public class AdminController {
 
         List<Inquiry> deliveries = inquiryService.findListByType("D");
         pagination.makePagination(model, deliveries, "deliveries", 10, page, "pagination");
-
         return "admin/inquiry_delivery";
     }
 
@@ -151,7 +149,6 @@ public class AdminController {
 
         List<Inquiry> deliveries = inquiryService.findListByType("D");
         pagination.makePagination(model, deliveries, "deliveries", 10, page, "pagination");
-
         return "admin/inquiry_delivery :: section";
     }
 
@@ -169,7 +166,6 @@ public class AdminController {
 
         List<Inquiry> products = inquiryService.findListByType("P");
         pagination.makePagination(model, products, "products", 10, page, "pagination");
-
         return "admin/inquiry_product";
     }
 
@@ -246,7 +242,6 @@ public class AdminController {
 
         List<Notice> notices = noticeService.findAll();
         pagination.makePagination(model, notices, "notices", 10, page, "pagination");
-
         return "admin/notice_list";
     }
 
@@ -264,7 +259,6 @@ public class AdminController {
 
         List<Notice> notices = noticeService.findAll();
         pagination.makePagination(model, notices, "notices", 10, page, "pagination");
-
         return "admin/notice_list :: section";
     }
 
@@ -281,7 +275,6 @@ public class AdminController {
         }
         Notice notice = new Notice();
         model.addAttribute("notice",notice);
-
         return "admin/notice_add";
     }
 

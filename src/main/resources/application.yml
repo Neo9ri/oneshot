@@ -1,29 +1,37 @@
 # MySQL ??
-server:
-  address: localhost
-  port: 8080
-  servlet:
-      session:
-        tracking-modes: cookie
+#server:
+#  address: localhost
+#  port: 8080
+#  servlet:
+#      session:
+#        tracking-modes: cookie
 
 spring:
+  servlet:
+    multipart:
+      location: /home/ubuntu/oneshot
+      max-file-size: 128MB
+      max-request-size: 128MB
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: > # '>' : ??? ??, line 10 : DB ??, line 11 : DB ??? ?? DB ?? 
-      jdbc:mysql://localhost:3306/oneshot?
+      jdbc:mysql://oneshot.cglgvincqfog.ap-northeast-2.rds.amazonaws.com:3306/oneshot?
       createDatabaseIfNotExist=true
       &userUnicode=true
       &characterEncoding=UTF-8
       &characterSetResults=UTF-8
       &useSSL=false
       &serverTimezone=Asia/Seoul
-    username: root # DB ????
-    password: 1111 # DB ???? ????
+#    username: root # DB ????
+    username: admin
+    password: dnjstit9173!
+#    password: 1111 # DB ???? ????
   devtools:
     restart:
       enabled: false
   thymeleaf:
     cache: false
+    prefix: classpath:/templates/
 
 
 

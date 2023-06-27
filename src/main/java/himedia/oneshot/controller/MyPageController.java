@@ -79,6 +79,7 @@ public class MyPageController {
     @PostMapping("purchaseDetail") // Ajax 요청을 처리할 경로로 설정해야 합니다.
     @ResponseBody
     public List<PurchaseDetail> showPurchaseDetailModal(@RequestParam("purchaseId") Long purchaseId) {
+        log.info("ajax 실행");
         // purchaseId를 기반으로 구매 정보를 조회하고 필요한 처리를 수행합니다.
         return purchaseService.showPurchaseDetail(purchaseId);
     }

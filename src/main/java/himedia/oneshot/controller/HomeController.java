@@ -46,6 +46,7 @@ public class HomeController {
 
         return "story";
     }
+
     @GetMapping("region/{name}")
     public String region(HttpServletRequest request, Model model, @PathVariable String name, @RequestParam(required = false) Integer page){
         loginService.loginCheck(request, model);
@@ -64,6 +65,7 @@ public class HomeController {
 
         return "product/region :: section";
     }
+
     @GetMapping("kind/{name}")
     public String kind(HttpServletRequest request, Model model, @PathVariable String name, @RequestParam(required = false) Integer page){
         loginService.loginCheck(request, model);
@@ -80,9 +82,9 @@ public class HomeController {
         List<Product> products = productService.findBy("", Menu.valueOf(name).getKeyword(), 0, 0);
         model.addAttribute("kind", name);
         pagination.makePagination(model, products, "products", 12, page, "pagination");
-
         return "product/kind :: section";
     }
+
     @GetMapping("price/{name}")
     public String price(HttpServletRequest request, Model model, @PathVariable String name, @RequestParam(required = false) Integer page){
         loginService.loginCheck(request, model);
@@ -93,6 +95,7 @@ public class HomeController {
 
         return "product/price";
     }
+
     @PostMapping("/price/{name}")
     public String priceAjax(HttpServletRequest request, Model model, @PathVariable String name, @RequestParam(required = false) Integer page){
         loginService.loginCheck(request, model);
