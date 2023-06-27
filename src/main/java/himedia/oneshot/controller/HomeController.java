@@ -215,7 +215,7 @@ public class HomeController {
     @GetMapping("kind/etc")
     public String etc(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
         loginService.loginCheck(request, model);
-        List<Product> products = productService.findBy("", "막걸리", 0, 0);
+        List<Product> products = productService.findBy("", "기타주", 0, 0);
         model.addAttribute("kind", "etc");
         pagination.makePagination(model, products, "products", 12, page, "pagination");
 
@@ -224,7 +224,7 @@ public class HomeController {
     @PostMapping("kind/etc")
     public String etcAjax(HttpServletRequest request, Model model, @RequestParam(required = false) Integer page){
         loginService.loginCheck(request, model);
-        List<Product> products = productService.findBy("", "막걸리", 0, 0);
+        List<Product> products = productService.findBy("", "기타주", 0, 0);
         model.addAttribute("kind", "etc");
         pagination.makePagination(model, products, "products", 12, page, "pagination");
 
