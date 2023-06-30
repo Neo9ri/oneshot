@@ -36,7 +36,8 @@
 ![image](https://github.com/Neo9ri/oneshot/assets/116098324/57963970-645b-460d-a762-045a132ae8ee)
 ### 장바구니
 ![image](https://github.com/Neo9ri/oneshot/assets/116098324/9d4bf557-d179-4952-9a37-9d1c8d096b74)
-![image](https://github.com/Neo9ri/oneshot/assets/116098324/e6f00dd1-c1bd-4353-89ee-20b1d5e2c45e)
+![image](https://github.com/Neo9ri/oneshot/assets/116098324/83d15c6b-723d-4f9c-8162-57bf53fa0f5c)
+
 ### 재고관리
 ![image](https://github.com/Neo9ri/oneshot/assets/116098324/3e02f0f6-93be-4ea8-944b-01882d719306)
 ![image](https://github.com/Neo9ri/oneshot/assets/116098324/ef7407d3-9e33-4adb-b2f6-371ee1801801)
