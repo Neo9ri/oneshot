@@ -14,13 +14,15 @@
    👉 [Click!](https://github.com/Neo9ri/oneshot/wiki/REST-API)
    
 ## ERD
-![oneshot_erd](https://github.com/Neo9ri/oneshot/assets/134981437/5356147a-3fb8-4fa6-ab08-3189a2926350)
+![oneshot_erd](https://github.com/Neo9ri/oneshot/assets/134981437/37c3ff8b-d8ac-457e-a0a1-24724692df8a)
+
 
 ## 화면 설계
-   📝 [Index/검색결과/상품목록페이지](https://ovenapp.io/view/aDJJeIWHDSdIb7wC2VKh39i5rhSDfnUB/)<br>
+   📝 [Index/검색결과/상품목록/전통주소개 페이지](https://ovenapp.io/view/aDJJeIWHDSdIb7wC2VKh39i5rhSDfnUB/)   
+   📝 [회원가입/로그인 페이지](https://ovenapp.io/view/CNDbWlkm9DVH5tBPQQhmR5WJcdRBh75s/)
    📝 [관리자 페이지](https://ovenapp.io/view/pEU3XKDsuSSRTuJ8RhN8QNTcQGYbj9WZ/)<br>
    📝 [마이페이지/상품상세페이지/장바구니](https://ovenapp.io/view/DEeAwK5znXPPhFL371V0W2GBdbmmVf5r/)<br>
-   
+
 
 ## 주요기능
 1. 회원 가입
