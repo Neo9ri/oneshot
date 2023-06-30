@@ -33,7 +33,8 @@
 ### 로그인
 ![image](https://github.com/Neo9ri/oneshot/assets/116098324/9b16c991-c3f8-4901-8248-297f80491dd1)
 ![image](https://github.com/Neo9ri/oneshot/assets/116098324/0787c041-48e4-42bb-8d45-413866f59059)
-![image](https://github.com/Neo9ri/oneshot/assets/116098324/57963970-645b-460d-a762-045a132ae8ee)
+![image](https://github.com/Neo9ri/oneshot/assets/116098324/bd0fdce0-d8a3-4c2f-b398-5f1f3c829426)
+
 ### 장바구니
 ![image](https://github.com/Neo9ri/oneshot/assets/116098324/9d4bf557-d179-4952-9a37-9d1c8d096b74)
 ![image](https://github.com/Neo9ri/oneshot/assets/116098324/83d15c6b-723d-4f9c-8162-57bf53fa0f5c)
