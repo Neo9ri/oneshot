@@ -14,7 +14,8 @@
    👉 [Click!](https://github.com/Neo9ri/oneshot/wiki/REST-API)
    
 ## ERD
-![oneshot_erd](https://github.com/Neo9ri/oneshot/assets/134981437/5356147a-3fb8-4fa6-ab08-3189a2926350)
+![oneshot_erd](https://github.com/Neo9ri/oneshot/assets/134981437/37c3ff8b-d8ac-457e-a0a1-24724692df8a)
+
 
 ## 화면 설계
    📝 [Index/검색결과/상품목록/전통주소개 페이지](https://ovenapp.io/view/aDJJeIWHDSdIb7wC2VKh39i5rhSDfnUB/)   
