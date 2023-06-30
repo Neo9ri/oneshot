@@ -17,7 +17,8 @@
 ![oneshot_erd](https://github.com/Neo9ri/oneshot/assets/134981437/5356147a-3fb8-4fa6-ab08-3189a2926350)
 
 ## 화면 설계
-   📝 [Index/검색결과/상품목록페이지](https://ovenapp.io/view/aDJJeIWHDSdIb7wC2VKh39i5rhSDfnUB/)
+   📝 [Index/검색결과/상품목록/전통주소개 페이지](https://ovenapp.io/view/aDJJeIWHDSdIb7wC2VKh39i5rhSDfnUB/)   
+   📝 [회원가입/로그인 페이지](https://ovenapp.io/view/CNDbWlkm9DVH5tBPQQhmR5WJcdRBh75s/)
 
 ## 주요기능
 1. 회원 가입
