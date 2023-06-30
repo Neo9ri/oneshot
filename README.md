@@ -18,6 +18,9 @@
 
 ## 화면 설계
    📝 [Index/검색결과/상품목록페이지](https://ovenapp.io/view/aDJJeIWHDSdIb7wC2VKh39i5rhSDfnUB/)
+   📝 [관리자 페이지](https://ovenapp.io/view/pEU3XKDsuSSRTuJ8RhN8QNTcQGYbj9WZ/)
+   📝 [마이페이지/상품상세페이지/장바구니](https://ovenapp.io/view/DEeAwK5znXPPhFL371V0W2GBdbmmVf5r/)
+   
 
 ## 주요기능
 1. 회원 가입
