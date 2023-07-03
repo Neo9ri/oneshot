@@ -7,6 +7,10 @@
 ![스크린샷 2023-06-29 150134](https://github.com/Neo9ri/oneshot/assets/134981437/8d862748-2d02-4464-83ee-f84cd17d7743)
 ## Coding Convention
    👉 [Click!](https://github.com/Neo9ri/oneshot/wiki/%5B%EC%9B%90%EC%83%B7-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%5D-Coding-Convention)
+## PR 규칙
+1. master branch에는 직접 push할 수 없다.
+2. master로 PR후 최소 1인의 코드 리뷰가 필요하다.
+   
 ## 시스템구조
 <img width="1492" alt="원 샷 _ 사이트맵 구조" src="https://github.com/Neo9ri/oneshot/assets/134981437/a5d7b89d-39ef-4a2d-b022-f588dae97f1a">
 
@@ -50,4 +54,6 @@
 
 
 ## 배포URL
+http://3.35.219.34:8080/<br>
+![image](https://github.com/Neo9ri/oneshot/assets/116098324/b1d96fb9-0a04-496f-acfa-e7337ca0a5fc)
 * 서버 유지 상황에 따라 접속이 불가능할 수 있습니다.
