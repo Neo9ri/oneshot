@@ -27,7 +27,8 @@ public class MemberService {
 		member.setPw(memberDTO.getPw());
 		member.setEmail(memberDTO.getEmail());
 		member.setName(memberDTO.getName());
-		member.setId_card_number(memberDTO.getIdCardNumber1().concat(memberDTO.getIdCardNumber2()));
+		member.setId_card_number(memberDTO.getIdCardNumber1()
+				         .concat(memberDTO.getIdCardNumber2()));
 		member.setPhone_number(memberDTO.getPhoneNumber());
 		member.setAddress(memberDTO.getAddress());
 		member.setGender(memberDTO.getGender());		

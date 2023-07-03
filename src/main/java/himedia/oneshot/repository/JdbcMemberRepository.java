@@ -79,7 +79,6 @@ public class JdbcMemberRepository implements MemberRepository {
     	SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
     		jdbcInsert.withTableName("member")
     		.usingGeneratedKeyColumns("id")
-    		.usingGeneratedKeyColumns("authority")
     		.usingGeneratedKeyColumns("date_created");
     		Map<String, Object> parameters = new HashMap<>();
     		parameters.put("login_id", member.getLogin_id());
@@ -91,7 +90,6 @@ public class JdbcMemberRepository implements MemberRepository {
     		parameters.put("address", member.getAddress());
     		parameters.put("gender", member.getGender());		
 			parameters.put("authority", "A");
-			parameters.put("date_created", member.getDate_created());	
     		Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
 
     		member.setId(key.longValue());

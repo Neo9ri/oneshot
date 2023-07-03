@@ -25,3 +25,6 @@ public class MemberDTO {
     private String authority;      //회원상태
     private Date dateCreated;      //회원가입 날짜
 }
+
+
+

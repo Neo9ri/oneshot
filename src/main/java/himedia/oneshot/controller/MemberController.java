@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import himedia.oneshot.dto.MemberDTO;
 import himedia.oneshot.service.MemberService;
+import himedia.oneshot.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -23,7 +24,6 @@ public class MemberController {
 
    private final MemberService memberService;
    private final LoginService loginService;
-
 
    @GetMapping("join")
    public String join(HttpServletRequest request, Model model) {
@@ -41,6 +41,7 @@ public class MemberController {
       }
    }
 
+   
    @ResponseBody
    @PostMapping("idCheck")
    public int joinCheck(String login_id) {

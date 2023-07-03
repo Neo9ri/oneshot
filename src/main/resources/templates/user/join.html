@@ -121,17 +121,14 @@
   });
   // 아이디 중복체크
 	function checkId(){
-		var login_id = $('#loginId').val();     //id값이 "loginId"인 입력란의 값을 저장
+		var login_id = $('#loginId').val();    
 	    const target = document.getElementById('target_btn');	
 	    var check01 = document.getElementById('check01');
 		$.ajax({
-		 url:'./idCheck',  //Controller에서 요청 받을 주소
-		 type:'post',      //POST 방식으로 전달
-	   //dataType: 'json',
-	   //contentType : 'application/json',
+		 url:'./idCheck',  //Controller 요청 주소
+		 type:'post',      
 	  data:{login_id:login_id},
-	  success:function(login_id){ //컨트롤러에서 넘어온 cnt값을 받는다 
-	     console.log(login_id);      
+	  success:function(login_id){ 
 	      if(login_id==0){   // cnt가 0인 경우 -> 사용 가능한 아이디 
 	    	  check01.innerHTML='아이디 사용가능'
 	          check01.style.color='blue';

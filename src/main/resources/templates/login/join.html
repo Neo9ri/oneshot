@@ -124,7 +124,7 @@
   
   // 아이디 중복체크
 	function checkId(){
-		var login_id = $('#loginId').val();     //id값이 "loginId"인 입력란의 값을 저장
+		var login_id = $('#loginId').val();     
 	    const target = document.getElementById('target_btn');	
 	    var check01 = document.getElementById('check01');
 	    var pw = document.getElementById('pw');
@@ -145,9 +145,9 @@
 	    	  check01.innerHTML='아이디 사용 불가능';
 	    	  check01.style.color='red';         
 	    	  target.disabled = true;	     
-    }
-},
-});
+   		 }
+	},
+  });
 };
 
   //비밀번호 체크
@@ -186,7 +186,7 @@
             }
         }
   
-   //전화번호 하이픈 추가
+      //전화번호 하이픈 추가
       const autoHyphen = (target) => {
        target.value = target.value
          .replace(/[^0-9]/g, '')
