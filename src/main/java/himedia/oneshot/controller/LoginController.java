@@ -38,7 +38,10 @@ public class LoginController {
 
     @PostMapping("login")
     @ResponseBody
-    public LoginDTO loginCheck(HttpServletRequest request, @ModelAttribute LoginDTO loginData, Model model) {
+    public LoginDTO loginCheck(HttpServletRequest request,
+                               @ModelAttribute LoginDTO loginData,
+                               Model model)
+    {
         loginService.loginCheck(request, model, loginData);
         return (LoginDTO) model.getAttribute("user");
     }
