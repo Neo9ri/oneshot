@@ -193,6 +193,4 @@ public class JdbcProductRepository implements ProductRepository{
         List<Cart> isProductInCart = jdbcTemplate.query(query,cartRowMapper, id);
         return isProductInCart.stream().findAny().isPresent();
     }
-
 }
-
