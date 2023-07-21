@@ -124,15 +124,6 @@ public class JdbcMemberRepository implements MemberRepository {
         return members.stream().findAny();
     }
 
-    @Override    
-    public int findByJoinId(String login_id) {
-
-        String sql = "SELECT * FROM MEMBER WHERE login_id = ?;";
-        List<Member> memberList = jdbcTemplate.query(sql, memberRowMapper(), login_id);       
-
-        return memberList.size();      
-    }
-
     /**
      * 아래의 필드를 조회한 모든 member를 List로 반환합니다.
      * 단, 관리자는 제외합니다.
@@ -148,7 +139,7 @@ public class JdbcMemberRepository implements MemberRepository {
     public Boolean changePassword(long id, String password) {
         String sql = "UPDATE member SET pw= ? WHERE id=?";
         int result = jdbcTemplate.update(sql, password, id);
-        return result == 1;
+        return true;
     }
 
     @Override

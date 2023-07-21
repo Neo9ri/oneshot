@@ -22,7 +22,6 @@ public interface MemberRepository {
     Boolean changePassword(long id, String password);
     void changeAuth(long id, String authority);
     Optional<Member> findLoginId(String name, String email, String birthday);
-    int findByJoinId(String login_id);
     Optional<Member> findPassword(String loginId, String name, String birthday, String email);
 
 }
