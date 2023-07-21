@@ -74,8 +74,8 @@
              <label for="idCardNumber1" class="form-label mt-4">주민번호</label>
              <div class="input-img-group">
                <span><img src="../img/join/card.png" alt=""></span>
-               <input type="text" class="form-control" id="idCardNumber1" name="idCardNumber1"  maxlength="6" required> &nbsp;_&nbsp;
-               <input type="password" class="form-control" id="idCardNumber2" name="idCardNumber2"  maxlength="7" required>
+               <input type="text" class="form-control" id="idCardNumber1" name="idCardNumber1"  maxlength="6" onchange="resetIdCardNumber()" required> &nbsp;_&nbsp;
+               <input type="password" class="form-control" id="idCardNumber2" name="idCardNumber2"  maxlength="7" onchange="checkAge()" required>
               </div>
            </div>
              <div class="form-group">
@@ -115,6 +115,7 @@
   const target = document.getElementById('target_btn');
   var check01 = document.getElementById('check01');
   var check02 = document.getElementById('check02');
+  var idCardNumber = document.getElementById('idCardNumber2');
   var pw = document.getElementById('pw');
   var pw2 = document.getElementById('pw2');
   var SC = ["!","@","#","$","%"];
@@ -197,6 +198,25 @@
       .replace(/[^0-9]/g, '')
     .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
   }
+
+  function resetIdCardNumber(){
+    idCardNumber.value="";
+  }
+  
+  function checkAge(){
+    var presentYear = new Date().getFullYear();
+    var birthYear = document.getElementById('idCardNumber1').value.toString().slice(0, 2);
+    if (idCardNumber.value.toString().slice(0, 1) < 3){
+      birthYear = '19'+birthYear.toString();
+    } else {
+      birthYear = '20'+birthYear.toString();
+    }
+    if (Number(presentYear)-Number(birthYear) < 19){
+      window.alert('만 19세 미만의 청소년은 가입할 수 없습니다.');
+      idCardNumber.value="";
+    }
+  }
+
 
   </script>
   <script src="js/header.js"></script>
