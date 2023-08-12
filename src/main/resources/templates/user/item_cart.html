@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
+  <!-- PortOne SDK -->
+  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,7 +35,7 @@
             <th class="cart_thead_btn">선택</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="cartItems">
         <tr th:each="product:${cartProducts}">
           <td class="cart_tbody_img"><img src="../img/product/thumbnail/1000000319_detail_025.jpg" th:src="@{${'/'+product.imgThumb}}" alt="" width="200px" height="200px"></td>
           <td class="cart_tbody_info" th:text="${product.name}"></td>
@@ -69,9 +72,10 @@
           <button id="item_cart_cancle_btn" type="reset" th:onclick="location.href='/'">취소</button>
         </div>
         <div class="item_cart_order_btn">
-          <button id="item_cart_order_btn" type="submit" onclick="confirmOrder(event)">주문하기</button>
+          <button id="item_cart_order_btn" type="submit" onclick="requestPay()">주문하기</button>
         </div>
       </form>
+      <button onclick="requestPay()">결제하기</button>
     </div>
   </div>
   <!-- 장바구니 종료 -->
@@ -122,7 +126,91 @@
         alert('재고가 부족하여 수량을 추가할 수 없습니다.');
       }
     }
-  
+
   </script>
+<script>
+
+  var IMP = window.IMP;
+  const userCode = "imp03540538";
+  const product = document.querySelector('.cart_tbody_info').textContent;
+  const price = document.getElementById('cartItemCount').textContent.replace("원","");
+  const name = "name";
+  const email = "email";
+  const phone = "010-0000-0000";
+  const addr = "address";
+  const quantity = document.getElementById('cartItems').getElementsByTagName("tr").length;
+
+
+
+  console.log(price)
+  function requestPay() {
+    IMP.init("imp03540538");
+    IMP.request_pay(
+            {
+              pg : 'kcp.T0000',   //테스트인경우 kcp.T0000
+              pay_method : 'card',
+              merchant_uid: "order_no_"+ new Date().getTime(), //상점에서 생성한 고유 주문번호
+              name : "테스트 결제",
+              amount : price,
+              company : '원샷, 우리술 한 잔',//해당 파라미터 설정시 통합결제창에 해당 상호명이 노출됩니다.
+              buyer_email : email,
+              buyer_name : name,
+              buyer_tel : phone,
+              buyer_addr : addr,
+              // buyer_postcode : '123-456',
+              language : 'ko', // en 설정시 영문으로 출력되면 해당 파라미터 생략시 한국어 default
+              // m_redirect_url : '{모바일에서 결제 완료 후 리디렉션 될 URL}',
+              auth_mode:'key-in' // 키인결제(일회성 결제)이용시 설정
+            },
+            function (rsp) {
+              //rsp.imp_uid 값으로 결제 단건조회 API를 호출하여 결제결과를 판단합니다.
+              if (rsp.success) {
+                $.ajax({
+                  url: "/payment/validate/" + rsp.imp_uid,
+                  method: "POST",
+                  // contentType: "application/json",
+                  // data: JSON.stringify({
+                  //   imp_uid: rsp.imp_uid,            // 결제 고유번호
+                  //   merchant_uid: rsp.merchant_uid,   // 주문번호
+                  //   amount: rsp.paid_amount
+                  // }),
+                }).done(function (data) {
+                  // 가맹점 서버 결제 API 성공시 로직
+                  // if(rsp.paid_amount == data.response.amount){
+                    alert("결제 및 결제검증완료");
+                    orderProcess(rsp.imp_uid, rsp.merchant_uid);
+                  // }
+                })
+              } else {
+                alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+              }
+              });
+  }
+  function orderProcess(imp_uid,merchant_uid){
+    $.ajax({
+      type: "POST",
+      url: "/user/item_cart/order",
+      data :{
+        imp_uid: imp_uid,            // 결제 고유번호
+        merchant_uid: merchant_uid   // 주문번호
+      },
+      dataType: "json",
+      success: function () {
+        alert("결제되었습니다.");
+        location.href = "/";
+
+      },
+      error: function (xhr) {
+        var errorResponse =JSON.parse(xhr.responseText);
+        var errorMessage = errorResponse.errorMessage;
+        alert(errorMessage);
+
+        // 결제 취소 요청
+        // cancelPayment(imp_uid);
+      }
+    });
+  }
+
+</script>
 </body>
 </html>

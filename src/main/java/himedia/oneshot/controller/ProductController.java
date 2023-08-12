@@ -138,7 +138,7 @@ public class ProductController {
 
         List<CartDTO> cartProducts = productService.showCart(memberId);
         int totalPrice = productService.cartTotalPrice(memberId);
-
+        model.addAttribute("member",user);
         model.addAttribute("cartProducts",cartProducts);
         model.addAttribute("totalPrice",totalPrice+3000+"원");
         return "user/item_cart";
