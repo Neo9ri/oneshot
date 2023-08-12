@@ -18,20 +18,28 @@ public class AdminProductService {
 
     private final JdbcAdminProductRepository adminProductRepository;
 
-    private Product saveImage(Product product,MultipartFile thumbImgFile, MultipartFile[] expImgFiles) throws Exception{
+    private void saveThumbImg(Product product, MultipartFile thumbImgFile)throws Exception{
+//        String uuid = UUID.randomUUID().toString();
         String thumbImgName = thumbImgFile.getOriginalFilename();
+        String thumbPath = System.getProperty("user.dir") +
+                "/src/main/resources/static/img/product/thumbnail";
 
+        File thumbSaveFile = new File(thumbPath,thumbImgName);
+        thumbImgFile.transferTo(thumbSaveFile);
+
+        product.setImg_thumb("img/product/thumbnail/"+thumbImgName);
+
+    }
+
+    private void saveExpImg(Product product, MultipartFile[] expImgFiles)throws Exception{
+//        String uuid = UUID.randomUUID().toString();
         List<String> expImgNames = new ArrayList<>();
         for(MultipartFile img : expImgFiles){
             String imgName = img.getOriginalFilename();
             expImgNames.add(imgName);
         }
-        String thumbPath = System.getProperty("user.dir") +
-                "/src/main/resources/static/img/product/thumbnail";
         String expPath = System.getProperty("user.dir")+
                 "/src/main/resources/static/img/product/explanation";
-        File thumbSaveFile = new File(thumbPath,thumbImgName);
-        thumbImgFile.transferTo(thumbSaveFile);
 
         for (int i = 0; i < expImgFiles.length; i++) {
             if (i < expImgNames.size() && !expImgNames.get(i).isEmpty()) {
@@ -39,32 +47,72 @@ public class AdminProductService {
                 expImgFiles[i].transferTo(expSaveFile);
             }
         }
-
-        product.setImg_thumb("img/product/thumbnail/"+thumbImgName);
+//        List<String> exps = new ArrayList<>();
         product.setImg_exp1("img/product/explanation/"+expImgNames.get(0));
+//        exps.add(product.getImg_exp1());
         if (expImgNames.size() > 1 && !expImgNames.get(1).isEmpty()) {
             product.setImg_exp2("img/product/explanation/" + expImgNames.get(1));
+//            exps.add(product.getImg_exp2());
         }
-        return product;
     }
+
+//    private Product saveImage(Product product,MultipartFile thumbImgFile, MultipartFile[] expImgFiles) throws Exception{
+//        String thumbImgName = thumbImgFile.getOriginalFilename();
+//
+//        List<String> expImgNames = new ArrayList<>();
+//        for(MultipartFile img : expImgFiles){
+//            String imgName = img.getOriginalFilename();
+//            expImgNames.add(imgName);
+//        }
+//        String thumbPath = System.getProperty("user.dir") +
+//                "/src/main/resources/static/img/product/thumbnail";
+//        String expPath = System.getProperty("user.dir")+
+//                "/src/main/resources/static/img/product/explanation";
+//        File thumbSaveFile = new File(thumbPath,thumbImgName);
+//        thumbImgFile.transferTo(thumbSaveFile);
+//
+//        for (int i = 0; i < expImgFiles.length; i++) {
+//            if (i < expImgNames.size() && !expImgNames.get(i).isEmpty()) {
+//                File expSaveFile = new File(expPath, expImgNames.get(i));
+//                expImgFiles[i].transferTo(expSaveFile);
+//            }
+//        }
+//
+//        product.setImg_thumb("img/product/thumbnail/"+thumbImgName);
+//        product.setImg_exp1("img/product/explanation/"+expImgNames.get(0));
+//        if (expImgNames.size() > 1 && !expImgNames.get(1).isEmpty()) {
+//            product.setImg_exp2("img/product/explanation/" + expImgNames.get(1));
+//        }
+//        return product;
+//    }
 
 
     public void saveProduct(Product product, MultipartFile thumbImgFile, MultipartFile[] expImgFiles)throws Exception{
-        saveImage(product,thumbImgFile, expImgFiles);
+        saveThumbImg(product, thumbImgFile);
+        saveExpImg(product, expImgFiles);
         adminProductRepository.saveProduct(product);
     }
     public void updateProduct(Long id,Product updatedProduct,MultipartFile thumbImgFile, MultipartFile[] expImgFiles) throws Exception {
-        if ((thumbImgFile == null || thumbImgFile.isEmpty()) || (expImgFiles == null || expImgFiles.length == 0)) {
-
+        if (thumbImgFile == null || thumbImgFile.isEmpty())  {
             Product existingProduct = adminProductRepository.findById(id).get();
+            log.info("기존product>>{}",existingProduct.getImg_thumb());
             updatedProduct.setImg_thumb(existingProduct.getImg_thumb());
+            saveExpImg(updatedProduct,expImgFiles);
+        }else if(expImgFiles == null || expImgFiles.length == 1) {
+            Product existingProduct = adminProductRepository.findById(id).get();
+            log.info("기존product>>{}",existingProduct.getImg_exp1());
             updatedProduct.setImg_exp1(existingProduct.getImg_exp1());
-            updatedProduct.setImg_exp2(existingProduct.getImg_exp2());
-
-        }else {
-            saveImage(updatedProduct,thumbImgFile,expImgFiles);
+            if(existingProduct.getImg_exp2() != null){
+                updatedProduct.setImg_exp2(existingProduct.getImg_exp2());
+            }
+            saveThumbImg(updatedProduct,thumbImgFile);
+        }else{
+            log.info("find error >> {}",expImgFiles.length);
+            saveThumbImg(updatedProduct,thumbImgFile);
+            saveExpImg(updatedProduct,expImgFiles);
         }
         adminProductRepository.updateProduct(id, updatedProduct);
+
     }
 
     public void updateProductStatus(Long id, String status){
