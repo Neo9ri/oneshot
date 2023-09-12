@@ -27,8 +27,8 @@ public class Pagination {
     private int firstPage; // 첫 버튼의 페이지 번호
     private int lastPage; // 마지막 버튼의 페이지 번호,
     private int nextFirstPage; // 마지막 버튼의 다음 페이지 번호
-    private boolean existPreviousLastPage; // 하단부 첫 버튼의 이전 페이지가 존재 여부
-    private boolean existNextFirstPage; // 하단부 마지막 버튼의 이후 페이지가 존재 여부
+    private boolean existPreviousLastPage; // 하단부 첫 버튼의 이전 페이지 존재 여부
+    private boolean existNextFirstPage; // 하단부 마지막 버튼의 이후 페이지 존재 여부
     private int fromIndex; // 슬라이싱에 사용될 시작 인덱스
     private int toIndex; // 슬라이싱에 사용될 끝 인덱스
 
@@ -142,19 +142,26 @@ public class Pagination {
                                    int rangeItem,
                                    Integer requestPage,
                                    String pageBtnName){
+        // 한 페이지에 보여줄 목록 개수 설정
         this.rangeItem = rangeItem;
+        // 사용자가 요청한 페이지 번호
         try {
             this.requestPage = requestPage;
-
-        } catch (NullPointerException npe){
-            this.requestPage = 1;
+        } catch (NullPointerException npe){ // 사용자가 요청한 페이지가 없는 경우
+            this.requestPage = 1; // 요청 페이지를 첫 페이지로 설정
+            System.out.println(this.requestPage);
         }
 
-        totalItem = itemList.size();
+        totalItem = itemList.size(); // 페이징이 필요한 데이터의 전체 개수
+        if (totalItem!=0) {
+            totalPage = (int)Math.ceil(totalItem/(float)rangeItem); // 전체 페이지 수
+        } else {
+            totalPage=1;
+        }
+        if (this.requestPage>totalPage) // 요청 페이지가 전체 페이지보다 많은 경우
+            this.requestPage=totalPage; // 요청 페이지는 마지막 페이지로 설정
 
-        totalPage = (int)Math.ceil(totalItem/(float)rangeItem);
-        if (this.requestPage>totalPage)
-            this.requestPage=totalPage;
+        // 페이지 버튼 구성을 위한 설정
         int lastGroup = (totalPage-1)/ button;
         int currentGroup = (this.requestPage-1)/ button;
         firstPage = currentGroup * button + 1;
@@ -180,20 +187,21 @@ public class Pagination {
             nextFirstPage = lastPage + 1;
             existNextFirstPage = true;
         }
+
+        // 필요한 목록만 슬라이싱하기 위한 인덱스 범위 설정
         fromIndex = rangeItem * (this.requestPage - 1);
+        System.out.println("fromIndex : " + fromIndex);
         toIndex = (rangeItem * this.requestPage);
 
         model.addAttribute(pageBtnName, this);
 
         try {
             itemList = itemList.subList(fromIndex, toIndex);
-            model.addAttribute(itemListName, itemList);
-        } catch (IndexOutOfBoundsException ioobe) {
-            if (itemList.size() != 0){
+        } catch (IndexOutOfBoundsException ioobe) { // 인덱스 범위를 벗어날 경우, 마지막 인덱스 값 재설정
                 toIndex = itemList.size();
                 itemList = itemList.subList(fromIndex,toIndex);
-                model.addAttribute(itemListName, itemList);
-            }
+        } finally {
+            model.addAttribute(itemListName, itemList);
         }
 
     }

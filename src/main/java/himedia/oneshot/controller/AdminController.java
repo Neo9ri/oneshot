@@ -78,7 +78,6 @@ public class AdminController {
             return "redirect:/";
         }
 
-
         memberService.changeAuth(member);
 
         List<Member> members = memberService.makeMemberList();
