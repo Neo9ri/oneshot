@@ -36,64 +36,64 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="InputId" class="form-label mt-4">아이디</label> &nbsp;<span id="check01"></span>
+            <label for="loginId" class="form-label mt-4">아이디</label> &nbsp;<span id="check01"></span>
             <div class="input-img-group">
               <span><img src="../img/join/name.png" alt=""></span>
               <input type="text" class="form-control" id="loginId" name="loginId" onchange="checkId()" required>
             </div>
           </div>
           <div class="form-group">
-            <label for="InputPassword" class="form-label mt-4">비밀번호</label>
+            <label for="pw" class="form-label mt-4">비밀번호</label>
             <div class="input-img-group">
               <span><img src="../img/join/pw1.png" alt=""></span>
-              <input type="password" class="form-control" id="pw" name="pw" onchange="check_pw()" >
+              <input type="password" class="form-control" id="pw" name="pw" onchange="checkPw()" required>
             </div>
           </div>
           <div class="form-group">
-            <label for="InputPassword2" class="form-label mt-4">비밀번호 재확인</label> &nbsp;<span id="check02"></span>
+            <label for="pw2" class="form-label mt-4">비밀번호 재확인</label> &nbsp;<span id="check02"></span>
             <div class="input-img-group">
               <span><img src="../img/join/pw2.png" alt=""></span>
-              <input type="password" class="form-control" id="pw2" name="pw2" onchange="check02_pw()" required>
+              <input type="password" class="form-control" id="pw2" name="pw2" onchange="checkPw()" required>
             </div>
           </div>
          <div class="form-group">
-            <label for="InputEmail1" class="form-label mt-4">본인 확인용 이메일</label>
+            <label for="email" class="form-label mt-4">본인 확인용 이메일</label>
             <div class="input-img-group">
               <span><img src="../img/join/email.png" alt=""></span>
               <input type="email" class="form-control" id="email" name="email" required>
              </div>
          </div>
          <div class="form-group">
-           <label for="InputName" class="form-label mt-4">이름</label>
+           <label for="name" class="form-label mt-4">이름</label>
            <div class="input-img-group">
              <span><img src="../img/join/name.png" alt=""></span>
              <input type="text" class="form-control" id="name" name="name" required>
             </div>
          </div>
            <div class="form-group">
-             <label for="InputNumber" class="form-label mt-4">주민번호</label>
+             <label for="idCardNumber1" class="form-label mt-4">주민번호</label>
              <div class="input-img-group">
                <span><img src="../img/join/card.png" alt=""></span>
-               <input type="text" class="form-control" id="idCardNumber1" name="idCardNumber1"  maxlength="6" required> &nbsp;_&nbsp;
-               <input type="password" class="form-control" id="idCardNumber2" name="idCardNumber2"  maxlength="7" required>
+               <input type="text" class="form-control" id="idCardNumber1" name="idCardNumber1"  maxlength="6" onchange="resetIdCardNumber()" required> &nbsp;_&nbsp;
+               <input type="password" class="form-control" id="idCardNumber2" name="idCardNumber2"  maxlength="7" onchange="checkAge()" required>
               </div>
            </div>
              <div class="form-group">
-               <label for="InputPhone" class="form-label mt-4">휴대전화번호</label>
+               <label for="phoneNumber" class="form-label mt-4">휴대전화번호</label>
                <div class="input-img-group">
                  <span><img src="../img/join/phone.png" alt=""></span>
                  <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" oninput="autoHyphen(this)"  maxlength="13" required>
                </div>
              </div>
              <div class="form-group">
-                 <label for="InputAddress" class="form-label mt-4">주소</label>
+                 <label for="address" class="form-label mt-4">주소</label>
                  <div class="input-img-group">
                    <span><img src="../img/join/card.png" alt=""></span>
                    <input type="text" class="form-control" id="address" name="address" required>
                   </div>
              </div>
              <div class="form-group">
-                   <label for="InputGender" class="form-label mt-4">성별</label>
+                   <label for="gender" class="form-label mt-4">성별</label>
                    <div class="input-img-group">
                      <span><img src="../img/join/gender.png" alt=""></span>
                      <select class="form-select" id="gender" name="gender" required>
@@ -111,6 +111,14 @@
     </section>
   <footer th:replace="~{fragment/footer :: #footer}" ></footer>
   <script>
+  var login_id = $('#loginId').val();
+  const target = document.getElementById('target_btn');
+  var check01 = document.getElementById('check01');
+  var check02 = document.getElementById('check02');
+  var idCardNumber = document.getElementById('idCardNumber2');
+  var pw = document.getElementById('pw');
+  var pw2 = document.getElementById('pw2');
+  var SC = ["!","@","#","$","%"];
   
   //Enter 차단
   $(window).ready(function() {
@@ -120,83 +128,95 @@
 	          event.preventDefault();
 	      }
 	  });
-	  });
+  });
   
   // 아이디 중복체크
-	function checkId(){
-		var login_id = $('#loginId').val();     //id값이 "loginId"인 입력란의 값을 저장
-	    const target = document.getElementById('target_btn');	
-	    var check01 = document.getElementById('check01');
-	    var pw = document.getElementById('pw');
-	    var pw2 = document.getElementById('pw2');
-		$.ajax({
-		 url:'./idCheck',  //Controller에서 요청 받을 주소
-		 type:'post',      //POST 방식으로 전달
-	   //dataType: 'json',
-	  //contentType : 'application/json',
-	  data:{login_id:login_id},
-	  success:function(login_id){ //컨트롤러에서 넘어온 cnt값을 받는다 
-	     console.log(login_id);      
-	      if(login_id==0){ //cnt가 0인 경우 -> 사용 가능한 아이디 
-	    	  check01.innerHTML='아이디 사용가능'
-	          check01.style.color='blue';
-	    	  target.disabled = false;	   	 	          	          
-	      } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-	    	  check01.innerHTML='아이디 사용 불가능';
-	    	  check01.style.color='red';         
-	    	  target.disabled = true;	     
-    }
-},
-});
-};
+  function checkId(){
+      $.ajax({
+          url:'./idCheck',
+          type:'post',
+          data:{loginId:login_id},
+          success:function(result){
+            console.log(result);
+            if(result==true){
+                check01.innerHTML='아이디 사용가능'
+                check01.style.color='blue';
+            } else {
+                check01.innerHTML='아이디 사용 불가능';
+                check01.style.color='red';
+            }
+            updateSignUpBtn();
+          },
+      });
+  }
 
   //비밀번호 체크
-        function check02_pw(){
-            const target = document.getElementById('target_btn');	
-            var pw = document.getElementById('pw');
-            var pw2 = document.getElementById('pw2');
-            
-            var pw = document.getElementById('pw').value;
-            var SC = ["!","@","#","$","%"];
-            var check02_SC = 0;
-            if(pw.length < 6 || pw.length>20){
-                window.alert('비밀번호는 6글자 이상, 20글자 이하만 이용 가능합니다.');
-                document.getElementById('pw').value='';
-            }
-            for(var i=0;i<SC.length;i++){
-                if(pw.indexOf(SC[i]) != -1){
-                   check02_SC = 1;
-                }
-            }
-            if(check02_SC == 0){
-                window.alert('!,@,#,$,% 의 특수문자가 들어가 있지 않습니다.')
-                document.getElementById('pw').value='';
-            }
-            if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
-                if(document.getElementById('pw').value==document.getElementById('pw2').value){
-                    document.getElementById('check02').innerHTML='비밀번호가 일치합니다.'
-                    document.getElementById('check02').style.color='blue';
-          	        target.disabled = false;
-                }
-                else{
-                    document.getElementById('check02').innerHTML='불일치';
-                    document.getElementById('check02').style.color='red';
-              	    target.disabled = true; 
-                }
-            }
-        }
+  function checkPw(){
+      var pw1 = pw.value;
+      var check02_SC = 0;
+      if(pw1.length < 6 || pw1.length > 20){
+          window.alert('비밀번호는 6글자 이상, 20글자 이하만 이용 가능합니다.');
+          document.getElementById('pw').value='';
+      }
+      for(var i=0; i < SC.length; i++){
+          if(pw1.indexOf(SC[i]) != -1){
+              check02_SC = 1;
+          }
+      }
+      if(check02_SC == 0){
+          window.alert('!,@,#,$,% 의 특수문자가 들어가 있지 않습니다.')
+          document.getElementById('pw').value='';
+      }
+      if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
+          if(document.getElementById('pw').value==document.getElementById('pw2').value){
+              check02.innerHTML='비밀번호가 일치합니다.'
+              check02.style.color='blue';
+          } else{
+              check02.innerHTML='불일치';
+              check02.style.color='red';
+          }
+        updateSignUpBtn();
+      }
+  }
+
+  function updateSignUpBtn() {
+    if(check01.innerText=='아이디 사용가능' && check02.innerText=='비밀번호가 일치합니다.'){
+      target.disabled = false;
+    } else {
+      target.disabled = true;
+    }
+  }
+
+    //전화번호 하이픈 추가
+  const autoHyphen = (target) => {
+    target.value = target.value
+      .replace(/[^0-9]/g, '')
+      .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+  }
+  const autoHyphen2 = (target) => {
+    target.value = target.value
+      .replace(/[^0-9]/g, '')
+    .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+  }
+
+  function resetIdCardNumber(){
+    idCardNumber.value="";
+  }
   
-   //전화번호 하이픈 추가
-      const autoHyphen = (target) => {
-       target.value = target.value
-         .replace(/[^0-9]/g, '')
-         .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
-      }
-      const autoHyphen2 = (target) => {
-       target.value = target.value
-         .replace(/[^0-9]/g, '')
-        .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
-      }
+  function checkAge(){
+    var presentYear = new Date().getFullYear();
+    var birthYear = document.getElementById('idCardNumber1').value.toString().slice(0, 2);
+    if (idCardNumber.value.toString().slice(0, 1) < 3){
+      birthYear = '19'+birthYear.toString();
+    } else {
+      birthYear = '20'+birthYear.toString();
+    }
+    if (Number(presentYear)-Number(birthYear) < 19){
+      window.alert('만 19세 미만의 청소년은 가입할 수 없습니다.');
+      idCardNumber.value="";
+    }
+  }
+
 
   </script>
   <script src="js/header.js"></script>

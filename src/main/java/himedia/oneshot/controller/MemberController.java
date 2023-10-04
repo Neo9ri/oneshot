@@ -45,8 +45,8 @@ public class MemberController {
 
    @ResponseBody
    @PostMapping("idCheck")
-   public int joinCheck(String login_id) {
-      return memberService.find(login_id);
+   public boolean idCheck(String loginId) {
+      return !memberService.findByLoginId(loginId);
    }
 
    @GetMapping("welcome")

@@ -35,8 +35,9 @@ public class MemberService {
 		return memberRepository.join(member);
 	}
 
-	public int find(String login_id) {
-		return memberRepository.findByJoinId(login_id);
+	public boolean findByLoginId(String loginId) {
+        return memberRepository.findByLoginId(loginId).isPresent();
+
 	}	
 
     /**
